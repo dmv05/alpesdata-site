@@ -268,21 +268,67 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
           </div>
           <div>
             <h2>Envoyer un message</h2>
-            <form action="mailto:info@alpesdata.com" method="post" enctype="text/plain" style="background:var(--white);padding:24px;border-radius:var(--radius);box-shadow:var(--shadow)">
+            <div id="contact-form-status" style="display:none;padding:12px 16px;border-radius:8px;margin-bottom:16px;font-weight:500"></div>
+            <form id="contact-form" style="background:var(--white);padding:24px;border-radius:var(--radius);box-shadow:var(--shadow)">
               <div style="margin-bottom:16px">
                 <label style="display:block;font-weight:600;margin-bottom:4px;font-size:0.9rem">Nom *</label>
-                <input type="text" name="name" required style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-family:inherit;font-size:1rem">
+                <input type="text" id="field-name" name="name" required style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-family:inherit;font-size:1rem">
               </div>
               <div style="margin-bottom:16px">
                 <label style="display:block;font-weight:600;margin-bottom:4px;font-size:0.9rem">Email *</label>
-                <input type="email" name="email" required style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-family:inherit;font-size:1rem">
+                <input type="email" id="field-email" name="email" required style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-family:inherit;font-size:1rem">
               </div>
               <div style="margin-bottom:16px">
                 <label style="display:block;font-weight:600;margin-bottom:4px;font-size:0.9rem">Message *</label>
-                <textarea name="message" rows="5" required style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-family:inherit;font-size:1rem;resize:vertical"></textarea>
+                <textarea id="field-message" name="message" rows="5" required style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-family:inherit;font-size:1rem;resize:vertical"></textarea>
               </div>
-              <button type="submit" class="btn btn-primary">Envoyer</button>
+              <button type="submit" id="contact-submit-btn" class="btn btn-primary">Envoyer</button>
             </form>
+            <script>
+            document.getElementById('contact-form').addEventListener('submit', async function(e) {
+              e.preventDefault();
+              const status = document.getElementById('contact-form-status');
+              const btn = document.getElementById('contact-submit-btn');
+              const name = document.getElementById('field-name').value.trim();
+              const email = document.getElementById('field-email').value.trim();
+              const message = document.getElementById('field-message').value.trim();
+
+              status.style.display = 'none';
+              status.className = '';
+              btn.disabled = true;
+              btn.textContent = 'Envoi...';
+
+              try {
+                const res = await fetch('/api/contact', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ name, email, message })
+                });
+                const data = await res.json();
+                if (res.ok) {
+                  status.style.display = 'block';
+                  status.className = '';
+                  status.style.background = '#d4edda';
+                  status.style.color = '#155724';
+                  status.style.border = '1px solid #c3e6cb';
+                  status.textContent = '✅ Message envoyé avec succès ! Nous vous répondrons rapidement.';
+                  document.getElementById('contact-form').reset();
+                } else {
+                  throw new Error(data.detail || 'Erreur serveur');
+                }
+              } catch (err) {
+                status.style.display = 'block';
+                status.className = '';
+                status.style.background = '#f8d7da';
+                status.style.color = '#721c24';
+                status.style.border = '1px solid #f5c6cb';
+                status.textContent = '❌ ' + (err.message || 'Erreur lors de l\'envoi. Réessayez.');
+              } finally {
+                btn.disabled = false;
+                btn.textContent = 'Envoyer';
+              }
+            });
+            </script>
           </div>
         </div>
       </div>
