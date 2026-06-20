@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intelligence Artificielle & Développement Web | Alpesdata</title>
+<meta name="description" content="Découvrez comment Alpesdata utilise l'IA générative (agents autonomes) pour créer des sites web plus performants, plus rapidement. PageSpeed 100/100, SSL, SEO.">
+    <meta property="og:title" content="IA & Développement Web — Alpesdata repousse les limites" />
+    <meta property="og:description" content="Découvrez comment Alpesdata utilise l'IA générative (agents autonomes) pour créer des sites web plus performants, plus rapidement. PageSpeed 100/100, SSL, SEO." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://alpesdata.com/ia.html" />
+    <meta property="og:image" content="https://alpesdata.com/favicon-192.png" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Alpesdata" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="IA & Développement Web — Alpesdata repousse les limites" />
+    <meta name="twitter:description" content="Découvrez comment Alpesdata utilise l'IA générative (agents autonomes) pour créer des sites web plus performants, plus rapidement. PageSpeed 100/100, SSL, SEO." />
+    <meta name="twitter:image" content="https://alpesdata.com/favicon-192.png" />
+    <link rel="canonical" href="https://alpesdata.com/ia.html" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "IA & Développement Web — Alpesdata repousse les limites",
+      "description": "Découvrez comment Alpesdata utilise l'IA générative (agents autonomes) pour créer des sites web plus performants, plus rapidement.",
+      "author": {
+        "@type": "Person",
+        "name": "Didier Moranval-Vincent"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Alpesdata",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://alpesdata.com/favicon-192.png"
+        }
+      },
+      "datePublished": "2026-06-20",
+      "dateModified": "2026-06-20"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Alpesdata",
+      "url": "https://alpesdata.com",
+      "description": "Agence de développement web et assistance informatique dans les Hautes-Alpes.",
+      "inLanguage": "fr-FR"
+    }
+    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap"></noscript>
+<style>
+/* =============================================
+   Alpesdata — Agence de développement web
+   Design system
+   ============================================= */
+
+:root {
+  --clay: #806065;
+  --clay-dark: #644a4e;
+  --clay-light: #c49ea2;
+  --navy: #1B395A;
+  --navy-dark: #0F2640;
+  --navy-light: #2A5078;
+  --cream: #F7EBED;
+  --cream-dark: #e8d5d8;
+  --white: #FFFFFF;
+  --text: #2d2d2d;
+  --text-light: #666;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Syne', 'Inter', sans-serif;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+
+.nav{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);font-family:var(--font-display);font-weight:700;font-size:1.2rem}
+.nav-logo svg{width:36px;height:36px}
+.nav-links{display:flex;list-style:none;gap:4px}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:500;transition:var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,0.12)}
+.nav-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:8px}
+@media(max-width:900px){
+  .nav-toggle{display:block}
+  .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--navy);flex-direction:column;padding:16px;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+  .nav-links.open{display:flex}
+}
+
+/* Hero IA */
+.hero-ia{background:linear-gradient(135deg, #0F2640 0%, #1B395A 40%, #2A5078 100%);color:var(--white);padding:100px 24px 80px;text-align:center;position:relative;overflow:hidden}
+.hero-ia::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 70% 30%, rgba(128,96,101,0.2) 0%, transparent 60%);pointer-events:none}
+.hero-ia .hero-content{max-width:800px;margin:0 auto;position:relative;z-index:1}
+.hero-ia .badge{display:inline-block;background:rgba(128,96,101,0.3);border:1px solid rgba(255,255,255,0.2);padding:6px 18px;border-radius:50px;font-size:0.82rem;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.hero-ia h1{font-family:var(--font-display);font-weight:700;font-size:2.8rem;line-height:1.15;margin-bottom:16px}
+.hero-ia h1 span{color:#c49ea2}
+.hero-ia p{font-size:1.1rem;opacity:0.9;max-width:650px;margin:0 auto;line-height:1.7}
+@media(max-width:768px){
+  .hero-ia{padding:70px 20px 50px}
+  .hero-ia h1{font-size:1.8rem}
+}
+
+/* Content page */
+.content-page{padding:60px 24px}
+.content-page .section-inner{max-width:800px}
+.content-page h1{font-family:var(--font-display);font-size:2rem;color:var(--navy);margin-bottom:16px}
+.content-page h2{font-family:var(--font-display);font-size:1.4rem;color:var(--navy);margin:40px 0 16px}
+.content-page h3{font-family:var(--font-display);font-size:1.15rem;color:var(--navy);margin:28px 0 10px}
+.content-page p{margin-bottom:16px;line-height:1.8}
+.content-page ul{margin:0 0 20px 24px}
+.content-page li{margin-bottom:8px;line-height:1.7}
+
+/* Metric cards */
+.metrics{display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:16px;margin:32px 0}
+.metric-card{background:var(--white);border-radius:var(--radius);padding:24px 16px;text-align:center;box-shadow:var(--shadow)}
+.metric-card .number{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--clay)}
+.metric-card .label{font-size:0.82rem;color:var(--text-light);margin-top:4px}
+
+/* Highlight boxes */
+.highlight-box{background:var(--white);border-radius:var(--radius);padding:28px;margin:28px 0;box-shadow:var(--shadow);border-left:4px solid var(--clay)}
+.highlight-box h3{font-family:var(--font-display);color:var(--navy);margin:0 0 10px;font-size:1.05rem}
+.highlight-box p{margin-bottom:0}
+.highlight-box ul{margin-bottom:0}
+
+.info-box{background:linear-gradient(135deg, #eef4ff 0%, #f7ebed 100%);border-radius:var(--radius);padding:28px;margin:28px 0;border:1px solid rgba(128,96,101,0.2)}
+.info-box h3{font-family:var(--font-display);color:var(--navy);margin:0 0 10px;font-size:1.05rem}
+
+/* Steps */
+.steps{counter-reset:step;margin:32px 0}
+.step{background:var(--white);border-radius:var(--radius);padding:24px 24px 24px 60px;margin-bottom:16px;box-shadow:var(--shadow);position:relative}
+.step::before{counter-increment:step;content:counter(step);position:absolute;left:16px;top:50%;transform:translateY(-50%);width:32px;height:32px;background:var(--clay);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:0.9rem}
+.step h3{font-family:var(--font-display);font-size:1.05rem;color:var(--navy);margin:0 0 6px}
+.step p{font-size:0.92rem;color:var(--text-light);margin:0}
+
+/* CTA */
+.cta-section{background:var(--navy);color:var(--white);text-align:center;padding:60px 24px}
+.cta-section h2{font-family:var(--font-display);font-size:1.8rem;margin-bottom:16px}
+.cta-section p{max-width:600px;margin:0 auto 24px;opacity:0.9}
+.btn{display:inline-block;padding:14px 32px;border-radius:50px;text-decoration:none;font-weight:600;font-size:1rem;transition:var(--transition);border:none;cursor:pointer}
+.btn-primary{background:var(--clay);color:var(--white)}
+.btn-primary:hover{background:var(--clay-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(128,96,101,0.4)}
+.btn-outline-light{background:transparent;color:var(--white);border:2px solid rgba(255,255,255,0.6)}
+.btn-outline-light:hover{background:rgba(255,255,255,0.1);border-color:var(--white)}
+
+/* Footer */
+.footer{background:var(--navy-dark);color:rgba(255,255,255,0.7);padding:40px 24px 24px;text-align:center;font-size:0.85rem}
+.footer a{color:rgba(255,255,255,0.7);text-decoration:none;transition:var(--transition)}
+.footer a:hover{color:var(--white)}
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.footer-social{display:flex;justify-content:center;gap:16px;margin-bottom:20px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.footer-social a:hover{background:var(--clay);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;font-size:0.8rem}
+
+/* Code block */
+.code-block{background:#1a1a2e;color:#e4e4e4;border-radius:var(--radius-sm);padding:16px 20px;margin:20px 0;font-family:'Fira Code','JetBrains Mono','Consolas',monospace;font-size:0.85rem;overflow-x:auto;line-height:1.6}
+
+@media(max-width:768px){
+  .content-page{padding:40px 16px}
+  .metrics{grid-template-columns:repeat(2, 1fr)}
+}
+</style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/favicon-192.png">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="36" height="36" rx="8" fill="#806065"/>
+        <path d="M18 8C14 14 10 18 10 24a8 8 0 0016 0c0-6-4-10-8-16z" fill="#F7EBED" opacity="0.9"/>
+        <path d="M14 22l4-8 4 8" stroke="#806065" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      </svg>
+      Alpesdata
+    </a>
+    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/portfolio.html">Portfolio</a></li>
+      <li><a href="/depannage.html">Dépannage</a></li>
+      <li><a href="/job.html">Job</a></li>
+      <li><a href="/blog.html">Blog</a></li>
+      <li><a href="/ia.html" class="active">IA</a></li>
+      <li><a href="/store.html">Store</a></li>
+      <li><a href="/calendrier.html">Calendrier</a></li>
+      <li><a href="/contact.html">Contact</a></li>
+      <li><a href="/nuki.html">Nuki</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero-ia">
+  <div class="hero-content">
+    <div class="badge">🤖 Intelligence Artificielle</div>
+    <h1>L'IA au service de votre <span>site web</span></h1>
+    <p>Alpesdata intègre des agents IA autonomes pour concevoir, optimiser et déployer vos sites plus vite, avec une qualité et une performance inégalées.</p>
+  </div>
+</section>
+
+<div class="content-page">
+<div class="section-inner">
+
+  <h2>Comment l'IA transforme nos projets web</h2>
+  <p>Chez Alpesdata, nous ne suivons pas la tendance — nous l'exploitons concrètement. En juin 2026, nous avons intégré <strong>Hermes Agent</strong>, un agent IA autonome développé par <strong>Nous Research</strong>, dans notre chaîne de production web. Résultat : des sites livrés en un temps record, avec des performances que les méthodes traditionnelles peinent à égaler.</p>
+
+  <div class="metrics">
+    <div class="metric-card">
+      <div class="number">100/100</div>
+      <div class="label">PageSpeed mobile</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">&lt; 1h</div>
+      <div class="label">Optimisation complète</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">0 ms</div>
+      <div class="label">TBT (Total Blocking Time)</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">1,5 s</div>
+      <div class="label">LCP (Largest Contentful Paint)</div>
+    </div>
+    <div class="metric-card">
+      <div class="number">0</div>
+      <div class="label">Cumulative Layout Shift</div>
+    </div>
+  </div>
+
+  <div class="highlight-box">
+    <h3>🎯 Le résultat qui parle</h3>
+    <p>Le site <strong><a href="https://ma-therapie.fr" target="_blank" rel="noopener">ma-therapie.fr</a></strong> d'Emma Moranval-Vincent (thérapeute TCC & nutritionniste à Briançon) a obtenu la note parfaite de <strong>100/100</strong> sur PageSpeed Insights, avec un score d'accessibilité de 90, de bonnes pratiques à 96 et un SEO à 100.</p>
+  </div>
+
+  <h2>Ce qu'un agent IA peut faire pour vous</h2>
+  <p>Concrètement, voici les tâches que nous déléguons à l'IA avec des résultats immédiats :</p>
+
+  <div class="steps">
+    <div class="step">
+      <h3>Création de sites statiques optimisés</h3>
+      <p>De la page blanche à une maquette complète, structurée, responsive et aux couleurs de votre marque. L'IA génère le code, l'intègre et le déploie.</p>
+    </div>
+    <div class="step">
+      <h3>SEO complet automatique</h3>
+      <p>Balises meta (OG, Twitter Cards), données structurées JSON-LD, sitemap.xml, robots.txt, balises canoniques — tout ce que Google attend pour bien référencer votre site.</p>
+    </div>
+    <div class="step">
+      <h3>Optimisation des performances</h3>
+      <p>CSS inline critique, polices en preload asynchrone, cache nginx, compression des images. L'IA analyse et corrige chaque goulot d'étranglement jusqu'au score parfait.</p>
+    </div>
+    <div class="step">
+      <h3>Déploiement & Infrastructure</h3>
+      <p>Configuration de serveurs (Nginx, Docker, Traefik), déploiement automatisé via GitHub et Coolify, certificats SSL Let's Encrypt, redirections 301.</p>
+    </div>
+    <div class="step">
+      <h3>Suivi et maintenance</h3>
+      <p>L'IA exécute des diagnostics réguliers, applique les correctifs de sécurité et optimise en continu — sans intervention humaine entre les étapes clés.</p>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <h3>💰 Combien ça coûte ?</h3>
+    <p>Moins cher qu'un prestataire traditionnel. L'IA nous permet de réduire considérablement le temps de développement : ce qui prenait des jours se fait en heures. Nous répercutons cette efficacité sur nos tarifs.</p>
+    <p style="margin-bottom:0"><strong>Exemple concret :</strong> Un site vitrine optimisé (5-10 pages, SEO, SSL, PageSpeed 90+) livré et déployé en moins d'une journée de travail.</p>
+  </div>
+
+  <h2>Notre stack IA</h2>
+  <p>Nous utilisons une combinaison d'outils de pointe pour offrir le meilleur du développement assisté par intelligence artificielle :</p>
+
+  <div class="highlight-box">
+    <ul>
+      <li><strong>Hermes Agent</strong> — Agent IA autonome développé par Nous Research, capable de coder, déployer, et résoudre des problèmes complexes en environnement réel</li>
+      <li><strong>GitHub + Coolify</strong> — Déploiement continu automatisé, chaque modification est analysée et déployée en un clic</li>
+      <li><strong>Docker / Traefik</strong> — Infrastructure conteneurisée avec SSL automatique (Let's Encrypt) et load balancing</li>
+      <li><strong>Google PageSpeed Insights</strong> — Métrique de performance utilisée comme objectif systématique (100/100 visé à chaque projet)</li>
+      <li><strong>DeepSeek / Claude</strong> — Modèles de langage avancés pour le raisonnement et la génération de code de qualité production</li>
+    </ul>
+  </div>
+
+  <h2>Et pour vos projets existants ?</h2>
+  <p>L'IA n'est pas réservée aux créations ex nihilo. Nous pouvons aussi :</p>
+  <ul>
+    <li><strong>Auditer</strong> votre site actuel (vitesse, SEO, accessibilité)</li>
+    <li><strong>Corriger</strong> les problèmes identifiés (optimisation des images, CSS, polices)</li>
+    <li><strong>Migrer</strong> votre site vers une infrastructure plus performante (statique + CDN)</li>
+    <li><strong>Sécuriser</strong> avec SSL, WAF, sauvegardes automatisées</li>
+    <li><strong>Maintenir</strong> via des diagnostics IA programmés</li>
+  </ul>
+
+  <div class="info-box" style="background:linear-gradient(135deg, #1B395A 0%, #2A5078 100%);color:white;border:none">
+    <h3 style="color:white">🚀 Prêt à passer à la vitesse supérieure ?</h3>
+    <p style="opacity:0.9;margin-bottom:0">Contactez Alpesdata pour un audit gratuit de votre projet web. Nous vous montrerons ce que l'IA peut concrètement apporter à votre activité.</p>
+    <p style="margin-top:16px"><a href="/contact.html" class="btn btn-primary">Demander un diagnostic</a></p>
+  </div>
+
+</div>
+</div>
+
+<section class="cta-section">
+  <h2>Vous voulez en parler ?</h2>
+  <p>Chaque projet est unique. Discutons de vos besoins — un simple café virtuel suffit pour démarrer.</p>
+  <p><a href="/contact.html" class="btn btn-outline-light">Contactez-nous →</a></p>
+</section>
+
+<footer class="footer">
+  <div class="footer-links">
+    <a href="/">Home</a>
+    <a href="/portfolio.html">Portfolio</a>
+    <a href="/depannage.html">Dépannage</a>
+    <a href="/job.html">Job</a>
+    <a href="/blog.html">Blog</a>
+    <a href="/ia.html">IA</a>
+    <a href="/contact.html">Contact</a>
+    <a href="/nuki.html">Nuki</a>
+  </div>
+  <div class="footer-social">
+    <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+    </a>
+    <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+    </a>
+    <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    </a>
+    <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+    </a>
+  </div>
+  <div class="footer-bottom">
+    <p>&copy; 2026 Alpesdata — Agence de développement web &amp; assistance informatique. Briançon, Hautes-Alpes.</p>
+  </div>
+</footer>
+
+</body>
+</html>
