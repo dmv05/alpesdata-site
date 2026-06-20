@@ -1,4 +1,15 @@
 User-agent: *
 Allow: /
 
+# SEO
 Sitemap: https://alpesdata.com/sitemap.xml
+
+# Disallow admin paths
+Disallow: /cgi-bin/
+Disallow: /tmp/
+
+# Crawl rate
+Crawl-delay: 10
+
+# Host
+Host: https://alpesdata.com
