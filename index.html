@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agence de développement web | Alpesdata</title>
+<meta name="description" content="Agence de développement web et assistance informatique dans les Hautes-Alpes. Création de sites internet, dépannage, conseil.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap"></noscript>
+<style>
+/* =============================================
+   Alpesdata — Agence de développement web
+   Design system
+   ============================================= */
+
+:root {
+  --clay: #806065;
+  --clay-dark: #644a4e;
+  --clay-light: #c49ea2;
+  --navy: #1B395A;
+  --navy-dark: #0F2640;
+  --navy-light: #2A5078;
+  --cream: #F7EBED;
+  --cream-dark: #e8d5d8;
+  --white: #FFFFFF;
+  --text: #2d2d2d;
+  --text-light: #666;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Syne', 'Inter', sans-serif;
+}
+
+/* Reset */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+
+/* Navigation */
+.nav{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);font-family:var(--font-display);font-weight:700;font-size:1.2rem}
+.nav-logo svg{width:36px;height:36px}
+.nav-links{display:flex;list-style:none;gap:4px}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:500;transition:var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,0.12)}
+.nav-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:8px}
+@media(max-width:900px){
+  .nav-toggle{display:block}
+  .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--navy);flex-direction:column;padding:16px;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+  .nav-links.open{display:flex}
+}
+
+/* Hero */
+.hero{background:linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, var(--navy-light) 100%);color:var(--white);padding:100px 24px 80px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(circle at 30% 50%, rgba(128,96,101,0.15) 0%, transparent 50%);pointer-events:none}
+.hero-content{max-width:800px;margin:0 auto;position:relative;z-index:1}
+.hero h1{font-family:var(--font-display);font-weight:700;font-size:3rem;line-height:1.15;margin-bottom:20px}
+.hero p{font-size:1.15rem;opacity:0.9;max-width:600px;margin:0 auto 32px;line-height:1.7}
+.hero-cta{display:inline-block;background:var(--clay);color:var(--white);padding:14px 36px;border-radius:50px;text-decoration:none;font-weight:600;font-size:1rem;transition:var(--transition);border:2px solid transparent}
+.hero-cta:hover{background:var(--clay-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(128,96,101,0.4)}
+@media(max-width:768px){
+  .hero{padding:70px 20px 50px}
+  .hero h1{font-size:2rem}
+  .hero p{font-size:1rem}
+}
+
+/* Sections */
+.section{padding:80px 24px}
+.section-inner{max-width:var(--max-width);margin:0 auto}
+.section-title{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:12px;text-align:center}
+.section-subtitle{text-align:center;color:var(--text-light);max-width:600px;margin:0 auto 48px;font-size:1.05rem}
+.section-alt{background:var(--white)}
+
+/* Cards grid */
+.grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px}
+.card{background:var(--white);border-radius:var(--radius);padding:32px;box-shadow:var(--shadow);transition:var(--transition);text-align:center}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow-hover)}
+.card-icon{width:56px;height:56px;background:var(--cream);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:1.5rem;color:var(--clay)}
+.card h3{font-family:var(--font-display);font-size:1.15rem;color:var(--navy);margin-bottom:10px}
+.card p{color:var(--text-light);font-size:0.92rem;line-height:1.6}
+
+/* Testimonials */
+.testimonials{background:var(--navy);color:var(--white);text-align:center;padding:80px 24px}
+.testimonials .section-title{color:var(--white)}
+.testimonials-inner{max-width:800px;margin:0 auto}
+.testimonial-card{background:rgba(255,255,255,0.08);border-radius:var(--radius);padding:32px;margin-bottom:20px}
+.testimonial-card p{font-style:italic;font-size:1.02rem;line-height:1.7;opacity:0.9}
+
+/* Services detail */
+.service-list{display:grid;grid-template-columns:repeat(auto-fit, minmax(300px, 1fr));gap:20px}
+.service-item{background:var(--white);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);border-left:4px solid var(--clay)}
+.service-item h3{font-family:var(--font-display);font-size:1.05rem;color:var(--navy);margin-bottom:8px}
+.service-item p{color:var(--text-light);font-size:0.9rem;line-height:1.6}
+
+/* Contact info */
+.contact-info{background:var(--navy);color:var(--white);padding:60px 24px;text-align:center}
+.contact-info h2{font-family:var(--font-display);font-size:1.8rem;margin-bottom:24px}
+.contact-info .detail{font-size:1.05rem;margin-bottom:8px;opacity:0.9}
+.contact-info .detail strong{opacity:1}
+
+/* Footer */
+.footer{background:var(--navy-dark);color:rgba(255,255,255,0.7);padding:40px 24px 24px;text-align:center;font-size:0.85rem}
+.footer a{color:rgba(255,255,255,0.7);text-decoration:none;transition:var(--transition)}
+.footer a:hover{color:var(--white)}
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.footer-social{display:flex;justify-content:center;gap:16px;margin-bottom:20px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.footer-social a:hover{background:var(--clay);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;font-size:0.8rem}
+
+/* Content page */
+.content-page{padding:60px 24px}
+.content-page .section-inner{max-width:800px}
+.content-page h1{font-family:var(--font-display);font-size:2rem;color:var(--navy);margin-bottom:16px}
+.content-page h2{font-family:var(--font-display);font-size:1.4rem;color:var(--navy);margin:32px 0 12px}
+.content-page h3{font-family:var(--font-display);font-size:1.15rem;color:var(--navy);margin:24px 0 8px}
+.content-page p{margin-bottom:16px;line-height:1.7}
+.content-page ul{margin:0 0 16px 24px}
+.content-page li{margin-bottom:6px;line-height:1.6}
+.content-page .highlight-box{background:var(--white);border-radius:var(--radius);padding:24px;margin:24px 0;box-shadow:var(--shadow);border-left:4px solid var(--clay)}
+
+/* Jobs / Recruiting */
+.job-section{background:var(--white);border-radius:var(--radius);padding:32px;margin-bottom:24px;box-shadow:var(--shadow)}
+.job-section h3{font-family:var(--font-display);color:var(--navy);margin-bottom:16px;font-size:1.2rem}
+.job-meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px}
+.job-meta span{background:var(--cream);color:var(--clay-dark);padding:4px 12px;border-radius:20px;font-size:0.85rem;font-weight:600}
+
+/* Buttons */
+.btn{display:inline-block;padding:12px 28px;border-radius:50px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:var(--transition);border:none;cursor:pointer}
+.btn-primary{background:var(--clay);color:var(--white)}
+.btn-primary:hover{background:var(--clay-dark);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--clay);border:2px solid var(--clay)}
+.btn-outline:hover{background:var(--clay);color:var(--white)}
+.btn-navy{background:var(--navy);color:var(--white)}
+.btn-navy:hover{background:var(--navy-light);transform:translateY(-2px)}
+
+/* Nuki page */
+.nuki-hero{background:linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);color:var(--white);padding:80px 24px;text-align:center}
+.nuki-hero h1{font-family:var(--font-display);font-size:2.5rem;margin-bottom:16px}
+.nuki-hero .subtitle{font-size:1.1rem;opacity:0.85;max-width:700px;margin:0 auto}
+
+/* Responsive */
+@media(max-width:768px){
+  .section{padding:50px 16px}
+  .section-title{font-size:1.6rem}
+  .hero h1{font-size:2rem}
+  .grid{grid-template-columns:1fr}
+}
+
+/* Animations */
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease, transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+
+</style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/favicon-192.png">
+
+</head>
+<body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <svg viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="36" height="36" rx="8" fill="#806065"/>
+            <path d="M18 8C14 14 10 18 10 24a8 8 0 0016 0c0-6-4-10-8-16z" fill="#F7EBED" opacity="0.9"/>
+            <path d="M14 22l4-8 4 8" stroke="#806065" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+          </svg>
+          Alpesdata
+        </a>
+        <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">☰</button>
+        <ul class="nav-links">
+          <li><a href="/" class="active">Home</a></li>
+          <li><a href="/portfolio.html" >Portfolio</a></li>
+          <li><a href="/depannage.html" CLASS_ACTIVE_DEP>Dépannage</a></li>
+          <li><a href="/job.html" >Job</a></li>
+          <li><a href="/blog.html" >Blog</a></li>
+          <li><a href="/store.html" >Store</a></li>
+          <li><a href="/calendrier.html" CLASS_ACTIVE_CAL>Calendrier</a></li>
+          <li><a href="/contact.html" >Contact</a></li>
+          <li><a href="/nuki.html" >Nuki</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Donnez vie à votre vision</h1>
+        <p>Nous transformons vos idées en réalité grâce à nos services de développement web, assistance informatique et conseil personnalisé.</p>
+        <a href="/contact.html" class="hero-cta">Découvrir</a>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <h2 class="section-title">À propos de nous</h2>
+        <p class="section-subtitle">Chez AlpesData, nous mettons nos 17 ans d'expérience en e-commerce au service de nos clients pour les aider à relever leurs défis numériques.</p>
+        <div class="grid">
+          <div class="card fade-in">
+            <div class="card-icon">💡</div>
+            <h3>Conseils</h3>
+            <p>Nous offrons des conseils personnalisés pour vous aider à développer votre activité en ligne et atteindre vos objectifs numériques.</p>
+          </div>
+          <div class="card fade-in">
+            <div class="card-icon">🎓</div>
+            <h3>Formation</h3>
+            <p>Nous proposons des formations sur mesure pour vous aider à acquérir les compétences techniques nécessaires pour gérer votre site ou application.</p>
+          </div>
+          <div class="card fade-in">
+            <div class="card-icon">🔧</div>
+            <h3>Assistance informatique</h3>
+            <p>Dépannage express et support technique dans le nord des Hautes-Alpes, pour les particuliers et les professionnels.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt">
+      <div class="section-inner">
+        <h2 class="section-title">Nos services</h2>
+        <p class="section-subtitle">Une gamme complète de services de développement web et d'assistance informatique, de la création de sites internet au support technique.</p>
+        <div class="service-list">
+          <div class="service-item"><h3>Création de sites web</h3><p>Sites vitrine, e-commerce, applications web sur mesure. Design responsive et optimisé.</p></div>
+          <div class="service-item"><h3>Assistance informatique</h3><p>Dépannage à domicile et en entreprise, configuration réseau, installation de postes de travail.</p></div>
+          <div class="service-item"><h3>Conseil & stratégie</h3><p>Audit technique, accompagnement projet, choix technologiques pour votre activité numérique.</p></div>
+          <div class="service-item"><h3>Maintenance & sécurité</h3><p>Mises à jour, sauvegardes, sécurisation de vos infrastructures et sites web.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="testimonials-inner">
+        <h2 class="section-title">Témoignages</h2>
+        <div class="testimonial-card"><p>"Merci AlpesData pour votre expertise et votre soutien dans la création de notre site e-commerce. Nous sommes ravis des résultats !"</p></div>
+        <div class="testimonial-card"><p>"AlpesData a su comprendre notre vision et créer un site web qui correspond parfaitement à nos besoins. Nous recommandons vivement leurs services !"</p></div>
+        <div class="testimonial-card"><p>"L'équipe d'AlpesData est très réactive et professionnelle. Grâce à eux, notre site internet est maintenant plus performant que jamais."</p></div>
+        <div class="testimonial-card"><p>"Nous avons fait appel à AlpesData pour la création de notre application mobile et nous sommes extrêmement satisfaits du résultat final."</p></div>
+      </div>
+    </section>
+
+    <section class="contact-info">
+      <h2>Contactez-nous</h2>
+      <p class="detail"><strong>Email :</strong> info@alpesdata.com</p>
+      <p class="detail"><strong>Tél :</strong> +33 6 13 21 59 93</p>
+      <p class="detail"><strong>Adresse :</strong> 7 Rue Barthelemy Chaix, 05100 Briançon</p>
+      <p class="detail"><strong>Horaires :</strong> Lun-Ven 9h-20h</p>
+      <p style="margin-top:24px"><a href="/contact.html" class="btn btn-outline" style="color:white;border-color:white">Envoyer un message</a></p>
+    </section>
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/portfolio.html">Portfolio</a>
+        <a href="/depannage.html">Dépannage</a>
+        <a href="/job.html">Job</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/nuki.html">Nuki</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alpesdata — Agence de développement web &amp; assistance informatique. Briançon, Hautes-Alpes.</p>
+      </div>
+    </footer>
+<script>
+document.addEventListener("DOMContentLoaded",function(){var e=document.querySelectorAll(".fade-in");if(e.length>0){var t=new IntersectionObserver(function(n){n.forEach(function(n){n.isIntersecting&&(n.target.classList.add("visible"),t.unobserve(n.target))})},{threshold:0.1});e.forEach(function(e){t.observe(e)})}});
+</script>
+</body>
+</html>
