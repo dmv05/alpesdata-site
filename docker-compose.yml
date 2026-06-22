@@ -1,0 +1,26 @@
+services:
+  alpesdata-site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: alpesdata-site
+    restart: unless-stopped
+    networks:
+      - alpesdata
+    depends_on:
+      - alpesdata-api
+
+  alpesdata-api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: alpesdata-api
+    restart: unless-stopped
+    env_file:
+      - ./backend/.env
+    networks:
+      - alpesdata
+
+networks:
+  alpesdata:
+    name: alpesdata
