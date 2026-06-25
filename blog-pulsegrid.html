@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PulseGrid : une app développée à 100 % par l'IA Perplexity | Blog Alpesdata</title>
+<meta name="description" content="Découvrez PulseGrid, un tableau de bord des prix spot de l'électricité en Europe, développé intégralement par l'IA de Perplexity. Une démonstration concrète de ce que l'IA générative peut accomplir seule.">
+    <meta property="og:title" content="PulseGrid : une app développée à 100 % par l'IA Perplexity | Alpesdata" />
+    <meta property="og:description" content="Découvrez PulseGrid, un tableau de bord des prix spot de l'électricité en Europe, développé intégralement par l'IA de Perplexity. Une démonstration concrète." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://alpesdata.com/blog-pulsegrid.html" />
+    <meta property="og:image" content="https://alpesdata.com/favicon-192.png" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Alpesdata" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PulseGrid : une app développée à 100 % par l'IA Perplexity" />
+    <meta name="twitter:description" content="Découvrez PulseGrid, un tableau de bord des prix spot de l'électricité en Europe, développé intégralement par l'IA de Perplexity." />
+    <meta name="twitter:image" content="https://alpesdata.com/favicon-192.png" />
+    <link rel="canonical" href="https://alpesdata.com/blog-pulsegrid.html" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "PulseGrid : une app développée à 100 % par l'IA Perplexity",
+      "description": "Tableau de bord des prix spot de l'électricité en Europe, développé intégralement par l'IA de Perplexity.",
+      "datePublished": "2026-06-25",
+      "author": {
+        "@type": "Person",
+        "name": "Didier Moranval-Vincent"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Alpesdata"
+      }
+    }
+    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap"></noscript>
+<style>
+:root {
+  --clay: #806065;
+  --clay-dark: #644a4e;
+  --clay-light: #c49ea2;
+  --navy: #1B395A;
+  --navy-dark: #0F2640;
+  --navy-light: #2A5078;
+  --cream: #F7EBED;
+  --cream-dark: #e8d5d8;
+  --white: #FFFFFF;
+  --text: #2d2d2d;
+  --text-light: #666;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Syne', 'Inter', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+.nav{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);font-family:var(--font-display);font-weight:700;font-size:1.2rem}
+.nav-logo img{height:56px;width:auto}
+.nav-links{display:flex;list-style:none;gap:4px}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:500;transition:var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,0.12)}
+.nav-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:8px}
+@media(max-width:900px){
+  .nav-toggle{display:block}
+  .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--navy);flex-direction:column;padding:16px;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+  .nav-links.open{display:flex}
+}
+.section{padding:80px 24px}
+.section-inner{max-width:var(--max-width);margin:0 auto}
+.section-title{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:12px;text-align:center}
+.section-subtitle{text-align:center;color:var(--text-light);max-width:600px;margin:0 auto 48px;font-size:1.05rem}
+
+/* Article page */
+.article-page{padding:60px 24px}
+.article-page .article-container{max-width:760px;margin:0 auto}
+.article-page .article-header{margin-bottom:40px}
+.article-page .article-meta{font-size:0.85rem;color:var(--text-light);margin-bottom:8px;display:flex;gap:12px;flex-wrap:wrap}
+.article-page .article-meta span{background:var(--cream-dark);padding:4px 12px;border-radius:20px;font-weight:500}
+.article-page .article-category{color:var(--clay);font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:block}
+.article-page h1{font-family:var(--font-display);font-size:2.2rem;color:var(--navy);line-height:1.2;margin-bottom:16px}
+.article-page h2{font-family:var(--font-display);font-size:1.5rem;color:var(--navy);margin:40px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--cream-dark)}
+.article-page h3{font-family:var(--font-display);font-size:1.15rem;color:var(--navy);margin:28px 0 12px}
+.article-page p{margin-bottom:18px;line-height:1.8;font-size:1.02rem}
+.article-page ul,.article-page ol{margin:0 0 20px 24px}
+.article-page li{margin-bottom:8px;line-height:1.7}
+.article-page .highlight-box{background:var(--white);border-radius:var(--radius);padding:28px;margin:28px 0;box-shadow:var(--shadow);border-left:4px solid var(--clay)}
+.article-page .highlight-box h3{margin-top:0;color:var(--navy)}
+.article-page .highlight-box p:last-child{margin-bottom:0}
+.article-page blockquote{background:var(--white);border-radius:var(--radius);padding:24px 28px;margin:28px 0;box-shadow:var(--shadow);border-left:4px solid var(--navy);font-style:italic;color:var(--text-light);font-size:1.05rem}
+.article-page blockquote strong{color:var(--text);font-style:normal}
+.article-page .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:28px 0}
+.article-page .stat-card{background:var(--white);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow)}
+.article-page .stat-card .number{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--clay);display:block}
+.article-page .stat-card .label{font-size:0.85rem;color:var(--text-light);margin-top:4px}
+.article-page .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--clay);text-decoration:none;font-weight:500;margin-bottom:24px;transition:var(--transition)}
+.article-page .back-link:hover{color:var(--clay-dark);gap:12px}
+.article-page .cta-box{background:linear-gradient(135deg,var(--navy-dark),var(--navy));color:var(--white);border-radius:var(--radius);padding:36px;margin:40px 0;text-align:center}
+.article-page .cta-box h3{color:var(--white);margin-bottom:12px;font-family:var(--font-display);font-size:1.3rem}
+.article-page .cta-box p{color:rgba(255,255,255,0.85);font-size:0.95rem;margin-bottom:20px}
+.article-page .cta-box .btn{display:inline-block;padding:12px 32px;border-radius:50px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:var(--transition);background:var(--clay);color:var(--white);border:2px solid transparent}
+.article-page .cta-box .btn:hover{background:var(--clay-dark);transform:translateY(-2px)}
+.article-page .tech-box{background:var(--white);border-radius:var(--radius);padding:24px;margin:20px 0;box-shadow:var(--shadow);border:1px solid #eee}
+.article-page .tech-box h4{color:var(--navy);margin-bottom:8px;font-size:1rem}
+.article-page .tech-box p{font-size:0.92rem;margin-bottom:0}
+.article-page code{background:var(--cream-dark);padding:2px 6px;border-radius:4px;font-size:0.9em}
+.article-page img{max-width:100%;border-radius:var(--radius);margin:20px 0;box-shadow:var(--shadow)}
+.article-page a{color:var(--clay);text-decoration:underline;text-underline-offset:2px}
+.article-page a:hover{color:var(--clay-dark)}
+
+.footer{background:var(--navy-dark);color:rgba(255,255,255,0.7);padding:40px 24px 24px;text-align:center;font-size:0.85rem}
+.footer a{color:rgba(255,255,255,0.7);text-decoration:none;transition:var(--transition)}
+.footer a:hover{color:var(--white)}
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.footer-social{display:flex;justify-content:center;gap:16px;margin-bottom:20px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.footer-social a:hover{background:var(--clay);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;font-size:0.8rem}
+
+@media(max-width:768px){
+  .section{padding:50px 16px}
+  .article-page h1{font-size:1.7rem}
+  .article-page h2{font-size:1.25rem}
+  .article-page .article-container{padding:0}
+  .article-page .stats-grid{grid-template-columns:1fr 1fr}
+}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease, transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/favicon-192.png">
+</head>
+<body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="/images/logo-blanc.png" alt="Alpesdata" height="56">
+        </a>
+        <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">☰</button>
+        <ul class="nav-links">
+          <li><a href="/" >Home</a></li>
+          <li><a href="/portfolio.html" >Portfolio</a></li>
+          <li><a href="/depannage.html" >Dépannage</a></li>
+          <li><a href="/job.html" >Job</a></li>
+          <li><a href="/blog.html" class="active">Blog</a></li>
+          <li><a href="/ia.html" >IA</a></li>
+          <li><a href="/store.html" >Store</a></li>
+          <li><a href="/calendrier.html" >Calendrier</a></li>
+          <li><a href="/contact.html" >Contact</a></li>
+          <li><a href="/nuki.html" >Nuki</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article class="article-page">
+      <div class="article-container">
+        <a href="/blog.html" class="back-link">← Retour au blog</a>
+
+        <header class="article-header fade-in">
+          <span class="article-category">Développement & IA</span>
+          <h1>PulseGrid : une app développée à 100 % par l'IA Perplexity</h1>
+          <div class="article-meta">
+            <span>25 juin 2026</span>
+            <span>5 min de lecture</span>
+            <span>#IA #Perplexity #Développement</span>
+          </div>
+          <p style="font-size:1.1rem;color:var(--text-light);line-height:1.7">
+            Et si l'IA pouvait coder une application complète, de zéro, sans aucune ligne écrite par un développeur humain ? 
+            C'est le pari réussi de <strong>PulseGrid</strong>, un tableau de bord temps réel des prix spot de l'électricité 
+            en Europe, généré intégralement par <strong>Perplexity AI</strong>. Analyse d'une démonstration bluffante.
+          </p>
+        </header>
+
+        <div class="fade-in">
+          <h2>Qu'est-ce que PulseGrid ?</h2>
+          <p>
+            <a href="https://pulsegrid.pplx.app/" target="_blank" rel="noopener">PulseGrid</a> est une application web 
+            de monitoring des marchés de l'électricité en Europe. Elle affiche en temps réel les prix spot (day-ahead) 
+            des principales bourses européennes — <strong>EPEX Spot</strong> (France, Allemagne), 
+            <strong>Nord Pool</strong> (pays nordiques) et <strong>OMIE</strong> (Espagne) — avec le mix 
+            électrique français en direct via les données RTE éCO2mix.
+          </p>
+          <p>
+            L'application suit l'évolution des prix en €/MWh sur différentes périodes (7, 14, 30 ou 45 jours), 
+            et intègre un <strong>signal carbone</strong> en temps réel pour la France (intensité CO₂ du 
+            mix électrique, consommation instantanée, et ventilation par filière).
+          </p>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="number">4</span>
+              <span class="label">Bourses européennes suivies</span>
+            </div>
+            <div class="stat-card">
+              <span class="number">30 j</span>
+              <span class="label">d'historique disponible</span>
+            </div>
+            <div class="stat-card">
+              <span class="number">6</span>
+              <span class="label">filières de production suivies</span>
+            </div>
+            <div class="stat-card">
+              <span class="number">0</span>
+              <span class="label">ligne de code écrite par un humain</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <h2>Une app 100 % conçue par l'IA</h2>
+          <p>
+            Ce qui rend PulseGrid remarquable, ce n'est pas tant ses fonctionnalités — aussi utiles soient-elles — 
+            que la manière dont il a été construit. L'application a été <strong>intégralement générée par Perplexity AI</strong>, 
+            l'assistant de recherche et de génération de code.
+          </p>
+          <p>
+            Concrètement, un prompt unique a suffi : décrire à Perplexity l'application souhaitée — un tableau de 
+            bord des prix spot européens avec graphiques, données temps réel, et signal carbone — et l'IA a produit 
+            l'intégralité du code front-end (HTML, CSS, JavaScript) ainsi que la logique de récupération et 
+            d'affichage des données.
+          </p>
+          
+          <div class="tech-box">
+            <h4>⚡ Comment ça marche ?</h4>
+            <p>
+              PulseGrid interroge plusieurs APIs publiques : les données EPEX Spot via des agrégateurs open-data, 
+              les prix Nord Pool via le portail officiel, OMIE pour l'Espagne/Portugal, et les flux éCO2mix 
+              de RTE pour le mix français. L'IA a géré la récupération, la mise en forme, l'affichage en temps 
+              réel et la mise en page responsive — le tout sans intervention humaine.
+            </p>
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <h2>Fonctionnalités clés</h2>
+          <ul>
+            <li><strong>Comparatif multi-marchés</strong> : visualisation simultanée des prix France, Allemagne, pays nordiques et Espagne sur une échelle normalisée</li>
+            <li><strong>Graphiques horaires</strong> : courbes des prix en €/MWh avec indicateurs min/moyenne/max sur la période</li>
+            <li><strong>Moyennes journalières</strong> : vue consolidée des tendances pour une lecture rapide</li>
+            <li><strong>Carte carbone France</strong> : intensité CO₂ du mix électrique en g/kWh, consommation en MW, et ventilation par filière (nucléaire, hydraulique, éolien, solaire, gaz, bioénergies)</li>
+            <li><strong>Export CSV</strong> : téléchargement des données brutes</li>
+            <li><strong>Interface responsive</strong> : fonctionne sur mobile, tablette et desktop</li>
+            <li><strong>Données actualisées</strong> : rafraîchissement à la demande avec timestamp de dernière mise à jour</li>
+          </ul>
+        </div>
+
+        <div class="fade-in">
+          <h2>Pourquoi c'est un tournant</h2>
+          <p>
+            PulseGrid n'est pas un simple exercice de style. C'est la démonstration que l'IA générative a franchi 
+            un cap : elle peut produire une <strong>application métier fonctionnelle</strong>, connectée à des APIs 
+            réelles, avec une UI soignée et des données actualisées.
+          </p>
+          <p>
+            Pour les entreprises des Hautes-Alpes et de la région PACA, cela ouvre des perspectives concrètes :
+          </p>
+          <ul>
+            <li><strong>Prototypage rapide</strong> : une idée d'application peut être transformée en prototype fonctionnel en quelques minutes, pas en semaines</li>
+            <li><strong>Réduction des coûts</strong> : là où un développement classique nécessite une équipe (designer, développeur front-end, développeur back-end), l'IA peut prendre en charge une partie majeure du travail</li>
+            <li><strong>Itération accélérée</strong> : modifier une fonctionnalité ou ajouter une source de données devient un simple prompt, pas un ticket de développement</li>
+            <li><strong>Accessibilité</strong> : des entrepreneurs, commerçants ou collectivités peuvent désormais envisager des outils numériques sur mesure sans budget à six chiffres</li>
+          </ul>
+
+          <blockquote>
+            "L'IA ne remplace pas le développeur — elle le démultiplie. Ce qui prenait une semaine peut désormais 
+            prendre une heure. Et ce qui coûtait 15 000 € peut coûter 500 €."
+            <br>— <strong>Didier Moranval-Vincent</strong>, Alpesdata
+          </blockquote>
+        </div>
+
+        <div class="fade-in">
+          <h2>Et dans les Alpes, concrètement ?</h2>
+          <p>
+            Chez <strong>Alpesdata</strong>, nous suivons de près ces évolutions. Notre positionnement est clair : 
+            nous utilisons l'IA comme un <strong>accélérateur de développement</strong>, pas comme un gadget. 
+            Chaque projet que nous livrons bénéficie de cette approche : génération de code assistée par IA, 
+            prototypage rapide, itérations en temps réel avec nos clients.
+          </p>
+          <p>
+            PulseGrid est un cas d'école — et il est accessible à tous. Rendez-vous sur 
+            <a href="https://pulsegrid.pplx.app/" target="_blank" rel="noopener">pulsegrid.pplx.app</a> 
+            pour voir par vous-même ce que l'IA est capable de produire.
+          </p>
+
+          <div class="highlight-box">
+            <h3>🔑 Ce qu'il faut retenir</h3>
+            <ul>
+              <li><strong>L'IA peut coder une application complète</strong> — front-end, APIs, graphiques, données en temps réel</li>
+              <li><strong>PulseGrid est open-data</strong> : toutes les sources sont publiques (EPEX, Nord Pool, OMIE, RTE)</li>
+              <li><strong>Le temps de développement passe de semaines à minutes</strong> — sans sacrifier la qualité</li>
+              <li>Pour les TPE/PME des Hautes-Alpes, c'est l'opportunité d'accéder à des outils numériques sur mesure à prix maîtrisé</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="fade-in cta-box">
+          <h3>Vous avez un projet d'application ou de tableau de bord ?</h3>
+          <p>Chez Alpesdata, on transforme vos idées en réalité numérique — avec ou sans IA. Que ce soit un outil métier, un site vitrine ou une application connectée à des APIs, on vous accompagne de A à Z.</p>
+          <a href="/contact.html" class="btn">Discutons de votre projet →</a>
+        </div>
+
+      </div>
+    </article>
+
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/portfolio.html">Portfolio</a>
+        <a href="/depannage.html">Dépannage</a>
+        <a href="/job.html">Job</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/ia.html">IA</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/nuki.html">Nuki</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alpesdata — Agence de développement web &amp; assistance informatique. Briançon, Hautes-Alpes.</p>
+      </div>
+    </footer>
+<script>
+document.addEventListener("DOMContentLoaded",function(){var e=document.querySelectorAll(".fade-in");if(e.length>0){var t=new IntersectionObserver(function(n){n.forEach(function(n){n.isIntersecting&&(n.target.classList.add("visible"),t.unobserve(n.target))})},{threshold:0.1});e.forEach(function(e){t.observe(e)})}});
+</script>
+</body>
+</html>
