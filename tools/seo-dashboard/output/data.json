@@ -1,0 +1,107 @@
+[
+  {
+    "site": {
+      "name": "Alpesdata",
+      "url": "https://alpesdata.com",
+      "category": "Agence"
+    },
+    "http": {
+      "status": 200,
+      "response_time_ms": 32.8,
+      "server": "nginx/1.31.2",
+      "error": null,
+      "content_type": "text/html"
+    },
+    "ssl": {
+      "valid": true,
+      "issuer": "Let's Encrypt",
+      "expiry": "Sep 18 11:01:18 2026 GMT",
+      "days_left": 85,
+      "error": null
+    },
+    "seo": {
+      "title": "Agence de développement web | Alpesdata",
+      "title_len": 39,
+      "meta_description": "Agence de développement web et assistance informatique dans les Hautes-Alpes. Création de sites internet, dépannage, conseil.",
+      "meta_description_len": 125,
+      "h1": "Donnez vie à votre vision",
+      "h1_count": 1,
+      "canonical": "https://alpesdata.com/",
+      "has_robots": false,
+      "og_title": "Agence de développement web | Alpesdata",
+      "og_description": "Agence de développement web et assistance informatique dans les Hautes-Alpes. Création de sites internet, dépannage, conseil personnalisé à Briançon.",
+      "error": null
+    },
+    "checked_at": "2026-06-25T07:44:21.591521"
+  },
+  {
+    "site": {
+      "name": "Ma Thérapie",
+      "url": "https://ma-therapie.fr",
+      "category": "Santé"
+    },
+    "http": {
+      "status": 200,
+      "response_time_ms": 13.2,
+      "server": "nginx/1.31.2",
+      "error": null,
+      "content_type": "text/html"
+    },
+    "ssl": {
+      "valid": true,
+      "issuer": "Let's Encrypt",
+      "expiry": "Sep 17 15:07:49 2026 GMT",
+      "days_left": 84,
+      "error": null
+    },
+    "seo": {
+      "title": "Emmanuelle Moranval-Vincent — Thérapeute TCC & Diététicienne à Briançon",
+      "title_len": 71,
+      "meta_description": "Emmanuelle Moranval-Vincent, thérapeute TCC et nutritionniste-diététicienne D.E. à Briançon. Consultations en cabinet, visio ou téléphone. Anxiété, phobies, dépression, troubles alimentaires.",
+      "meta_description_len": 191,
+      "h1": "Retrouver l'équilibre,<br>\n      <em>un pas après l'autre.</em>",
+      "h1_count": 1,
+      "canonical": "https://ma-therapie.fr/",
+      "has_robots": false,
+      "og_title": "Emmanuelle Moranval-Vincent — Thérapeute TCC & Diététicienne à Briançon",
+      "og_description": "Emmanuelle Moranval-Vincent, thérapeute TCC et nutritionniste-diététicienne D.E. à Briançon. Consultations en cabinet, visio ou téléphone. Anxiété, phobies, dépression, troubles alimentaires.",
+      "error": null
+    },
+    "checked_at": "2026-06-25T07:44:21.647066"
+  },
+  {
+    "site": {
+      "name": "Cavalo",
+      "url": "https://cavalo.app",
+      "category": "App"
+    },
+    "http": {
+      "status": 200,
+      "response_time_ms": 179.6,
+      "server": "nginx/1.31.1",
+      "error": null,
+      "content_type": "text/html"
+    },
+    "ssl": {
+      "valid": true,
+      "issuer": "Let's Encrypt",
+      "expiry": "Sep 10 03:56:42 2026 GMT",
+      "days_left": 76,
+      "error": null
+    },
+    "seo": {
+      "title": "Cavalo — La marketplace du cheval",
+      "title_len": 33,
+      "meta_description": null,
+      "meta_description_len": null,
+      "h1": "<span class=\"cavalo\">Cavalo</span><span class=\"dot\">.</span>",
+      "h1_count": 1,
+      "canonical": null,
+      "has_robots": false,
+      "og_title": null,
+      "og_description": null,
+      "error": null
+    },
+    "checked_at": "2026-06-25T07:44:21.876101"
+  }
+]

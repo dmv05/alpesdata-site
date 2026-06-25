@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Dashboard — Alpesdata</title>
+<meta name="robots" content="noindex, nofollow">
+<style>
+:root {
+  --bg: #0f172a;
+  --card: #1e293b;
+  --border: #334155;
+  --text: #f1f5f9;
+  --text-muted: #94a3b8;
+  --green: #22c55e;
+  --yellow: #eab308;
+  --red: #ef4444;
+  --blue: #3b82f6;
+  --radius: 12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);padding:24px;line-height:1.5}
+.dashboard{max-width:1100px;margin:0 auto}
+.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:12px}
+.header h1{font-size:1.5rem;font-weight:700;display:flex;align-items:center;gap:8px}
+.header .timestamp{color:var(--text-muted);font-size:0.85rem}
+.header .count{background:var(--card);padding:6px 16px;border-radius:20px;font-size:0.85rem;border:1px solid var(--border)}
+.sites-grid{display:grid;gap:20px}
+.site-card{background:var(--card);border-radius:var(--radius);padding:24px;border:1px solid var(--border);transition:border-color .2s}
+.site-card:hover{border-color:var(--blue)}
+.site-header{display:flex;justify-content:space-between;align-items:start;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.site-info h2{font-size:1.15rem;font-weight:600}
+.site-info h2 a{color:var(--text);text-decoration:none}
+.site-info h2 a:hover{color:var(--blue)}
+.site-url{display:block;font-size:0.8rem;color:var(--text-muted);margin-top:2px}
+.site-category{display:inline-block;font-size:0.7rem;background:var(--bg);padding:2px 10px;border-radius:10px;margin-top:4px;color:var(--text-muted)}
+.badge{padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;white-space:nowrap}
+.badge-ok{background:rgba(34,197,94,0.15);color:var(--green)}
+.badge-warn{background:rgba(234,179,8,0.15);color:var(--yellow)}
+.badge-error{background:rgba(239,68,68,0.15);color:var(--red)}
+.metrics-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.metric{background:var(--bg);border-radius:8px;padding:12px}
+.metric-label{font-size:0.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px}
+.metric-value{font-size:1rem;font-weight:600}
+.text-ok{color:var(--green)}
+.text-warn{color:var(--yellow)}
+.text-error{color:var(--red)}
+.progress-bar{height:4px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden}
+.progress-fill{height:100%;background:var(--green);border-radius:2px;transition:width .5s}
+.seo-details{display:grid;gap:6px}
+.seo-row{display:flex;gap:8px;font-size:0.82rem}
+.seo-label{color:var(--text-muted);min-width:85px;flex-shrink:0}
+.seo-value{color:var(--text);word-break:break-all}
+.footer{text-align:center;margin-top:32px;color:var(--text-muted);font-size:0.8rem;padding-top:20px;border-top:1px solid var(--border)}
+@media(max-width:600px){
+  .metrics-grid{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+<div class="dashboard">
+  <div class="header">
+    <h1>🔍 SEO Dashboard <span class="count">3 sites</span></h1>
+    <span class="timestamp">Dernière mise à jour : 25/06/2026 à 07:44</span>
+  </div>
+  <div class="sites-grid">
+    
+        <div class="site-card">
+            <div class="site-header">
+                <div class="site-info">
+                    <h2><a href="https://alpesdata.com" target="_blank" rel="noopener">Alpesdata</a></h2>
+                    <span class="site-url">https://alpesdata.com</span>
+                    <span class="site-category">Agence</span>
+                </div>
+                <div class="site-status"><span class="badge badge-ok">✓ 200</span></div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric">
+                    <div class="metric-label">Temps réponse</div>
+                    <div class="metric-value text-ok">32.8 ms</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Serveur</div>
+                    <div class="metric-value">nginx/1.31.2</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">SSL</div>
+                    <div class="metric-value"><span class="badge badge-ok">✓ 85 jours</span></div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">SEO score</div>
+                    <div class="metric-value">5/5</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+                </div>
+            </div>
+
+            <div class="seo-details">
+                <div class="seo-row"><span class="seo-label">Title</span><span class="seo-value">Agence de développement web | Alpesdata</span></div>
+                <div class="seo-row"><span class="seo-label">Meta desc.</span><span class="seo-value">Agence de développement web et assistance informatique dans les Hautes-Alpes. Création de sites internet, dépannage, conseil.</span></div>
+                <div class="seo-row"><span class="seo-label">H1</span><span class="seo-value">Donnez vie à votre vision</span></div>
+                <div class="seo-row"><span class="seo-label">Canonical</span><span class="seo-value">https://alpesdata.com/</span></div>
+            </div>
+        </div>
+        
+        <div class="site-card">
+            <div class="site-header">
+                <div class="site-info">
+                    <h2><a href="https://ma-therapie.fr" target="_blank" rel="noopener">Ma Thérapie</a></h2>
+                    <span class="site-url">https://ma-therapie.fr</span>
+                    <span class="site-category">Santé</span>
+                </div>
+                <div class="site-status"><span class="badge badge-ok">✓ 200</span></div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric">
+                    <div class="metric-label">Temps réponse</div>
+                    <div class="metric-value text-ok">13.2 ms</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Serveur</div>
+                    <div class="metric-value">nginx/1.31.2</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">SSL</div>
+                    <div class="metric-value"><span class="badge badge-ok">✓ 84 jours</span></div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">SEO score</div>
+                    <div class="metric-value">5/5</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:100%"></div></div>
+                </div>
+            </div>
+
+            <div class="seo-details">
+                <div class="seo-row"><span class="seo-label">Title</span><span class="seo-value">Emmanuelle Moranval-Vincent — Thérapeute TCC &amp; Diététicienne à Briançon</span></div>
+                <div class="seo-row"><span class="seo-label">Meta desc.</span><span class="seo-value">Emmanuelle Moranval-Vincent, thérapeute TCC et nutritionniste-diététicienne D.E. à Briançon. Consultations en cabinet, visio ou téléphone. Anxiété, phobies, dépression, troubles alimentaires.</span></div>
+                <div class="seo-row"><span class="seo-label">H1</span><span class="seo-value">Retrouver l&#x27;équilibre,&lt;br&gt;
+      &lt;em&gt;un pas après l&#x27;autre.&lt;/em&gt;</span></div>
+                <div class="seo-row"><span class="seo-label">Canonical</span><span class="seo-value">https://ma-therapie.fr/</span></div>
+            </div>
+        </div>
+        
+        <div class="site-card">
+            <div class="site-header">
+                <div class="site-info">
+                    <h2><a href="https://cavalo.app" target="_blank" rel="noopener">Cavalo</a></h2>
+                    <span class="site-url">https://cavalo.app</span>
+                    <span class="site-category">App</span>
+                </div>
+                <div class="site-status"><span class="badge badge-ok">✓ 200</span></div>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric">
+                    <div class="metric-label">Temps réponse</div>
+                    <div class="metric-value text-ok">179.6 ms</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">Serveur</div>
+                    <div class="metric-value">nginx/1.31.1</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">SSL</div>
+                    <div class="metric-value"><span class="badge badge-ok">✓ 76 jours</span></div>
+                </div>
+                <div class="metric">
+                    <div class="metric-label">SEO score</div>
+                    <div class="metric-value">2/5</div>
+                    <div class="progress-bar"><div class="progress-fill" style="width:40%"></div></div>
+                </div>
+            </div>
+
+            <div class="seo-details">
+                <div class="seo-row"><span class="seo-label">Title</span><span class="seo-value">Cavalo — La marketplace du cheval</span></div>
+                <div class="seo-row"><span class="seo-label">Meta desc.</span><span class="seo-value">—</span></div>
+                <div class="seo-row"><span class="seo-label">H1</span><span class="seo-value">&lt;span class=&quot;cavalo&quot;&gt;Cavalo&lt;/span&gt;&lt;span class=&quot;dot&quot;&gt;.&lt;/span&gt;</span></div>
+                <div class="seo-row"><span class="seo-label">Canonical</span><span class="seo-value">—</span></div>
+            </div>
+        </div>
+        
+  </div>
+  <div class="footer">
+    <p>Généré automatiquement par Alpesdata SEO Checker · Données indicatives, vérifier régulièrement</p>
+  </div>
+</div>
+</body>
+</html>
