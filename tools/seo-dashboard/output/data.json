@@ -7,7 +7,7 @@
     },
     "http": {
       "status": 200,
-      "response_time_ms": 32.8,
+      "response_time_ms": 123.8,
       "server": "nginx/1.31.2",
       "error": null,
       "content_type": "text/html"
@@ -32,7 +32,7 @@
       "og_description": "Agence de développement web et assistance informatique dans les Hautes-Alpes. Création de sites internet, dépannage, conseil personnalisé à Briançon.",
       "error": null
     },
-    "checked_at": "2026-06-25T07:44:21.591521"
+    "checked_at": "2026-06-25T07:48:14.950279"
   },
   {
     "site": {
@@ -42,7 +42,7 @@
     },
     "http": {
       "status": 200,
-      "response_time_ms": 13.2,
+      "response_time_ms": 20.5,
       "server": "nginx/1.31.2",
       "error": null,
       "content_type": "text/html"
@@ -67,7 +67,7 @@
       "og_description": "Emmanuelle Moranval-Vincent, thérapeute TCC et nutritionniste-diététicienne D.E. à Briançon. Consultations en cabinet, visio ou téléphone. Anxiété, phobies, dépression, troubles alimentaires.",
       "error": null
     },
-    "checked_at": "2026-06-25T07:44:21.647066"
+    "checked_at": "2026-06-25T07:48:15.033329"
   },
   {
     "site": {
@@ -77,7 +77,7 @@
     },
     "http": {
       "status": 200,
-      "response_time_ms": 179.6,
+      "response_time_ms": 24.7,
       "server": "nginx/1.31.1",
       "error": null,
       "content_type": "text/html"
@@ -102,6 +102,111 @@
       "og_description": null,
       "error": null
     },
-    "checked_at": "2026-06-25T07:44:21.876101"
+    "checked_at": "2026-06-25T07:48:15.098268"
+  },
+  {
+    "site": {
+      "name": "Hautes-Alpes Immo",
+      "url": "https://hautes-alpes-immo.com",
+      "category": "Immobilier"
+    },
+    "http": {
+      "status": 200,
+      "response_time_ms": 94.2,
+      "server": "nginx/1.31.2",
+      "error": null,
+      "content_type": "text/html"
+    },
+    "ssl": {
+      "valid": true,
+      "issuer": "Let's Encrypt",
+      "expiry": "Jul 28 05:16:34 2026 GMT",
+      "days_left": 32,
+      "error": null
+    },
+    "seo": {
+      "title": "Accueil | Hautes-Alpes Immobilier",
+      "title_len": 33,
+      "meta_description": "Hautes-Alpes Immobilier - Votre agence immobilière dans les Hautes-Alpes. Vente et location de biens à Gap, Briançon, Embrun et environs.",
+      "meta_description_len": 137,
+      "h1": "Annonces Hautes-Alpes",
+      "h1_count": 1,
+      "canonical": null,
+      "has_robots": false,
+      "og_title": null,
+      "og_description": null,
+      "error": null
+    },
+    "checked_at": "2026-06-25T07:48:15.231782"
+  },
+  {
+    "site": {
+      "name": "Foundation.immo",
+      "url": "https://foundation.immo",
+      "category": "Immobilier"
+    },
+    "http": {
+      "status": 200,
+      "response_time_ms": 234.1,
+      "server": "nginx/1.31.2",
+      "error": null,
+      "content_type": "text/html"
+    },
+    "ssl": {
+      "valid": true,
+      "issuer": "Let's Encrypt",
+      "expiry": "Aug 28 18:54:42 2026 GMT",
+      "days_left": 64,
+      "error": null
+    },
+    "seo": {
+      "title": "Team Foundation.immo — Conseil immobilier d'entreprise & patrimoine | eXp France",
+      "title_len": 80,
+      "meta_description": "Team foundation.immo, collectif de conseillers eXp France. Immobilier commercial, fonds de commerce, investissement et résidentiel. Expertise terrain des Hautes-Alpes, présence nationale.",
+      "meta_description_len": 187,
+      "h1": "Bâtir votre patrimoine sur des <em>fondations</em> solides.",
+      "h1_count": 1,
+      "canonical": null,
+      "has_robots": false,
+      "og_title": "Team Foundation.immo — Conseil immobilier d",
+      "og_description": "Immobilier commercial, fonds de commerce, investissement. Expertise terrain, présence nationale. eXp France.",
+      "error": null
+    },
+    "checked_at": "2026-06-25T07:48:15.512670"
+  },
+  {
+    "site": {
+      "name": "Alice Moranval",
+      "url": "https://alice.moranval.com",
+      "category": "Site perso"
+    },
+    "http": {
+      "status": 200,
+      "response_time_ms": 54.9,
+      "server": "nginx/1.31.2",
+      "error": null,
+      "content_type": "text/html"
+    },
+    "ssl": {
+      "valid": true,
+      "issuer": "Let's Encrypt",
+      "expiry": "Jul 28 05:16:33 2026 GMT",
+      "days_left": 32,
+      "error": null
+    },
+    "seo": {
+      "title": "Alice Moranval-Vincent — Cavalière Professionnelle CSO",
+      "title_len": 54,
+      "meta_description": null,
+      "meta_description_len": null,
+      "h1": null,
+      "h1_count": 0,
+      "canonical": null,
+      "has_robots": false,
+      "og_title": null,
+      "og_description": null,
+      "error": null
+    },
+    "checked_at": "2026-06-25T07:48:15.608281"
   }
 ]

@@ -38,12 +38,27 @@ SITES = [
         "url": "https://cavalo.app",
         "category": "App",
     },
+    {
+        "name": "Hautes-Alpes Immo",
+        "url": "https://hautes-alpes-immo.com",
+        "category": "Immobilier",
+    },
+    {
+        "name": "Foundation.immo",
+        "url": "https://foundation.immo",
+        "category": "Immobilier",
+    },
+    {
+        "name": "Alice Moranval",
+        "url": "https://alice.moranval.com",
+        "category": "Site perso",
+    },
 ]
 
 OUTPUT_DIR = os.path.join(os.path.dirname(__file__), "output")
 HTML_FILE = os.path.join(OUTPUT_DIR, "index.html")
 JSON_FILE = os.path.join(OUTPUT_DIR, "data.json")
-DASHBOARD_TARGET = "/var/www/alpesdata/seo-dashboard/"  # VPS path
+DASHBOARD_TARGET = "/var/www/alpesdata/seo/"  # VPS path
 
 UA = "Mozilla/5.0 (compatible; Alpesdata-SEO-Bot/1.0)"
 
