@@ -9,6 +9,19 @@ services:
       - alpesdata
     depends_on:
       - alpesdata-api
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.http-0-alpesdata.entryPoints=http"
+      - "traefik.http.routers.http-0-alpesdata.middlewares=redirect-to-https"
+      - "traefik.http.routers.http-0-alpesdata.rule=Host(`alpesdata.com`) || Host(`www.alpesdata.com`)"
+      - "traefik.http.routers.http-0-alpesdata.service=alpesdata-svc"
+      - "traefik.http.routers.https-0-alpesdata.entryPoints=https"
+      - "traefik.http.routers.https-0-alpesdata.middlewares=gzip"
+      - "traefik.http.routers.https-0-alpesdata.rule=Host(`alpesdata.com`) || Host(`www.alpesdata.com`)"
+      - "traefik.http.routers.https-0-alpesdata.service=alpesdata-svc"
+      - "traefik.http.routers.https-0-alpesdata.tls=true"
+      - "traefik.http.routers.https-0-alpesdata.tls.certresolver=letsencrypt"
+      - "traefik.http.services.alpesdata-svc.loadbalancer.server.port=80"
 
   alpesdata-api:
     build:
