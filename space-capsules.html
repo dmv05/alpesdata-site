@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Capsules Mobiles Haut de Gamme | Alpesdata</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:#0a0a1a;color:#e0e0f0;line-height:1.6}
+  .preview-bar{background:linear-gradient(135deg,#00c6ff,#0072ff);color:#fff;text-align:center;padding:8px;font-size:13px;font-weight:600;letter-spacing:1px;text-transform:uppercase}
+  .preview-bar span{background:rgba(0,0,0,0.3);padding:2px 10px;border-radius:4px}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:20px 5%;background:rgba(10,10,26,0.95);border-bottom:1px solid rgba(0,198,255,0.2);position:sticky;top:0;z-index:100}
+  .logo{font-family:'Orbitron',sans-serif;font-size:22px;font-weight:900;background:linear-gradient(135deg,#00c6ff,#0072ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .logo span{-webkit-text-fill-color:#fff;font-family:'Inter',sans-serif;font-weight:300;font-size:13px;margin-left:8px}
+  .nav-links{display:flex;gap:30px;list-style:none}
+  .nav-links a{color:#a0a0c0;text-decoration:none;font-size:14px;font-weight:500;transition:color 0.3s}
+  .nav-links a:hover,.nav-links a.active{color:#00c6ff}
+  .hero{min-height:90vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 5%;position:relative;overflow:hidden}
+  .hero-bg{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;opacity:0.4;z-index:0}
+  .hero-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:radial-gradient(ellipse at center,rgba(10,10,26,0.2) 0%,rgba(10,10,26,0.85) 100%);z-index:1}
+  .hero-content{z-index:2;position:relative}
+  .hero h1{font-family:'Orbitron',sans-serif;font-size:clamp(32px,6vw,60px);font-weight:900;margin-bottom:16px;line-height:1.1}
+  .hero h1 em{font-style:normal;background:linear-gradient(135deg,#00c6ff,#0072ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .hero p{font-size:clamp(16px,2vw,20px);color:#b0b0d0;max-width:650px;margin-bottom:40px;text-shadow:0 2px 10px rgba(0,0,0,0.5)}
+  .btn{display:inline-block;padding:14px 40px;border-radius:50px;font-weight:600;font-size:15px;text-decoration:none;transition:all 0.3s;cursor:pointer;border:none}
+  .btn-primary{background:linear-gradient(135deg,#00c6ff,#0072ff);color:#fff;box-shadow:0 4px 25px rgba(0,198,255,0.3)}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 35px rgba(0,198,255,0.4)}
+  .btn-outline{background:transparent;color:#00c6ff;border:2px solid #00c6ff}
+  .btn-outline:hover{background:rgba(0,198,255,0.1)}
+  .section{padding:100px 5%;max-width:1200px;margin:0 auto}
+  .section h2{font-family:'Orbitron',sans-serif;font-size:clamp(24px,3vw,36px);text-align:center;margin-bottom:60px}
+  .section h2 em{font-style:normal;background:linear-gradient(135deg,#00c6ff,#0072ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+  .products{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:30px}
+  .product{background:linear-gradient(145deg,#12122a,#0d0d20);border:1px solid rgba(0,198,255,0.1);border-radius:16px;overflow:hidden;transition:all 0.3s}
+  .product:hover{transform:translateY(-5px);border-color:rgba(0,198,255,0.3);box-shadow:0 10px 40px rgba(0,198,255,0.1)}
+  .product-img{height:250px;overflow:hidden;position:relative}
+  .product-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s}
+  .product:hover .product-img img{transform:scale(1.05)}
+  .product-body{padding:25px}
+  .product-body h3{font-size:18px;margin-bottom:8px;color:#fff}
+  .product-body .sous-titre{font-size:13px;color:#8888b0;margin-bottom:15px}
+  .product-body .tag{display:inline-block;background:rgba(0,198,255,0.15);color:#00c6ff;padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600}
+  .product-body .price{font-family:'Orbitron',sans-serif;font-size:20px;color:#fff;margin-top:15px;display:block}
+  .specs{display:flex;gap:16px;flex-wrap:wrap;margin:12px 0}
+  .spec{font-size:12px;color:#6666a0}
+  .features-section{background:linear-gradient(180deg,#0a0a1a,#0d1b2a);padding:80px 5%}
+  .features-section .section{max-width:1200px;margin:0 auto}
+  .feature-row{display:flex;align-items:center;gap:50px;margin-bottom:60px;flex-wrap:wrap}
+  .feature-row.reverse{flex-direction:row-reverse}
+  .feature-text{flex:1;min-width:300px}
+  .feature-text h3{font-size:24px;margin-bottom:12px;color:#fff}
+  .feature-text p{color:#8888b0;font-size:14px;line-height:1.7}
+  .feature-img{flex:1;min-width:300px;height:300px;border-radius:16px;overflow:hidden;border:1px solid rgba(0,198,255,0.15);position:relative}
+  .feature-img img{width:100%;height:100%;object-fit:cover}
+  .feature-img .img-overlay{position:absolute;top:0;left:0;width:100%;height:100%;background:linear-gradient(135deg,rgba(0,198,255,0.1),transparent);pointer-events:none}
+  footer{text-align:center;padding:40px;border-top:1px solid rgba(0,198,255,0.1);color:#5555a0;font-size:14px;margin-top:60px}
+  .page-indicator{text-align:center;padding:8px;background:rgba(0,198,255,0.05);font-size:12px;color:#8888b0;border-bottom:1px solid rgba(0,198,255,0.1)}
+  .page-indicator a{color:#00c6ff;text-decoration:none;margin:0 15px}
+  .page-indicator a.active-page{font-weight:700;text-decoration:underline}
+  .products-section{background:linear-gradient(180deg,#0d1b2a,#0a0a1a);padding:80px 5%}
+  .products-section .section{max-width:1200px;margin:0 auto}
+</style>
+</head>
+<body>
+
+<div style="text-align:center;padding:6px;background:rgba(0,198,255,0.08);font-size:11px;color:#5555a0">Alpesdata.com — Page cachée · Lien privé client</div>
+
+<!-- Hero -->
+<section class="hero" id="accueil">
+  <img class="hero-bg" src="https://img.yfisher.com/m5829/1782198943503-1.jpg" alt="Space capsule house in landscape">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>L'habitat nomade<br><em>haut de gamme</em></h1>
+    <p>Découvrez notre gamme de maisons mobiles design — capsules futuristes, caravanes de luxe et pods prêts à poser. Élégance mobile, installation rapide.</p>
+    <div style="display:flex;gap:15px;flex-wrap:wrap;justify-content:center">
+      <a href="#" class="btn btn-primary">Voir les modèles</a>
+      <a href="#" class="btn btn-outline">Devis personnalisé</a>
+    </div>
+  </div>
+</section>
+
+<!-- Produits -->
+<section class="products-section" id="modeles">
+  <div class="section">
+    <h2>Nos <em>modèles</em></h2>
+    <div class="products">
+      <div class="product">
+        <div class="product-img">
+          <img src="https://img.yfisher.com/m5829/1782198943503-1.jpg" alt="Capsule house T9">
+        </div>
+        <div class="product-body">
+          <h3>Capsule T9 — Voyageur</h3>
+          <span class="tag">Mobile · 25 m²</span>
+          <div class="specs">
+            <span class="spec">📏 9 × 2.8 m</span>
+            <span class="spec">🛏️ 2 couchages</span>
+            <span class="spec">🚿 Salle d'eau</span>
+          </div>
+          <p class="sous-titre">Capsule mobile tout équipée. Design aérodynamique, finitions aluminium, prête à tracter. Idéale pour glamping, B&B ou résidence secondaire.</p>
+          <span class="price">À partir de 39 900 €</span>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img">
+          <img src="https://img.yfisher.com/m5829/1782205514563-3/jpg93-t4-width1600.webp" alt="Capsule house T10">
+        </div>
+        <div class="product-body">
+          <h3>Capsule T10 — Évasion</h3>
+          <span class="tag">Mobile · 35 m²</span>
+          <div class="specs">
+            <span class="spec">📏 10 × 3.2 m</span>
+            <span class="spec">🛏️ 3 couchages</span>
+            <span class="spec">🍳 Kitchenette</span>
+          </div>
+          <p class="sous-titre">Version grand confort avec espace salon, cuisine équipée et coin nuit séparé. Design panoramique, toit vitré.</p>
+          <span class="price">À partir de 55 900 €</span>
+        </div>
+      </div>
+      <div class="product">
+        <div class="product-img">
+          <img src="https://img.yfisher.com/m5829/1782090879702-geminigeneratedimagedca1wndca1wndca1-1/jpg93-t4-width1600.webp" alt="Apple Cabin capsule">
+        </div>
+        <div class="product-body">
+          <h3>Apple Cabin — Pod</h3>
+          <span class="tag">Fixe · 20 m²</span>
+          <div class="specs">
+            <span class="spec">📏 Ø 5 m</span>
+            <span class="spec">🛏️ 2 couchages</span>
+            <span class="spec">🌿 Design bois</span>
+          </div>
+          <p class="sous-titre">Pod circulaire design, structure mixte acier/bois. Installation rapide sur tout terrain. Parfait pour lodge, spa ou bureau d'appoint.</p>
+          <span class="price">À partir de 29 900 €</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="features-section" id="features">
+  <div class="section">
+    <h2>Avantages <em>capsule</em></h2>
+    <div class="feature-row">
+      <div class="feature-text">
+        <h3>🚚 Installation en 48h</h3>
+        <p>Livrée sur plateau et posée sur votre terrain sans fondations lourdes. Branchement eau/électricité en 2 jours. Aucun permis de construire nécessaire pour les modèles mobiles.</p>
+      </div>
+      <div class="feature-img">
+        <img src="https://img.yfisher.com/m5829/1782205514563-3/jpg93-t4-width1600.webp" alt="Capsule house installation">
+        <div class="img-overlay"></div>
+      </div>
+    </div>
+    <div class="feature-row reverse">
+      <div class="feature-text">
+        <h3>🔋 Autonome & connectée</h3>
+        <p>Panneaux solaires intégrés, batterie lithium, domotique pilotable depuis votre téléphone. Classe énergétique A+, chauffage et climatisation réversibles.</p>
+      </div>
+      <div class="feature-img">
+        <img src="https://img.yfisher.com/m5829/1782198943503-1.jpg" alt="Capsule technology">
+        <div class="img-overlay"></div>
+      </div>
+    </div>
+    <div class="feature-row">
+      <div class="feature-text">
+        <h3>🎨 Personnalisation totale</h3>
+        <p>Choix des couleurs, aménagement intérieur, mobilier, éclairage et équipements. Notre bureau d'études conçoit votre capsule sur mesure, livrée en 4 à 6 semaines.</p>
+      </div>
+      <div class="feature-img">
+        <img src="https://img.yfisher.com/m5829/1782090879702-geminigeneratedimagedca1wndca1wndca1-1/jpg93-t4-width1600.webp" alt="Apple cabin design">
+        <div class="img-overlay"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact teaser -->
+<section class="section" id="contact-teaser" style="text-align:center">
+  <h2>Prêt à <em>passer en mode capsule</em> ?</h2>
+  <p style="color:#8888b0;max-width:600px;margin:0 auto 40px">Contactez-nous pour un catalogue complet, une visite en showroom ou un devis adapté à votre projet.</p>
+  <a href="#" class="btn btn-primary">Nous contacter</a>
+</section>
+
+<footer>
+  <p>CAPSULE LIVING — Site vitrine 3 pages · Alpesdata · 2026</p>
+</footer>
+
+</body>
+</html>

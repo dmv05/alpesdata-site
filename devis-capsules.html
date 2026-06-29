@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devis — Site Vitrine Space Capsules</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:#f4f4f9;color:#1a1a2e;line-height:1.5;padding:40px 20px}
+  .devis{max-width:800px;margin:0 auto;background:#fff;border-radius:12px;box-shadow:0 2px 40px rgba(0,0,0,0.08);overflow:hidden}
+  .header{background:linear-gradient(135deg,#1a1a2e,#16213e);color:#fff;padding:50px 50px 40px}
+  .header h1{font-size:28px;font-weight:700;margin-bottom:6px}
+  .header .sub{color:#a0a0c0;font-size:14px}
+  .header .ref{float:right;text-align:right;font-size:13px;color:#8888b0}
+  .header .ref strong{color:#ff8c00;display:block;font-size:18px}
+  .infos{padding:40px 50px 20px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:30px;border-bottom:1px solid #eee}
+  .infos h3{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:8px}
+  .infos p{font-size:15px;font-weight:500;line-height:1.6}
+  .infos .small{font-size:13px;color:#666;font-weight:400}
+  table{width:calc(100% - 100px);margin:30px 50px;border-collapse:collapse}
+  th{text-align:left;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#888;padding:12px 10px;border-bottom:2px solid #1a1a2e}
+  td{padding:18px 10px;border-bottom:1px solid #eee;font-size:14px;vertical-align:top}
+  td:last-child,th:last-child{text-align:right;white-space:nowrap}
+  td:nth-child(2),th:nth-child(2){text-align:center}
+  td:first-child{font-weight:500}
+  .desc{font-size:12px;color:#888;font-weight:400;margin-top:4px;line-height:1.4}
+  .total{background:#f8f8ff;padding:25px 50px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}
+  .total .label{font-size:14px;color:#666}
+  .total .montant{font-size:32px;font-weight:700;color:#1a1a2e}
+  .total .tva{font-size:13px;color:#888}
+  .options{padding:30px 50px;border-top:1px solid #eee}
+  .options h3{font-size:14px;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:15px}
+  .options ul{list-style:none;padding:0}
+  .options li{padding:10px 0;display:flex;justify-content:space-between;align-items:center;border-bottom:1px dashed #eee;font-size:14px}
+  .options li:last-child{border:none}
+  .options .prix{color:#1a1a2e;font-weight:600}
+  .conditions{padding:30px 50px 40px;border-top:1px solid #eee;font-size:13px;color:#666;line-height:1.8}
+  .conditions strong{color:#1a1a2e}
+  .signature{padding:40px 50px;border-top:1px solid #eee;display:flex;justify-content:space-between;flex-wrap:wrap;gap:50px}
+  .signature .box{flex:1;min-width:200px}
+  .signature .box h4{font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:20px}
+  .signature .line{height:1px;background:#ddd;margin-top:40px;margin-bottom:8px;width:100%}
+  .signature .line-label{font-size:11px;color:#aaa}
+  .footer{background:#1a1a2e;color:#5555a0;text-align:center;padding:20px;font-size:12px}
+  .footer strong{color:#a0a0c0}
+  @media print{body{padding:0;background:#fff}.devis{box-shadow:none;border-radius:0}}
+  .badge{display:inline-block;background:rgba(255,140,0,0.1);color:#cc6600;padding:2px 10px;border-radius:20px;font-size:11px;font-weight:600}
+  .tag{display:inline-block;background:#1a1a2e;color:#fff;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600}
+</style>
+</head>
+<body>
+
+<div class="devis">
+
+<div class="header">
+  <div class="ref">
+    Réf. <strong>DEV-2026-006</strong>
+    <br>Briançon, le 29 juin 2026
+  </div>
+  <h1>🧾 DEVIS</h1>
+  <div class="sub">Site vitrine 3 pages — Présentation capsules spatiales</div>
+</div>
+
+<div class="infos">
+  <div>
+    <h3>Prestataire</h3>
+    <p><strong>ALPESDATA</strong></p>
+    <p class="small">SARL au capital de 7 622,45 €</p>
+    <p class="small">7 Rue Barthélemy Chaix — Central Parc 1<br>05100 BRIANÇON</p>
+    <p class="small">SIREN 393 357 389 · RCS Gap</p>
+    <p class="small">TVA Intracom. FR55 393 357 389</p>
+    <p class="small">Code NAF 62.02A</p>
+  </div>
+  <div>
+    <h3>Client</h3>
+    <p><strong>[Nom du client]</strong></p>
+    <p class="small">[Adresse]</p>
+    <p class="small">[SIREN / TVA]</p>
+    <p style="margin-top:10px"><span class="badge">Particulier / Professionnel</span></p>
+  </div>
+</div>
+
+<!-- Prestations -->
+<table>
+  <thead>
+    <tr>
+      <th>Prestation</th>
+      <th>Qté</th>
+      <th>Prix HT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Conception UI/UX & Design graphique
+        <div class="desc">Maquette desktop + mobile · charte graphique spatiale · wireframes</div>
+      </td>
+      <td>1</td>
+      <td>450,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Développement site vitrine 3 pages
+        <div class="desc">Page d'accueil, page Nos capsules, page Contact — HTML/CSS responsive, animations</div>
+      </td>
+      <td>1</td>
+      <td>550,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Formulaire de contact
+        <div class="desc">Formulaire avec validation, envoi email (Mailjet) et anti-spam</div>
+      </td>
+      <td>1</td>
+      <td>150,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Optimisation SEO / Performance
+        <div class="desc">Meta tags, sitemap, balisage sémantique, optimisation images, Lighthouse >90</div>
+      </td>
+      <td>1</td>
+      <td>150,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Mise en ligne & configuration serveur
+        <div class="desc">Déploiement sur nos serveurs, configuration domaine, certificat SSL, mise en production</div>
+      </td>
+      <td>1</td>
+      <td>120,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Hébergement sur nos serveurs (1 an)
+        <div class="desc">Serveur dédié haute disponibilité — sauvegardes quotidiennes, monitoring, mises à jour sécurité</div>
+      </td>
+      <td>1</td>
+      <td>240,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Nom de domaine (1 an)
+        <div class="desc">Extension .fr ou .com .space — incl. configuration DNS</div>
+      </td>
+      <td>1</td>
+      <td>15,00 €</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="total">
+  <div>
+    <div class="label">Total HT</div>
+    <div class="montant">1 675,00 €</div>
+    <div class="tva">TVA 20% : 335,00 €</div>
+  </div>
+  <div style="text-align:right">
+    <div class="label">Total TTC</div>
+    <div style="font-size:36px;font-weight:700;color:#ff4500">2 010,00 €</div>
+  </div>
+</div>
+
+<div class="options">
+  <h3>🔧 Options & variantes</h3>
+  <ul>
+    <li>
+      <span><strong>Espace administrateur</strong> (modifier contenu sans coder) <span class="tag">+ 1 mois</span></span>
+      <span class="prix">+ 400,00 €</span>
+    </li>
+    <li>
+      <span><strong>Galerie interactive 360°</strong> des capsules <span class="tag">immersif</span></span>
+      <span class="prix">+ 350,00 €</span>
+    </li>
+    <li>
+      <span><strong>Rédaction contenus</strong> (textes + visuels libres de droits)</span>
+      <span class="prix">+ 250,00 €</span>
+    </li>
+    <li>
+      <span><strong>Pages supplémentaires</strong> (par page supplémentaire)</span>
+      <span class="prix">+ 120,00 €</span>
+    </li>
+  </ul>
+</div>
+
+<div class="conditions">
+  <strong>Conditions générales :</strong><br>
+  • Délai de réalisation : <strong>2 à 3 semaines</strong> à compter de la validation du devis et de l'apport des contenus<br>
+  • Paiement : 40% à la commande — 30% à la validation de la maquette — 30% à la mise en ligne<br>
+  • Garantie : 3 mois de correction de bugs mineurs après mise en ligne<br>
+  • Contenus (textes, photos, logos) : fournis par le client — ou option rédaction ci-dessus<br>
+  • Hébergement : inclus la 1ʳᵉ année sur nos serveurs — renouvellement annuel facturé séparément<br>
+  • Validité du devis : <strong>30 jours</strong>
+</div>
+
+<div class="signature">
+  <div class="box">
+    <h4>Cachet & signature du prestataire</h4>
+    <div style="margin-top:10px">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2b/Signature_fictitious.svg/2048px-Signature_fictitious.svg.png" alt="Signature" style="height:50px;opacity:0.6">
+    </div>
+    <p style="font-size:13px;font-weight:500;margin-top:15px">Didier MORANVAL-VINCENT</p>
+    <p style="font-size:12px;color:#888">Gérant — ALPESDATA</p>
+    <p style="font-size:12px;color:#888">info@alpesdata.com</p>
+  </div>
+  <div class="box">
+    <h4>Bon pour accord</h4>
+    <div class="line"></div>
+    <div class="line-label">Signature du client précédée de la mention "Bon pour accord"</div>
+  </div>
+</div>
+
+<div class="footer">
+  <strong>ALPESDATA</strong> — 7 Rue Barthélemy Chaix, Central Parc 1 — 05100 BRIANÇON — SIREN 393 357 389<br>
+  info@alpesdata.com — TVA FR55393357389
+</div>
+
+</div>
+
+</body>
+</html>
