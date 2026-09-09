@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fauteuil massant thérapeutique Delassio | Alpesdata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper: #f8f6f1; --card: #fffdf9; --ink: #17303d; --ink2: #4b6170;
+    --line: #e5ded1; --acc: #0f7d6c; --acc-d: #0a5a4e; --acc-soft: #e3f1ec;
+    --gold: #a8732a; --warn: #9a4d1d; --warn-bg: #fbf1e4;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: Inter, system-ui, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.62; -webkit-font-smoothing: antialiased; }
+  .wrap { max-width: 1090px; margin: 0 auto; padding: 0 28px; }
+  h1,h2,h3 { font-family: Fraunces, Georgia, serif; font-weight: 500; letter-spacing: -.015em; line-height: 1.14; }
+  a { color: inherit; text-decoration: none; }
+  .kicker { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; color: var(--acc); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14.5px; padding: 13px 26px; border-radius: 4px; border: 1px solid transparent; cursor: pointer; transition: .2s; white-space: nowrap; }
+  .btn-p { background: var(--ink); color: var(--paper); }
+  .btn-p:hover { background: var(--acc-d); color: #fff; transform: translateY(-1px); }
+  .btn-g { border-color: var(--ink); color: var(--ink); background: transparent; }
+  .btn-g:hover { border-color: var(--acc); color: var(--acc-d); }
+
+  nav { border-bottom: 1px solid var(--line); background: rgba(248,246,241,.92); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 40; }
+  nav .wrap { display: flex; align-items: center; gap: 26px; height: 68px; }
+  .logo { font-family: Fraunces, serif; font-size: 22px; font-weight: 600; }
+  .logo sup { font-size: 10px; color: var(--acc); font-family: Inter; font-weight: 600; letter-spacing: .12em; margin-left: 2px; }
+  .nav-links { display: flex; gap: 22px; margin-left: auto; font-size: 14px; color: var(--ink2); }
+  .nav-links a:hover { color: var(--acc-d); }
+  nav .btn { padding: 10px 18px; font-size: 13.5px; }
+
+  .hero { padding: 92px 0 56px; }
+  .hero-grid { display: grid; grid-template-columns: 1.08fr .92fr; gap: 54px; align-items: center; }
+  .hero h1 { font-size: clamp(37px, 4.7vw, 58px); margin: 22px 0 22px; }
+  .hero h1 em { font-style: italic; color: var(--acc-d); }
+  .hero .sub { color: var(--ink2); font-size: 17.5px; max-width: 520px; }
+  .hero .pts { margin-top: 26px; display: flex; flex-direction: column; gap: 10px; font-size: 15px; }
+  .hero .pts span { display: flex; gap: 10px; align-items: baseline; }
+  .hero .pts b { color: var(--acc-d); }
+  .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 32px; }
+  .hero-fig { position: relative; }
+  .hero-fig svg { width: 100%; max-width: 380px; margin: 0 auto; display: block; filter: drop-shadow(0 24px 30px rgba(23,48,61,.15)); }
+  .hero-fig figcaption { font-size: 12.5px; color: var(--ink2); text-align: center; margin-top: 12px; font-style: italic; }
+  .cw-dots { display: flex; gap: 10px; justify-content: center; margin-top: 12px; }
+  .cw-dots button { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px var(--line); cursor: pointer; transition: .2s; }
+  .cw-dots button.active { box-shadow: 0 0 0 2px var(--ink); transform: scale(1.12); }
+
+  .band { border-block: 1px solid var(--line); background: var(--card); }
+  .band .wrap { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .band .cell { padding: 22px 18px; border-right: 1px solid var(--line); }
+  .band .cell:last-child { border-right: 0; }
+  .band .num { font-family: Fraunces, serif; font-size: 27px; color: var(--acc-d); }
+  .band .lbl { font-size: 12px; color: var(--ink2); text-transform: uppercase; letter-spacing: .08em; margin-top: 3px; }
+
+  section { padding: 90px 0; }
+  .sec-head { max-width: 640px; margin-bottom: 46px; }
+  .sec-head h2 { font-size: clamp(28px, 3.3vw, 42px); margin: 16px 0 14px; }
+  .sec-head p { color: var(--ink2); font-size: 16.5px; }
+
+  .ed-row { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; padding: 36px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .ed-row:last-of-type { border-bottom: 0; }
+  .ed-row .k { font-family: Fraunces, serif; font-size: 23px; }
+  .ed-row .k small { display: block; font-family: Inter; font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: var(--acc); font-weight: 600; margin-bottom: 8px; }
+  .ed-row .v { color: var(--ink2); }
+  .ed-row .v p + p { margin-top: 14px; }
+  .ed-row .v b { color: var(--ink); }
+
+  .zones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .zones span { background: var(--acc-soft); color: var(--acc-d); font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px; }
+
+  .prog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); background: var(--card); }
+  .prog { padding: 36px 30px; border-right: 1px solid var(--line); }
+  .prog:last-child { border-right: 0; }
+  .prog .n { font-family: Fraunces, serif; font-size: 15px; color: var(--gold); letter-spacing: .06em; text-transform: uppercase; }
+  .prog h3 { font-size: 24px; margin: 10px 0 8px; }
+  .prog .duree { font-size: 13px; color: var(--acc); font-weight: 600; }
+  .prog p { font-size: 14.5px; color: var(--ink2); margin-top: 12px; }
+  .prog .tech { margin-top: 16px; font-size: 13px; color: var(--ink); background: var(--paper); border-radius: 3px; padding: 10px 14px; }
+
+  .notice { border-left: 3px solid var(--gold); background: var(--warn-bg); padding: 18px 24px; font-size: 14px; color: var(--warn); border-radius: 0 4px 4px 0; margin-top: 24px; max-width: 820px; }
+  .notice b { color: var(--ink); }
+
+  .grid-offer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--line); background: var(--card); }
+  .offer { padding: 36px 30px; border-right: 1px solid var(--line); display: flex; flex-direction: column; }
+  .offer:last-child { border-right: 0; }
+  .offer .tag2 { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .offer h3 { font-size: 22px; margin-bottom: 6px; }
+  .offer .who { font-size: 13.5px; color: var(--ink2); font-style: italic; }
+  .offer ul { list-style: none; margin: 20px 0 26px; font-size: 14.5px; }
+  .offer ul li { padding: 7px 0 7px 24px; position: relative; }
+  .offer ul li::before { content:""; position: absolute; left: 0; top: 15px; width: 12px; height: 2px; background: var(--acc); }
+  .offer .btn { margin-top: auto; align-self: flex-start; }
+  .offer.rec { background: var(--acc-soft); }
+
+  .sim { background: var(--ink); color: var(--paper); padding: 54px 58px; display: grid; grid-template-columns: 1fr auto; gap: 56px; align-items: center; }
+  .sim h2 { color: var(--paper); }
+  .sim .kicker { color: #9adfd2; }
+  .sim label { display: block; font-size: 12.5px; text-transform: uppercase; letter-spacing: .12em; color: #b9c9d1; margin: 20px 0 8px; }
+  .sim output { font-family: Fraunces, serif; font-size: 26px; color: #9adfd2; margin-left: 12px; }
+  input[type=range] { width: 100%; accent-color: #2f9a88; }
+  .sim .result { border-left: 1px solid #32454f; padding-left: 54px; text-align: center; }
+  .sim .result .big { font-family: Fraunces, serif; font-size: 62px; line-height: 1; color: #9adfd2; margin: 8px 0 2px; }
+  .sim .result .note { font-size: 12.5px; color: #b9c9d1; max-width: 220px; }
+  .sim .foot { font-size: 12.5px; color: #8fa2ad; margin-top: 18px; font-style: italic; }
+
+  .spec-tbl { border-top: 1px solid var(--ink); }
+  .spec-row { display: grid; grid-template-columns: 250px 1fr; gap: 30px; padding: 15px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+  .spec-row dt { color: var(--ink2); }
+  .spec-row dd { font-weight: 500; }
+  .spec-row dd .u { color: var(--ink2); font-weight: 400; font-size: 13px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chips span { border: 1px solid var(--line); background: var(--card); padding: 10px 18px; font-size: 13.5px; border-radius: 3px; transition: .2s; }
+  .chips span:hover { border-color: var(--acc); color: var(--acc-d); }
+
+  details { border-bottom: 1px solid var(--line); }
+  details summary { list-style: none; cursor: pointer; padding: 21px 44px 21px 0; font-weight: 600; position: relative; font-family: Fraunces, serif; font-size: 18.5px; }
+  details summary::after { content:"↓"; position: absolute; right: 0; top: 19px; color: var(--acc); transition: .25s; font-family: Inter; }
+  details[open] summary::after { transform: rotate(180deg); }
+  details p { color: var(--ink2); padding: 0 90px 24px 0; font-size: 15px; max-width: 780px; }
+
+  .contact-strip { background: var(--ink); color: var(--paper); padding: 62px 0; }
+  .contact-strip .wrap { display: flex; justify-content: space-between; gap: 30px; align-items: center; flex-wrap: wrap; }
+  .contact-strip h2 { color: var(--paper); font-size: 30px; max-width: 560px; }
+  .contact-strip .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-l { background: var(--paper); color: var(--ink); }
+  .btn-l:hover { background: #fff; }
+  .btn-o { border-color: #3a4c58; color: var(--paper); }
+  .btn-o:hover { border-color: #9adfd2; color: #9adfd2; }
+
+  footer { padding: 32px 0 48px; font-size: 13px; color: var(--ink2); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer .logo { color: var(--ink); }
+
+  @media (max-width: 880px) {
+    .hero { padding: 60px 0 36px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 42px; }
+    .band .wrap { grid-template-columns: repeat(2, 1fr); }
+    .band .cell { border-bottom: 1px solid var(--line); }
+    .ed-row, .grid-offer, .prog-grid { grid-template-columns: 1fr; }
+    .prog, .offer { border-right: 0; border-bottom: 1px solid var(--line); }
+    .sim { grid-template-columns: 1fr; padding: 38px 26px; }
+    .sim .result { border-left: 0; padding-left: 0; text-align: left; }
+    .nav-links { display: none; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    section { padding: 62px 0; }
+  }
+</style>
+</head>
+<body>
+
+<div style="text-align:center;padding:6px;background:#e3f1ec;font-size:11px;color:#0a5a4e;letter-spacing:.05em">Alpesdata.com — Page cachée · Lien privé client</div>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">Delassio<sup>THÉRAPEUTIQUE</sup></a>
+    <div class="nav-links">
+      <a href="#soin">Le soin</a>
+      <a href="#programmes">Programmes</a>
+      <a href="#pros">Pour les pros</a>
+      <a href="#specs">Fiche technique</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-p" href="#contact">Étude gratuite</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">Massage thérapeutique en libre-service — professionnels</p>
+      <h1>Le geste d'un masseur-kiné, disponible <em>7 jours sur 7</em>, à la demande.</h1>
+      <p class="sub">Un massage profond qui détend les cervicales, décompresse le dos et relance la circulation : le fauteuil Delassio applique les gestes du massage thérapeutique — pétrissage, pression, étirements — en automatique, à chaque séance.</p>
+      <div class="pts">
+        <span><b>✓</b> Une vraie séance d'entretien du dos, entre deux passages chez le kiné</span>
+        <span><b>✓</b> Sans rendez-vous, sans déplacement, sans attente</span>
+        <span><b>✓</b> Et pour vous, une nouvelle source de revenus</span>
+      </div>
+      <div class="ctas">
+        <a class="btn btn-p" href="#programmes">Découvrir les programmes</a>
+        <a class="btn btn-g" href="#simulateur">Estimer mes revenus</a>
+      </div>
+    </div>
+    <figure class="hero-fig">
+      <div id="chair-hero"></div>
+      <figcaption>Modèle BL-130A — massage du cou aux mollets · coloris au choix</figcaption>
+      <div class="cw-dots" id="dots">
+        <button data-cw="bleu" class="active" style="background:#2a4f74" title="Bleu"></button>
+        <button data-cw="noir" style="background:#2a2e36" title="Noir"></button>
+        <button data-cw="orange" style="background:#c96a2e" title="Orange"></button>
+      </div>
+    </figure>
+  </div>
+</header>
+
+<div class="band">
+  <div class="wrap">
+    <div class="cell"><div class="num">135 cm</div><div class="lbl">de massage continu</div></div>
+    <div class="cell"><div class="num">24</div><div class="lbl">coussins d'air</div></div>
+    <div class="cell"><div class="num">6</div><div class="lbl">moteurs de massage</div></div>
+    <div class="cell"><div class="num">0 g</div><div class="lbl">position décompression</div></div>
+  </div>
+</div>
+
+<section id="soin">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Le soin</p>
+      <h2>Les gestes du massage thérapeutique, reproduits avec précision</h2>
+      <p>Conçu sur la base des techniques utilisées en massage kinésithérapique, le fauteuil Delassio délivre un travail musculaire profond et progressif.</p>
+    </div>
+    <div class="ed-row">
+      <div class="k"><small>Ce que ressent l'utilisateur</small>Comme une séance chez un praticien</div>
+      <div class="v">
+        <p>Le rail de 135 cm fait travailler chaque étage de la colonne, des cervicales aux lombaires, par <b>pétrissage et pression progressifs</b> — la même alternance de gestes qu'un massage manuel profond.</p>
+        <p>Les <b>24 coussins d'air</b> compriment et relâchent les groupes musculaires pour <b>relancer la circulation</b> ; l'inclinaison <b>zéro gravité</b> soulage la pression sur les disques intervertébraux pendant la séance.</p>
+        <div class="zones"><span>Neck-cervicales</span><span>Dos</span><span>Lombaires</span><span>Jambes & mollets</span></div>
+      </div>
+    </div>
+    <div class="ed-row">
+      <div class="k"><small>Au quotidien</small>L'entretien du corps, pas le soin des maladies</div>
+      <div class="v">
+        <p>Fatigue musculaire, raideurs de fin de journée, dos « verrouillé » après une journée assise, courbatures après le sport : le massage Delassio est un <b>rituel de récupération et de remise en forme</b>, au même titre qu'une séance d'étirements ou un bain chaud.</p>
+        <p>Beaucoup d'utilisateurs le décrivent comme <b>leur séance d'entretien entre deux rendez-vous de kiné</b> : le fauteuil ne remplace pas un avis médical, il prolonge les bienfaits de vos séances.</p>
+      </div>
+    </div>
+    <div class="ed-row">
+      <div class="k"><small>La technologie</small>Chaque corps est différent, le massage s'adapte</div>
+      <div class="v">
+        <p>La <b>détection morphologique</b> scanne la silhouette à chaque séance et adapte la position des rouleaux à la taille et à la cambrure de l'utilisateur — comme un praticien qui ajuste son geste.</p>
+        <p>L'intensité, la durée et les zones se règlent programme par programme. L'appareil <b>s'arrête automatiquement</b> en fin de séance, avec alarme d'occupation et pilotage à distance.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="programmes" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Programmes</p>
+      <h2>Trois parcours pensés comme des séances</h2>
+      <p>Des séquences de 10 à 20 minutes, réglables en intensité, adaptables à la population de votre établissement.</p>
+    </div>
+    <div class="prog-grid">
+      <div class="prog">
+        <div class="n">Programme 01</div>
+        <h3>Dos & détente</h3>
+        <div class="duree">15 min · intensité douce à moyenne</div>
+        <p>Le grand classique : déroulement complet du rail, pression soutenue sur le dos et les lombaires, finition en zéro gravité pour relâcher la colonne.</p>
+        <div class="tech">Pétrissage · pression glissée · étirement doux</div>
+      </div>
+      <div class="prog">
+        <div class="n">Programme 02</div>
+        <h3>Récupération sportive</h3>
+        <div class="duree">20 min · intensité moyenne à forte</div>
+        <p>Pour les salles de sport et centres de bien-être : travail musculaire appuyé, compression des jambes par les airbags pour aider à la récupération après l'effort.</p>
+        <div class="tech">Percussion · compression airbags · drainage jambes</div>
+      </div>
+      <div class="prog">
+        <div class="n">Programme 03</div>
+        <h3>Express cervicales</h3>
+        <div class="duree">10 min · intensité douce</div>
+        <p>La pause de la journée : ciblage du haut du dos et de la nuque pour les métiers de bureau, les soignants et tous ceux qui restent longtemps en tension.</p>
+        <div class="tech">Ciblage nuque · pression points · finition douce</div>
+      </div>
+    </div>
+    <div class="notice">
+      <b>Information importante :</b> le fauteuil Delassio est un appareil de massage et de détente, <b>pas un dispositif médical</b>. Il ne remplace ni un kinésithérapeute, ni un médecin, ni un traitement. Comme pour tout massage, son utilisation est déconseillée aux personnes porteuses d'un pacemaker ou de problèmes cardiaques, aux femmes enceintes, aux personnes porteuses d'implants métalliques ou de lésions cutanées — en cas de doute, demander l'avis d'un médecin.
+    </div>
+  </div>
+</section>
+
+<section id="pros" style="background:var(--card);border-block:1px solid var(--line)">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Pour votre établissement</p>
+      <h2>Un service qui soigne l'expérience… et la rentabilité</h2>
+      <p>Le fauteuil se paie seul : vos clients massent, se détendent et paient à la séance. Vous, vous encaissez sans personnel supplémentaire.</p>
+    </div>
+    <div class="grid-offer">
+      <div class="offer">
+        <div class="tag2">Achat</div>
+        <h3>Vous investissez</h3>
+        <div class="who">Indépendants & commerces</div>
+        <ul>
+          <li>Recettes 100 % pour vous</li>
+          <li>Mise en service & formation incluses</li>
+          <li>Garantie 2 ans pièces & main-d'œuvre</li>
+          <li>Amortissement typique 12 à 24 mois*</li>
+        </ul>
+        <a class="btn btn-g" href="#contact">Recevoir un devis</a>
+      </div>
+      <div class="offer rec">
+        <div class="tag2">Location — recommandée</div>
+        <h3>Vous louez</h3>
+        <div class="who">Sans immobiliser de capital</div>
+        <ul>
+          <li>Loyer tout compris, SAV inclus</li>
+          <li>Zéro trésorerie engagée</li>
+          <li>Fauteuil mis à jour à chaque génération</li>
+          <li>Le loyer se paie par les recettes</li>
+        </ul>
+        <a class="btn btn-p" href="#contact">Étudier ma rentabilité</a>
+      </div>
+      <div class="offer">
+        <div class="tag2">Partenariat</div>
+        <h3>Nous co-investissons</h3>
+        <div class="who">Galeries, gares, réseaux</div>
+        <ul>
+          <li>Nous installons et exploitons</li>
+          <li>Partage des recettes mensuel</li>
+          <li>Pilotage, collecte, maintenance à notre charge</li>
+          <li>Étude de flux et de rentabilité fournie</li>
+        </ul>
+        <a class="btn btn-g" href="#contact">Rencontrer un expert</a>
+      </div>
+    </div>
+    <p style="font-size:12.5px;color:var(--ink2);margin-top:16px">* Estimation indicative selon flux et tarif — chaque dossier fait l'objet d'une étude personnalisée.</p>
+  </div>
+</section>
+
+<section id="lieux">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Où l'installer</p>
+      <h2>Des lieux où le besoin de soin se fait sentir</h2>
+    </div>
+    <div class="chips">
+      <span>Cabinets de kinésithérapie & ostéopathie</span><span>Salles de sport & centres wellness</span><span>Cabinets médicaux & paramédicaux</span><span>Cliniques vétérinaires</span><span>Centres de rééducation & maisons de repos</span><span>EHPAD & résidences seniors</span><span>Salles d'attente de toutes spécialités</span><span>Centres commerciaux</span><span>Gares, aéroports</span><span>Hôtels & spas</span><span>Opticiens & audioprothésistes</span><span>Showrooms & concessions</span><span>Espaces de coworking</span><span>Laveries & stations-service</span>
+    </div>
+  </div>
+</section>
+
+<section id="simulateur" style="padding-top:0">
+  <div class="wrap">
+    <div class="sim">
+      <div>
+        <p class="kicker">Simulateur</p>
+        <h2 style="font-size:33px;margin-top:10px">Combien rapporte un fauteuil chez vous ?</h2>
+        <label>Fréquentation estimée — séances par jour <output id="o-nb">18</output></label>
+        <input type="range" id="r-nb" min="2" max="60" value="18">
+        <label>Tarif de la séance <output id="o-px">2,00 €</output></label>
+        <input type="range" id="r-px" min="1" max="3" step="0.5" value="2">
+        <p class="foot">Estimation hors taxes, fondée sur un taux d'occupation réaliste. Affinez-la avec notre étude gratuite.</p>
+      </div>
+      <div class="result">
+        <div style="font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#b9c9d1">Revenu mensuel estimé</div>
+        <div class="big" id="res">1 080 €</div>
+        <div class="note" id="res-note">Hypothèse : 18 séances/jour × 2,00 € × 30 j.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="specs" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">Spécifications</p>
+      <h2>Fiche technique — modèle BL-130A</h2>
+    </div>
+    <dl class="spec-tbl">
+      <div class="spec-row"><dt>Type de massage</dt><dd>Thérapeutique : pétrissage, pression, percussion, compression par airbags — rail 135 cm, techniques bioniques IA</dd></div>
+      <div class="spec-row"><dt>Zones couvertes</dt><dd>Cervicales, dos, lombaires, jambes et mollets</dd></div>
+      <div class="spec-row"><dt>Mécanique</dt><dd>24 coussins d'air · 6 moteurs · détection morphologique automatique</dd></div>
+      <div class="spec-row"><dt>Confort</dt><dd>Position zéro gravité réglable · arrêt automatique de fin de séance</dd></div>
+      <div class="spec-row"><dt>Programmes</dt><dd>Dos & détente · Récupération sportive · Express cervicales — intensités et durées réglables</dd></div>
+      <div class="spec-row"><dt>Paiement</dt><dd>Pièces, billets, jetons — CB / QR en option · caisse sécurisée intégrée</dd></div>
+      <div class="spec-row"><dt>Sécurité & pilotage</dt><dd>Alarme d'occupation · suivi des séances et recettes à distance</dd></div>
+      <div class="spec-row"><dt>Gain de place</dt><dd>Recul automatique en 1 touche · distance mur : 15 cm · ~2 m² au sol</dd></div>
+      <div class="spec-row"><dt>Matières</dt><dd>ABS + cuir microfiber premium</dd></div>
+      <div class="spec-row"><dt>Alimentation</dt><dd>120 W <span class="u">— prise standard</span></dd></div>
+      <div class="spec-row"><dt>Poids</dt><dd>85 kg <span class="u">net</span> · 105 kg <span class="u">brut</span></dd></div>
+      <div class="spec-row"><dt>Colis</dt><dd>143 × 79 × 114 cm</dd></div>
+      <div class="spec-row"><dt>Coloris</dt><dd>Bleu · Noir · Orange <span class="u">— personnalisation possible (couleurs & logo)</span></dd></div>
+      <div class="spec-row"><dt>Garantie & SAV</dt><dd>2 ans pièces et main-d'œuvre · intervention sous 48 h ouvrées</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="kicker">FAQ</p>
+      <h2>Les questions qu'on nous pose vraiment</h2>
+    </div>
+    <details open><summary>Ce fauteuil remplace-t-il un kinésithérapeute ?</summary><p>Non, et c'est important de le dire clairement : le fauteuil ne soigne pas et ne remplace ni un diagnostic, ni un traitement de kinésithérapie. En revanche, il fait un excellent travail d'entretien au quotidien — détente musculaire, récupération, souplesse — et de nombreux utilisateurs l'utilisent « entre deux séances » chez leur praticien pour prolonger les bienfaits. C'est un outil de remise en forme et de bien-être, pas un acte médical.</p></details>
+    <details><summary>Y a-t-il des personnes qui ne doivent pas l'utiliser ?</summary><p>Oui, comme pour tout massage : personnes porteuses d'un pacemaker ou de problèmes cardiaques, femmes enceintes, porteurs d'implants métalliques, lésions cutanées ou inflammations en cours. Une signalétique claire est fournie avec l'appareil. En cas de doute, l'avis d'un médecin s'impose.</p></details>
+    <details><summary>Combien de temps dure une séance ?</summary><p>Les programmes durent de 10 à 20 minutes, avec arrêt automatique en fin de séance. L'utilisateur peut choisir le programme et l'intensité sur l'écran ; vous fixez le tarif de la séance.</p></details>
+    <details><summary>Quelles sont les conditions d'implantation ?</summary><p>Une prise électrique standard et environ 2 m² à proximité d'un mur (15 cm suffisent). Nos équipes valident l'emplacement avec vous — c'est la première condition de la rentabilité.</p></details>
+    <details><summary>Qui fixe le prix des séances ?</summary><p>Vous, librement — de 1 à 3 € selon la durée. Le tarif se règle sur l'appareil et peut être modifié à distance par nos équipes si vous le souhaitez.</p></details>
+    <details><summary>L'entretien et les pannes sont-ils couverts ?</summary><p>Oui : télésurveillance de l'appareil, garantie 2 ans pièces et main-d'œuvre, intervention sous 48 h ouvrées. En location, le SAV est inclus dans le loyer.</p></details>
+  </div>
+</section>
+
+<div class="contact-strip" id="contact">
+  <div class="wrap">
+    <h2>Un lieu fréquenté, un public qui a besoin de détente ? Parlons-en.</h2>
+    <div class="ctas">
+      <a class="btn btn-l" href="mailto:contact@delassio.fr">Écrire à contact@delassio.fr</a>
+      <a class="btn btn-o" href="tel:0600000000">Appeler le 06 00 00 00 00</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span class="logo">Delassio<sup style="font-size:9px;color:var(--acc)">THÉRAPEUTIQUE</sup></span>
+    <span>© 2026 Delassio — delassio.fr · Mentions légales · CGV · Politique de confidentialité · Conçu par Alpesdata (Briançon)</span>
+  </div>
+</footer>
+
+<script>
+const CHAIR = `<svg viewBox="0 0 480 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fauteuil massant">
+  <defs>
+    <linearGradient id="backGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="var(--skin-1)"/><stop offset="1" stop-color="var(--skin-2)"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="240" cy="538" rx="185" ry="12" fill="rgba(23,48,61,.14)"/>
+  <path d="M88 208 Q80 130 150 96 Q220 62 330 96 Q400 130 392 208 L392 432 Q392 470 350 476 L130 476 Q88 470 88 432 Z" fill="url(#backGrad)" stroke="#0b141c" stroke-width="3"/>
+  <rect x="168" y="50" width="144" height="76" rx="38" fill="var(--pillow)" stroke="#0b141c" stroke-width="3"/>
+  <path d="M200 92 q20 -15 40 0 q20 15 40 0" fill="none" stroke="var(--seam)" stroke-width="3" opacity=".7"/>
+  <rect x="196" y="98" width="88" height="48" rx="24" fill="none" stroke="var(--acc)" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round" opacity=".95"/>
+  <circle cx="217" cy="122" r="7" fill="var(--acc)" opacity=".9"/><circle cx="263" cy="122" r="7" fill="var(--acc)" opacity=".9"/>
+  <path d="M64 332 q-28 -4 -27 -36 q2 -52 45 -54 q18 -2 22 22 v108 q-6 24 -40 22 z" fill="var(--arm)" stroke="#0b141c" stroke-width="3"/>
+  <path d="M416 332 q28 -4 27 -36 q-2 -52 -45 -54 q-18 -2 -22 22 v108 q6 24 40 22 z" fill="var(--arm)" stroke="#0b141c" stroke-width="3"/>
+  <rect x="106" y="386" width="268" height="80" rx="36" fill="var(--seat)" stroke="#0b141c" stroke-width="3"/>
+  <path d="M138 428 h204" stroke="var(--seam)" stroke-width="3" opacity=".6"/>
+  <rect x="148" y="452" width="184" height="32" rx="16" fill="var(--pillow)" stroke="#0b141c" stroke-width="2.5" opacity=".9"/>
+  <g stroke="var(--acc)" stroke-width="4" opacity=".9">
+    <path d="M120 470 q40 14 240 -2"/><path d="M120 470 q40 22 240 -2"/>
+  </g>
+  <rect x="338" y="484" width="52" height="20" rx="10" fill="var(--pillow)" stroke="#0b141c" stroke-width="2.5"/>
+  <rect x="398" y="484" width="52" height="20" rx="10" fill="var(--pillow)" stroke="#0b141c" stroke-width="2.5"/>
+  <circle cx="374" cy="494" r="4" fill="var(--acc)"/>
+  <circle cx="424" cy="494" r="4" fill="var(--acc)"/>
+  <path d="M56 468 L430 236" stroke="var(--acc)" stroke-width="2" stroke-dasharray="2 10" opacity=".25"/>
+</svg>`;
+
+const VARS = {
+  bleu:  { '--skin-1':'#21405f','--skin-2':'#0d1c2e','--pillow':'#2a4f74','--seat':'#152c44','--arm':'#112238','--seam':'#7fb0dd','--acc':'#2f9a88' },
+  noir:  { '--skin-1':'#2a2e36','--skin-2':'#121418','--pillow':'#343944','--seat':'#20242b','--arm':'#1a1d23','--seam':'#4a515e','--acc':'#2f9a88' },
+  orange:{ '--skin-1':'#8a4213','--skin-2':'#401d06','--pillow':'#a05218','--seat':'#642c09','--arm':'#51240a','--seam':'#ffb27a','--acc':'#c96a2e' }
+};
+function mountChair(id, cw) {
+  const el = document.getElementById(id);
+  el.innerHTML = CHAIR;
+  Object.entries(VARS[cw]).forEach(([k, v]) => el.style.setProperty(k, v));
+  Object.assign(el.style, { display:'block', width:'100%', maxWidth:'330px', margin:'0 auto', filter:'drop-shadow(0 22px 26px rgba(23,48,61,.16))' });
+}
+mountChair('chair-hero', 'bleu');
+document.querySelectorAll('#dots button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#dots button').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  mountChair('chair-hero', b.dataset.cw);
+}));
+
+const nbEl = document.getElementById('r-nb'), pxEl = document.getElementById('r-px');
+const onb = document.getElementById('o-nb'), opx = document.getElementById('o-px');
+const res = document.getElementById('res'), note = document.getElementById('res-note');
+function fmt(x){ return x.toLocaleString('fr-FR').replace(/\u202f/g,' '); }
+function calc(){
+  const nb = +nbEl.value, px = +pxEl.value;
+  onb.textContent = nb;
+  opx.textContent = px.toFixed(2).replace('.', ',') + ' €';
+  const monthly = Math.round(nb * px * 30);
+  res.textContent = fmt(monthly) + ' €';
+  note.textContent = 'Hypothèse : ' + nb + ' séances/jour × ' + px.toFixed(2).replace('.', ',') + ' € × 30 j — à confronter à votre flux réel.';
+}
+nbEl.addEventListener('input', calc); pxEl.addEventListener('input', calc);
+calc();
+</script>
+</body>
+</html>
