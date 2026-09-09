@@ -117,6 +117,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
 .article-page img{max-width:100%;border-radius:var(--radius);margin:20px 0;box-shadow:var(--shadow)}
 .article-page a{color:var(--clay);text-decoration:underline;text-underline-offset:2px}
 .article-page a:hover{color:var(--clay-dark)}
+.article-page h2 a,.article-page h3 a{color:inherit;text-decoration:underline;text-decoration-color:var(--cream-dark)}
 
 .footer{background:var(--navy-dark);color:rgba(255,255,255,0.7);padding:40px 24px 24px;text-align:center;font-size:0.85rem}
 .footer a{color:rgba(255,255,255,0.7);text-decoration:none;transition:var(--transition)}
@@ -178,22 +179,22 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
           </div>
           <p style="font-size:1.1rem;color:var(--text-light);line-height:1.7">
             Et si l'IA pouvait coder une application complète, de zéro, sans aucune ligne écrite par un développeur humain ? 
-            C'est le pari réussi de <strong>PulseGrid</strong>, un tableau de bord temps réel des prix spot de l'électricité 
+            C'est le pari réussi de <strong><a href="https://pulsegrid.pplx.app/#/" target="_blank" rel="noopener">PulseGrid</a></strong>, un tableau de bord temps réel des prix spot de l'électricité 
             en Europe, généré intégralement par <strong>Perplexity AI</strong>. Analyse d'une démonstration bluffante.
           </p>
         </header>
 
         <div class="fade-in">
-          <h2>Qu'est-ce que PulseGrid ?</h2>
+          <h2>Qu'est-ce que <a href="https://pulsegrid.pplx.app/#/" target="_blank" rel="noopener">PulseGrid</a> ?</h2>
           <p>
-            <a href="https://pulsegrid.pplx.app/" target="_blank" rel="noopener">PulseGrid</a> est une application web 
+            <a href="https://pulsegrid.pplx.app/#/" target="_blank" rel="noopener">PulseGrid</a> est une application web 
             de monitoring des marchés de l'électricité en Europe. Elle affiche en temps réel les prix spot (day-ahead) 
             des principales bourses européennes — <strong>EPEX Spot</strong> (France, Allemagne), 
             <strong>Nord Pool</strong> (pays nordiques) et <strong>OMIE</strong> (Espagne) — avec le mix 
             électrique français en direct via les données RTE éCO2mix.
           </p>
           <p>
-            L'application suit l'évolution des prix en €/MWh sur différentes périodes (7, 14, 30 ou 45 jours), 
+            L'application suit l'évolution des prix en €/MWh sur différentes périodes (de 7 jours à 3 ans), 
             et intègre un <strong>signal carbone</strong> en temps réel pour la France (intensité CO₂ du 
             mix électrique, consommation instantanée, et ventilation par filière).
           </p>
@@ -204,7 +205,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
               <span class="label">Bourses européennes suivies</span>
             </div>
             <div class="stat-card">
-              <span class="number">30 j</span>
+              <span class="number">3 ans</span>
               <span class="label">d'historique disponible</span>
             </div>
             <div class="stat-card">
@@ -221,7 +222,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
         <div class="fade-in">
           <h2>Une app 100 % conçue par l'IA</h2>
           <p>
-            Ce qui rend PulseGrid remarquable, ce n'est pas tant ses fonctionnalités — aussi utiles soient-elles — 
+            Ce qui rend <a href="https://pulsegrid.pplx.app/#/" target="_blank" rel="noopener">PulseGrid</a> remarquable, ce n'est pas tant ses fonctionnalités — aussi utiles soient-elles — 
             que la manière dont il a été construit. L'application a été <strong>intégralement générée par Perplexity AI</strong>, 
             l'assistant de recherche et de génération de code.
           </p>
@@ -235,7 +236,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
           <div class="tech-box">
             <h4>⚡ Comment ça marche ?</h4>
             <p>
-              PulseGrid interroge plusieurs APIs publiques : les données EPEX Spot via des agrégateurs open-data, 
+              <a href="https://pulsegrid.pplx.app/#/" target="_blank" rel="noopener">PulseGrid</a> interroge plusieurs APIs publiques : les données EPEX Spot via des agrégateurs open-data, 
               les prix Nord Pool via le portail officiel, OMIE pour l'Espagne/Portugal, et les flux éCO2mix 
               de RTE pour le mix français. L'IA a géré la récupération, la mise en forme, l'affichage en temps 
               réel et la mise en page responsive — le tout sans intervention humaine.
@@ -259,7 +260,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
         <div class="fade-in">
           <h2>Pourquoi c'est un tournant</h2>
           <p>
-            PulseGrid n'est pas un simple exercice de style. C'est la démonstration que l'IA générative a franchi 
+            <a href="https://pulsegrid.pplx.app/#/" target="_blank" rel="noopener">PulseGrid</a> n'est pas un simple exercice de style. C'est la démonstration que l'IA générative a franchi 
             un cap : elle peut produire une <strong>application métier fonctionnelle</strong>, connectée à des APIs 
             réelles, avec une UI soignée et des données actualisées.
           </p>
@@ -289,8 +290,8 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
             prototypage rapide, itérations en temps réel avec nos clients.
           </p>
           <p>
-            PulseGrid est un cas d'école — et il est accessible à tous. Rendez-vous sur 
-            <a href="https://pulsegrid.pplx.app/" target="_blank" rel="noopener">pulsegrid.pplx.app</a> 
+            <a href="https://pulsegrid.pplx.app/#/" target="_blank" rel="noopener">PulseGrid</a> est un cas d'école — et il est accessible à tous. Rendez-vous sur 
+            <a href="https://pulsegrid.pplx.app/#/" target="_blank" rel="noopener">pulsegrid.pplx.app</a> 
             pour voir par vous-même ce que l'IA est capable de produire.
           </p>
 
@@ -298,7 +299,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
             <h3>🔑 Ce qu'il faut retenir</h3>
             <ul>
               <li><strong>L'IA peut coder une application complète</strong> — front-end, APIs, graphiques, données en temps réel</li>
-              <li><strong>PulseGrid est open-data</strong> : toutes les sources sont publiques (EPEX, Nord Pool, OMIE, RTE)</li>
+              <li><strong><a href="https://pulsegrid.pplx.app/#/" target="_blank" rel="noopener">PulseGrid</a> est open-data</strong> : toutes les sources sont publiques (EPEX, Nord Pool, OMIE, RTE)</li>
               <li><strong>Le temps de développement passe de semaines à minutes</strong> — sans sacrifier la qualité</li>
               <li>Pour les TPE/PME des Hautes-Alpes, c'est l'opportunité d'accéder à des outils numériques sur mesure à prix maîtrisé</li>
             </ul>
