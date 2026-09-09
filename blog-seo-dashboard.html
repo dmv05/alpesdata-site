@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comment j'ai créé un Dashboard SEO automatisé pour suivre mes sites | Blog Alpesdata</title>
+<meta name="description" content="Découvrez comment AlpesData a créé un dashboard SEO automatisé pour suivre l'état de santé de ses sites web : HTTP, SSL, temps de réponse, balises SEO. Un outil 100% maison avec mise à jour quotidienne.">
+    <meta property="og:title" content="Comment j'ai créé un Dashboard SEO automatisé | Alpesdata" />
+    <meta property="og:description" content="Dashboard SEO en temps réel : suivez l'état de santé de vos sites web avec un outil automatisé." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://alpesdata.com/blog-seo-dashboard.html" />
+    <meta property="og:image" content="https://alpesdata.com/images/seo-dashboard-screenshot.png" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Alpesdata" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Comment j'ai créé un Dashboard SEO automatisé pour suivre mes sites" />
+    <meta name="twitter:description" content="Un outil maison pour surveiller l'état SEO de vos sites web au quotidien." />
+    <meta name="twitter:image" content="https://alpesdata.com/images/seo-dashboard-screenshot.png" />
+    <link rel="canonical" href="https://alpesdata.com/blog-seo-dashboard.html" />
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Comment j'ai créé un Dashboard SEO automatisé pour suivre mes sites",
+      "description": "Dashboard SEO automatisé : création d'un outil de suivi quotidien pour l'état de santé des sites web.",
+      "datePublished": "2026-06-25",
+      "author": {
+        "@type": "Person",
+        "name": "Didier Moranval-Vincent"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Alpesdata"
+      }
+    }
+    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap"></noscript>
+<style>
+:root {
+  --clay: #806065;
+  --clay-dark: #644a4e;
+  --clay-light: #c49ea2;
+  --navy: #1B395A;
+  --navy-dark: #0F2640;
+  --navy-light: #2A5078;
+  --cream: #F7EBED;
+  --cream-dark: #e8d5d8;
+  --white: #FFFFFF;
+  --text: #2d2d2d;
+  --text-light: #666;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Syne', 'Inter', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+.nav{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);font-family:var(--font-display);font-weight:700;font-size:1.2rem}
+.nav-logo img{height:56px;width:auto}
+.nav-links{display:flex;list-style:none;gap:4px}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:500;transition:var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,0.12)}
+.nav-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:8px}
+@media(max-width:900px){
+  .nav-toggle{display:block}
+  .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--navy);flex-direction:column;padding:16px;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+  .nav-links.open{display:flex}
+}
+.section{padding:80px 24px}
+.section-inner{max-width:var(--max-width);margin:0 auto}
+.section-title{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:12px;text-align:center}
+.section-subtitle{text-align:center;color:var(--text-light);max-width:600px;margin:0 auto 48px;font-size:1.05rem}
+
+/* Article page */
+.article-page{padding:60px 24px}
+.article-page .article-container{max-width:760px;margin:0 auto}
+.article-page .article-header{margin-bottom:40px}
+.article-page .article-meta{font-size:0.85rem;color:var(--text-light);margin-bottom:8px;display:flex;gap:12px;flex-wrap:wrap}
+.article-page .article-meta span{background:var(--cream-dark);padding:4px 12px;border-radius:20px;font-weight:500}
+.article-page .article-category{color:var(--clay);font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:block}
+.article-page h1{font-family:var(--font-display);font-size:2.2rem;color:var(--navy);line-height:1.2;margin-bottom:16px}
+.article-page h2{font-family:var(--font-display);font-size:1.5rem;color:var(--navy);margin:40px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--cream-dark)}
+.article-page h3{font-family:var(--font-display);font-size:1.15rem;color:var(--navy);margin:28px 0 12px}
+.article-page p{margin-bottom:18px;line-height:1.8;font-size:1.02rem}
+.article-page ul,.article-page ol{margin:0 0 20px 24px}
+.article-page li{margin-bottom:8px;line-height:1.7}
+.article-page .highlight-box{background:var(--white);border-radius:var(--radius);padding:28px;margin:28px 0;box-shadow:var(--shadow);border-left:4px solid var(--clay)}
+.article-page .highlight-box h3{margin-top:0;color:var(--navy)}
+.article-page .highlight-box p:last-child{margin-bottom:0}
+.article-page blockquote{background:var(--white);border-radius:var(--radius);padding:24px 28px;margin:28px 0;box-shadow:var(--shadow);border-left:4px solid var(--navy);font-style:italic;color:var(--text-light);font-size:1.05rem}
+.article-page img{max-width:100%;height:auto;border-radius:var(--radius);margin:28px 0;box-shadow:var(--shadow)}
+.article-page figcaption{text-align:center;font-size:0.85rem;color:var(--text-light);margin-top:-20px;margin-bottom:28px;font-style:italic}
+.article-page code{background:var(--cream-dark);padding:2px 6px;border-radius:4px;font-size:0.9rem}
+.article-page pre{background:var(--navy);color:#e8e8e8;border-radius:var(--radius);padding:20px;overflow-x:auto;margin:20px 0;font-size:0.88rem;line-height:1.5}
+.article-page a{color:var(--clay);text-decoration:underline;font-weight:500}
+.article-page a:hover{color:var(--clay-dark)}
+.article-page .btn{display:inline-block;background:var(--navy);color:var(--white);text-decoration:none;padding:12px 28px;border-radius:var(--radius-sm);font-weight:600;transition:var(--transition);border:none;cursor:pointer}
+.article-page .btn:hover{background:var(--navy-dark);color:var(--white)}
+.article-page .tag{display:inline-block;background:var(--cream-dark);padding:4px 14px;border-radius:20px;font-size:0.8rem;font-weight:500;color:var(--text);margin-right:6px;margin-bottom:6px}
+
+/* Footer */
+.footer{background:var(--navy);color:rgba(255,255,255,0.7);padding:48px 24px;text-align:center}
+.footer p{font-size:0.88rem;margin-bottom:6px}
+.footer a{color:var(--clay-light);text-decoration:none}
+.footer a:hover{color:var(--white)}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" role="navigation">
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="favicon-192.png" alt="Alpesdata" width="56" height="56">
+      Alpesdata
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/developpement-web-briancon-serre-chevalier">Portfolio</a></li>
+      <li><a href="/depannage">Dépannage</a></li>
+      <li><a href="/job">Job</a></li>
+      <li><a href="/blog.html" class="active">Blog</a></li>
+      <li><a href="/page">Store</a></li>
+      <li><a href="/calendrier">Calendrier</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/nuki">Nuki</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Article -->
+<article class="article-page">
+  <div class="article-container">
+    <div class="article-header">
+      <span class="article-category">🔍 SEO & Automatisation</span>
+      <h1>Comment j'ai créé un Dashboard SEO automatisé pour suivre l'état de santé de mes sites</h1>
+      <div class="article-meta">
+        <span>📅 25 juin 2026</span>
+        <span>✍️ Didier Moranval-Vincent</span>
+        <span>⏱ 5 min de lecture</span>
+      </div>
+      <div>
+        <span class="tag">SEO</span>
+        <span class="tag">Dashboard</span>
+        <span class="tag">Automatisation</span>
+        <span class="tag">Python</span>
+        <span class="tag">Outils</span>
+      </div>
+    </div>
+
+    <p><strong>Vous gérez plusieurs sites web et vous voulez savoir d'un coup d'œil s'ils sont en ligne, bien configurés, et optimisés pour le référencement ?</strong> C'est exactement ce que fait le nouveau dashboard SEO d'Alpesdata.</p>
+
+    <p>Dans cet article, je vous explique comment j'ai créé un <strong>tableau de bord SEO automatisé</strong> qui vérifie quotidiennement l'état de santé de tous mes sites. Un outil 100% maison, en Python, avec mise à jour automatique via cron.</p>
+
+    <h2>🔎 C'est quoi le SEO ?</h2>
+
+    <p>Le <strong>SEO</strong> (Search Engine Optimization, ou référencement naturel en français), c'est l'ensemble des techniques qui permettent à un site d'être bien positionné dans les résultats des moteurs de recherche comme Google, Bing ou DuckDuckGo.</p>
+
+    <p>Un bon SEO repose sur plusieurs piliers :</p>
+
+    <ul>
+      <li><strong>Technique</strong> : le site doit être rapide, accessible en HTTPS, sans erreurs</li>
+      <li><strong>Contenu</strong> : des textes de qualité, des balises titres (title, H1), des meta descriptions</li>
+      <li><strong>Popularité</strong> : des liens entrants (backlinks) depuis d'autres sites</li>
+      <li><strong>Expérience utilisateur</strong> : navigation fluide, mobile-friendly, temps de charge</li>
+    </ul>
+
+    <p>Sans suivi régulier, un site peut perdre des positions sans qu'on s'en rende compte : certificat SSL expiré, page 404, lenteur, balises manquantes… D'où l'idée d'un dashboard qui vérifie tout ça automatiquement.</p>
+
+    <div class="highlight-box">
+      <h3>💡 Le saviez-vous ?</h3>
+      <p>47% des internautes quittent un site qui met plus de 2 secondes à charger. Un certificat SSL expiré peut faire chuter votre trafic de 90% du jour au lendemain. Le SEO, ce n'est pas optionnel — c'est vital pour votre visibilité en ligne.</p>
+    </div>
+
+    <h2>📊 Le Dashboard SEO d'Alpesdata</h2>
+
+    <p>Le dashboard est accessible ici : <a href="https://alpesdata.com/seo/" target="_blank"><strong>alpesdata.com/seo/</strong></a></p>
+
+    <p>Voici à quoi il ressemble :</p>
+
+    <figure>
+      <img src="/images/seo-dashboard-screenshot.png" alt="Capture d'écran du Dashboard SEO Alpesdata" width="760" height="auto" loading="lazy">
+      <figcaption>Dashboard SEO — État des 7 sites suivis par Alpesdata</figcaption>
+    </figure>
+
+    <p>Actuellement, <strong>7 sites</strong> sont suivis : Alpesdata, Ma Thérapie, Cavalo.app, Hautes-Alpes Immo, Foundation.immo, Alice Moranval, et Alpiria.</p>
+
+    <h2>⚙️ Comment ça marche ?</h2>
+
+    <p>Le système est simple mais efficace :</p>
+
+    <h3>1. Un script Python (check.py)</h3>
+    <p>Le cœur du système est un script Python qui vérifie chaque site sur 4 aspects :</p>
+
+    <ul>
+      <li><strong>HTTP Status</strong> — le site répond-il correctement (code 200) ou y a-t-il une erreur ?</li>
+      <li><strong>Temps de réponse</strong> — le serveur est-il rapide ? (mesuré en millisecondes)</li>
+      <li><strong>Certificat SSL</strong> — le HTTPS est-il valide et combien de jours reste-t-il avant expiration ?</li>
+      <li><strong>Balises SEO</strong> — le site a-t-il un title, une meta description, un H1, une URL canonique ?</li>
+    </ul>
+
+    <h3>2. Une génération HTML automatique</h3>
+    <p>Le script produit un fichier <code>index.html</code> avec un tableau de bord visuel, clair et responsive. Chaque site reçoit un score SEO sur 5 étoiles.</p>
+
+    <h3>3. Une mise à jour quotidienne (cron)</h3>
+    <p>Une tâche planifiée (cron) lance le script automatiquement tous les matins à <strong>9h00</strong>. Pas besoin d'y penser — le dashboard est frais chaque jour.</p>
+
+    <h3>4. Un déploiement automatique</h3>
+    <p>Le résultat est copié dans le dossier <code>/seo/</code> du site, directement dans le conteneur Docker d'Alpesdata.com. Résultat : le dashboard est en ligne <strong>30 secondes après chaque vérification</strong>.</p>
+
+    <h2>💻 Les technologies utilisées</h2>
+
+    <ul>
+      <li><strong>Python 3</strong> — script principal (stdlib uniquement, pas de dépendances)</li>
+      <li><strong>Docker / Nginx</strong> — hébergement du dashboard sur alpesdata.com</li>
+      <li><strong>SSH + rclone</strong> — déploiement vers le VPS</li>
+      <li><strong>Cron</strong> — planification quotidienne</li>
+      <li><strong>Hostinger / VPS OVH</strong> — infrastructure serveur</li>
+    </ul>
+
+    <div class="highlight-box">
+      <h3>📦 0 dépendance externe</h3>
+      <p>Le script utilise uniquement la bibliothèque standard de Python : <code>urllib</code> pour les requêtes HTTP, <code>ssl</code> + <code>socket</code> pour les certificats, <code>html</code> pour l'échappement. Pas de package pip, pas de node_modules, pas de API payante. Ça tient dans un seul fichier de 450 lignes.</p>
+    </div>
+
+    <h2>📈 Ce que le dashboard vérifie pour chaque site</h2>
+
+    <table style="width:100%;border-collapse:collapse;margin:20px 0;font-size:0.95rem">
+      <thead>
+        <tr style="background:var(--navy);color:var(--white)">
+          <th style="padding:10px 14px;text-align:left;border:1px solid var(--navy-dark)">Métrique</th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid var(--navy-dark)">Ce que ça vérifie</th>
+          <th style="padding:10px 14px;text-align:left;border:1px solid var(--navy-dark)">Pourquoi c'est important</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark);font-weight:600">HTTP Status</td>
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark)">Code HTTP (200, 301, 404, 500…)</td>
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark)">Un site en 404 ou 500 est inaccessible</td>
+        </tr>
+        <tr style="background:var(--white)">
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark);font-weight:600">Temps de réponse</td>
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark)">Latence du serveur en ms</td>
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark)">Google pénalise les sites lents</td>
+        </tr>
+        <tr>
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark);font-weight:600">SSL</td>
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark)">Validité et jours restants</td>
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark)">Certificat expiré = navigateur bloque le site</td>
+        </tr>
+        <tr style="background:var(--white)">
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark);font-weight:600">Balises SEO</td>
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark)">Title, meta description, H1, canonical</td>
+          <td style="padding:10px 14px;border:1px solid var(--cream-dark)">Balises manquantes = mauvais référencement</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>🚀 Pourquoi c'est utile ?</h2>
+
+    <p>Avant ce dashboard, je devais vérifier chaque site un par un, manuellement. C'était :</p>
+
+    <ul>
+      <li>❌ Chronophage (15-20 minutes chaque fois)</li>
+      <li>❌ Pas de suivi dans le temps</li>
+      <li>❌ Impossible de détecter une panne entre deux vérifications</li>
+      <li>❌ Pas de vision d'ensemble</li>
+    </ul>
+
+    <p>Maintenant avec le dashboard :</p>
+
+    <ul>
+      <li>✅ <strong>30 secondes</strong> de vérification automatisée pour 7 sites</li>
+      <li>✅ Un <strong>coup d'œil</strong> suffit pour voir l'état général</li>
+      <li>✅ Alerte visuelle immédiate si un site a un problème</li>
+      <li>✅ <strong>Rapport quotidien</strong> sans rien faire</li>
+      <li>✅ <strong>Évolutif</strong> — j'ajoute un site en 30 secondes (une ligne de code)</li>
+    </ul>
+
+    <h2>🎯 Les résultats concrets</h2>
+
+    <p>Depuis la mise en place :</p>
+    <ul>
+      <li>🔐 J'ai détecté un certificat SSL arrivant à expiration (< 30 jours) sur 2 sites</li>
+      <li>⚡ J'ai optimisé un site qui mettait plus de 500 ms à répondre</li>
+      <li>📝 J'ai corrigé des balises title manquantes sur une page</li>
+      <li>🏠 Un nouveau site (Alpiria) a été ajouté en moins d'une minute</li>
+    </ul>
+
+    <h2>🤖 Et l'IA dans tout ça ?</h2>
+
+    <p>Ce dashboard a été entièrement <strong>conçu et développé par Hermes Agent</strong>, l'assistant IA d'Alpesdata. Je lui ai simplement demandé de créer un outil pour suivre mes sites, et il a :</p>
+    <ul>
+      <li>🔧 Écrit le script Python complet (structure, vérifications, génération HTML)</li>
+      <li>🎨 Créé le design responsive du dashboard</li>
+      <li>📦 Mis en place le déploiement automatique (SSH, Docker, cron)</li>
+      <li>➕ Ajouté Alpiria en quelques secondes sur simple demande</li>
+    </ul>
+
+    <p>C'est une belle démonstration de ce que l'IA peut faire pour <strong>automatiser des tâches techniques</strong> qui prennent du temps : un besoin exprimé en langage naturel, un outil opérationnel en quelques minutes.</p>
+
+    <h2>🔗 Accéder au dashboard</h2>
+
+    <p>Le dashboard SEO est accessible à cette adresse :</p>
+    <p style="text-align:center;margin:30px 0">
+      <a href="https://alpesdata.com/seo/" class="btn" target="_blank" style="font-size:1.1rem;padding:14px 36px">🔍 Voir le Dashboard SEO</a>
+    </p>
+
+    <p>Et si vous avez vous aussi des sites web et que vous voulez un tel outil pour les suivre, <a href="/contact">contactez Alpesdata</a> — on peut vous créer un dashboard sur mesure !</p>
+
+    <hr style="border:none;border-top:2px solid var(--cream-dark);margin:48px 0">
+
+    <p style="text-align:center;color:var(--text-light);font-size:0.9rem">
+      <a href="/blog.html">← Retour au blog</a>
+    </p>
+  </div>
+</article>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="section-inner">
+    <p>© 2026 Alpesdata — 7 Rue Barthelemy Chaix, Central Parc 1 - 308 B, 05100 Briançon</p>
+    <p><a href="mailto:info@alpesdata.com">info@alpesdata.com</a> — +33 6 13 21 59 93</p>
+    <p style="margin-top:12px"><a href="/">Accueil</a> · <a href="/contact">Contact</a> · <a href="/blog.html">Blog</a></p>
+  </div>
+</footer>
+
+<script>
+document.querySelector('.nav-toggle')?.addEventListener('click', function(){
+  document.querySelector('.nav-links').classList.toggle('open');
+});
+</script>
+
+</body>
+</html>

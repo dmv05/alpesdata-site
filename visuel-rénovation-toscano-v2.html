@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vincent Toscano — Artisan Rénovateur | Variante 2</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Space Grotesk',sans-serif;background:#fafafa;color:#1c1c1c;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+:root{
+  --charcoal:#2a2a2a;
+  --warm-gray:#6b5e54;
+  --sage:#8a9a7a;
+  --sage-light:#c6d4b8;
+  --sand:#e8dfd3;
+  --sand-dark:#d4c8b8;
+  --cream:#fafafa;
+  --text:#1c1c1c;
+  --text-muted:#7a7a7a;
+  --accent:#b87a4e;
+  --radius-sm:6px;
+  --radius:12px;
+  --transition:0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* ── Animations ── */
+@keyframes fadeUp {
+  from{opacity:0;transform:translateY(32px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn {
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes countUp {
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.animate{opacity:0}
+.animate.visible{animation:fadeUp 0.6s ease-out forwards}
+.animate-delay-1{animation-delay:0.1s}
+.animate-delay-2{animation-delay:0.2s}
+.animate-delay-3{animation-delay:0.3s}
+.animate-delay-4{animation-delay:0.4s}
+
+/* ── Nav ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:#fff;border-bottom:1px solid #eee;transition:box-shadow var(--transition)}
+nav.scrolled{box-shadow:0 1px 12px rgba(0,0,0,0.04)}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:'DM Serif Display',serif;font-size:22px;color:var(--charcoal);text-decoration:none;letter-spacing:-0.5px}
+.logo small{font-family:'Space Grotesk',sans-serif;font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);display:block;margin-top:-2px;font-weight:500}
+
+.nav-links{display:flex;gap:0;list-style:none}
+.nav-links a{padding:8px 18px;font-size:12px;font-weight:500;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;text-decoration:none;transition:all var(--transition);border-radius:var(--radius-sm)}
+.nav-links a:hover{color:var(--charcoal);background:#f5f5f5}
+.nav-links a.active{color:#fff;background:var(--charcoal)}
+.nav-links a.ski-link{font-size:11px;opacity:0.5;letter-spacing:0.5px}
+.nav-links a.ski-link:hover{opacity:1}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:1001;background:none;border:none}
+.hamburger span{display:block;width:22px;height:2px;background:var(--charcoal);transition:all .3s;border-radius:1px}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+.mobile-menu{display:none;position:fixed;top:64px;left:0;right:0;background:#fff;padding:16px 24px;border-bottom:1px solid #eee;z-index:999;flex-direction:column;gap:2px;transform:translateY(-8px);opacity:0;transition:all .25s}
+.mobile-menu.open{transform:translateY(0);opacity:1}
+.mobile-menu a{display:block;padding:12px 16px;color:var(--charcoal);text-decoration:none;font-weight:500;font-size:14px;text-transform:uppercase;letter-spacing:1px;border-radius:var(--radius-sm);transition:background .2s}
+.mobile-menu a:hover,.mobile-menu a.active{background:#f5f5f5}
+
+/* ── Hero ── */
+.hero{background:var(--cream);margin-top:64px;padding:110px 0 90px;border-bottom:1px solid #eee;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-120px;right:-80px;width:400px;height:400px;background:radial-gradient(circle,rgba(138,154,122,0.06) 0%,transparent 70%);border-radius:50%}
+.hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.hero-tag{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--sage);font-weight:600;margin-bottom:16px;display:flex;align-items:center;gap:10px}
+.hero-tag::before{content:'';width:28px;height:2px;background:var(--sage);display:inline-block}
+.hero h1{font-family:'DM Serif Display',serif;font-size:52px;font-weight:400;line-height:1.08;color:var(--charcoal);margin-bottom:22px}
+.hero h1 em{font-style:italic;color:var(--sage)}
+.hero p{font-size:15px;line-height:1.7;color:var(--text-muted);margin-bottom:36px;max-width:440px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 30px;border-radius:var(--radius-sm);font-weight:600;font-size:12px;text-decoration:none;transition:all var(--transition);text-transform:uppercase;letter-spacing:0.5px;font-family:inherit;cursor:pointer;border:none}
+.btn-primary{background:var(--charcoal);color:#fff}
+.btn-primary:hover{background:#111;transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.15)}
+.btn-outline{background:transparent;color:var(--charcoal);border:2px solid #ddd}
+.btn-outline:hover{border-color:var(--charcoal);transform:translateY(-2px)}
+
+.hero-right{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.hero-pic{aspect-ratio:1;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.25);font-size:12px;transition:all var(--transition);overflow:hidden;position:relative}
+.hero-pic:hover{transform:scale(1.04);box-shadow:0 8px 24px rgba(0,0,0,0.12)}
+.hp1{background:linear-gradient(135deg,#8B7355,#5a4a38);grid-row:span 2}
+.hp2{background:linear-gradient(135deg,#b87a4e,#8d5a40)}
+.hp3{background:linear-gradient(135deg,#c6d4b8,#8a9a7a)}
+
+/* ── Sections ── */
+.section{padding:80px 0}
+.section-header{margin-bottom:48px}
+.section-header .pre{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--sage);font-weight:600;margin-bottom:8px}
+.section-header h2{font-family:'DM Serif Display',serif;font-size:36px;font-weight:400;color:var(--charcoal);margin-bottom:14px;line-height:1.2}
+.section-header p{color:var(--text-muted);max-width:500px;line-height:1.7;font-size:14px}
+
+/* ── Expertise grid ── */
+.expertise{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#eee}
+.expertise .item{background:#fff;padding:36px 24px;text-align:center;transition:all var(--transition);cursor:default}
+.expertise .item:hover{background:#fafafa;transform:translateY(-4px);box-shadow:0 4px 20px rgba(0,0,0,0.06);z-index:1;position:relative}
+.expertise .item .icon{font-size:30px;margin-bottom:14px;transition:transform var(--transition)}
+.expertise .item:hover .icon{transform:scale(1.2)}
+.expertise .item h3{font-size:13px;font-weight:600;color:var(--charcoal);margin-bottom:8px;text-transform:uppercase;letter-spacing:0.5px}
+.expertise .item p{font-size:12px;color:var(--text-muted);line-height:1.6}
+
+/* ── Philosophy ── */
+.phil-section{background:var(--charcoal);color:#fff}
+.phil-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.phil-text h2{font-family:'DM Serif Display',serif;font-size:36px;font-weight:400;margin-bottom:18px;line-height:1.2}
+.phil-text p{font-size:14px;line-height:1.8;opacity:0.55;margin-bottom:18px}
+.phil-text .blockquote{font-family:'DM Serif Display',serif;font-size:22px;font-style:italic;opacity:0.75;padding:22px 0 22px 28px;border-left:3px solid var(--sage);margin:28px 0;line-height:1.5}
+.phil-stats{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:28px}
+.phil-stat{text-align:center;padding:24px 16px;background:rgba(255,255,255,0.05);border-radius:var(--radius-sm);transition:all var(--transition)}
+.phil-stat:hover{background:rgba(255,255,255,0.08);transform:translateY(-4px)}
+.phil-stat .num{font-size:32px;font-weight:700;color:var(--sage);transition:color var(--transition)}
+.phil-stat:hover .num{color:var(--sage-light)}
+.phil-stat .label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;opacity:0.35;margin-top:6px;font-weight:500}
+.phil-photo{background:linear-gradient(135deg,#5a4a38,#3d2c24);aspect-ratio:3/4;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:13px;overflow:hidden}
+
+/* ── Projects grid ── */
+.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.projects .item{aspect-ratio:4/3;cursor:pointer;transition:all var(--transition);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px;color:#fff;font-size:12px;font-weight:500;background:linear-gradient(135deg,#8B7355,#5a4a38)}
+.projects .item:nth-child(2n){background:linear-gradient(135deg,#b87a4e,#8d5a40)}
+.projects .item:nth-child(3n){background:linear-gradient(135deg,#c6d4b8,#8a9a7a);color:var(--charcoal)}
+.projects .item:hover{opacity:0.85;transform:scale(1.03);z-index:1;box-shadow:0 8px 28px rgba(0,0,0,0.15)}
+.projects .item::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.25),transparent);pointer-events:none}
+.projects .item:nth-child(3n)::after{background:linear-gradient(0deg,rgba(0,0,0,0.1),transparent)}
+.projects .item span{position:relative;z-index:1;transition:transform var(--transition)}
+.projects .item:hover span{transform:translateY(-4px)}
+
+/* ── Ski bar ── */
+.ski-bar{background:var(--sand);padding:28px 0;border-top:1px solid var(--sand-dark)}
+.ski-bar .container{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
+.ski-bar .tag{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--text-muted);font-weight:600}
+.ski-bar p{font-size:13px;color:var(--charcoal)}
+.ski-bar a{font-size:12px;font-weight:600;color:var(--accent);text-decoration:none;text-transform:uppercase;letter-spacing:0.5px;transition:color var(--transition);display:inline-flex;align-items:center;gap:4px}
+.ski-bar a:hover{color:var(--charcoal)}
+
+/* ── Contact ── */
+.contact-section{background:var(--cream)}
+.contact-inner{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.contact-form{background:#fff;padding:40px;border:1px solid #eee;border-radius:var(--radius)}
+.contact-form h3{font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:var(--charcoal);margin-bottom:28px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1px;color:var(--text-muted);margin-bottom:6px}
+.fg input,.fg textarea{width:100%;padding:12px 14px;border:1px solid #ddd;border-radius:var(--radius-sm);font-size:14px;font-family:inherit;background:var(--cream);transition:border-color .15s,box-shadow .15s}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--charcoal);box-shadow:0 0 0 3px rgba(42,42,42,0.06)}
+.fg textarea{height:130px;resize:vertical}
+.contact-side{padding:24px 0}
+.contact-side h3{font-family:'DM Serif Display',serif;font-size:24px;font-weight:400;color:var(--charcoal);margin-bottom:16px}
+.contact-side p{color:var(--text-muted);font-size:14px;line-height:1.7;margin-bottom:28px}
+.c-item{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+.c-item .ci-icon{font-size:18px;flex-shrink:0;width:26px;text-align:center}
+.c-item div{font-size:13px;color:var(--charcoal);line-height:1.5}
+.c-item div small{display:block;color:var(--text-muted);font-size:11px}
+
+/* ── Footer ── */
+footer{background:var(--charcoal);color:rgba(255,255,255,0.35);text-align:center;padding:36px;font-size:12px;line-height:2}
+footer strong{color:rgba(255,255,255,0.6)}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:flex}
+  .hero{padding:80px 0 60px}
+  .hero .container{grid-template-columns:1fr;gap:40px}
+  .hero h1{font-size:36px}
+  .hero-right{display:none}
+  .expertise{grid-template-columns:1fr 1fr}
+  .phil-grid{grid-template-columns:1fr;gap:36px}
+  .projects{grid-template-columns:1fr 1fr}
+  .contact-inner{grid-template-columns:1fr}
+  .section{padding:60px 0}
+  .section-header h2{font-size:28px}
+  .phil-text h2{font-size:28px}
+}
+
+@media(max-width:500px){
+  .hero h1{font-size:28px}
+  .expertise{grid-template-columns:1fr}
+  .phil-stats{grid-template-columns:repeat(3,1fr)}
+  .projects{grid-template-columns:1fr}
+  .contact-form{padding:28px}
+  .hero-ctas{flex-direction:column}
+  .hero-ctas .btn{justify-content:center}
+  .ski-bar .container{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <a href="#" class="logo">VT<small>Artisan Rénovateur</small></a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Accueil</a></li>
+      <li><a href="#expertise">Expertise</a></li>
+      <li><a href="#projets">Projets</a></li>
+      <li><a href="#philosophie">Philosophie</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#" class="ski-link">⛷️ Ski</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" class="active">Accueil</a>
+  <a href="#expertise">Expertise</a>
+  <a href="#projets">Projets</a>
+  <a href="#philosophie">Philosophie</a>
+  <a href="#contact">Contact</a>
+  <a href="#">⛷️ Ski</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div>
+      <div class="hero-tag">Artisan rénovateur — Saint-Chaffrey</div>
+      <h1>Révéler la <em>beauté</em> de vos intérieurs</h1>
+      <p>Artisan indépendant depuis 2005, je conçois et réalise vos projets de rénovation avec des matériaux nobles et un regard exigeant sur les finitions. Chaque détail compte.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">📐 Demander un devis</a>
+        <a href="#projets" class="btn btn-outline">Voir les projets</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-pic hp1">🖼️ Menuiserie</div>
+      <div class="hero-pic hp2">🖼️ Cuisine</div>
+      <div class="hero-pic hp3">🖼️ Salle de bain</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section class="section" id="expertise">
+  <div class="container">
+    <div class="section-header animate">
+      <div class="pre">Mon expertise</div>
+      <h2>Savoir-faire artisanal</h2>
+      <p>De la menuiserie à la rénovation complète, chaque métier est exercé avec passion.</p>
+    </div>
+    <div class="expertise">
+      <div class="item animate animate-delay-1"><div class="icon">🪚</div><h3>Menuiserie</h3><p>Agencements sur mesure, meubles, escaliers, boiseries — bois massif et matériaux nobles.</p></div>
+      <div class="item animate animate-delay-2"><div class="icon">🏠</div><h3>Rénovation</h3><p>De A à Z : démolition, isolation, cloisons, électricité, plomberie, finitions soignées.</p></div>
+      <div class="item animate animate-delay-3"><div class="icon">🛁</div><h3>Salles d'eau</h3><p>Salles de bain, cuisines — carrelage, pierre, agencement ergonomique.</p></div>
+      <div class="item animate animate-delay-4"><div class="icon">🌿</div><h3>Matériaux</h3><p>Bois massif, pierre naturelle, enduits chaux, peintures écologiques.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="section phil-section" id="philosophie">
+  <div class="container">
+    <div class="phil-grid">
+      <div class="phil-text animate">
+        <h2>L'artisan<br>derrière l'outil</h2>
+        <p>Installé à Saint-Chaffrey depuis mes débuts, je porte une attention particulière à chaque détail. Pas de standard, pas de chaîne — chaque projet est unique car chaque intérieur a sa propre histoire.</p>
+        <div class="blockquote">« Travailler avec des matériaux authentiques, prendre le temps de bien faire, être présent du premier coup de crayon à la dernière finition — c'est ça, mon métier. »</div>
+        <p>Proximité, transparence, qualité : trois valeurs qui guident chacun de mes chantiers dans le Briançonnais.</p>
+        <div class="phil-stats">
+          <div class="phil-stat"><div class="num">2005</div><div class="label">Installation</div></div>
+          <div class="phil-stat"><div class="num">100+</div><div class="label">Chantiers</div></div>
+          <div class="phil-stat"><div class="num">⭐</div><div class="label">Qualité</div></div>
+        </div>
+      </div>
+      <div class="phil-photo animate animate-delay-2">🖼️ [Portrait — Vincent Toscano]</div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section" id="projets">
+  <div class="container">
+    <div class="section-header animate">
+      <div class="pre">Réalisations</div>
+      <h2>Des projets qui comptent</h2>
+      <p>Chaque réalisation est le fruit d'une collaboration étroite avec mes clients.</p>
+    </div>
+    <div class="projects">
+      <div class="item"><span>Cuisine chêne massif</span></div>
+      <div class="item"><span>Salle de bain pierre</span></div>
+      <div class="item"><span>Dressing sur mesure</span></div>
+      <div class="item"><span>Escalier hélicoïdal</span></div>
+      <div class="item"><span>Rénovation appartement</span></div>
+      <div class="item"><span>Terrasse bois composite</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKI BAR -->
+<section class="ski-bar">
+  <div class="container">
+    <span class="tag">⛷️ Aussi l'hiver</span>
+    <p>Moniteur de ski <strong>ESF Chantemerle</strong> — Serre-Chevalier — cours particuliers &amp; collectifs</p>
+    <a href="#">Page Ski →</a>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <div class="contact-side animate">
+        <h3>Vincent Toscano</h3>
+        <p>Artisan rénovateur à votre écoute pour tous vos projets dans le Briançonnais et la Vallée de la Guisane.</p>
+        <div class="c-item"><span class="ci-icon">📍</span><div>11 Rue des Orchidées — Lot Le Pontet, La Salle-les-Alpes<small>Hautes-Alpes (05)</small></div></div>
+        <div class="c-item"><span class="ci-icon">📞</span><div>06 XX XX XX XX</div></div>
+        <div class="c-item"><span class="ci-icon">📧</span><div>vincent@exemple.fr<small>Réponse sous 24h</small></div></div>
+        <div class="c-item"><span class="ci-icon">⛷️</span><div>Moniteur ESF l'hiver<small>Voir la page Ski</small></div></div>
+      </div>
+      <div class="contact-form animate animate-delay-1">
+        <h3>Demande de devis</h3>
+        <div class="fg"><label>Nom & Prénom</label><input type="text" placeholder="Votre nom complet"></div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="votre@email.fr"></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" placeholder="06 XX XX XX XX"></div>
+        <div class="fg"><label>Votre projet</label><textarea placeholder="Type de travaux, surface, pièces concernées, matériaux souhaités, budget envisagé..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center">Envoyer la demande</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>Vincent Toscano</strong> — EI · SIRET 488 628 108 00042<br>
+  La Salle-les-Alpes (05) — NAF 43.32A · Menuiserie bois & PVC<br>
+  Conception <strong>Alpesdata</strong>
+</footer>
+
+<script>
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+// Nav shadow on scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+});
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  });
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Maquettes — Vincent Toscano | Alpesdata</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#f0ebe3;font-family:'Inter',sans-serif;color:#1a1a2e;padding:40px 20px}
+.page{max-width:1400px;margin:0 auto}
+
+/* Header */
+.header{text-align:center;margin-bottom:40px}
+.header h1{font-size:32px;font-weight:800;color:#1a1a2e;margin-bottom:8px}
+.header p{color:#666;font-size:15px}
+.header .badge{display:inline-block;background:linear-gradient(135deg,#c4814a,#0284c7);color:#fff;padding:4px 16px;border-radius:20px;font-size:12px;font-weight:600;margin-top:12px}
+
+/* Toggle tabs */
+.tabs{display:flex;justify-content:center;gap:12px;margin-bottom:36px}
+.tab{padding:10px 24px;border-radius:50px;border:2px solid #ddd;background:#fff;cursor:pointer;font-weight:600;font-size:14px;color:#888;transition:all .2s}
+.tab:hover{border-color:#c4814a;color:#c4814a}
+.tab.active{background:linear-gradient(135deg,#c4814a,#0284c7);color:#fff;border-color:transparent}
+.tab .count{display:inline-block;background:rgba(0,0,0,0.1);padding:0 8px;border-radius:10px;font-size:11px;margin-left:6px}
+.tab.active .count{background:rgba(255,255,255,0.2);color:#fff}
+
+/* Showcase */
+.showcase{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
+.variant{background:#fff;border-radius:20px;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,0.08);transition:all .3s}
+.variant:hover{box-shadow:0 8px 60px rgba(0,0,0,0.12);transform:translateY(-4px)}
+.variant-header{padding:24px 28px 20px;border-bottom:1px solid #eee}
+.variant-header .title{font-size:18px;font-weight:700;display:flex;align-items:center;gap:8px}
+.variant-header .sub{font-size:13px;color:#888;margin-top:4px}
+.variant-body{background:#f8f6f3;padding:20px}
+.mockup{max-width:100%;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 1px 8px rgba(0,0,0,0.06)}
+.mockup iframe{width:100%;height:600px;border:none;display:block}
+.variant-footer{padding:20px 28px;background:#fff}
+.comparison{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.comp-item{background:#f5f5f5;border-radius:8px;padding:6px 12px;font-size:12px;color:#555;display:flex;align-items:center;gap:6px}
+.comp-item .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+.vote{display:flex;gap:8px}
+.vote-btn{flex:1;padding:10px;border-radius:10px;border:2px solid #eee;background:#fff;cursor:pointer;font-weight:600;font-size:13px;color:#888;transition:all .2s;text-align:center}
+.vote-btn:hover{border-color:#c4814a;color:#c4814a}
+
+/* Single view fallback */
+.single .showcase{grid-template-columns:1fr}
+.single .variant{max-width:700px;margin:0 auto}
+
+/* Nav */
+nav{display:flex;justify-content:center;gap:8px;margin-bottom:24px}
+nav a{padding:8px 20px;border-radius:50px;background:#fff;color:#555;text-decoration:none;font-size:13px;font-weight:500;border:1px solid #eee;transition:all .2s}
+nav a:hover{border-color:#c4814a;color:#c4814a}
+nav a.active{background:linear-gradient(135deg,#c4814a,#0284c7);color:#fff;border-color:transparent}
+
+@media(max-width:1000px){
+  .showcase{grid-template-columns:1fr}
+  .variant{max-width:700px;margin:0 auto}
+}
+@media(max-width:600px){
+  body{padding:20px 12px}
+  .header h1{font-size:24px}
+  .mockup iframe{height:450px}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<div class="header">
+  <h1>🎨 Maquettes — Vincent Toscano</h1>
+  <p>Site vitrine double activité : <strong>Rénovation artisanale</strong> · <strong>Moniteur ESF Chantemerle</strong></p>
+  <span class="badge">Alpesdata — Briançon</span>
+</div>
+
+<nav>
+  <a href="#" onclick="showBoth()" class="active" id="btn-both">Côte à côte</a>
+  <a href="#" onclick="showSingle('1')" id="btn-1">Variante 1</a>
+  <a href="#" onclick="showSingle('2')" id="btn-2">Variante 2</a>
+</nav>
+
+<div class="showcase" id="showcase">
+
+  <!-- Variante 1 : Alpin & Chaleureux -->
+  <div class="variant" id="v1">
+    <div class="variant-header">
+      <div class="title">
+        <span style="background:linear-gradient(135deg,#1a3a2a,#3a7250);-webkit-background-clip:text;-webkit-text-fill-color:transparent">❶ Alpin & Chaleureux</span>
+        <span style="font-size:12px;background:#1a3a2a;color:#fff;padding:2px 10px;border-radius:12px;font-weight:500;-webkit-text-fill-color:#fff">Montagne</span>
+      </div>
+      <div class="sub">Tons pin · terre cuite · ambiance chalet</div>
+    </div>
+    <div class="variant-body">
+      <div class="mockup">
+        <iframe srcdoc='
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Plus Jakarta Sans",sans-serif;background:#faf7f2;color:#2c2420;line-height:1.5}
+:root{--pine:#1a3a2a;--pine-light:#2d5a3d;--warm:#c4814a;--warm-light:#e8c89b;--cream:#faf7f2;--stone:#8a7a6e;--dark:#1e1815}
+.page{max-width:1100px;margin:0 auto;padding:0 20px}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(250,247,242,0.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.06)}
+nav .page{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--pine);font-weight:700}
+.logo-icon{width:36px;height:36px;background:var(--pine);border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:16px}
+.logo span{font-size:13px;font-weight:600;line-height:1.2}
+.logo small{display:block;font-size:9px;font-weight:400;color:var(--stone);letter-spacing:1px;text-transform:uppercase}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{color:var(--stone);text-decoration:none;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:500;transition:all .2s}
+.nav-links a:hover{color:var(--pine);background:rgba(26,58,42,0.08)}
+.nav-links a.active{color:#fff;background:var(--pine)}
+
+.hero{background:linear-gradient(165deg,var(--pine) 0%,var(--pine-light) 40%,#3a7250 100%);padding:50px 0}
+.hero .page{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.hero-text h1{font-size:30px;font-weight:800;line-height:1.15;margin-bottom:12px;color:#fff}
+.hero-text h1 em{font-style:normal;color:var(--warm-light)}
+.hero-text p{font-size:14px;line-height:1.7;color:rgba(255,255,255,0.8);margin-bottom:24px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.12);padding:6px 14px;border-radius:50px;font-size:11px;color:#fff;margin-bottom:16px}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:12px 22px;border-radius:50px;font-weight:600;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px}
+.btn-primary{background:var(--warm);color:#fff}
+.btn-outline{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.3)}
+.hero-card{background:rgba(255,255,255,0.1);backdrop-filter:blur(16px);border-radius:16px;padding:24px;border:1px solid rgba(255,255,255,0.15)}
+.hero-card h3{font-size:14px;font-weight:700;color:#fff;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.hero-card .stat{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.08);color:rgba(255,255,255,0.8);font-size:12px}
+.hero-card .stat:last-child{border:none}
+.hero-card .stat-value{font-weight:600;color:#fff}
+.tag-pill{display:inline-block;background:var(--warm);padding:1px 8px;border-radius:10px;font-size:10px;font-weight:600;color:#fff}
+
+.section{padding:50px 0}
+.section-header{text-align:center;margin-bottom:36px}
+.section-header .l{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--stone);margin-bottom:8px;font-weight:600}
+.section-header h2{font-size:26px;font-weight:700;color:var(--dark);margin-bottom:10px}
+.section-header p{color:var(--stone);max-width:480px;margin:0 auto;font-size:13px;line-height:1.7}
+
+.activities{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.activity-card{border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 2px 20px rgba(0,0,0,0.05);text-decoration:none;color:inherit}
+.activity-card .img{height:180px;display:flex;align-items:flex-end;padding:24px;position:relative}
+.activity-card .img::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.4),transparent)}
+.activity-card .img h3{position:relative;z-index:1;color:#fff;font-size:20px;font-weight:700}
+.reno-bg{background:linear-gradient(135deg,#8B7355,#A0896C)}
+.ski-bg{background:linear-gradient(135deg,#4a7a9c,#6a9abf)}
+.activity-card .body{padding:20px}
+.activity-card .body p{font-size:12px;color:var(--stone);line-height:1.6;margin-bottom:12px}
+.activity-card .body .more{color:var(--warm);font-weight:600;font-size:12px}
+
+.gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.gallery-grid .item{border-radius:10px;aspect-ratio:4/3;display:flex;align-items:flex-end;padding:10px;color:#fff;font-size:10px;font-weight:500;background:linear-gradient(135deg,#8B7355,#6B5B45)}
+.gallery-grid .item:nth-child(2n){background:linear-gradient(135deg,#4a7a9c,#2a5a7c)}
+
+.contact-form{max-width:500px;margin:0 auto;background:#fff;border-radius:16px;padding:32px;box-shadow:0 2px 20px rgba(0,0,0,0.05)}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--dark);margin-bottom:4px}
+.fg input,.fg select,.fg textarea{width:100%;padding:10px 14px;border:2px solid #e0d8ce;border-radius:10px;font-size:13px;font-family:inherit;background:#faf7f2}
+.fg textarea{height:80px;resize:vertical}
+.btn-full{width:100%;padding:12px;border-radius:50px;background:var(--warm);color:#fff;border:none;font-weight:600;font-size:13px;cursor:pointer}
+
+footer{background:var(--dark);color:#fff;text-align:center;padding:24px;font-size:11px;opacity:0.6}
+
+@media(max-width:800px){
+  .hero .page{grid-template-columns:1fr}
+  .hero-card{display:none}
+  .activities{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="page">
+<a href="#" class="logo"><div class="logo-icon">VT</div><div><span>Vincent Toscano</span><small>Artisan &amp; ESF</small></div></a>
+<ul class="nav-links">
+<li><a href="#" class="active">Accueil</a></li>
+<li><a href="#">Rénovation</a></li>
+<li><a href="#">Ski ESF</a></li>
+<li><a href="#">Galerie</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</div>
+</nav>
+
+<section class="hero">
+<div class="page">
+<div class="hero-text">
+<div class="hero-badge">⭐ Artisan Rénovation · ESF Chantemerle</div>
+<h1>Je façonne vos espaces,<br><em>je vous guide sur les pistes</em></h1>
+<p>Artisan en rénovation de maisons et appartements dans les Hautes-Alpes, et moniteur de ski ESF à Serre-Chevalier.</p>
+<div class="hero-ctas">
+<a href="#" class="btn btn-primary">📐 Devis rénovation</a>
+<a href="#" class="btn btn-outline">⛷️ Cours de ski</a>
+</div>
+</div>
+<div class="hero-card">
+<h3>🎯 En un coup d&rsquo;œil</h3>
+<div class="stat"><span>📅 Activité</span><span class="stat-value">Rénovation + ESF</span></div>
+<div class="stat"><span>📍 Secteur</span><span class="stat-value">Saint-Chaffrey</span></div>
+<div class="stat"><span>🪚 Rénovation</span><span class="stat-value">Menuiserie · TP</span></div>
+<div class="stat"><span>⛷️ Ski</span><span class="stat-value">ESF Chantemerle</span></div>
+<div class="stat"><span>⭐ Expérience</span><span class="stat-value"><span class="tag-pill">Depuis 2005</span></span></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="page">
+<div class="section-header"><div class="l">Mes activités</div><h2>Deux métiers, une passion</h2><p>L&rsquo;été je rénove, l&rsquo;hiver je vous guide sur les plus belles pistes.</p></div>
+<div class="activities">
+<a href="#" class="activity-card">
+<div class="img reno-bg"><h3>🪚 Rénovation</h3></div>
+<div class="body"><p>Menuiserie, second œuvre, rénovation d&rsquo;appartements et maisons sur le Briançonnais.</p><span class="more">Voir mes réalisations →</span></div>
+</a>
+<a href="#" class="activity-card">
+<div class="img ski-bg"><h3>⛷️ Moniteur ESF</h3></div>
+<div class="body"><p>Cours particuliers &amp; collectifs à Chantemerle, Serre-Chevalier. Tous niveaux.</p><span class="more">Réserver un cours →</span></div>
+</a>
+</div>
+</div>
+</section>
+
+<section class="section" style="background:#fff">
+<div class="page">
+<div class="section-header"><div class="l">Galerie</div><h2>Mes réalisations</h2></div>
+<div class="gallery-grid">
+<div class="item">Cuisine rénovée</div>
+<div class="item">Cours ESF</div>
+<div class="item">Salle de bain</div>
+<div class="item">Hors-piste</div>
+<div class="item">P&rsquo;tit skieur</div>
+<div class="item">Menuiserie</div>
+<div class="item">Salon</div>
+<div class="item">Coucher soleil</div>
+</div>
+</div>
+</section>
+
+<section style="background:var(--pine);color:#fff;text-align:center;padding:50px 20px">
+<div class="page">
+<p style="font-size:18px;font-style:italic;font-family:serif;opacity:0.9;max-width:600px;margin:0 auto">"Vincent a rénové notre appartement de A à Z. Travail soigné, respect des délais. Et l&rsquo;hiver, quel bonheur de skier avec lui !"</p>
+<cite style="display:block;margin-top:16px;font-size:12px;opacity:0.5">— Marie &amp; Jean-Pierre, Saint-Chaffrey</cite>
+</div>
+</section>
+
+<section style="padding:50px 0;background:#faf7f2">
+<div class="page">
+<div class="section-header"><div class="l">Contact</div><h2>Parlons de votre projet</h2></div>
+<div class="contact-form">
+<div class="fg"><label>Sujet</label>
+<select><option>Demande de devis — Rénovation</option><option>Réservation — Cours de ski</option><option>Autre</option></select></div>
+<div class="fg" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div><label>Prénom</label><input placeholder="Votre prénom"></div>
+<div><label>Nom</label><input placeholder="Votre nom"></div>
+</div>
+<div class="fg"><label>Email</label><input placeholder="votre@email.fr"></div>
+<div class="fg"><label>Message</label><textarea placeholder="Décrivez votre projet..."></textarea></div>
+<button class="btn-full">Envoyer la demande</button>
+</div>
+</div>
+</section>
+
+<footer><div class="page"><strong>Vincent Toscano</strong> — SIRET 488 628 108 00018 — Saint-Chaffrey (05) · Conception <strong>Alpesdata</strong></div></footer>
+
+</body>
+</html>
+        '></iframe>
+      </div>
+    </div>
+    <div class="variant-footer">
+      <div class="comparison">
+        <span class="comp-item"><span class="dot" style="background:#1a3a2a"></span> Pin (#1a3a2a)</span>
+        <span class="comp-item"><span class="dot" style="background:#c4814a"></span> Terre cuite</span>
+        <span class="comp-item"><span class="dot" style="background:#faf7f2"></span> Crème</span>
+        <span class="comp-item">⛰️ Ambiance chalet</span>
+        <span class="comp-item">📱 Responsive</span>
+      </div>
+      <div class="vote">
+        <span class="vote-btn" onclick="alert('Variante 1 sélectionnée ✅')">👍 Choisir cette variante</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Variante 2 : Moderne & Sportif -->
+  <div class="variant" id="v2">
+    <div class="variant-header">
+      <div class="title">
+        <span style="background:linear-gradient(135deg,#d97706,#0284c7);-webkit-background-clip:text;-webkit-text-fill-color:transparent">❷ Moderne & Sportif</span>
+        <span style="font-size:12px;background:#1e293b;color:#fff;padding:2px 10px;border-radius:12px;font-weight:500">Pro</span>
+      </div>
+      <div class="sub">Bicolore ambre/bleu · design épuré · stats band</div>
+    </div>
+    <div class="variant-body">
+      <div class="mockup">
+        <iframe srcdoc='
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Inter",sans-serif;background:#fff;color:#0f172a;line-height:1.5}
+:root{--bg:#f8fafc;--text:#0f172a;--text2:#64748b;--border:#e2e8f0;--reno:#d97706;--ski:#0284c7}
+.page{max-width:1100px;margin:0 auto;padding:0 20px}
+
+nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+nav .page{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;font-size:16px;color:var(--text);text-decoration:none}
+.logo span{background:linear-gradient(135deg,var(--reno),var(--ski));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{padding:6px 14px;border-radius:6px;font-size:12px;font-weight:500;color:var(--text2);text-decoration:none;transition:all .15s}
+.nav-links a:hover{background:var(--bg);color:var(--text)}
+.nav-links a.active{background:var(--text);color:#fff}
+.cta-nav{background:linear-gradient(135deg,var(--reno),var(--ski));color:#fff;padding:8px 18px;border-radius:8px;font-weight:600;font-size:12px;text-decoration:none;margin-left:10px}
+
+.hero{background:var(--bg);padding:50px 0;border-bottom:1px solid var(--border)}
+.hero .page{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center}
+.hero h1{font-size:30px;font-weight:800;line-height:1.15;letter-spacing:-0.5px;margin-bottom:12px}
+.hero h1 .hl{background:linear-gradient(90deg,var(--reno),var(--ski));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:14px;line-height:1.7;color:var(--text2);margin-bottom:24px}
+.tags{display:flex;gap:6px;margin-bottom:14px;flex-wrap:wrap}
+.tag{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:16px;font-size:11px;font-weight:600}
+.t-r{background:#fef3c7;color:var(--reno)}
+.t-b{background:#e0f2fe;color:var(--ski)}
+.hero-ctas{display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:12px 22px;border-radius:10px;font-weight:600;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:6px;border:none;cursor:pointer}
+.btn-r{background:var(--reno);color:#fff}
+.btn-s{background:var(--ski);color:#fff}
+.btn-g{background:transparent;color:var(--text);border:2px solid var(--border)}
+
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stat-c{background:#fff;border-radius:12px;padding:16px;border:1px solid var(--border);text-align:center}
+.stat-c .num{font-size:20px;font-weight:800;color:var(--text)}
+.stat-c .lab{font-size:11px;color:var(--text2);margin-top:2px}
+.stat-w{grid-column:span 2;display:flex;justify-content:space-between;align-items:center;padding:14px 16px;background:#fff;border-radius:12px;border:1px solid var(--border)}
+
+.section{padding:50px 0}
+.sh{margin-bottom:32px}
+.sh .pre{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--text2);margin-bottom:6px}
+.sh h2{font-size:24px;font-weight:700;color:var(--text)}
+.sh p{color:var(--text2);font-size:13px;margin-top:8px}
+
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.card{border-radius:14px;overflow:hidden;border:1px solid var(--border);background:#fff;text-decoration:none;color:inherit}
+.card .top{height:4px}
+.card .top-r{background:var(--reno)}
+.card .top-s{background:var(--ski)}
+.card .body{padding:20px}
+.card .body h3{font-size:16px;font-weight:700;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.card .body p{font-size:12px;color:var(--text2);line-height:1.6;margin-bottom:12px}
+.card .body .list span{display:block;font-size:11px;color:var(--text2);padding:3px 0;display:flex;align-items:center;gap:6px}
+.card .body .list span::before{content:"✓";font-weight:700;color:var(--reno)}
+.card .body .cl{font-weight:600;font-size:12px;display:flex;align-items:center;gap:4px;margin-top:10px}
+
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.gallery div{aspect-ratio:4/3;border-radius:8px;display:flex;align-items:flex-end;padding:10px;color:#fff;font-size:10px;font-weight:500}
+.g1{background:linear-gradient(135deg,#d97706,#92400e)}
+.g2{background:linear-gradient(135deg,#0284c7,#0c4a6e)}
+
+.stats-band{background:#0f172a;color:#fff;padding:40px 0}
+.stats-band .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+.stats-band .grid .n{font-size:28px;font-weight:800}
+.stats-band .grid .d{font-size:11px;opacity:0.5}
+
+.contact-form{max-width:480px;margin:0 auto;background:#fff;border:1px solid var(--border);border-radius:16px;padding:28px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px}
+.fg input,.fg select,.fg textarea{width:100%;padding:10px 14px;border:2px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;background:var(--bg)}
+.fg textarea{height:80px;resize:vertical}
+.btn-f{width:100%;padding:12px;border-radius:8px;background:var(--reno);color:#fff;border:none;font-weight:600;font-size:13px;cursor:pointer}
+
+footer{background:#0f172a;color:#fff;text-align:center;padding:24px;font-size:11px;opacity:0.6}
+
+@media(max-width:800px){
+  .hero .page{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr}
+  .stat-w{grid-column:span 1}
+  .cards{grid-template-columns:1fr}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .stats-band .grid{grid-template-columns:repeat(2,1fr);gap:24px}
+  .nav-links{display:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="page">
+<a href="#" class="logo">⚡ <span>Toscano</span></a>
+<div style="display:flex;align-items:center">
+<ul class="nav-links">
+<li><a href="#" class="active">Accueil</a></li>
+<li><a href="#">Rénovation</a></li>
+<li><a href="#">Ski ESF</a></li>
+<li><a href="#">Galerie</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+<a href="#" class="cta-nav">Devis gratuit</a>
+</div>
+</div>
+</nav>
+
+<section class="hero">
+<div class="page">
+<div>
+<div class="tags"><span class="tag t-r">🪚 Rénovation artisanale</span><span class="tag t-b">⛷️ ESF Chantemerle</span></div>
+<h1>Du <span class="hl">projet</span> à la <span class="hl">piste</span>,<br>je construis votre confiance</h1>
+<p>Artisan en rénovation intérieure à Saint-Chaffrey et moniteur de ski ESF Serre-Chevalier. Deux expertises, une même exigence.</p>
+<div class="hero-ctas">
+<a href="#" class="btn btn-r">📐 Demander un devis</a>
+<a href="#" class="btn btn-s">⛷️ Cours de ski</a>
+<a href="#" class="btn btn-g">📷 Galerie</a>
+</div>
+</div>
+<div class="stats-grid">
+<div class="stat-c"><div class="num">19+</div><div class="lab">ans d&rsquo;expérience</div></div>
+<div class="stat-c"><div class="num">⭐</div><div class="lab">ESF diplômé</div></div>
+<div class="stat-w"><span><strong>📍 Saint-Chaffrey</strong> — Serre-Chevalier (05)</span><span style="display:flex;gap:4px"><span class="tag t-r">Artisan</span><span class="tag t-b">ESF</span></span></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="page">
+<div class="sh"><div class="pre">Mes services</div><h2>Deux métiers, un seul interlocuteur</h2></div>
+<div class="cards">
+<a href="#" class="card">
+<div class="top top-r"></div>
+<div class="body">
+<h3>🪚 Rénovation intérieure</h3>
+<p>Menuiserie, second œuvre, rénovation complète. De la démolition à la finition.</p>
+<div class="list"><span>Menuiserie sur mesure</span><span>Second œuvre (cloisons, isolation)</span><span>Salle de bain &amp; cuisine</span></div>
+<span class="cl" style="color:var(--reno)">Voir les réalisations →</span>
+</div>
+</a>
+<a href="#" class="card">
+<div class="top top-s"></div>
+<div class="body">
+<h3>⛷️ Moniteur ESF Chantemerle</h3>
+<p>Cours particuliers et collectifs. Du premier chasse-neige au hors-piste.</p>
+<div class="list"><span>Tous niveaux</span><span>Enfants dès 3 ans (Piou-Piou)</span><span>Perfectionnement &amp; hors-piste</span></div>
+<span class="cl" style="color:var(--ski)">Réserver un cours →</span>
+</div>
+</a>
+</div>
+</div>
+</section>
+
+<section class="stats-band">
+<div class="page">
+<div class="grid">
+<div><div class="n">2005</div><div class="d">Début d&rsquo;activité</div></div>
+<div><div class="n">100+</div><div class="d">Chantiers réalisés</div></div>
+<div><div class="n">⭐</div><div class="d">Clients satisfaits</div></div>
+<div><div class="n">⛷️</div><div class="d">ESF Chantemerle</div></div>
+</div>
+</div>
+</section>
+
+<section class="section" style="background:var(--bg)">
+<div class="page">
+<div class="sh"><div class="pre">Portfolio</div><h2>Quelques réalisations</h2></div>
+<div class="gallery">
+<div class="g1">Cuisine rénovée</div>
+<div class="g2">Cours ski adulte</div>
+<div class="g1">Menuiserie</div>
+<div class="g2">Hors-piste</div>
+<div class="g2">Piou-Piou ESF</div>
+<div class="g1">Salle de bain</div>
+<div class="g1">Salon &amp; séjour</div>
+<div class="g2">Sommet 2800m</div>
+</div>
+</div>
+</section>
+
+<section class="section" id="contact">
+<div class="page">
+<div class="sh" style="text-align:center"><div class="pre">Contact</div><h2>Parlons de votre projet</h2></div>
+<div class="contact-form">
+<div class="fg"><label>Votre demande</label>
+<select><option>🪚 Rénovation — Devis</option><option>⛷️ Ski — Cours</option><option>Autre</option></select></div>
+<div class="fg" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+<div><label>Prénom</label><input placeholder="Votre prénom"></div>
+<div><label>Nom</label><input placeholder="Votre nom"></div>
+</div>
+<div class="fg"><label>Email</label><input placeholder="vous@exemple.fr"></div>
+<div class="fg"><label>Message</label><textarea placeholder="Décrivez votre projet..."></textarea></div>
+<button class="btn-f">Envoyer la demande</button>
+</div>
+</div>
+</section>
+
+<footer><div class="page"><strong>Vincent Toscano</strong> — SIRET 488 628 108 00018 — Saint-Chaffrey (05) · Alpesdata</div></footer>
+
+</body>
+</html>
+        '></iframe>
+      </div>
+    </div>
+    <div class="variant-footer">
+      <div class="comparison">
+        <span class="comp-item"><span class="dot" style="background:#d97706"></span> Ambre (rénovation)</span>
+        <span class="comp-item"><span class="dot" style="background:#0284c7"></span> Bleu (ski)</span>
+        <span class="comp-item"><span class="dot" style="background:#0f172a"></span> Dark band stats</span>
+        <span class="comp-item">📊 Stats band</span>
+        <span class="comp-item">📱 Responsive</span>
+      </div>
+      <div class="vote">
+        <span class="vote-btn" onclick="alert('Variante 2 sélectionnée ✅')">👍 Choisir cette variante</span>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /showcase -->
+
+<!-- Comparison table -->
+<div style="margin-top:48px;background:#fff;border-radius:20px;padding:32px 40px;box-shadow:0 4px 40px rgba(0,0,0,0.06)">
+  <h3 style="font-size:20px;font-weight:700;margin-bottom:24px;text-align:center">📊 Comparatif des deux variantes</h3>
+  <div style="overflow-x:auto">
+  <table style="width:100%;border-collapse:collapse;font-size:14px">
+    <thead>
+      <tr style="border-bottom:2px solid #eee">
+        <th style="text-align:left;padding:12px 16px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#888">Critère</th>
+        <th style="text-align:left;padding:12px 16px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#1a3a2a">❶ Alpin & Chaleureux</th>
+        <th style="text-align:left;padding:12px 16px;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#d97706">❷ Moderne & Sportif</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #f0f0f0">
+        <td style="padding:14px 16px;font-weight:600">Ambiance</td>
+        <td style="padding:14px 16px">🏔️ Chalet, authentique, chaleureux</td>
+        <td style="padding:14px 16px">🏢 Moderne, professionnel, dynamique</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0f0f0">
+        <td style="padding:14px 16px;font-weight:600">Palette</td>
+        <td style="padding:14px 16px">Pin · Terre cuite · Crème</td>
+        <td style="padding:14px 16px">Ambre · Bleu · Blanc · Gris foncé</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0f0f0">
+        <td style="padding:14px 16px;font-weight:600">Typographie</td>
+        <td style="padding:14px 16px">Plus Jakarta Sans + Playfair Display</td>
+        <td style="padding:14px 16px">Inter</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0f0f0">
+        <td style="padding:14px 16px;font-weight:600">Hero</td>
+        <td style="padding:14px 16px">Split text + carte "En un coup d'œil"</td>
+        <td style="padding:14px 16px">Split text + stats grid cards</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0f0f0">
+        <td style="padding:14px 16px;font-weight:600">Services</td>
+        <td style="padding:14px 16px">2 grandes cartes avec visuels</td>
+        <td style="padding:14px 16px">2 cartes détaillées avec listes</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0f0f0">
+        <td style="padding:14px 16px;font-weight:600">Section spéciale</td>
+        <td style="padding:14px 16px">Témoignage client</td>
+        <td style="padding:14px 16px">Bande statistiques (2005, 100+...)</td>
+      </tr>
+      <tr style="border-bottom:1px solid #f0f0f0">
+        <td style="padding:14px 16px;font-weight:600">Séparation activités</td>
+        <td style="padding:14px 16px">Visuelle (couleurs + images)</td>
+        <td style="padding:14px 16px">Code couleur ambre/bleu très marqué</td>
+      </tr>
+      <tr>
+        <td style="padding:14px 16px;font-weight:600">Idéal pour</td>
+        <td style="padding:14px 16px">Clientèle locale, proximité, authenticité</td>
+        <td style="padding:14px 16px">Client mixte, recherche pro & moderne</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+</div><!-- /page -->
+
+<script>
+function showBoth(){
+  document.getElementById('showcase').className = 'showcase';
+  document.getElementById('btn-both').className = 'active';
+  document.getElementById('btn-1').className = '';
+  document.getElementById('btn-2').className = '';
+}
+function showSingle(n){
+  document.getElementById('showcase').className = 'showcase single';
+  document.getElementById('btn-both').className = '';
+  document.getElementById('btn-1').className = n==='1'?'active':'';
+  document.getElementById('btn-2').className = n==='2'?'active':'';
+  document.getElementById('showcase').style.gridTemplateColumns = '1fr';
+  if(n==='1'){
+    document.getElementById('v1').style.display = 'block';
+    document.getElementById('v2').style.display = 'none';
+  } else {
+    document.getElementById('v1').style.display = 'none';
+    document.getElementById('v2').style.display = 'block';
+  }
+}
+</script>
+
+</body>
+</html>

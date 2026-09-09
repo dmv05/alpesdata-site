@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vincent Toscano — Artisan Rénovateur | Maquette V1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#fdfbf7;color:#1c1814;line-height:1.5;-webkit-font-smoothing:antialiased}
+
+:root{
+  --bistre:#3d2c24;
+  --bistre-light:#5a4238;
+  --terracotta:#a86b4e;
+  --terracotta-light:#d4a78c;
+  --lin:#f5efe6;
+  --lin-dark:#e5d9cb;
+  --suede:#c4a68c;
+  --text:#1c1814;
+  --text-light:#6b5c52;
+  --cream:#fdfbf7;
+  --radius:20px;
+  --transition:0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn {
+  from{opacity:0}
+  to{opacity:1}
+}
+@keyframes scaleIn {
+  from{opacity:0;transform:scale(0.92)}
+  to{opacity:1;transform:scale(1)}
+}
+.animate{opacity:0}
+.animate.visible{animation:fadeInUp 0.7s ease-out forwards}
+.animate-delay-1{animation-delay:0.1s}
+.animate-delay-2{animation-delay:0.2s}
+.animate-delay-3{animation-delay:0.3s}
+.animate-delay-4{animation-delay:0.4s}
+
+/* ── Nav ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(253,251,247,0.95);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--lin-dark);transition:box-shadow var(--transition)}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.06)}
+nav .container{display:flex;align-items:center;justify-content:space-between;height:72px}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--bistre)}
+.logo-mark{width:38px;height:38px;background:var(--bistre);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--cream);font-size:14px;font-weight:700;font-family:'Instrument Serif',serif;font-style:italic;transition:transform var(--transition)}
+.logo:hover .logo-mark{transform:rotate(-8deg) scale(1.05)}
+.logo-text{font-size:14px;font-weight:700;line-height:1.2}
+.logo-text small{display:block;font-size:9px;font-weight:400;text-transform:uppercase;letter-spacing:1.5px;color:var(--text-light);font-family:'Inter',sans-serif}
+
+/* Desktop nav */
+.nav-links{display:flex;gap:2px;list-style:none}
+.nav-links a{color:var(--text-light);text-decoration:none;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;transition:all .2s}
+.nav-links a:hover{color:var(--bistre);background:rgba(61,44,36,0.06)}
+.nav-links a.active{background:var(--bistre);color:var(--cream)}
+.nav-links a.ski-link{font-size:12px;opacity:0.5;padding:8px 12px}
+.nav-links a.ski-link:hover{opacity:1}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;z-index:1001;background:none;border:none}
+.hamburger span{display:block;width:24px;height:2px;background:var(--bistre);transition:all .3s;border-radius:2px}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+
+.mobile-menu{display:none;position:fixed;top:72px;left:0;right:0;background:rgba(253,251,247,0.98);backdrop-filter:blur(14px);padding:20px 24px;border-bottom:1px solid var(--lin-dark);z-index:999;flex-direction:column;gap:4px;transform:translateY(-10px);opacity:0;transition:all .3s}
+.mobile-menu.open{transform:translateY(0);opacity:1}
+.mobile-menu a{display:block;padding:12px 16px;color:var(--text);text-decoration:none;font-weight:500;font-size:15px;border-radius:10px;transition:background .2s}
+.mobile-menu a:hover,.mobile-menu a.active{background:var(--lin)}
+.mobile-menu a.ski-link{font-size:13px;opacity:0.6}
+
+/* ── Hero ── */
+.hero{background:linear-gradient(165deg,var(--bistre) 0%,var(--bistre-light) 60%,var(--terracotta) 100%);margin-top:72px;padding:100px 0 90px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Cpath d='M50 100L100 30L150 100L100 170Z' fill='rgba(255,255,255,0.03)'/%3E%3C/svg%3E") repeat;opacity:0.3;animation:drift 40s linear infinite}
+@keyframes drift{from{transform:translate(0,0)}to{transform:translate(200px,200px)}}
+.hero::after{content:'';position:absolute;bottom:-60px;right:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(212,167,140,0.2) 0%,transparent 70%);border-radius:50%}
+.hero .container{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:center}
+.hero-text{color:var(--cream)}
+.hero-tag{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.1);padding:6px 16px;border-radius:50px;font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px;backdrop-filter:blur(4px)}
+.hero h1{font-family:'Instrument Serif',serif;font-size:58px;font-weight:400;line-height:1.08;margin-bottom:18px;color:#fff}
+.hero h1 em{font-style:italic;color:var(--terracotta-light)}
+.hero p{font-size:16px;line-height:1.7;opacity:0.8;max-width:460px;margin-bottom:36px}
+.hero-ctas{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:50px;font-weight:600;font-size:14px;text-decoration:none;transition:all var(--transition);cursor:pointer;border:none;font-family:inherit}
+.btn-primary{background:var(--terracotta);color:#fff}
+.btn-primary:hover{background:#8d5a40;transform:translateY(-3px);box-shadow:0 12px 30px rgba(168,107,78,0.4)}
+.btn-outline-light{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.2)}
+.btn-outline-light:hover{border-color:rgba(255,255,255,0.5);transform:translateY(-3px)}
+
+.hero-right{display:flex;justify-content:center}
+.hero-values{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.value-card{background:rgba(255,255,255,0.07);backdrop-filter:blur(12px);border-radius:16px;padding:22px;border:1px solid rgba(255,255,255,0.08);text-align:center;transition:all var(--transition)}
+.value-card:hover{background:rgba(255,255,255,0.12);transform:translateY(-4px)}
+.value-card .icon{font-size:26px;margin-bottom:8px}
+.value-card h4{color:#fff;font-size:13px;font-weight:600;margin-bottom:4px}
+.value-card p{color:rgba(255,255,255,0.5);font-size:11px;line-height:1.4}
+.value-card-wide{grid-column:span 2;display:flex;justify-content:center;gap:18px;padding:16px 22px;flex-wrap:wrap}
+.value-card-wide span{color:rgba(255,255,255,0.7);font-size:12px;display:flex;align-items:center;gap:6px}
+
+/* ── Sections ── */
+.section{padding:90px 0}
+.section-header{margin-bottom:52px}
+.section-header .pre{font-family:'Inter',sans-serif;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:2px;color:var(--terracotta);margin-bottom:10px}
+.section-header h2{font-family:'Instrument Serif',serif;font-size:40px;font-weight:400;color:var(--bistre);margin-bottom:14px;line-height:1.2}
+.section-header p{color:var(--text-light);max-width:540px;line-height:1.7;font-size:15px}
+
+/* ── Savoir-faire ── */
+.savoir-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.savoir-card{background:#fff;border-radius:var(--radius);padding:36px;border:1px solid var(--lin-dark);transition:all var(--transition);cursor:default}
+.savoir-card:hover{box-shadow:0 12px 40px rgba(0,0,0,0.08);transform:translateY(-6px);border-color:var(--terracotta-light)}
+.savoir-card .icon{font-size:36px;margin-bottom:14px;transition:transform var(--transition)}
+.savoir-card:hover .icon{transform:scale(1.15)}
+.savoir-card h3{font-size:18px;font-weight:700;color:var(--bistre);margin-bottom:8px}
+.savoir-card p{font-size:14px;color:var(--text-light);line-height:1.7}
+
+/* ── About ── */
+.about-section{background:var(--lin)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.about-text h2{font-family:'Instrument Serif',serif;font-size:40px;font-weight:400;color:var(--bistre);margin-bottom:18px;line-height:1.2}
+.about-text p{color:var(--text-light);font-size:15px;line-height:1.8;margin-bottom:16px}
+.about-text .quote{font-family:'Instrument Serif',serif;font-size:22px;font-style:italic;color:var(--terracotta);padding:18px 0 18px 28px;border-left:3px solid var(--terracotta-light);margin:28px 0;line-height:1.5}
+.about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:28px}
+.about-stats .stat{text-align:center;padding:24px 16px;background:#fff;border-radius:16px;transition:all var(--transition)}
+.about-stats .stat:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+.about-stats .stat .num{font-size:32px;font-weight:800;color:var(--bistre)}
+.about-stats .stat .label{font-size:12px;color:var(--text-light);margin-top:4px;font-weight:500}
+.about-photo{background:linear-gradient(135deg,#8B7355,#5a4a38);border-radius:24px;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.25);font-size:14px;overflow:hidden;position:relative}
+.about-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(61,44,36,0.3),transparent 50%)}
+
+/* ── Gallery ── */
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.gallery .item{aspect-ratio:4/3;border-radius:14px;cursor:pointer;transition:all var(--transition);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:16px;color:#fff;font-size:12px;font-weight:500}
+.gallery .item:hover{transform:scale(1.04);z-index:2;box-shadow:0 12px 36px rgba(0,0,0,0.2)}
+.gallery .item::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,0.5) 0%,rgba(0,0,0,0.05) 60%);pointer-events:none;transition:all var(--transition)}
+.gallery .item:hover::after{background:linear-gradient(0deg,rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.1) 60%)}
+.gallery .item span{position:relative;z-index:1;transition:transform var(--transition)}
+.gallery .item:hover span{transform:translateY(-4px)}
+.g1{background:linear-gradient(135deg,#8B7355,#5a4a38)}
+.g2{background:linear-gradient(135deg,#a86b4e,#7a4c36)}
+.g3{background:linear-gradient(135deg,#3d2c24,#5a4238)}
+.g4{background:linear-gradient(135deg,#c4a68c,#8B7355)}
+
+/* ── Testimonials ── */
+.testimonials-section{background:var(--bistre);color:#fff}
+.testimonials-section .section-header .pre{color:var(--terracotta-light)}
+.testimonials-section .section-header h2{color:#fff}
+.testimonials-section .section-header p{color:rgba(255,255,255,0.6)}
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial{background:rgba(255,255,255,0.06);border-radius:var(--radius);padding:28px;border:1px solid rgba(255,255,255,0.08);transition:all var(--transition)}
+.testimonial:hover{background:rgba(255,255,255,0.1);transform:translateY(-4px)}
+.testimonial .stars{color:var(--terracotta-light);font-size:14px;margin-bottom:12px;letter-spacing:2px}
+.testimonial p{font-size:14px;line-height:1.7;opacity:0.85;margin-bottom:16px;font-style:italic}
+.testimonial .author{font-size:13px;font-weight:600;color:var(--terracotta-light)}
+.testimonial .author small{display:block;font-weight:400;opacity:0.55;font-size:11px;margin-top:2px}
+
+/* ── Contact ── */
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;background:#fff;border-radius:24px;padding:44px;border:1px solid var(--lin-dark);box-shadow:0 4px 24px rgba(0,0,0,0.03)}
+.contact-info h3{font-family:'Instrument Serif',serif;font-size:28px;font-weight:400;color:var(--bistre);margin-bottom:16px}
+.contact-info p{color:var(--text-light);margin-bottom:24px;font-size:14px;line-height:1.7}
+.cd{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+.cd .c-icon{width:42px;height:42px;background:var(--lin);border-radius:12px;display:flex;align-items:center;justify-content:center;color:var(--terracotta);flex-shrink:0;font-size:18px}
+.cd div{font-size:14px}
+.cd div strong{display:block;color:var(--bistre)}
+.cd div small{color:var(--text-light);font-size:12px}
+.fg{margin-bottom:18px}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--bistre);margin-bottom:4px}
+.fg input,.fg textarea{width:100%;padding:14px 16px;border:2px solid var(--lin-dark);border-radius:12px;font-size:14px;font-family:inherit;background:var(--cream);transition:border-color .2s,box-shadow .2s}
+.fg input:focus,.fg textarea:focus{outline:none;border-color:var(--terracotta);box-shadow:0 0 0 4px rgba(168,107,78,0.08)}
+.fg textarea{height:130px;resize:vertical}
+
+/* ── Ski bar ── */
+.ski-bar{background:var(--bistre);padding:36px 0;border-top:1px solid rgba(255,255,255,0.06)}
+.ski-bar .container{display:flex;align-items:center;justify-content:center;gap:36px;flex-wrap:wrap;text-align:center}
+.ski-bar .ski-tag{font-size:11px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:2px;font-weight:600}
+.ski-bar .ski-text{color:rgba(255,255,255,0.7);font-size:14px}
+.ski-bar .ski-link{color:var(--terracotta-light);font-weight:600;font-size:13px;text-decoration:none;transition:color .2s;display:inline-flex;align-items:center;gap:6px}
+.ski-bar .ski-link:hover{color:#fff}
+
+/* ── Footer ── */
+footer{background:var(--bistre);color:rgba(255,255,255,0.4);text-align:center;padding:36px;font-size:12px;line-height:2;border-top:1px solid rgba(255,255,255,0.04)}
+footer strong{color:rgba(255,255,255,0.7)}
+
+/* ── Responsive ── */
+@media(max-width:900px){
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:flex}
+  .hero{padding:70px 0 60px}
+  .hero .container{grid-template-columns:1fr;gap:40px;padding:30px 0}
+  .hero h1{font-size:36px}
+  .hero-right{display:none}
+  .savoir-grid{grid-template-columns:1fr}
+  .about-grid{grid-template-columns:1fr;gap:36px}
+  .about-stats{grid-template-columns:repeat(3,1fr)}
+  .gallery{grid-template-columns:repeat(2,1fr)}
+  .testimonials{grid-template-columns:1fr}
+  .contact-wrap{grid-template-columns:1fr;padding:28px}
+  .section{padding:60px 0}
+  .section-header h2{font-size:30px}
+  .about-text h2{font-size:30px}
+}
+
+@media(max-width:500px){
+  .hero h1{font-size:28px}
+  .gallery{grid-template-columns:1fr}
+  .about-stats{grid-template-columns:repeat(3,1fr)}
+  .about-stats .stat .num{font-size:26px}
+  .ski-bar .container{gap:16px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <a href="#" class="logo">
+      <div class="logo-mark">V</div>
+      <div class="logo-text">Vincent Toscano<small>Artisan Rénovateur</small></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Accueil</a></li>
+      <li><a href="#savoir-faire">Savoir-faire</a></li>
+      <li><a href="#realisations">Réalisations</a></li>
+      <li><a href="#artisan">L'Artisan</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#" class="ski-link">⛷️ Ski ESF</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#" class="active">Accueil</a>
+  <a href="#savoir-faire">Savoir-faire</a>
+  <a href="#realisations">Réalisations</a>
+  <a href="#artisan">L'Artisan</a>
+  <a href="#contact">Contact</a>
+  <a href="#" class="ski-link">⛷️ Ski ESF</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-text">
+      <div class="hero-tag">🪚 Artisan rénovateur — Hautes-Alpes</div>
+      <h1>Je donne vie<br>à vos <em>espaces</em></h1>
+      <p>Artisan de père en fils à Saint-Chaffrey, je restaure et réinvente vos intérieurs avec des matériaux nobles et le souci du travail bien fait. Chaque projet est une rencontre, chaque réalisation une histoire.</p>
+      <div class="hero-ctas">
+        <a href="#contact" class="btn btn-primary">📐 Demander un devis</a>
+        <a href="#realisations" class="btn btn-outline-light">Voir mes réalisations</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-values">
+        <div class="value-card"><div class="icon">🪵</div><h4>Matériaux nobles</h4><p>Bois massif, pierre, enduits naturels</p></div>
+        <div class="value-card"><div class="icon">🤝</div><h4>Proximité</h4><p>Briançonnais — à l'écoute de vos projets</p></div>
+        <div class="value-card"><div class="icon">🔨</div><h4>Fait main</h4><p>Menuiserie sur mesure, finitions soignées</p></div>
+        <div class="value-card"><div class="icon">⭐</div><h4>Depuis 2005</h4><p>19 ans de passion artisanale</p></div>
+        <div class="value-card-wide">
+          <span>📍 Saint-Chaffrey, 05</span>
+          <span>🪚 Menuiserie · TP · Agencement</span>
+          <span>⛷️ Aussi moniteur ESF l'hiver</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SAVOIR-FAIRE -->
+<section class="section" id="savoir-faire">
+  <div class="container">
+    <div class="section-header animate">
+      <div class="pre">Mon savoir-faire</div>
+      <h2>L'artisanat au service de votre intérieur</h2>
+      <p>Chaque projet est unique. Je vous accompagne de la conception à la réalisation avec le souci du détail et l'amour des belles matières.</p>
+    </div>
+    <div class="savoir-grid">
+      <div class="savoir-card animate animate-delay-1">
+        <div class="icon">🪚</div>
+        <h3>Menuiserie sur mesure</h3>
+        <p>Bois massif, agencements, placards, bibliothèques, escaliers. Chaque pièce est pensée et fabriquée à la main dans mon atelier.</p>
+      </div>
+      <div class="savoir-card animate animate-delay-2">
+        <div class="icon">🏠</div>
+        <h3>Rénovation complète</h3>
+        <p>De la démolition à la finition : cloisons, isolation, électricité, plomberie, carrelage, peinture. Un interlocuteur unique pour votre chantier.</p>
+      </div>
+      <div class="savoir-card animate animate-delay-3">
+        <div class="icon">🛁</div>
+        <h3>Salles de bain & cuisines</h3>
+        <p>Des espaces où le beau rejoint l'utile. Matériaux nobles, agencement ergonomique, finitions impeccables.</p>
+      </div>
+      <div class="savoir-card animate animate-delay-4">
+        <div class="icon">🌿</div>
+        <h3>Matériaux d'exception</h3>
+        <p>Bois massif, pierre naturelle, enduits à la chaux, peintures écologiques. Je sélectionne chaque matériau pour sa qualité et son authenticité.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about-section" id="artisan">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text animate">
+        <h2>Un homme, des métiers,<br>une même passion</h2>
+        <p>Installé à Saint-Chaffrey depuis 2005, je suis avant tout un artisan de terrain. J'ai commencé par la menuiserie avant d'élargir mes compétences au second œuvre et à la rénovation complète.</p>
+        <div class="quote">« Ce que j'aime, c'est transformer une pièce en un lieu de vie qui ressemble à ceux qui l'habitent. Chaque projet a son histoire, chaque matériau a son langage. »</div>
+        <p>Mon approche : proximité, transparence et qualité. Pas de standard, pas de chaîne — du sur-mesure du début à la fin.</p>
+        <div class="about-stats">
+          <div class="stat"><div class="num">2005</div><div class="label">Début d'activité</div></div>
+          <div class="stat"><div class="num">100+</div><div class="label">Chantiers réalisés</div></div>
+          <div class="stat"><div class="num">⭐</div><div class="label">Satisfaction</div></div>
+        </div>
+      </div>
+      <div class="about-photo animate animate-delay-2">🖼️ [Photo Vincent Toscano]</div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="section" id="realisations">
+  <div class="container">
+    <div class="section-header animate">
+      <div class="pre">Mes réalisations</div>
+      <h2>Des projets qui parlent d'eux-mêmes</h2>
+      <p>Avant/après, matières nobles, finitions soignées — découvrez quelques-uns de mes chantiers.</p>
+    </div>
+    <div class="gallery">
+      <div class="item g1"><span>Cuisine — bois massif</span></div>
+      <div class="item g2"><span>Salle de bain — pierre</span></div>
+      <div class="item g3"><span>Agencement salon</span></div>
+      <div class="item g4"><span>Menuiserie extérieure</span></div>
+      <div class="item g2"><span>Escalier sur mesure</span></div>
+      <div class="item g3"><span>Rénovation complète</span></div>
+      <div class="item g1"><span>Dressing aménagé</span></div>
+      <div class="item g4"><span>Terrasse bois</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section testimonials-section">
+  <div class="container">
+    <div class="section-header animate">
+      <div class="pre">Témoignages</div>
+      <h2>Ce que disent mes clients</h2>
+      <p>La satisfaction de ceux qui m'ont fait confiance est ma plus belle récompense.</p>
+    </div>
+    <div class="testimonials">
+      <div class="testimonial animate animate-delay-1">
+        <div class="stars">★★★★★</div>
+        <p>« Vincent a entièrement rénové notre chalet du Queyras. La menuiserie sur mesure est magnifique, le bois travaille encore mieux qu'avant. »</p>
+        <div class="author">Marie & Jean L.<small>Chalet rénové — Abriès</small></div>
+      </div>
+      <div class="testimonial animate animate-delay-2">
+        <div class="stars">★★★★★</div>
+        <p>« Très à l'écoute, force de proposition. Notre salle de bain en pierre naturelle est devenue la pièce préférée de la maison. »</p>
+        <div class="author">Philippe D.<small>Salle de bain — Briançon</small></div>
+      </div>
+      <div class="testimonial animate animate-delay-3">
+        <div class="stars">★★★★★</div>
+        <p>« Un vrai artisan comme on n'en fait plus. Propre, ponctuel, et un résultat qui dépasse nos attentes. Je recommande sans hésiter. »</p>
+        <div class="author">Claire & Thomas R.<small>Rénovation complète — La Salle</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header animate" style="text-align:center">
+      <div class="pre">Contact</div>
+      <h2>Parlons de votre projet</h2>
+      <p style="margin:0 auto">Une question, une envie de rénover ? Je suis à votre écoute.</p>
+    </div>
+    <div class="contact-wrap animate animate-delay-1">
+      <div class="contact-info">
+        <h3>Vincent Toscano</h3>
+        <p>Artisan rénovateur à Saint-Chaffrey — disponible pour tous vos projets dans le Briançonnais.</p>
+        <div class="cd"><div class="c-icon">📍</div><div><strong>Adresse</strong>11 Rue des Orchidées — Lot Le Pontet<small>05240 La Salle-les-Alpes</small></div></div>
+        <div class="cd"><div class="c-icon">📞</div><div><strong>Téléphone</strong>06 XX XX XX XX</div></div>
+        <div class="cd"><div class="c-icon">📧</div><div><strong>Email</strong>vincent@exemple.fr<small>Réponse sous 24h</small></div></div>
+        <div class="cd"><div class="c-icon">⛷️</div><div><strong>Aussi moniteur ESF</strong> l'hiver à Chantemerle<small>→ Voir la page Ski</small></div></div>
+      </div>
+      <div>
+        <div class="fg"><label>Nom & Prénom</label><input placeholder="Votre nom complet"></div>
+        <div class="fg"><label>Email</label><input type="email" placeholder="votre@email.fr"></div>
+        <div class="fg"><label>Téléphone</label><input type="tel" placeholder="06 XX XX XX XX"></div>
+        <div class="fg"><label>Votre projet</label><textarea placeholder="Décrivez vos travaux... surface, type de pièce, matériaux souhaités, budget envisagé..."></textarea></div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center">Envoyer la demande</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKI BAR -->
+<div class="ski-bar">
+  <div class="container">
+    <span class="ski-tag">⛷️ Aussi l'hiver</span>
+    <span class="ski-text">Moniteur ESF à Chantemerle — Serre-Chevalier</span>
+    <a href="#" class="ski-link">En savoir plus →</a>
+  </div>
+</div>
+
+<footer>
+  <strong>Vincent Toscano</strong> — EI · SIRET 488 628 108 00042<br>
+  La Salle-les-Alpes (05) — NAF 43.32A · Menuiserie bois & PVC<br>
+  Conception <strong>Alpesdata</strong> — Briançon
+</footer>
+
+<script>
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) entry.target.classList.add('visible');
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+// Nav shadow on scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Hamburger menu
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  mobileMenu.classList.toggle('open');
+});
+// Close mobile menu on link click
+mobileMenu.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    mobileMenu.classList.remove('open');
+  });
+});
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if(target) target.scrollIntoView({ behavior:'smooth', block:'start' });
+  });
+});
+</script>
+
+</body>
+</html>

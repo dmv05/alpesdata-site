@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparatif — Alpesdata vs local.fr | Vincent Toscano</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:'Inter',sans-serif;background:#f4f4f9;color:#1a1a2e;padding:40px 20px;line-height:1.6}
+  .card{max-width:720px;margin:0 auto;background:#fff;border-radius:16px;box-shadow:0 2px 40px rgba(0,0,0,0.06);overflow:hidden}
+  .header{background:linear-gradient(135deg,#1a1a2e 0%,#2a2a42 100%);color:#fff;padding:48px 48px 36px}
+  .header h1{font-size:26px;font-weight:700;margin-bottom:6px;letter-spacing:-0.3px}
+  .header p{color:#a0a0c0;font-size:14px}
+  .body{padding:40px 48px}
+
+  .intro{font-size:15px;color:#444;margin-bottom:32px;line-height:1.7}
+  .intro strong{color:#1a1a2e}
+
+  .comparison{width:100%;border-collapse:collapse;margin-bottom:28px;border-radius:12px;overflow:hidden}
+  .comparison th{text-align:left;padding:14px 16px;font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+  .comparison th:first-child{width:38%}
+  .comparison th:nth-child(2){background:#e8f0fe;color:#1a56db}
+  .comparison th:nth-child(3){background:#fef3e8;color:#b86a20}
+  .comparison td{padding:16px;font-size:14px;border-bottom:1px solid #eee;vertical-align:top;line-height:1.5}
+  .comparison tr:last-child td{border-bottom:none}
+  .comparison td:first-child{font-weight:500;color:#666;font-size:13px}
+  .comparison td:nth-child(2){background:#f5f8ff}
+  .comparison td:nth-child(3){background:#fefaf5}
+  .comparison .yes{color:#16a34a;font-weight:700}
+  .comparison .no{color:#dc2626}
+  .comparison .prix{font-size:18px;font-weight:800;color:#1a1a2e}
+  .comparison .prix-orange{font-size:18px;font-weight:800;color:#b86a20}
+  .comparison .small{font-size:12px;color:#999;font-weight:400}
+
+  .highlight{background:linear-gradient(135deg,#f0fdf4,#dcfce7);border-radius:12px;padding:24px;margin:28px 0;border-left:4px solid #16a34a}
+  .highlight h3{font-size:15px;color:#166534;margin-bottom:8px}
+  .highlight p{font-size:13px;color:#374151;line-height:1.7}
+
+  .arguments{margin:24px 0}
+  .arg{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid #f0f0f0}
+  .arg:last-child{border-bottom:none}
+  .arg-num{width:28px;height:28px;background:#1a1a2e;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0;margin-top:2px}
+  .arg h4{font-size:14px;font-weight:600;color:#1a1a2e;margin-bottom:4px}
+  .arg p{font-size:13px;color:#666;line-height:1.6}
+
+  .cta{background:#1a1a2e;color:#fff;border-radius:12px;padding:28px;text-align:center;margin:28px 0 8px}
+  .cta p{font-size:14px;opacity:0.8;margin-bottom:4px}
+  .cta strong{font-size:18px;color:#e8943a}
+
+  .footer-text{font-size:11px;color:#aaa;text-align:center;padding:24px 48px;border-top:1px solid #eee;line-height:1.8}
+
+  .badge{display:inline-block;padding:2px 10px;border-radius:12px;font-size:11px;font-weight:600}
+  .badge-blue{background:#e8f0fe;color:#1a56db}
+  .badge-orange{background:#fef3e8;color:#b86a20}
+
+  @media(max-width:600px){
+    body{padding:16px 8px}
+    .header,.body,.footer-text{padding-left:24px;padding-right:24px}
+    .comparison th,.comparison td{padding:12px;font-size:12px}
+    .prix,.prix-orange{font-size:16px!important}
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+<div class="header">
+  <h1>📊 Comparatif transparent</h1>
+  <p>Pourquoi choisir Alpesdata plutôt qu'un abonnement longue durée ?</p>
+</div>
+
+<div class="body">
+
+<p class="intro">
+  <strong>Vincent,</strong> vous avez probablement été contacté par <strong>local.fr</strong> ou une agence similaire. 
+  Voici une comparaison claire pour vous aider à choisir en toute connaissance de cause.
+</p>
+
+<!-- TABLEAU COMPARATIF -->
+<table class="comparison">
+  <thead>
+    <tr>
+      <th>Critère</th>
+      <th>🔵 Alpesdata</th>
+      <th>🔴 local.fr</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Modèle</td>
+      <td><span class="yes">✓</span> Paiement unique</td>
+      <td><span class="no">✗</span> Abonnement mensuel</td>
+    </tr>
+    <tr>
+      <td>Engagement</td>
+      <td><span class="yes">✓</span> Aucun — vous êtes libre</td>
+      <td><span class="no">✗</span> 4 à 5 ans obligatoires</td>
+    </tr>
+    <tr>
+      <td>Coût de création</td>
+      <td><strong class="prix">2 520 € TTC</strong><br><span class="small">Payé une fois — site à vous<br>Domaine à déposer par vos soins (~15 €/an)<br>Nous assistons la réservation</span></td>
+      <td><strong class="prix-orange">1 769 € à 2 859 € TTC</strong><br><span class="small">Frais initiaux + 12 premiers mois</span></td>
+    </tr>
+    <tr>
+      <td>Coût année 2 à 5</td>
+      <td><strong class="prix">300 € HT / an</strong><br><span class="small">Hébergement seul (si vous restez chez nous)<br>0 € si vous partez — le site est à vous</span></td>
+      <td><strong class="prix-orange">1 320 € à 2 160 € HT / an</strong><br><span class="small">Obligatoire — impossible de résilier</span></td>
+    </tr>
+    <tr>
+      <td>Propriété du site</td>
+      <td><span class="yes">✓</span> <strong>Il vous appartient</strong></td>
+      <td><span class="no">✗</span> Reste chez local.fr</td>
+    </tr>
+    <tr>
+      <td>Design</td>
+      <td><span class="yes">✓</span> Sur mesure — 2 propositions</td>
+      <td><span class="no">✗</span> Template standard</td>
+    </tr>
+    <tr>
+      <td>Référencement (SEO)</td>
+      <td><span class="yes">✓</span> Inclus et réel</td>
+      <td><span class="no">✗</span> Promis, rarement livré</td>
+    </tr>
+    <tr>
+      <td>Interlocuteur</td>
+      <td><span class="yes">✓</span> Artisan local — Briançon</td>
+      <td><span class="no">✗</span> Hotline nationale</td>
+    </tr>
+    <tr>
+      <td>Liberté de départ</td>
+      <td><span class="yes">✓</span> Vous arrêtez quand vous voulez</td>
+      <td><span class="no">✗</span> Impossible sans pénalités</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- HIGHLIGHT -->
+<div class="highlight">
+  <p>Le devis est payé <strong>une seule fois</strong>. Ensuite, si vous voulez continuer avec nous, c'est 300 € HT/an d'hébergement. Mais si demain vous n'avez plus besoin de nous, vous partez avec votre site — <strong>zéro penalty</strong>.</p>
+  <p>Chez local.fr, vous payez <strong>chaque mois pendant 4 à 5 ans</strong>, quoi qu'il arrive, pour un site qui ne vous appartient pas. Sur 5 ans, c'est <strong>3 000 € à 7 000 € de plus</strong> — et à la fin, vous n'avez rien.</p>
+</div>
+
+<!-- ARGUMENTS CLÉS -->
+<h3 style="font-size:14px;text-transform:uppercase;letter-spacing:1.5px;color:#999;margin-bottom:16px">🎯 Les 5 raisons de choisir Alpesdata</h3>
+
+<div class="arguments">
+  <div class="arg">
+    <div class="arg-num">1</div>
+    <div>
+      <h4>Le site est à VOUS</h4>
+      <p>Avec local.fr, le site reste leur propriété. Chez Alpesdata, une fois livré, le site vous appartient — vous pouvez le garder, le modifier, le vendre.</p>
+    </div>
+  </div>
+  <div class="arg">
+    <div class="arg-num">2</div>
+    <div>
+      <h4>Zéro engagement longue durée</h4>
+      <p>Vous payez une fois, pas pendant 5 ans. Si demain vous voulez changer de prestataire ou ne plus avoir de site, vous êtes libre — pas de pénalités, pas de procédure.</p>
+    </div>
+  </div>
+  <div class="arg">
+    <div class="arg-num">3</div>
+    <div>
+      <h4>Design authentique, pas un template</h4>
+      <p>Votre métier c'est l'artisanat d'exception. Votre site doit refléter cette qualité. Je crée un design sur mesure — pas un site générique qui ressemble à celui du voisin.</p>
+    </div>
+  </div>
+  <div class="arg">
+    <div class="arg-num">4</div>
+    <div>
+      <h4>Artisan local pour artisan local</h4>
+      <p>Je suis à Briançon, vous êtes à La Salle-les-Alpes. On peut se rencontrer, échanger en direct, construire ensemble. Pas de plateforme téléphonique ni de commercial qui parle à 200 prospects par jour.</p>
+    </div>
+  </div>
+  <div class="arg">
+    <div class="arg-num">5</div>
+    <div>
+      <h4>Transparence totale</h4>
+      <p>Vous avez le devis détaillé. Pas de surprise, pas de frais cachés, pas de renouvellement automatique piège. Ce que vous voyez est ce que vous payez.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta">
+  <p>Mon engagement :</p>
+  <strong>Un travail d'artisan, pas de série</strong>
+  <p style="margin-top:8px;font-size:12px;opacity:0.6">Pas de standard, pas de chaîne, pas de piège</p>
+</div>
+
+</div>
+
+<div class="footer-text">
+  <strong>Alpesdata</strong> — 7 Rue Barthélemy Chaix, Central Parc 1 — 05100 BRIANÇON<br>
+  SIREN 393 357 389 — TVA FR55393357389 — info@alpesdata.com — 06 13 21 59 93
+</div>
+
+</div>
+</body>
+</html>

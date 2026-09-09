@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Devis — Site Vitrine Vincent Toscano | ALPESDATA</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap');
+
+  :root {
+    --bistre: #1a1a2e;
+    --bistre-light: #2a2a42;
+    --accent: #e8943a;
+    --accent-soft: rgba(232,148,58,0.08);
+    --bg: #f4f4f9;
+    --card: #fff;
+    --text: #1a1a2e;
+    --text-light: #666;
+    --border: #e8e8f0;
+    --shadow: 0 2px 40px rgba(0,0,0,0.06);
+    --radius: 14px;
+    --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box }
+  html { scroll-behavior: smooth }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    padding: 40px 20px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .devis {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    animation: fadeUp 0.6s ease-out;
+  }
+
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(24px) }
+    to { opacity:1; transform: translateY(0) }
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--bistre) 0%, var(--bistre-light) 100%);
+    color: #fff;
+    padding: 56px 56px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    top: -60px;
+    right: -60px;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, rgba(232,148,58,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .header-top { display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:20px; position:relative; z-index:1 }
+  .header h1 { font-size:30px; font-weight:700; letter-spacing:-0.5px }
+  .header .sub { color:#a0a0c0; font-size:15px; margin-top:6px; font-weight:400 }
+  .header .ref { text-align:right; font-size:13px; color:#8888b0; line-height:1.6 }
+  .header .ref strong { color:var(--accent); display:block; font-size:17px; font-weight:700 }
+  .header .ref .date { font-size:12px; color:#7070a0 }
+
+  /* Badge validité */
+  .validity-badge {
+    display:inline-flex; align-items:center; gap:6px;
+    background: rgba(255,255,255,0.08);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: 14px;
+    color: #c0c0e0;
+    position: relative; z-index:1;
+  }
+  .validity-badge .dot {
+    width: 8px; height: 8px;
+    background: #4ade80;
+    border-radius: 50%;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%,100% { opacity:1; transform:scale(1) }
+    50% { opacity:0.5; transform:scale(1.5) }
+  }
+
+  /* Infos */
+  .infos {
+    padding: 44px 56px 28px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .infos h3 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+  .infos p { font-size: 15px; font-weight: 500; line-height: 1.6 }
+  .infos .small { font-size: 13px; color: var(--text-light); font-weight: 400; line-height: 1.7 }
+  .infos .legal { margin-top:8px; padding-top:8px; border-top:1px solid var(--border); font-size:11px; color:#aaa }
+
+  .badge {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    margin: 2px 4px 2px 0;
+    transition: transform var(--transition);
+  }
+  .badge:hover { transform: translateY(-1px) }
+  .badge-reno { background: rgba(232,148,58,0.1); color:#b86a20 }
+  .badge-ski { background: rgba(59,130,246,0.1); color:#2563eb }
+
+  /* Note d'intention */
+  .note {
+    background: linear-gradient(135deg, #fff8e8, #fef3e0);
+    padding: 18px 56px;
+    font-size: 14px;
+    color: #8a6d00;
+    border-bottom: 1px solid #ffe8a0;
+    line-height: 1.6;
+  }
+  .note strong { color: #5a4a00 }
+
+  /* Table */
+  .table-wrap { padding: 0 56px; overflow-x: auto }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 32px 0;
+  }
+  th {
+    text-align: left;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    padding: 14px 12px;
+    border-bottom: 2px solid var(--bistre);
+    font-weight: 600;
+  }
+  th:last-child { text-align: right }
+  th:nth-child(2) { text-align: center }
+  td {
+    padding: 18px 12px;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px;
+    vertical-align: top;
+    transition: background var(--transition);
+  }
+  tr:hover td { background: #fafaff }
+  td:last-child { text-align: right; white-space: nowrap; font-weight: 600; font-size: 15px }
+  td:nth-child(2) { text-align: center; color: var(--text-light) }
+  td:first-child { font-weight: 500 }
+  .desc { font-size: 12px; color: #999; font-weight: 400; margin-top: 5px; line-height: 1.5; max-width: 380px }
+
+  /* Total */
+  .total-section {
+    background: linear-gradient(135deg, #f8f8ff, #f0f0fa);
+    padding: 36px 56px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-top: 2px solid var(--bistre);
+    border-bottom: 2px solid var(--bistre);
+  }
+  .total-section .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-light);
+    margin-bottom: 4px;
+  }
+  .total-section .montant {
+    font-size: 48px;
+    font-weight: 800;
+    color: var(--bistre);
+    letter-spacing: -1.5px;
+    line-height: 1;
+  }
+  .total-section .tva {
+    font-size: 13px;
+    color: #999;
+    margin-top: 6px;
+  }
+  .total-section .tva strong { color: #555 }
+  .total-section .due {
+    text-align: right;
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 1.8;
+  }
+
+  /* Timeline */
+  .timeline {
+    padding: 32px 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .timeline h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .tl-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px }
+  .tl-step {
+    text-align: center;
+    padding: 20px 12px;
+    background: #fafaff;
+    border-radius: var(--radius);
+    transition: all var(--transition);
+    position: relative;
+  }
+  .tl-step:hover { background: var(--accent-soft); transform: translateY(-2px) }
+  .tl-step .num {
+    width: 36px; height: 36px;
+    background: var(--bistre);
+    color: #fff;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  .tl-step h4 { font-size: 13px; font-weight: 600; color: var(--bistre); margin-bottom: 4px }
+  .tl-step p { font-size: 11px; color: var(--text-light); line-height: 1.5 }
+
+  /* Options */
+  .options {
+    padding: 36px 56px;
+    border-bottom: 1px solid var(--border);
+  }
+  .options h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin-bottom: 18px;
+    font-weight: 600;
+  }
+  .options ul { list-style: none }
+  .options li {
+    padding: 14px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px dashed var(--border);
+    font-size: 14px;
+    transition: background var(--transition);
+  }
+  .options li:hover { background: #fafaff; padding-left:12px; padding-right:12px; margin:0 -12px; border-radius:8px }
+  .options li:last-child { border: none }
+  .options .prix { color: var(--bistre); font-weight: 600; white-space: nowrap }
+
+  /* Conditions */
+  .conditions {
+    padding: 36px 56px;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-light);
+    line-height: 2;
+  }
+  .conditions strong { color: var(--bistre) }
+  .conditions ul { padding-left: 20px }
+
+  /* Signature */
+  .signature {
+    padding: 44px 56px 56px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+  }
+  .signature h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: #999;
+    margin-bottom: 24px;
+    font-weight: 600;
+  }
+  .sig-line {
+    height: 1px;
+    background: #ddd;
+    margin: 52px 0 8px;
+    width: 100%;
+  }
+  .sig-label { font-size: 11px; color: #bbb }
+  .sig-name { font-size: 15px; font-weight: 600; color: var(--bistre); margin-top: 16px }
+  .sig-detail { font-size: 12px; color: var(--text-light); margin-top: 2px }
+
+  /* Footer */
+  .footer {
+    background: var(--bistre);
+    color: #6666a0;
+    text-align: center;
+    padding: 24px;
+    font-size: 12px;
+    line-height: 1.8;
+  }
+  .footer strong { color: #a0a0c0 }
+
+  /* ── Print ── */
+  @media print {
+    @page { margin: 15mm; size: A4 }
+    body { padding: 0; background: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact }
+    .devis { box-shadow: none; border-radius: 0; max-width: 100%; animation: none }
+    .header { background: var(--bistre) !important; -webkit-print-color-adjust: exact }
+    .total-section { background: #f8f8ff !important }
+    .note { background: #fff8e8 !important }
+    .timeline, .options { page-break-inside: avoid }
+    .signature { page-break-inside: avoid }
+    tr:hover td { background: transparent }
+    .options li:hover { background: transparent; padding: 14px 0; margin: 0 }
+    .validity-badge .dot { animation: none }
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 700px) {
+    body { padding: 12px 8px }
+    .header { padding: 36px 28px 32px }
+    .header h1 { font-size: 24px }
+    .header-top { flex-direction: column-reverse }
+    .header .ref { text-align: left }
+    .infos { grid-template-columns: 1fr; gap: 24px; padding: 32px 28px }
+    .table-wrap { padding: 0 }
+    table, thead, tbody, th, td, tr { display: block }
+    thead { display: none }
+    tr {
+      padding: 16px;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      padding-left: 60px;
+    }
+    td { display: block; padding: 4px 0; border: none; text-align: left !important }
+    td:first-child { font-weight: 600; font-size: 14px }
+    td:nth-child(2)::before { content: 'Qté : '; font-weight: 500; color: var(--text-light) }
+    td:last-child { font-size: 16px; color: var(--bistre); font-weight: 700; margin-top: 4px }
+    td:last-child::before { content: 'Prix HT : '; font-weight: 500; color: var(--text-light); font-size: 12px }
+    .desc { margin-top: 2px; max-width: 100% }
+    .total-section { padding: 28px; flex-direction: column; text-align: center }
+    .total-section .montant { font-size: 36px }
+    .total-section .due { text-align: center }
+    .tl-steps { grid-template-columns: repeat(2,1fr); gap: 8px }
+    .tl-step { padding: 16px 8px }
+    .options { padding: 28px }
+    .options li { flex-direction: column; align-items: flex-start; gap: 4px }
+    .conditions { padding: 28px }
+    .signature { grid-template-columns: 1fr; gap: 32px; padding: 32px 28px }
+    .note { padding: 16px 28px }
+    .timeline { padding: 24px 28px }
+  }
+</style>
+</head>
+<body>
+
+<div class="devis">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>🧾 DEVIS</h1>
+      <div class="sub">Site vitrine — Artisan rénovation de caractère</div>
+      <div class="validity-badge">
+        <span class="dot"></span> Valable 30 jours
+      </div>
+    </div>
+    <div class="ref">
+      Réf. <strong>DEV-2026-008</strong>
+      <span class="date">Briançon, le 27 juillet 2026</span>
+    </div>
+  </div>
+</div>
+
+<!-- INFOS -->
+<div class="infos">
+  <div>
+    <h3>Prestataire</h3>
+    <p><strong>ALPESDATA</strong></p>
+    <p class="small">SARL au capital de 7 622,45 €</p>
+    <p class="small">7 Rue Barthélemy Chaix — Central Parc 1<br>05100 BRIANÇON</p>
+    <p class="small legal">SIREN 393 357 389 · RCS Gap<br>TVA Intracom. FR55 393 357 389<br>Code NAF 62.02A</p>
+  </div>
+  <div>
+    <h3>Client</h3>
+    <p><strong>Vincent TOSCANO</strong></p>
+    <p class="small">Entrepreneur Individuel — Artisan</p>
+    <p class="small">SIRET 488 628 108 00042</p>
+    <p class="small">Code NAF 43.32A — Menuiserie bois & PVC</p>
+    <p class="small">11 Rue des Orchidées — Lot Le Pontet<br>05240 LA SALLE-LES-ALPES</p>
+    <p style="margin-top:12px">
+      <span class="badge badge-reno">🪚 Menuiserie · Agencement · Rénovation</span>
+    </p>
+  </div>
+</div>
+
+<!-- NOTE -->
+<div class="note">
+  <strong>📋 Note d'intention :</strong> Site centré sur <strong>l'artisan rénovateur de caractère</strong> — matériaux nobles, savoir-faire local, proximité client. La partie <strong>moniteur ESF</strong> est une page secondaire discrète, placée en fin de navigation.
+</div>
+
+<!-- TABLEAU -->
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr>
+      <th>Prestation</th>
+      <th>Qté</th>
+      <th>Prix HT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        Conception UI/UX & Design graphique
+        <div class="desc">Maquette desktop + mobile · charte graphique artisanale authentique (tons bois, matières nobles) · moodboard · wireframes</div>
+      </td>
+      <td>1</td>
+      <td>500,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Développement site vitrine 6 pages
+        <div class="desc">Accueil · Savoir-faire · Mes réalisations · L'Artisan · Contact + petite page Ski ESF — HTML/CSS responsive, animations fluides</div>
+      </td>
+      <td>1</td>
+      <td>700,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Galerie photos réalisations
+        <div class="desc">Galerie dynamique axée rénovation (avant/après, matières, finitions) + lightbox, optimisation images</div>
+      </td>
+      <td>1</td>
+      <td>200,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Formulaire de contact
+        <div class="desc">Formulaire unique (demande de devis rénovation) avec validation, envoi email (Mailjet), anti-spam</div>
+      </td>
+      <td>1</td>
+      <td>200,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Optimisation SEO / Performance
+        <div class="desc">Meta tags, sitemap, balisage sémantique, optimisation images, Lighthouse > 90</div>
+      </td>
+      <td>1</td>
+      <td>100,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Mise en ligne &amp; configuration serveur
+        <div class="desc">Déploiement, configuration DNS, certificat SSL, tests cross-browser</div>
+      </td>
+      <td>1</td>
+      <td>100,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Hébergement sur nos serveurs (1 an)
+        <div class="desc">Serveur dédié haute disponibilité — sauvegardes quotidiennes, monitoring, mises à jour sécurité</div>
+      </td>
+      <td>1</td>
+      <td>300,00 €</td>
+    </tr>
+    <tr>
+      <td>
+        Nom de domaine (1 an)
+        <div class="desc">Extension .fr — à déposer par le client (nous assistons la réservation et la configuration DNS)</div>
+      </td>
+      <td>1</td>
+      <td>— €</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<!-- TOTAL -->
+<div class="total-section">
+  <div>
+    <div class="label">Total HT</div>
+    <div class="montant">2 100,00 €</div>
+    <div class="tva">TVA 20% : 420,00 € · <strong>Total TTC : 2 520,00 €</strong></div>
+  </div>
+  <div class="due">
+    <strong>À la commande :</strong> 1 260,00 € TTC (50%)<br>
+    <strong>À la livraison :</strong> 1 260,00 € TTC (50%)<br>
+    <span style="font-size:11px;color:#999">Paiement par virement ou chèque</span>
+  </div>
+</div>
+
+<!-- TIMELINE -->
+<div class="timeline">
+  <h3>📅 Déroulement du projet</h3>
+  <div class="tl-steps">
+    <div class="tl-step">
+      <div class="num">1</div>
+      <h4>Cadrage</h4>
+      <p>Brief créatif, moodboard, structure du site</p>
+    </div>
+    <div class="tl-step">
+      <div class="num">2</div>
+      <h4>Design</h4>
+      <p>Maquettes desktop & mobile, validation</p>
+    </div>
+    <div class="tl-step">
+      <div class="num">3</div>
+      <h4>Développement</h4>
+      <p>Intégration HTML/CSS, responsive, SEO</p>
+    </div>
+    <div class="tl-step">
+      <div class="num">4</div>
+      <h4>Mise en ligne</h4>
+      <p>Déploiement, tests, formation rapide</p>
+    </div>
+  </div>
+</div>
+
+<!-- OPTIONS -->
+<div class="options">
+  <h3>🔧 Options & variantes</h3>
+  <ul>
+    <li>
+      <span><strong>Pack économie</strong> (3 pages, sans galerie)</span>
+      <span class="prix">1 400,00 € HT</span>
+    </li>
+    <li>
+      <span><strong>Blog conseils rénovation</strong> (valorise l'expertise artisan)</span>
+      <span class="prix">+ 300,00 € HT</span>
+    </li>
+    <li>
+      <span><strong>Page Ski ESF enrichie</strong> (photos, calendrier, formulaire dédié)</span>
+      <span class="prix">+ 350,00 € HT</span>
+    </li>
+    <li>
+      <span><strong>Rédaction des contenus</strong> (textes pro pour toutes les pages + visuels libres de droits)</span>
+      <span class="prix">+ 650,00 € HT</span>
+    </li>
+    <li>
+      <span><strong>Page supplémentaire</strong> (par page au-delà de 6)</span>
+      <span class="prix">+ 100,00 € HT</span>
+    </li>
+  </ul>
+</div>
+
+<!-- CONDITIONS -->
+<div class="conditions">
+  <strong>Conditions générales :</strong>
+  <ul>
+    <li>Délai de réalisation : <strong>3 à 4 semaines</strong> à compter de la validation du devis et de l'apport des contenus</li>
+    <li>Paiement : 50% à la commande — 50% à la livraison</li>
+    <li>Contenus (textes, photos, logos) : fournis par le client — sauf option rédaction</li>
+    <li>Hébergement : inclus la 1ʳᵉ année sur nos serveurs — renouvellement : 300 € HT/an</li>
+    <li>Domaine : à déposer par le client — nous assistons la réservation et la configuration DNS (coût : ~10 € à 15 € HT/an)</li>
+    <li>Garantie : 3 mois de correction de bugs mineurs après mise en ligne</li>
+    <li>Validité du devis : <strong>30 jours</strong></li>
+  </ul>
+</div>
+
+<!-- SIGNATURE -->
+<div class="signature">
+  <div>
+    <h4>Cachet & signature du prestataire</h4>
+    <div class="sig-line"></div>
+    <div class="sig-label">Fait à Briançon, le 27 juillet 2026</div>
+    <p class="sig-name">Didier MORANVAL-VINCENT</p>
+    <p class="sig-detail">Gérant — ALPESDATA</p>
+    <p class="sig-detail">info@alpesdata.com · 06 13 21 59 93</p>
+  </div>
+  <div>
+    <h4>Bon pour accord</h4>
+    <div class="sig-line"></div>
+    <div class="sig-label">Signature du client précédée de la mention « Bon pour accord »</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>ALPESDATA</strong> — 7 Rue Barthélemy Chaix, Central Parc 1 — 05100 BRIANÇON — SIREN 393 357 389<br>
+  info@alpesdata.com — TVA FR55393357389
+</div>
+
+</div>
+
+</body>
+</html>
