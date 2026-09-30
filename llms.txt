@@ -1,0 +1,33 @@
+# Alpesdata
+
+> Alpesdata est une agence de développement web et d'assistance informatique basée à Briançon (Hautes-Alpes, France). Création de sites internet, agents IA pour entreprises, dépannage informatique express, vente et installation de serrures connectées Nuki.
+
+Langue : français (fr-FR).
+Contact : info@alpesdata.com — +33 6 13 21 59 93.
+Adresse : 7 Rue Barthélemy Chaix, Central Parc 1 — 308 B, 05100 Briançon, France.
+Horaires : lundi au vendredi, 9h–20h.
+Zone d'intervention : Briançon, Gap, Guillestre, Embrun, Serre-Chevalier et l'ensemble des Hautes-Alpes (05).
+Rédaction des contenus : Didier Moranval-Vincent.
+
+## Pages principales
+
+- [Accueil](https://alpesdata.com/) : présentation de l'agence, de ses prestations et de sa zone d'intervention.
+- [Agent IA & site web pour entreprises](https://alpesdata.com/ia.html) : déploiement d'agents IA et de sites web pour les entreprises des Hautes-Alpes.
+- [Dépannage informatique express](https://alpesdata.com/depannage.html) : intervention rapide à Briançon, Guillestre et Serre-Chevalier.
+- [Portfolio](https://alpesdata.com/portfolio.html) : sites internet et applications réalisés par Alpesdata.
+- [Devis express](https://alpesdata.com/devis.html) : questionnaire en ligne, estimation immédiate et devis signé électroniquement.
+- [Nuki — serrure connectée](https://alpesdata.com/nuki.html) : revendeur officiel Nuki dans le Sud-Est, vente et installation.
+- [Store](https://alpesdata.com/store.html) : produits et services numériques.
+- [Calendrier](https://alpesdata.com/calendrier.html) : prise de rendez-vous en ligne.
+- [Recrutement](https://alpesdata.com/job.html) : offre d'emploi de technicien informatique (H/F), CDI, Hautes-Alpes.
+- [Contact](https://alpesdata.com/contact.html) : coordonnées, formulaire et accès.
+
+## Blog
+
+- [Blog Alpesdata](https://alpesdata.com/blog.html) : actualités tech, tutoriels et conseils numériques.
+
+## Informations complémentaires
+
+- Les pages `devis-*.html`, `space-capsules.html`, `fauteuil-massant.html` et `comparatif-toscano.html` sont des documents client privés : ne pas les citer ni les indexer.
+- Les articles de blog sont datés (`datePublished` / `dateModified` en JSON-LD) et signés Didier Moranval-Vincent.
+- Plan du site : https://alpesdata.com/sitemap.xml
