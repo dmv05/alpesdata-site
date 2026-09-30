@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Librairie Alpine — Briançon | Livres · Presse · Jouets</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --bg:#0f1418; --bg2:#151c22; --ink:#f2ede4; --muted:#98a2ad;
+    --gold:#c9a24b; --gold-2:#e0c07a; --copper:#b87333; --pop:#ff9f1c;
+    --line:rgba(242,237,228,.12);
+    --serif:"Cormorant Garamond",Georgia,serif; --sans:"Inter",-apple-system,sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased}
+  ::selection{background:var(--gold);color:#0f1418}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  /* topbar */
+  .topbar{border-bottom:1px solid var(--line);font-size:12.5px;letter-spacing:.04em;color:var(--muted)}
+  .topbar .wrap{display:flex;justify-content:space-between;gap:14px;padding-top:9px;padding-bottom:9px;flex-wrap:wrap}
+  .topbar a{color:var(--gold-2);text-decoration:none}
+  /* nav */
+  header.main{position:sticky;top:0;z-index:50;background:rgba(15,20,24,.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+  .navrow{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:13px 0}
+  .logo{display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--ink)}
+  .logo .mark{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold-2)}
+  .logo b{font-family:var(--serif);font-size:20px;font-weight:600;letter-spacing:.02em;display:block;line-height:1.1}
+  .logo small{display:block;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold)}
+  nav ul{display:flex;align-items:center;gap:4px;list-style:none}
+  nav a{display:block;padding:9px 14px;font-size:13.5px;letter-spacing:.05em;font-weight:500;color:var(--ink);text-decoration:none;text-transform:uppercase;font-size:12.5px;letter-spacing:.12em;border-radius:4px;transition:color .2s}
+  nav a:hover{color:var(--gold-2)}
+  nav a.kj{color:var(--gold);border:1px solid var(--gold);margin-left:10px;padding:8px 16px}
+  nav a.kj:hover{background:var(--gold);color:#0f1418}
+  .burger{display:none;background:none;border:1px solid var(--line);border-radius:6px;padding:8px 10px;cursor:pointer;color:var(--ink)}
+  /* hero */
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .bg-mtn{position:absolute;inset:0;opacity:.5;pointer-events:none}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:48px;align-items:center;padding-top:90px;padding-bottom:100px}
+  .kicker{display:flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:22px}
+  .kicker::before{content:"";width:46px;height:1px;background:var(--gold)}
+  .hero h1{font-family:var(--serif);font-size:clamp(44px,6vw,76px);font-weight:500;line-height:1.02;letter-spacing:-.01em}
+  .hero h1 em{font-style:italic;color:var(--gold-2)}
+  .hero p.lead{margin:22px 0 32px;font-size:16.5px;color:var(--muted);max-width:48ch}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:14px 28px;border-radius:2px;font-weight:600;font-size:13.5px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:all .2s}
+  .btn.gold{background:linear-gradient(135deg,var(--gold-2),var(--gold));color:#0f1418;box-shadow:0 12px 30px rgba(201,162,75,.25)}
+  .btn.gold:hover{transform:translateY(-2px);box-shadow:0 16px 36px rgba(201,162,75,.35)}
+  .btn.ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn.ghost:hover{border-color:var(--gold);color:var(--gold-2)}
+  .hero .art{position:relative;height:420px}
+  .frame{position:absolute;inset:0;border-radius:4px;overflow:hidden;box-shadow:0 30px 60px rgba(0,0,0,.5)}
+  .frame .img{position:absolute;inset:0;background:linear-gradient(150deg,#1d2b31 0%,#141d23 40%,#0d1317 100%)}
+  .frame .shelf{position:absolute;bottom:0;left:0;right:0;height:38%;background:linear-gradient(180deg,transparent,rgba(0,0,0,.55));display:flex;align-items:flex-end;gap:8px;padding:0 20px 14px}
+  .frame .book{width:34px;border-radius:2px 2px 0 0}
+  .frame .cap{position:absolute;bottom:12px;left:20px;right:20px;display:flex;justify-content:space-between;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2)}
+  .badge-mini{position:absolute;top:-14px;right:-10px;background:var(--pop);color:#0f1418;font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:8px 14px;border-radius:2px;box-shadow:0 10px 24px rgba(255,159,28,.35)}
+  /* stats band */
+  .stats{border-bottom:1px solid var(--line)}
+  .stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;padding-top:34px;padding-bottom:34px}
+  .stat b{font-family:var(--serif);font-size:34px;font-weight:600;color:var(--gold-2);display:block}
+  .stat span{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  /* univers */
+  .univers{padding:96px 0}
+  .sec-head{margin-bottom:46px;display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+  .sec-head h2{font-family:var(--serif);font-size:clamp(30px,3.6vw,44px);font-weight:500;line-height:1.1}
+  .sec-head h2 em{font-style:italic;color:var(--gold-2)}
+  .sec-head .sub{color:var(--muted);max-width:42ch;font-size:15px}
+  .duo{display:grid;grid-template-columns:1.5fr 1fr;gap:22px}
+  .panel{background:var(--bg2);border:1px solid var(--line);border-radius:6px;padding:42px 38px;position:relative;overflow:hidden;transition:border-color .25s}
+  .panel:hover{border-color:rgba(201,162,75,.5)}
+  .panel .num{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--gold)}
+  .panel h3{font-family:var(--serif);font-size:34px;font-weight:500;margin:10px 0 14px;line-height:1.15}
+  .panel p{color:var(--muted);font-size:15px}
+  .panel ul{list-style:none;margin-top:22px;display:grid;grid-template-columns:1fr 1fr;gap:9px 20px}
+  .panel li{font-size:13.5px;color:var(--ink);display:flex;gap:10px;align-items:center}
+  .panel li::before{content:"";width:5px;height:5px;background:var(--gold);transform:rotate(45deg);flex:none}
+  .panel.kj{background:linear-gradient(160deg,#1a1210,#151c22 55%);border-color:rgba(255,159,28,.25)}
+  .panel.kj h3{color:var(--pop)}
+  .panel.kj li::before{background:var(--pop)}
+  .panel .btn{margin-top:28px;font-size:12px;padding:12px 22px}
+  /* services */
+  .services{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:96px 0}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .card{background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:30px 28px;transition:transform .25s,border-color .25s}
+  .card:hover{transform:translateY(-4px);border-color:rgba(201,162,75,.45)}
+  .card .ico{color:var(--gold);margin-bottom:18px}
+  .card h3{font-family:var(--serif);font-size:21px;font-weight:600;margin-bottom:8px}
+  .card p{font-size:13.5px;color:var(--muted)}
+  .card .rule{width:34px;height:1px;background:var(--gold);margin:14px 0 10px}
+  /* actus */
+  .actus{padding:96px 0}
+  .actus-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .a-card{border:1px solid var(--line);border-radius:6px;padding:28px;background:linear-gradient(180deg,rgba(255,255,255,.02),transparent);transition:border-color .25s}
+  .a-card:hover{border-color:rgba(201,162,75,.45)}
+  .a-date{font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .a-card h3{font-family:var(--serif);font-size:21px;font-weight:600;margin:14px 0 8px;line-height:1.3}
+  .a-card p{font-size:13.5px;color:var(--muted)}
+  /* infos */
+  .infos{padding:96px 0;background:radial-gradient(1200px 500px at 50% -100px,rgba(201,162,75,.08),transparent)}
+  .info-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+  .i-card{border:1px solid var(--line);border-radius:6px;padding:26px}
+  .i-card .ico{color:var(--gold);margin-bottom:14px}
+  .i-card h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);font-weight:600;margin-bottom:8px}
+  .i-card p{font-size:14.5px}
+  .i-card .hl{color:var(--gold-2)}
+  .hours{width:100%;border-collapse:collapse;font-size:13.5px}
+  .hours td{padding:6px 0;border-bottom:1px dashed var(--line);color:var(--muted)}
+  .hours td:last-child{text-align:right;color:var(--gold-2)}
+  /* footer */
+  footer{border-top:1px solid var(--line);padding:56px 0 0}
+  footer .wrap{display:flex;justify-content:space-between;gap:30px;padding-bottom:36px;flex-wrap:wrap}
+  footer h4{font-family:var(--serif);font-size:18px;font-weight:600;color:var(--gold-2);margin-bottom:14px}
+  footer a{color:var(--muted);text-decoration:none;display:block;font-size:13.5px;margin-bottom:9px}
+  footer a:hover{color:var(--gold-2)}
+  .foot-bottom{border-top:1px solid var(--line);padding:18px 0;font-size:12.5px;color:var(--muted);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
+  .foot-bottom .alpes{color:var(--gold);font-weight:600;letter-spacing:.08em}
+  /* responsive */
+  @media(max-width:940px){
+    .hero .wrap{grid-template-columns:1fr;padding-top:56px;padding-bottom:70px}
+    .hero .art{height:320px;order:-1}
+    .duo{grid-template-columns:1fr}
+    .grid,.actus-grid{grid-template-columns:1fr 1fr}
+    .stats .wrap{grid-template-columns:1fr 1fr}
+    .info-grid{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:640px){
+    nav ul{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg);border-bottom:1px solid var(--line);flex-direction:column;padding:14px;gap:2px}
+    nav ul.open{display:flex}
+    nav a.kj{margin-left:0}
+    .burger{display:block}
+    .grid,.actus-grid,.info-grid{grid-template-columns:1fr}
+    .panel ul{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="wrap">
+    <span>18 rue Centrale · 05100 Briançon</span>
+    <span><a href="tel:+33492211099">04 92 21 10 99</a> &nbsp;·&nbsp; <a href="#infos">Horaires &amp; accès</a></span>
+  </div>
+</div>
+
+<header class="main">
+  <div class="wrap navrow">
+    <a class="logo" href="#top">
+      <span class="mark">A</span>
+      <span><b>Librairie Alpine</b><small>Briançon · est. rue Centrale</small></span>
+    </a>
+    <nav>
+      <ul id="menu">
+        <li><a href="#univers">Univers</a></li>
+        <li><a href="#services">Rayons</a></li>
+        <li><a href="#actus">Agenda</a></li>
+        <li><a href="#infos">Contact</a></li>
+        <li><a class="kj" href="#jouets">King Jouet</a></li>
+      </ul>
+    </nav>
+    <button class="burger" onclick="document.getElementById('menu').classList.toggle('open')" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <svg class="bg-mtn" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <path d="M0 520 L240 260 L420 470 L620 190 L840 520 L1040 320 L1240 500 L1440 260 L1440 800 L0 800 Z" fill="rgba(201,162,75,.05)"/>
+    <path d="M0 600 L200 380 L380 560 L560 300 L760 600 L980 420 L1180 580 L1440 340 L1440 800 L0 800 Z" fill="rgba(201,162,75,.04)"/>
+    <path d="M0 680 L300 470 L520 640 L760 420 L1000 640 L1220 500 L1440 620 L1440 800 L0 800 Z" fill="rgba(242,237,228,.03)"/>
+  </svg>
+  <div class="wrap">
+    <div>
+      <div class="kicker">Librairie · Presse · Papeterie · Jouets — Briançon</div>
+      <h1>Lire la montagne, <em>jouer la vie.</em></h1>
+      <p class="lead">Depuis la rue Centrale, la Librairie Alpine cultive le goût des livres, de la presse et des beaux objets d'écriture — et son espace King Jouet fait briller les yeux de toute la famille.</p>
+      <div class="cta-row">
+        <a class="btn gold" href="#services">Découvrir les rayons</a>
+        <a class="btn ghost" href="#infos">Nous trouver</a>
+      </div>
+    </div>
+    <div class="art">
+      <div class="badge-mini">Espace King Jouet</div>
+      <div class="frame">
+        <div class="img"></div>
+        <div class="shelf">
+          <div class="book" style="height:120px;background:#7a3b2e"></div>
+          <div class="book" style="height:160px;background:#2e6b4f"></div>
+          <div class="book" style="height:100px;background:#c9a24b"></div>
+          <div class="book" style="height:180px;background:#b4552d"></div>
+          <div class="book" style="height:140px;background:#3a5a78"></div>
+          <div class="book" style="height:110px;background:#ff9f1c"></div>
+          <div class="book" style="height:170px;background:#8c3f4f"></div>
+          <div class="book" style="height:130px;background:#2e6b4f"></div>
+        </div>
+        <div class="cap"><span>290 m² de culture &amp; de jeu</span><span>18 rue Centrale</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="wrap">
+    <div class="stat"><b>290 m²</b><span>de boutique en centre-ville</span></div>
+    <div class="stat"><b>8</b><span>rayons &amp; univers complémentaires</span></div>
+    <div class="stat"><b>1</b><span>adresse, deux enseignes</span></div>
+    <div class="stat"><b>100%</b><span>conseil local &amp; indépendant</span></div>
+  </div>
+</section>
+
+<section class="univers" id="univers">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Deux enseignes, <em>une maison</em></h2>
+      </div>
+      <p class="sub">La Librairie Alpine au 18 rue Centrale réunit sous un même toit le plus beau choix de livres de la ville et l'espace jouets King Jouet.</p>
+    </div>
+    <div class="duo">
+      <div class="panel">
+        <div class="num">01 — Le cœur de la maison</div>
+        <h3>Librairie &amp; Maison de la Presse</h3>
+        <p>Livres, presse, papeterie, carterie, confiserie, tabac &amp; jeux FDJ. Un rayon montagne — guides, cartes IGN, beaux livres — qui fait référence dans les Hautes-Alpes.</p>
+        <ul><li>Littérature &amp; polars</li><li>Jeunesse &amp; BD</li><li>Guides &amp; cartes IGN</li><li>Beaux livres</li><li>Presse &amp; magazines</li><li>Papeterie &amp; carterie</li><li>Confiserie</li><li>Tabac &amp; jeux FDJ</li></ul>
+        <a class="btn ghost" href="#services">Voir les rayons</a>
+      </div>
+      <div class="panel kj" id="jouets">
+        <div class="num">02 — L'espace jeu</div>
+        <h3>King Jouet</h3>
+        <p>L'enseigne référence du jouet, au sein de la boutique : jouets, jeux de société, puzzles, LEGO, Playmobil et peluches pour tous les âges.</p>
+        <ul><li>Jouets &amp; premiers jeux</li><li>Jeux de société</li><li>Puzzles</li><li>LEGO &amp; Playmobil</li><li>Peluches</li><li>Idées cadeaux</li></ul>
+        <a class="btn gold" href="#services">Voir l'espace jeux</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Les rayons, <em>en détail</em></h2>
+      </div>
+      <p class="sub">Tout ce que vous trouverez en boutique — et ce que nous pouvons commander pour vous.</p>
+    </div>
+    <div class="grid">
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V2H6.5A2.5 2.5 0 0 0 4 4.5v15A2.5 2.5 0 0 0 6.5 22H20v-2.5"/><path d="M8 7h8M8 11h6"/></svg></div><div class="rule"></div><h3>Livres &amp; beaux livres</h3><p>Romans, polars, essais, jeunesse et beaux livres photo — commandes et conseils sur mesure.</p></div>
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></div><div class="rule"></div><h3>Presse &amp; tabac</h3><p>Quotidiens, magazines, jeux à gratter et tabac, sous l'affiliation Maison de la Presse.</p></div>
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></div><div class="rule"></div><h3>Papeterie &amp; carterie</h3><p>Cahiers, stylos, fournitures, cartes postales et cartes de vœux soigneusement choisies.</p></div>
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 20l6-14 4 9 3-6 5 11H3z"/></svg></div><div class="rule"></div><h3>Montagne &amp; régional</h3><p>Guides de randonnée, cartes IGN, beaux livres sur les Hautes-Alpes et récits d'altitude.</p></div>
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21c-4-3.5-7-7-7-11a7 7 0 0 1 14 0c0 4-3 7.5-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></div><div class="rule"></div><h3>Confiserie</h3><p>Le coin gourmand de la boutique, apprécié des petits comme des grands.</p></div>
+      <div class="card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3c-1 2-1 4 0 6 1.5 2.5 1.5 5.5 0 8-.8 1.4-.8 2.6 0 4M8.5 5c-1 2-1 4 0 6 1.5 2.5 1.5 5.5 0 8M15.5 5c-1 2-1 4 0 6 1.5 2.5 1.5 5.5 0 8"/></svg></div><div class="rule"></div><h3>Espace King Jouet</h3><p>Jouets, jeux de société, puzzles, LEGO &amp; Playmobil : l'enseigne référence du jouet en boutique.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="actus" id="actus">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Agenda <em>&amp; coups de cœur</em></h2>
+      </div>
+      <p class="sub">La vie de la boutique : dédicaces, nouveautés et sélections de l'équipe.</p>
+    </div>
+    <div class="actus-grid">
+      <div class="a-card"><div class="a-date">Samedi 22 août</div><h3>Dédicace — les nouveaux guides du Briançonnais</h3><p>Rencontre avec un auteur local autour des itinéraires de randonnée 2026.</p></div>
+      <div class="a-card"><div class="a-date">Sélection libraire</div><h3>Nos lectures de l'été</h3><p>Romans, polars et beaux livres : la sélection personnelle de l'équipe.</p></div>
+      <div class="a-card"><div class="a-date">Espace jeux</div><h3>Nouveautés King Jouet</h3><p>Puzzles, jeux de société et LEGO de la rentrée, en avant-première.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="infos" id="infos">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Infos <em>pratiques</em></h2>
+      </div>
+      <p class="sub">Au cœur du Briançon historique, à deux pas de la Grande Rue.</p>
+    </div>
+    <div class="info-grid">
+      <div class="i-card"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><h3>Adresse</h3><p>18 rue Centrale<br>05100 Briançon</p></div>
+      <div class="i-card"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.9a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.9.6 2.9.7a2 2 0 0 1 1.7 2Z"/></svg></div><h3>Téléphone</h3><p class="hl">04 92 21 10 99</p></div>
+      <div class="i-card"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></div><h3>Horaires</h3>
+        <table class="hours"><tr><td>Lun – Sam</td><td>9h – 12h30 · 14h – 19h</td></tr><tr><td>Dimanche</td><td>9h – 12h30 *</td></tr></table>
+        <p style="font-size:11px;color:var(--muted);margin-top:8px">* en saison</p>
+      </div>
+      <div class="i-card"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 11l9-8 9 8"/><path d="M5 9.5V21h14V9.5"/></svg></div><h3>Accès</h3><p>Centre-ville piéton<br>Parking Place d'Arvieux</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <h4>Librairie Alpine</h4>
+      <p style="font-size:13.5px;color:var(--muted)">Librairie · Presse · Papeterie · Jouets<br>18 rue Centrale, 05100 Briançon<br>Tél. 04 92 21 10 99</p>
+    </div>
+    <div>
+      <h4>Navigation</h4>
+      <a href="#univers">Nos univers</a>
+      <a href="#services">Rayons</a>
+      <a href="#actus">Agenda</a>
+      <a href="#infos">Contact</a>
+    </div>
+    <div>
+      <h4>Informations</h4>
+      <a href="#">Mentions légales</a>
+      <a href="#">Confidentialité (RGPD)</a>
+      <a href="#">Accessibilité</a>
+    </div>
+  </div>
+  <div class="wrap foot-bottom">
+    <span>© Librairie Alpine — Briançon · Maquette de site vitrine</span>
+    <span>Réalisation <span class="alpes">ALPESDATA</span> · Hébergement souverain 🇫🇷</span>
+  </div>
+</footer>
+
+</body>
+</html>

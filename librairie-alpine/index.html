@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Librairie Alpine — Avant / Après</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#faf7f1; --white:#fff; --ink:#22302a; --muted:#5c6b63;
+    --sapin:#1f4d3a; --sapin-2:#2e6b4f; --gold:#c9a24b; --terracotta:#b4552d; --line:#e6e0d3;
+    --serif:"Playfair Display",Georgia,serif; --sans:"Inter",-apple-system,sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  /* header */
+  .head{background:var(--sapin);color:#f2ecdf;padding:56px 0 52px}
+  .head .k{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:12px}
+  .head h1{font-family:var(--serif);font-size:clamp(32px,4.6vw,52px);line-height:1.08}
+  .head h1 em{font-style:italic;color:var(--gold)}
+  .head p{margin-top:14px;color:#c9d5cd;max-width:60ch;font-size:15.5px}
+  /* colonnes */
+  .columns{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:18px;overflow:hidden;margin:44px 0;background:var(--white)}
+  .col{padding:34px 32px}
+  .col.avant{background:#f3efea;border-right:1px solid var(--line)}
+  .col h2{font-family:var(--serif);font-size:26px;margin-bottom:6px}
+  .col .tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:14px}
+  .avant .tag{background:#e0d8cd;color:#5c4a33}
+  .apres .tag{background:#eef7f1;color:var(--sapin-2)}
+  .shot{border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:16px 0;box-shadow:0 14px 30px rgba(34,48,42,.12)}
+  .shot img{width:100%;display:block}
+  .shot.old img{aspect-ratio:4/3.1;object-fit:cover;object-position:top}
+  .shot.new{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .shot.new img{aspect-ratio:3/4.4;object-fit:cover;object-position:top}
+  .cap{font-size:12px;color:var(--muted);margin-top:8px;font-style:italic}
+  ul.lst{list-style:none;margin-top:14px}
+  ul.lst li{padding:8px 0 8px 26px;position:relative;font-size:14px;border-bottom:1px dashed var(--line)}
+  ul.lst li:last-child{border-bottom:none}
+  ul.lst li::before{content:"✗";position:absolute;left:0;color:var(--terracotta);font-weight:700}
+  ul.lst.ok li::before{content:"✓";color:var(--sapin-2)}
+  ul.lst li b{color:var(--ink)}
+  .verdict{background:var(--sapin);color:#eef3ef;border-radius:14px;padding:20px 24px;margin-top:22px;font-size:14.5px;display:flex;gap:14px;align-items:center}
+  .verdict b{color:var(--gold)}
+  /* tableau */
+  .table-wrap{margin:44px 0}
+  h2.sec{font-family:var(--serif);font-size:clamp(26px,3.2vw,36px);margin-bottom:8px}
+  h2.sec em{font-style:italic;color:var(--sapin-2)}
+  p.sec-sub{color:var(--muted);margin-bottom:24px;max-width:70ch;font-size:15px}
+  table{width:100%;border-collapse:collapse;background:var(--white);border:1px solid var(--line);border-radius:14px;overflow:hidden;font-size:14px}
+  th{background:var(--sapin);color:#f2ecdf;text-align:left;padding:13px 18px;font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+  td{padding:13px 18px;border-top:1px solid var(--line);vertical-align:top}
+  td.crit{font-weight:700;width:22%}
+  td.old{background:#f7f4ef;color:#6b5a45;width:36%}
+  td.old b.x{color:var(--terracotta)}
+  td.new b.ok{color:var(--sapin-2)}
+  footer{padding:30px 0 44px;font-size:12.5px;color:var(--muted);text-align:center}
+  @media(max-width:860px){
+    .columns{grid-template-columns:1fr}
+    .col.avant{border-right:none;border-bottom:1px solid var(--line)}
+  }
+  @media(max-width:640px){
+    .shot.new{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="head">
+  <div class="wrap">
+    <div class="k">Alpesdata — Proposition site vitrine</div>
+    <h1>Librairie Alpine : <em>l'avant / après</em></h1>
+    <p>Ce que la boutique montrait hier — et ce qu'elle pourrait montrer demain. L'ancienne version est la page d'archive réelle (le site librairie-alpine.fr ne fait plus que rediriger vers un annuaire). Les trois nouvelles versions sont les maquettes proposées par Alpesdata.</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="columns">
+    <div class="col avant">
+      <span class="tag">Avant — l'ancienne version</span>
+      <h2>Une page d'annuaire, fond noir</h2>
+      <div class="shot old"><img src="shots/ancien-site-brianconnais-pro.png" alt="Ancien site — page d'annuaire"></div>
+      <div class="cap">Capture réelle de la page (annuaire brianconnais.pro) — le domaine librairie-alpine.fr n'est plus qu'une redirection.</div>
+      <ul class="lst">
+        <li><b>Fond noir</b> et style années 2000 (© 2009)</li>
+        <li>Simple fiche d'annuaire : adresse, téléphone, horaires</li>
+        <li><b>Pas de photos réelles</b>, illustrations d'époque</li>
+        <li>Pas adapté aux smartphones</li>
+        <li>King Jouet <b>absent</b> de la présentation</li>
+        <li>Aucune actualité, aucun référencement propre</li>
+      </ul>
+      <div class="verdict"><span>⚠️</span><span><b>En 2026, le site ne vend plus la maison :</b> il ne la montre même plus. La boutique mérite mieux que cette page.</span></div>
+    </div>
+    <div class="col apres">
+      <span class="tag">Après — la proposition Alpesdata</span>
+      <h2>Un vrai site vitrine, deux univers</h2>
+      <div class="shot new">
+        <img src="shots/v1-papier-sapin.png" alt="Variante 1 Papier & Sapin">
+        <img src="shots/v2-vitrine-ensoleillee.png" alt="Variante 2 Vitrine Ensoleillée">
+        <img src="shots/v3-noir-elegant.png" alt="Variante 3 Noir Élégant">
+      </div>
+      <div class="cap">Les trois directions proposées — Papier &amp; Sapin · Vitrine Ensoleillée · Noir Élégant (maquettes cliquables).</div>
+      <ul class="lst ok">
+        <li><b>Image moderne</b> et chaleureuse, 100 % mobile</li>
+        <li>Photos <b>réelles</b> de la boutique (à venir)</li>
+        <li>La librairie <b>et</b> l'espace King Jouet mis en valeur</li>
+        <li>Horaires, accès, téléphone <b>en un clic</b></li>
+        <li>Actualités : dédicaces, nouveautés, coups de cœur</li>
+        <li>Référencement local Briançon + hébergement en France</li>
+      </ul>
+      <div class="verdict"><span>✨</span><span><b>Un site qui travaille pour le magasin</b> : il attire, il informe, il donne envie de pousser la porte de la rue Centrale.</span></div>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <h2 class="sec">Le comparatif <em>détail par détail</em></h2>
+    <p class="sec-sub">Point par point, ce qui change entre la version d'hier et la proposition d'aujourd'hui.</p>
+    <table>
+      <tr><th>Critère</th><th>Ancienne version</th><th>Nouvelle version</th></tr>
+      <tr><td class="crit">Format</td><td class="old">Fiche dans un annuaire local (brianconnais.pro) — le domaine ne fait que rediriger</td><td class="new"><b class="ok">Site vitrine autonome</b> : librairie-alpine.fr (ou nouveau nom) héberge un vrai site</td></tr>
+      <tr><td class="crit">Design</td><td class="old"><b class="x">Fond noir</b>, style années 2000, illustrations d'époque</td><td class="new"><b class="ok">3 directions modernes</b> : éditorial crème, lumineux familial, noir premium</td></tr>
+      <tr><td class="crit">Mobile</td><td class="old"><b class="x">Non adapté</b> aux smartphones</td><td class="new"><b class="ok">Conçu mobile d'abord</b> : parfait sur téléphone, tablette, ordinateur</td></tr>
+      <tr><td class="crit">King Jouet</td><td class="old"><b class="x">Absent</b> de la présentation (autre fiche d'annuaire)</td><td class="new"><b class="ok">Espace dédié</b>, visible dans la navigation et la page d'accueil</td></tr>
+      <tr><td class="crit">Rayons</td><td class="old">Énumérés en texte brut</td><td class="new"><b class="ok">6 univers illustrés</b> : livres, presse, papeterie, montagne, confiserie, jeux</td></tr>
+      <tr><td class="crit">Actualités</td><td class="old"><b class="x">Aucune</b></td><td class="new"><b class="ok">Agenda autonome</b> : dédicaces, nouveautés, coups de cœur — mis à jour par la boutique</td></tr>
+      <tr><td class="crit">Horaires</td><td class="old">Affichés en texte statique</td><td class="new"><b class="ok">Mise en page claire</b>, modifiable en 1 minute</td></tr>
+      <tr><td class="crit">Référencement</td><td class="old"><b class="x">Quasi inexistant</b></td><td class="new"><b class="ok">SEO local Briançon</b> : « librairie Briançon », « King Jouet Briançon » + fiche Google Business</td></tr>
+      <tr><td class="crit">Conformité</td><td class="old">Aucune mention légale, pas de politique de confidentialité</td><td class="new"><b class="ok">RGPD</b> : mentions légales, bandeau cookies, données en France 🇫🇷</td></tr>
+    </table>
+  </div>
+
+  <div class="table-wrap">
+    <h2 class="sec">Les infos récupérées <em>de l'ancien site</em></h2>
+    <p class="sec-sub">Nous avons récupéré les informations de la version d'hier pour ne rien perdre — certaines sont à <b>confirmer avec la boutique</b> avant production.</p>
+    <table>
+      <tr><th>Information</th><th>Ancienne version (archive)</th><th>À faire</th></tr>
+      <tr><td class="crit">Adresse</td><td class="old">18 rue Centrale, 05100 Briançon</td><td class="new">✅ Confirmée</td></tr>
+      <tr><td class="crit">Téléphone</td><td class="old">04 92 21 10 99</td><td class="new">✅ Confirmé</td></tr>
+      <tr><td class="crit">Horaires</td><td class="old">Lun–Sam 6h30–12h30 / 14h–19h30 · Dim 6h30–12h30 · Fermé 1er mai &amp; dim après-midi</td><td class="new">⚠️ <b>À vérifier</b> : ouverture dès 6h30 (presse) — à reporter dans les maquettes</td></tr>
+      <tr><td class="crit">Surface</td><td class="old">« Double espace convivial d'un total de 450 m² »</td><td class="new">⚠️ <b>À vérifier</b> : 450 m² selon l'ancien site, 290 m² selon un annuaire tiers — les maquettes affichent 290 m²</td></tr>
+      <tr><td class="crit">Enseignes</td><td class="old">JOUPI · ROUGE PAPIER · MAISON DE LA PRESSE (3 enseignes nationales)</td><td class="new">⚠️ <b>À intégrer</b> : les maquettes ne citent que Maison de la Presse</td></tr>
+      <tr><td class="crit">Histoire</td><td class="old">« Depuis trois générations », quartier Saint-Catherine, vocation généraliste + culture régionale</td><td class="new">✅ À conserver : bel argument de storytelling</td></tr>
+      <tr><td class="crit">King Jouet</td><td class="old">Fiche séparée « King Jouet - Bébé King » dans l'annuaire</td><td class="new">⚠️ Vérifier l'appellation exacte à l'entrée de la boutique</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<footer>Récapitulatif avant / après — maquettes &amp; proposition Alpesdata, août 2026 · Capture de l'ancienne version : page réelle archivée.</footer>
+
+</body>
+</html>

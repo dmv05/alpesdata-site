@@ -1,0 +1,334 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Proposition Alpesdata — Site vitrine Librairie Alpine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --paper:#faf7f1; --white:#fff; --ink:#22302a; --muted:#5c6b63;
+    --sapin:#1f4d3a; --sapin-2:#2e6b4f; --gold:#c9a24b; --terracotta:#b4552d;
+    --line:#e6e0d3;
+    --serif:"Playfair Display",Georgia,serif; --sans:"Inter",-apple-system,sans-serif;
+  }
+  html{scroll-behavior:smooth}
+  body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 30px}
+  section{padding:64px 0}
+  /* ---------- cover ---------- */
+  .cover{background:var(--sapin);color:#f2ecdf;padding:0;position:relative;overflow:hidden}
+  .cover::after{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(201,162,75,.28),transparent 65%)}
+  .cover .wrap{position:relative;padding-top:96px;padding-bottom:110px}
+  .cover .alpes{display:inline-flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:34px}
+  .cover .alpes::before{content:"";width:34px;height:1.5px;background:var(--gold)}
+  .cover h1{font-family:var(--serif);font-size:clamp(40px,6vw,68px);font-weight:700;line-height:1.04;max-width:18ch}
+  .cover h1 em{font-style:italic;color:var(--gold)}
+  .cover p.sub{margin-top:22px;font-size:17px;color:#c9d5cd;max-width:52ch}
+  .cover .meta{display:flex;gap:40px;margin-top:44px;flex-wrap:wrap}
+  .cover .meta div{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#9db3a6}
+  .cover .meta b{display:block;font-size:15px;letter-spacing:0;text-transform:none;color:#f2ecdf;margin-top:4px}
+  /* ---------- sections ---------- */
+  .kicker{font-size:11.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--terracotta);font-weight:700;margin-bottom:12px}
+  h2.sec{font-family:var(--serif);font-size:clamp(28px,3.6vw,42px);font-weight:700;line-height:1.12;margin-bottom:28px}
+  h2.sec em{font-style:italic;color:var(--sapin-2)}
+  .lead{color:var(--muted);font-size:16px;max-width:66ch;margin-bottom:26px}
+  /* constat */
+  .constat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .c-card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .c-card .n{font-family:var(--serif);font-style:italic;font-size:15px;color:var(--gold)}
+  .c-card h3{font-size:15.5px;margin:8px 0 6px}
+  .c-card p{font-size:13.5px;color:var(--muted)}
+  .c-card.bad .n{color:var(--terracotta)}
+  .obj-list{display:grid;grid-template-columns:1fr 1fr;gap:12px 28px;list-style:none;margin-top:8px}
+  .obj-list li{display:flex;gap:12px;font-size:15px;align-items:flex-start}
+  .obj-list li::before{content:"";width:7px;height:7px;background:var(--sapin-2);border-radius:2px;transform:rotate(45deg);flex:none;margin-top:9px}
+  /* concept */
+  .concept{display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:center}
+  .duo-pill{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+  .pill{font-size:12.5px;font-weight:600;border:1.5px solid var(--line);border-radius:999px;padding:8px 15px;background:var(--white)}
+  .pill.kj{border-color:#ffd9a3;background:#fff4e4;color:#8a4a00}
+  .pill.main{border-color:#bcd7c8;background:#eef7f1;color:var(--sapin)}
+  .arch{border:1px solid var(--line);border-radius:16px;background:var(--white);padding:26px;box-shadow:0 14px 34px rgba(31,77,58,.07)}
+  .arch h3{font-family:var(--serif);font-size:20px;margin-bottom:14px}
+  .arch ol{list-style:none;counter-reset:arc}
+  .arch li{counter-increment:arc;display:flex;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line);font-size:14.5px;align-items:baseline}
+  .arch li:last-child{border-bottom:none}
+  .arch li::before{content:counter(arc,decimal-leading-zero);font-family:var(--serif);font-style:italic;color:var(--gold);flex:none}
+  .arch li small{color:var(--muted);display:block;font-size:12.5px}
+  /* variants */
+  .variants{background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .var-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .var{background:var(--paper);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .22s,box-shadow .22s}
+  .var:hover{transform:translateY(-5px);box-shadow:0 22px 44px rgba(31,77,58,.14)}
+  .var .shot{position:relative;border-bottom:1px solid var(--line)}
+  .var .shot img{width:100%;display:block;aspect-ratio:3/4.4;object-fit:cover;object-position:top}
+  .var .vtag{position:absolute;top:12px;left:12px;background:rgba(250,247,241,.95);border:1px solid var(--line);font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--sapin);padding:6px 11px;border-radius:999px}
+  .var .body{padding:20px 20px 22px}
+  .var .body h3{font-family:var(--serif);font-size:20px;margin-bottom:8px}
+  .var .body p{font-size:13.5px;color:var(--muted)}
+  .var .body .atouts{margin-top:12px;display:flex;flex-wrap:wrap;gap:6px}
+  .var .body .atouts span{font-size:11px;font-weight:600;background:#eef3ee;color:var(--sapin);border-radius:999px;padding:4px 10px}
+  .var.reco{border:2px solid var(--sapin-2)}
+  .reco-badge{position:absolute;top:12px;right:12px;background:var(--sapin-2);color:#fff;font-size:10.5px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 12px;border-radius:999px;box-shadow:0 8px 18px rgba(46,107,79,.4)}
+  /* technique */
+  .tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .t-card{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:24px}
+  .t-card .ico{color:var(--sapin-2);margin-bottom:12px}
+  .t-card h3{font-size:15.5px;margin-bottom:6px}
+  .t-card p{font-size:13.5px;color:var(--muted)}
+  .soverain{background:var(--sapin);color:#eef3ef;border-radius:14px;padding:18px 22px;margin-top:18px;display:flex;gap:14px;align-items:center;font-size:14px}
+  .soverain b{color:var(--gold)}
+  /* budget */
+  .budget-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .b-card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:26px;display:flex;flex-direction:column}
+  .b-card .formule{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--terracotta);font-weight:700}
+  .b-card h3{font-family:var(--serif);font-size:24px;margin:8px 0 4px}
+  .b-card .price{font-size:15px;font-weight:700;color:var(--sapin-2);margin-bottom:14px}
+  .b-card ul{list-style:none;flex:1}
+  .b-card li{font-size:13.5px;color:var(--muted);padding:5px 0 5px 22px;position:relative}
+  .b-card li::before{content:"✓";position:absolute;left:0;color:var(--sapin-2);font-weight:700}
+  .b-card.pop{border:2px solid var(--sapin-2);box-shadow:0 18px 40px rgba(31,77,58,.12)}
+  .b-card.pop .formule{color:var(--sapin-2)}
+  .note{font-size:12.5px;color:var(--muted);font-style:italic;margin-top:18px}
+  /* planning */
+  .plan{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:16px;overflow:hidden;background:var(--white)}
+  .p-step{padding:24px;border-right:1px solid var(--line);position:relative}
+  .p-step:last-child{border-right:none}
+  .p-step .wk{font-family:var(--serif);font-style:italic;color:var(--gold);font-size:14px}
+  .p-step h3{font-size:14.5px;margin:8px 0 6px}
+  .p-step p{font-size:12.5px;color:var(--muted)}
+  /* contact */
+  .contact{background:var(--sapin);color:#f2ecdf}
+  .contact .kicker{color:var(--gold)}
+  .contact h2.sec{color:#fff}
+  .contact h2.sec em{color:var(--gold)}
+  .contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .ct-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:22px}
+  .ct-card h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:8px}
+  .ct-card p{font-size:15px}
+  footer{padding:26px 0;font-size:12.5px;color:var(--muted);text-align:center}
+  /* responsive */
+  @media(max-width:900px){
+    .constat-grid,.tech-grid,.budget-grid,.contact-grid{grid-template-columns:1fr 1fr}
+    .var-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}
+    .concept{grid-template-columns:1fr}
+    .obj-list{grid-template-columns:1fr}
+    .plan{grid-template-columns:1fr 1fr}
+    .p-step{border-right:none;border-bottom:1px solid var(--line)}
+  }
+  @media(max-width:600px){
+    .constat-grid,.tech-grid,.budget-grid,.contact-grid{grid-template-columns:1fr}
+    .plan{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<section class="cover">
+  <div class="wrap">
+    <span class="alpes">Alpesdata — Agence web, Briançon</span>
+    <h1>Librairie Alpine<br><em>une vitrine nouvelle,</em><br>un site, deux univers.</h1>
+    <p class="sub">Proposition de site vitrine pour la Librairie Alpine et son espace King Jouet — 18 rue Centrale, Briançon. Document de présentation, maquettes cliquables incluses.</p>
+    <div class="meta">
+      <div>Présenté par<b>Alpesdata — Didier Moranval-Vincent</b></div>
+      <div>Date<b>Août 2026</b></div>
+      <div>Contact<b>info@alpesdata.com · 06 13 21 59 93</b></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">01 · Le constat</div>
+    <h2 class="sec">Le site actuel <em>ne rend pas service</em> à la boutique.</h2>
+    <div class="constat-grid">
+      <div class="c-card bad"><div class="n">Le fond noir</div><h3>Une image datée</h3><p>Esthétique des années 2000 : sombre, austère, à l'opposé de la chaleur d'une librairie de centre-ville.</p></div>
+      <div class="c-card bad"><div class="n">Mobile ?</div><h3>Non adapté aux smartphones</h3><p>Plus de 70 % des recherches locales passent par le téléphone. Un site non responsive fait fuir les clients.</p></div>
+      <div class="c-card bad"><div class="n">Aucune mise à jour</div><h3>Contenu figé</h3><p>Pas de nouveautés, pas d'horaires à jour, pas de sélections : le site ne vit pas avec la boutique.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">02 · Les objectifs</div>
+    <h2 class="sec">Un site qui travaille <em>pour le magasin</em>, tous les jours.</h2>
+    <ul class="obj-list">
+      <li>Moderniser l'image de la maison et rassurer la clientèle actuelle</li>
+      <li>Valoriser les deux univers : librairie &amp; espace King Jouet</li>
+      <li>Répondre aux recherches locales : « librairie Briançon », « King Jouet Briançon »</li>
+      <li>Informer en temps réel : horaires, dédicaces, nouveautés</li>
+      <li>Capter la clientèle touristique de passage (hiver comme été)</li>
+      <li>Donner envie de pousser la porte de la rue Centrale</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">03 · Le concept</div>
+    <h2 class="sec">Un seul site, <em>deux enseignes</em>.</h2>
+    <div class="concept">
+      <div>
+        <p class="lead">La Librairie Alpine reste la marque principale — librairie, Maison de la Presse, papeterie — et l'espace <b>King Jouet</b> est mis en valeur dans une section dédiée, bien visible mais complémentaire. Un seul lieu, un seul site, une seule adresse : 18 rue Centrale.</p>
+        <div class="duo-pill">
+          <span class="pill main">📚 Librairie — univers principal</span>
+          <span class="pill main">📰 Maison de la Presse</span>
+          <span class="pill main">✏️ Papeterie &amp; carterie</span>
+          <span class="pill kj">🧸 King Jouet — espace jeu</span>
+          <span class="pill kj">🎲 Jeux &amp; jouets</span>
+        </div>
+        <p class="note" style="margin-top:18px">King Jouet est traité comme « l'espace jeu » de la maison : présent dans la navigation et en page d'accueil, avec sa propre section — sans éclipser l'identité librairie.</p>
+      </div>
+      <div class="arch">
+        <h3>Architecture du site (page unique)</h3>
+        <ol>
+          <li>Accueil &amp; héro<small>Le message de la maison, les deux univers</small></li>
+          <li>Nos univers<small>Librairie · Maison de la Presse · King Jouet</small></li>
+          <li>Les rayons<small>6 univers produits, du livre au jouet</small></li>
+          <li>Actualités &amp; agenda<small>Dédicaces, coups de cœur, nouveautés</small></li>
+          <li>Infos pratiques<small>Horaires, adresse, accès, téléphone</small></li>
+          <li>Footer &amp; mentions<small>RGPD, accès rapides, signature Alpesdata</small></li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="variants">
+  <div class="wrap">
+    <div class="kicker">04 · Les directions créatives</div>
+    <h2 class="sec">Trois ambiances, <em>une seule maison</em>.</h2>
+    <p class="lead">Trois maquettes fonctionnelles, toutes cliquables, à ouvrir dans un navigateur. Elles partagent la même architecture — seul le langage visuel change.</p>
+    <div class="var-grid">
+      <div class="var">
+        <div class="shot">
+          <img src="shots/v1-papier-sapin.png" alt="Variante Papier & Sapin">
+          <span class="vtag">Variante 01</span>
+        </div>
+        <div class="body">
+          <h3>Papier &amp; Sapin</h3>
+          <p>Éditorial et chaleureux : crème, vert sapin, typographie de caractère. L'esprit « belle librairie de montagne », proche de l'âme du métier.</p>
+          <div class="atouts"><span>Classique &amp; rassurant</span><span>Rayon montagne mis en avant</span><span>Idéal clientèle fidèle</span></div>
+        </div>
+      </div>
+      <div class="var reco">
+        <div class="shot">
+          <img src="shots/v2-vitrine-ensoleillee.png" alt="Variante Vitrine Ensoleillée">
+          <span class="vtag">Variante 02</span>
+          <span class="reco-badge">★ Ma recommandation</span>
+        </div>
+        <div class="body">
+          <h3>Vitrine Ensoleillée</h3>
+          <p>Lumineuse, moderne, colorée : jaune soleil, orange jouet, bleu profond. Elle parle autant aux familles qu'aux lecteurs et met King Jouet en valeur.</p>
+          <div class="atouts"><span>Moderne &amp; familial</span><span>Joue le duo livres + jouets</span><span>Le meilleur équilibre</span></div>
+        </div>
+      </div>
+      <div class="var">
+        <div class="shot">
+          <img src="shots/v3-noir-elegant.png" alt="Variante Noir Élégant">
+          <span class="vtag">Variante 03</span>
+        </div>
+        <div class="body">
+          <h3>Noir Élégant</h3>
+          <p>Anthracite et doré, typographie raffinée : le noir, mais cette fois-ci premium. Une rupture forte qui prouve que le sombre peut être chic.</p>
+          <div class="atouts"><span>Premium &amp; audacieux</span><span>Effet « bel objet »</span><span>Pour se démarquer</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="note" style="margin-top:20px">⚠️ Les contenus, horaires et tarifs indiqués dans les maquettes sont indicatifs — ils seront calés avec la boutique avant production. Les photos seront prises en magasin (réelles, pas d'images génériques).</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">05 · La technique</div>
+    <h2 class="sec">Simple, rapide, <em>souverain</em>.</h2>
+    <div class="tech-grid">
+      <div class="t-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg></div><h3>100 % mobile</h3><p>Conçu mobile d'abord : le site est parfait sur smartphone, tablette et ordinateur.</p></div>
+      <div class="t-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div><h3>SEO local Briançon</h3><p>Référencement optimisé sur « librairie Briançon », « King Jouet Briançon » + fiche Google Business reliée.</p></div>
+      <div class="t-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div><h3>Ultra-rapide</h3><p>Chargement en une fraction de seconde : essentiel pour le référencement et le confort.</p></div>
+      <div class="t-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h16v16H4z"/><path d="M4 9h16M9 9v11"/></svg></div><h3>Actualités autonomes</h3><p>La boutique publie elle-même ses dédicaces et nouveautés, sans intermédiaire technique.</p></div>
+      <div class="t-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/></svg></div><h3>RGPD &amp; conformité</h3><p>Bandeau cookies, mentions légales, données protégées : zéro risque juridique.</p></div>
+      <div class="t-card"><div class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 21c-4-3.5-7-7-7-11a7 7 0 0 1 14 0c0 4-3 7.5-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></div><h3>Hébergement en France</h3><p>Serveur européen, données sur le sol français : la souveraineté numérique, chez Alpesdata.</p></div>
+    </div>
+    <div class="soverain">
+      <span style="font-size:24px">🇫🇷</span>
+      <span><b>Souveraineté numérique :</b> hébergement et données en France / Union européenne — jamais aux États-Unis. Un argument de plus auprès de vos clients exigeants.</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="kicker">06 · Planning &amp; budget</div>
+    <h2 class="sec">Mise en ligne <em>en 4 semaines</em>.</h2>
+    <div class="plan">
+      <div class="p-step"><div class="wk">Semaine 1</div><h3>Cadrage &amp; contenus</h3><p>Rencontre en boutique, collecte des textes, photos et horaires réels.</p></div>
+      <div class="p-step"><div class="wk">Semaine 2</div><h3>Choix de la direction</h3><p>Présentation et ajustement de la maquette retenue.</p></div>
+      <div class="p-step"><div class="wk">Semaine 3</div><h3>Production</h3><p>Intégration du site, contenus réels, référencement local.</p></div>
+      <div class="p-step"><div class="wk">Semaine 4</div><h3>Recette &amp; mise en ligne</h3><p>Tests, formation à la mise à jour, publication, fiche Google.</p></div>
+    </div>
+    <div class="budget-grid" style="margin-top:28px">
+      <div class="b-card">
+        <span class="formule">Formule 1</span>
+        <h3>Vitrine</h3>
+        <div class="price">1 900 € HT</div>
+        <ul>
+          <li>Site page unique, 6 sections</li>
+          <li>Design au choix (3 directions)</li>
+          <li>Horaires &amp; coordonnées</li>
+          <li>SEO local de base</li>
+          <li>Mise en ligne</li>
+        </ul>
+      </div>
+      <div class="b-card pop">
+        <span class="formule">Formule 2 — conseillée</span>
+        <h3>Vitrine +</h3>
+        <div class="price">2 600 € HT</div>
+        <ul>
+          <li>Tout Formule 1</li>
+          <li>Actualités &amp; agenda autonomes</li>
+          <li>Séance photo en boutique</li>
+          <li>Version anglaise (tourisme)</li>
+          <li>Fiche Google Business reliée</li>
+          <li>Formation à la mise à jour</li>
+        </ul>
+      </div>
+      <div class="b-card">
+        <span class="formule">Formule 3</span>
+        <h3>Sur mesure</h3>
+        <div class="price">Sur devis</div>
+        <ul>
+          <li>Tout Formule 2</li>
+          <li>Boutique en ligne à terme</li>
+          <li>Multilingue complet</li>
+          <li>Fonctionnalités spécifiques</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Hébergement souverain France + nom de domaine : ≈ 150 € / an · Maintenance &amp; évolutions : 45 € / mois ou 450 € / an. Budgets indicatifs — à ajuster ensemble avant signature.</p>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap">
+    <div class="kicker">07 · Et maintenant ?</div>
+    <h2 class="sec">On <em>pousse la porte</em>.</h2>
+    <p class="lead" style="color:#c9d5cd">Cette proposition vous appartient. Testez les trois maquettes, choisissez une ambiance — ou panachez — et nous affinons ensemble le projet de la rue Centrale.</p>
+    <div class="contact-grid">
+      <div class="ct-card"><h3>Agence</h3><p>Alpesdata<br>Briançon (05)</p></div>
+      <div class="ct-card"><h3>Contact</h3><p>info@alpesdata.com<br>06 13 21 59 93</p></div>
+      <div class="ct-card"><h3>Prochaines étapes</h3><p>RDV en boutique pour le cadrage<br>+ photos réelles du magasin</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>Maquettes &amp; proposition réalisées par Alpesdata — août 2026 · Documents à usage de présentation.</footer>
+
+</body>
+</html>
