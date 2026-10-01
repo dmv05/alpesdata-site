@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fauteuil massant Robot Masseur — v2 | Alpesdata</title>
+<meta name="description" content="Fauteuils de massage thérapeutique en libre-service pour professionnels : salles d'attente, salles de sport, hôtels, commerces. Achat, location ou partenariat.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Fauteuil massant Robot Masseur">
+<meta property="og:description" content="Le geste d'un masseur-kiné, disponible 7 jours sur 7, à la demande — solutions pour professionnels.">
+<meta property="og:image" content="https://alpesdata.com/img-fauteuil-v2/og-fauteuil-v2.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --paper:#f7f5f0; --card:#fffdf9; --ink:#0e1a22; --ink2:#4b6170;
+    --line:#e4ddd0; --acc:#0f7d6c; --acc-d:#0a5a4e; --acc-soft:#e3f1ec;
+    --gold:#a8732a; --warn:#9a4d1d; --warn-bg:#fbf1e4;
+    --glow1:#2f9a88; --glow2:#7fd6c4; --glow3:#ff9a5c;
+    --dark:#0b141b; --dark2:#132430;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: Inter, system-ui, sans-serif; background: var(--paper); color: var(--ink); line-height: 1.62; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 28px; }
+  h1,h2,h3 { font-family: Fraunces, Georgia, serif; font-weight: 500; letter-spacing: -.015em; line-height: 1.12; }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .kicker { font-size: 12px; letter-spacing: .22em; text-transform: uppercase; font-weight: 600; color: var(--acc); }
+  .btn { display: inline-flex; align-items: center; gap: 10px; font-weight: 600; font-size: 14.5px; padding: 14px 28px; border-radius: 999px; border: 1px solid transparent; cursor: pointer; transition: .25s; white-space: nowrap; }
+  .btn-p { background: linear-gradient(120deg, var(--acc-d), var(--glow1)); color: #fff; box-shadow: 0 10px 26px rgba(15,125,108,.32); }
+  .btn-p:hover { transform: translateY(-2px); box-shadow: 0 16px 34px rgba(15,125,108,.42); }
+  .btn-g { border-color: rgba(255,255,255,.4); color: #fff; background: rgba(255,255,255,.06); backdrop-filter: blur(8px); }
+  .btn-g:hover { border-color: #fff; background: rgba(255,255,255,.14); }
+  .btn-d { border-color: var(--ink); color: var(--ink); background: transparent; }
+  .btn-d:hover { border-color: var(--acc); color: var(--acc-d); }
+  .btn-l { background: #fff; color: var(--ink); }
+  .btn-l:hover { background: #fff; transform: translateY(-2px); }
+
+  /* ---- bandeau page cachée ---- */
+  .hidden-strip { text-align:center; padding:7px; background:#0b141b; color:#8fd8c9; font-size:11px; letter-spacing:.06em; }
+
+  /* ---- nav ---- */
+  nav { position: sticky; top: 0; z-index: 60; background: rgba(11,20,27,.82); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(255,255,255,.08); }
+  nav .wrap { display: flex; align-items: center; gap: 26px; height: 70px; }
+  .logo { font-family: Fraunces, serif; font-size: 22px; font-weight: 600; color: #fff; }
+  .logo sup { font-size: 9px; color: var(--glow2); font-family: Inter; font-weight: 600; letter-spacing: .14em; margin-left: 4px; }
+  .nav-links { display: flex; gap: 22px; margin-left: auto; font-size: 14px; color: #b6c6ce; }
+  .nav-links a:hover { color: #fff; }
+  nav .btn { padding: 10px 20px; font-size: 13.5px; }
+
+  /* ---- hero ---- */
+  .hero { position: relative; color: #fff; padding: 84px 0 68px; overflow: hidden; background: var(--dark); }
+  .hero-bg { position: absolute; inset: -6%; background: url("img-fauteuil-v2/hero.webp") center/cover no-repeat; filter: blur(3px) saturate(1.15) brightness(.62); transform: scale(1.08); }
+  .hero-veil { position: absolute; inset: 0; background:
+      radial-gradient(900px 620px at 78% 8%, rgba(47,154,136,.42), transparent 62%),
+      radial-gradient(700px 520px at 8% 96%, rgba(255,154,92,.20), transparent 60%),
+      linear-gradient(100deg, rgba(11,20,27,.96) 0%, rgba(11,20,27,.86) 46%, rgba(11,20,27,.55) 100%); }
+  .hero-grid { position: relative; display: grid; grid-template-columns: 1.06fr .94fr; gap: 56px; align-items: center; }
+  .hero .kicker { color: var(--glow2); }
+  .hero h1 { font-size: clamp(38px, 5vw, 62px); margin: 20px 0 22px; text-shadow: 0 6px 40px rgba(0,0,0,.5); }
+  .hero h1 em { font-style: italic; background: linear-gradient(100deg, var(--glow2), #f2fffb 78%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .sub { color: #d6e3e8; font-size: 17.5px; max-width: 540px; }
+  .hero .pts { margin-top: 26px; display: flex; flex-direction: column; gap: 11px; font-size: 15px; color: #e7eff2; }
+  .hero .pts span { display: flex; gap: 11px; align-items: baseline; }
+  .hero .pts b { color: var(--glow2); }
+  .hero .ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 34px; }
+  .chair-stage { position: relative; border-radius: 26px; padding: 34px 26px 24px; background: linear-gradient(160deg, rgba(255,255,255,.13), rgba(255,255,255,.03)); border: 1px solid rgba(255,255,255,.16); backdrop-filter: blur(10px); box-shadow: 0 30px 70px rgba(0,0,0,.5); }
+  .chair-stage::before { content:""; position:absolute; left:50%; bottom:8%; width:74%; height:220px; transform:translateX(-50%); background: radial-gradient(closest-side, rgba(47,154,136,.55), transparent 72%); filter: blur(24px); z-index:0; }
+  #chair-hero { position: relative; z-index: 1; }
+  .chair-stage figcaption { position: relative; z-index: 1; font-size: 12.5px; color: #cfdde3; text-align: center; margin-top: 14px; font-style: italic; }
+  .cw-dots { position: relative; z-index: 1; display: flex; gap: 10px; justify-content: center; margin-top: 12px; }
+  .cw-dots button { width: 24px; height: 24px; border-radius: 50%; border: 2px solid rgba(255,255,255,.7); cursor: pointer; transition: .2s; }
+  .cw-dots button.active { transform: scale(1.18); box-shadow: 0 0 0 3px rgba(127,214,196,.8), 0 0 22px rgba(47,154,136,.9); }
+
+  /* ---- bandeau chiffres ---- */
+  .band { position: relative; margin-top: -34px; z-index: 5; }
+  .band .inner { display: grid; grid-template-columns: repeat(4, 1fr); background: linear-gradient(120deg, var(--dark2), #1b3644); border: 1px solid rgba(255,255,255,.1); border-radius: 20px; overflow: hidden; box-shadow: 0 26px 60px rgba(11,20,27,.34); }
+  .band .cell { padding: 26px 22px; border-right: 1px solid rgba(255,255,255,.08); }
+  .band .cell:last-child { border-right: 0; }
+  .band .num { font-family: Fraunces, serif; font-size: 30px; color: var(--glow2); line-height: 1; }
+  .band .lbl { font-size: 12px; color: #a9bcc4; text-transform: uppercase; letter-spacing: .09em; margin-top: 7px; }
+
+  section { padding: 92px 0; }
+  .sec-head { max-width: 680px; margin-bottom: 48px; }
+  .sec-head h2 { font-size: clamp(29px, 3.4vw, 44px); margin: 16px 0 14px; }
+  .sec-head p { color: var(--ink2); font-size: 16.5px; }
+
+  /* ---- photo cards ---- */
+  .photo-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .photo-card { position: relative; border-radius: 18px; overflow: hidden; aspect-ratio: 3/2; box-shadow: 0 18px 40px rgba(14,26,34,.14); }
+  .photo-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+  .photo-card:hover img { transform: scale(1.07); }
+  .photo-card::after { content:""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(11,20,27,.86) 6%, rgba(11,20,27,.22) 52%, rgba(11,20,27,0) 78%); }
+  .photo-card figcaption { position: absolute; left: 20px; right: 20px; bottom: 18px; z-index: 2; color: #fff; }
+  .photo-card .pc-t { font-family: Fraunces, serif; font-size: 19px; }
+  .photo-card .pc-s { font-size: 12.5px; color: #cfdde3; }
+  .photo-card .pc-ico { position: absolute; top: 14px; left: 16px; z-index: 2; font-size: 20px; filter: drop-shadow(0 2px 6px rgba(0,0,0,.6)); }
+
+  /* ---- le soin ---- */
+  .soin-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 60px; align-items: start; }
+  .soin-fig { position: relative; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 60px rgba(14,26,34,.22); position: sticky; top: 96px; }
+  .soin-fig img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: 4/5; }
+  .soin-fig::after { content:""; position:absolute; inset:0; background: linear-gradient(180deg, rgba(47,154,136,.10), rgba(11,20,27,.42)); }
+  .soin-badge { position: absolute; z-index: 3; left: 20px; bottom: 20px; right: 20px; background: rgba(255,255,255,.94); border-radius: 14px; padding: 14px 18px; font-size: 13.5px; color: var(--ink); backdrop-filter: blur(6px); }
+  .soin-badge b { color: var(--acc-d); }
+  .ed-row { padding: 30px 0; border-bottom: 1px solid var(--line); }
+  .ed-row:first-child { padding-top: 6px; }
+  .ed-row:last-of-type { border-bottom: 0; }
+  .ed-row .k { font-family: Fraunces, serif; font-size: 24px; margin-bottom: 12px; }
+  .ed-row .k small { display: block; font-family: Inter; font-size: 11.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--acc); font-weight: 700; margin-bottom: 9px; }
+  .ed-row .v { color: var(--ink2); }
+  .ed-row .v p + p { margin-top: 14px; }
+  .ed-row .v b { color: var(--ink); }
+  .zones { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .zones span { background: var(--acc-soft); color: var(--acc-d); font-size: 13px; font-weight: 600; padding: 7px 14px; border-radius: 999px; }
+
+  /* ---- programmes ---- */
+  .prog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .prog { background: var(--card); border: 1px solid var(--line); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column; box-shadow: 0 14px 34px rgba(14,26,34,.08); transition: transform .35s, box-shadow .35s; }
+  .prog:hover { transform: translateY(-6px); box-shadow: 0 26px 52px rgba(14,26,34,.16); }
+  .prog .ph { position: relative; aspect-ratio: 16/10; overflow: hidden; }
+  .prog .ph img { width: 100%; height: 100%; object-fit: cover; }
+  .prog .ph::after { content:""; position:absolute; inset:0; background: linear-gradient(to top, rgba(11,20,27,.55), transparent 60%); }
+  .prog .ph .pnum { position: absolute; z-index: 2; left: 16px; bottom: 12px; font-family: Fraunces, serif; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: #fff; }
+  .prog .body { padding: 24px 26px 28px; display: flex; flex-direction: column; flex: 1; }
+  .prog h3 { font-size: 23px; margin-bottom: 6px; }
+  .prog .duree { font-size: 13px; color: var(--acc); font-weight: 700; }
+  .prog p { font-size: 14.5px; color: var(--ink2); margin-top: 12px; }
+  .prog .tech { margin-top: auto; padding-top: 16px; font-size: 12.5px; color: var(--ink); }
+  .prog .tech span { display: inline-block; background: var(--paper); border: 1px solid var(--line); border-radius: 999px; padding: 6px 13px; margin: 4px 4px 0 0; }
+
+  .notice { border-left: 3px solid var(--gold); background: var(--warn-bg); padding: 18px 24px; font-size: 14px; color: var(--warn); border-radius: 0 12px 12px 0; margin-top: 30px; max-width: 860px; }
+  .notice b { color: var(--ink); }
+
+  /* ---- pros ---- */
+  .pros-sec { background: linear-gradient(180deg, #eef4f1 0%, var(--paper) 100%); border-block: 1px solid var(--line); }
+  .grid-offer { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .offer { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 34px 30px; display: flex; flex-direction: column; box-shadow: 0 14px 34px rgba(14,26,34,.08); }
+  .offer .tag2 { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .offer h3 { font-size: 23px; margin-bottom: 6px; }
+  .offer .who { font-size: 13.5px; color: var(--ink2); font-style: italic; }
+  .offer ul { list-style: none; margin: 22px 0 28px; font-size: 14.5px; }
+  .offer ul li { padding: 7px 0 7px 24px; position: relative; }
+  .offer ul li::before { content:""; position: absolute; left: 0; top: 16px; width: 12px; height: 2px; background: var(--acc); }
+  .offer .btn { margin-top: auto; align-self: flex-start; }
+  .offer.rec { background: linear-gradient(160deg, #e3f1ec, #f4fbf8); border-color: #bfe3d8; box-shadow: 0 20px 44px rgba(15,125,108,.16); }
+  .offer.rec .btn-p { width: 100%; justify-content: center; }
+
+  /* ---- chips ---- */
+  .chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
+  .chips span { border: 1px solid var(--line); background: var(--card); padding: 10px 18px; font-size: 13.5px; border-radius: 999px; transition: .2s; }
+  .chips span:hover { border-color: var(--acc); color: var(--acc-d); background: var(--acc-soft); }
+
+  /* ---- simulateur ---- */
+  .sim-sec { position: relative; overflow: hidden; background: var(--dark); color: #fff; }
+  .sim-bg { position: absolute; inset: 0; background: url("img-fauteuil-v2/attente.webp") center/cover; filter: blur(6px) brightness(.32) saturate(.7); transform: scale(1.1); }
+  .sim-sec .inner { position: relative; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; padding: 76px 0; }
+  .sim-sec h2 { color: #fff; font-size: clamp(28px,3.2vw,40px); margin-top: 12px; }
+  .sim-sec .kicker { color: var(--glow2); }
+  .sim-sec .lead { color: #c8d8de; margin-top: 14px; max-width: 520px; font-size: 15.5px; }
+  .sim-panel { background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14); border-radius: 20px; padding: 30px 34px; backdrop-filter: blur(12px); margin-top: 26px; }
+  .sim label { display: block; font-size: 12.5px; text-transform: uppercase; letter-spacing: .12em; color: #b9c9d1; margin: 18px 0 8px; }
+  .sim label:first-child { margin-top: 0; }
+  .sim output { font-family: Fraunces, serif; font-size: 25px; color: var(--glow2); margin-left: 12px; }
+  input[type=range] { width: 100%; accent-color: var(--glow1); }
+  .sim .result { text-align: center; border-radius: 22px; padding: 38px 40px; background: linear-gradient(160deg, rgba(47,154,136,.30), rgba(255,154,92,.14)); border: 1px solid rgba(255,255,255,.18); box-shadow: 0 24px 60px rgba(0,0,0,.4); }
+  .sim .result .lbl2 { font-size: 12.5px; letter-spacing: .14em; text-transform: uppercase; color: #cfe6e2; }
+  .sim .result .big { font-family: Fraunces, serif; font-size: 66px; line-height: 1; color: #fff; margin: 10px 0 6px; text-shadow: 0 6px 30px rgba(47,154,136,.6); }
+  .sim .result .note { font-size: 12.5px; color: #cfdde3; max-width: 240px; margin: 0 auto; }
+  .sim .foot { font-size: 12.5px; color: #9fb4bc; margin-top: 18px; font-style: italic; }
+
+  /* ---- specs ---- */
+  .spec-tbl { border-top: 2px solid var(--ink); }
+  .spec-row { display: grid; grid-template-columns: 260px 1fr; gap: 30px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 14.5px; }
+  .spec-row:hover { background: rgba(15,125,108,.035); }
+  .spec-row dt { color: var(--ink2); }
+  .spec-row dd { font-weight: 500; }
+  .spec-row dd .u { color: var(--ink2); font-weight: 400; font-size: 13px; }
+
+  details { border-bottom: 1px solid var(--line); }
+  details summary { list-style: none; cursor: pointer; padding: 22px 44px 22px 0; font-weight: 600; position: relative; font-family: Fraunces, serif; font-size: 18.5px; }
+  details summary::-webkit-details-marker { display: none; }
+  details summary::after { content:"↓"; position: absolute; right: 6px; top: 20px; color: var(--acc); transition: .25s; font-family: Inter; }
+  details[open] summary::after { transform: rotate(180deg); }
+  details p { color: var(--ink2); padding: 0 90px 24px 0; font-size: 15px; max-width: 800px; }
+
+  /* ---- contact ---- */
+  .contact-strip { position: relative; overflow: hidden; color: #fff; background: linear-gradient(115deg, #0b141b 0%, #12414a 52%, #1c6b5e 100%); padding: 76px 0; }
+  .contact-strip::before { content:""; position:absolute; top:-40%; right:-6%; width:520px; height:520px; border-radius:50%; background: radial-gradient(closest-side, rgba(127,214,196,.35), transparent 70%); }
+  .contact-strip .wrap { position: relative; display: flex; justify-content: space-between; gap: 34px; align-items: center; flex-wrap: wrap; }
+  .contact-strip h2 { color: #fff; font-size: clamp(26px,3vw,36px); max-width: 600px; }
+  .contact-strip .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-o { border-color: rgba(255,255,255,.45); color: #fff; }
+  .btn-o:hover { border-color: #fff; background: rgba(255,255,255,.1); }
+
+  footer { padding: 34px 0 52px; font-size: 13px; color: var(--ink2); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  footer .logo { color: var(--ink); font-family: Fraunces, serif; font-weight: 600; font-size: 17px; }
+
+  .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 940px) {
+    .hero { padding: 56px 0 46px; }
+    .hero-grid, .soin-grid, .prog-grid, .grid-offer, .photo-grid { grid-template-columns: 1fr; }
+    .soin-fig { position: static; }
+    .band .inner { grid-template-columns: repeat(2, 1fr); }
+    .band .cell { border-bottom: 1px solid rgba(255,255,255,.08); }
+    .sim-sec .inner { grid-template-columns: 1fr; padding: 56px 0; gap: 34px; }
+    .nav-links { display: none; }
+    .spec-row { grid-template-columns: 1fr; gap: 4px; }
+    section { padding: 62px 0; }
+    details p { padding-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hidden-strip">Alpesdata.com — Page cachée · Lien privé client · Version 2</div>
+
+<nav>
+  <div class="wrap">
+    <a class="logo" href="#top">Robot Masseur<sup>V2</sup></a>
+    <div class="nav-links">
+      <a href="#soin">Le soin</a>
+      <a href="#programmes">Programmes</a>
+      <a href="#lieux">Où l'installer</a>
+      <a href="#pros">Pour les pros</a>
+      <a href="#specs">Fiche technique</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <a class="btn btn-p" href="#contact">Étude gratuite</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-bg"></div>
+  <div class="hero-veil"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <p class="kicker">Massage thérapeutique en libre-service — professionnels</p>
+      <h1>Le geste d'un masseur-kiné, disponible <em>7 jours sur 7</em>, à la demande.</h1>
+      <p class="sub">Un massage profond qui détend les cervicales, décompresse le dos et relance la circulation : le fauteuil Robot Masseur applique les gestes du massage thérapeutique — pétrissage, pression, étirements — en automatique, à chaque séance.</p>
+      <div class="pts">
+        <span><b>✓</b> Une vraie séance d'entretien du dos, entre deux passages chez le kiné</span>
+        <span><b>✓</b> Sans rendez-vous, sans déplacement, sans attente</span>
+        <span><b>✓</b> Et pour vous, une nouvelle source de revenus</span>
+      </div>
+      <div class="ctas">
+        <a class="btn btn-p" href="#programmes">Découvrir les programmes</a>
+        <a class="btn btn-g" href="#simulateur">Estimer mes revenus</a>
+      </div>
+    </div>
+    <figure class="chair-stage">
+      <div id="chair-hero"></div>
+      <figcaption>Modèle BL-130A — massage du cou aux mollets · coloris au choix</figcaption>
+      <div class="cw-dots" id="dots">
+        <button data-cw="bleu" class="active" style="background:#2a4f74" title="Bleu"></button>
+        <button data-cw="noir" style="background:#2a2e36" title="Noir"></button>
+        <button data-cw="orange" style="background:#c96a2e" title="Orange"></button>
+      </div>
+    </figure>
+  </div>
+</header>
+
+<div class="band">
+  <div class="wrap">
+    <div class="inner">
+      <div class="cell"><div class="num">135 cm</div><div class="lbl">de massage continu</div></div>
+      <div class="cell"><div class="num">24</div><div class="lbl">coussins d'air</div></div>
+      <div class="cell"><div class="num">6</div><div class="lbl">moteurs de massage</div></div>
+      <div class="cell"><div class="num">0 g</div><div class="lbl">position décompression</div></div>
+    </div>
+  </div>
+</div>
+
+<section id="lieux">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Où l'installer</p>
+      <h2>Des lieux où le besoin de soin se fait sentir</h2>
+      <p>Partout où des gens attendent, travaillent ou récupèrent : le fauteuil transforme un temps mort en séance de détente — et en recette.</p>
+    </div>
+    <div class="photo-grid reveal">
+      <figure class="photo-card">
+        <span class="pc-ico">🩺</span>
+        <img src="img-fauteuil-v2/attente.webp" alt="Salle d'attente de cabinet médical" width="960" height="640" loading="lazy">
+        <figcaption><div class="pc-t">Salles d'attente</div><div class="pc-s">Cabinets médicaux, kiné, ostéo, laboratoires</div></figcaption>
+      </figure>
+      <figure class="photo-card">
+        <span class="pc-ico">🏋️</span>
+        <img src="img-fauteuil-v2/sport.webp" alt="Salle de sport et de fitness" width="960" height="640" loading="lazy">
+        <figcaption><div class="pc-t">Salles de sport</div><div class="pc-s">Fitness, crossfit, centres wellness</div></figcaption>
+      </figure>
+      <figure class="photo-card">
+        <span class="pc-ico">🛍️</span>
+        <img src="img-fauteuil-v2/commerces.webp" alt="Centre commercial" width="960" height="640" loading="lazy">
+        <figcaption><div class="pc-t">Centres commerciaux</div><div class="pc-s">Galeries, retail parks, showrooms</div></figcaption>
+      </figure>
+      <figure class="photo-card">
+        <span class="pc-ico">💻</span>
+        <img src="img-fauteuil-v2/bureaux.webp" alt="Espace de bureaux" width="960" height="640" loading="lazy">
+        <figcaption><div class="pc-t">Bureaux & coworking</div><div class="pc-s">Pause cervicales pour métiers assis</div></figcaption>
+      </figure>
+      <figure class="photo-card">
+        <span class="pc-ico">✈️</span>
+        <img src="img-fauteuil-v2/voyages.webp" alt="Aéroport et gare" width="960" height="640" loading="lazy">
+        <figcaption><div class="pc-t">Gares & aéroports</div><div class="pc-s">Temps d'attente, zones de transit</div></figcaption>
+      </figure>
+      <figure class="photo-card">
+        <span class="pc-ico">🧖</span>
+        <img src="img-fauteuil-v2/hotels.webp" alt="Spa et espace bien-être" width="960" height="640" loading="lazy">
+        <figcaption><div class="pc-t">Hôtels & spas</div><div class="pc-s">Zones bien-être, après-ski, séminaires</div></figcaption>
+      </figure>
+    </div>
+    <div class="chips reveal">
+      <span>Cabinets de kinésithérapie & ostéopathie</span><span>Salles de sport & centres wellness</span><span>Cabinets médicaux & paramédicaux</span><span>Cliniques vétérinaires</span><span>Centres de rééducation & maisons de repos</span><span>EHPAD & résidences seniors</span><span>Salles d'attente de toutes spécialités</span><span>Centres commerciaux</span><span>Gares, aéroports</span><span>Hôtels & spas</span><span>Opticiens & audioprothésistes</span><span>Showrooms & concessions</span><span>Espaces de coworking</span><span>Laveries & stations-service</span>
+    </div>
+  </div>
+</section>
+
+<section id="soin" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Le soin</p>
+      <h2>Les gestes du massage thérapeutique, reproduits avec précision</h2>
+      <p>Conçu sur la base des techniques utilisées en massage kinésithérapique, le fauteuil Robot Masseur délivre un travail musculaire profond et progressif.</p>
+    </div>
+    <div class="soin-grid">
+      <figure class="soin-fig reveal">
+        <img src="img-fauteuil-v2/soin.webp" alt="Séance de massage professionnel" width="960" height="640" loading="lazy">
+        <div class="soin-badge"><b>10 à 20 minutes</b> par séance — l'utilisateur choisit son programme et son intensité, l'appareil s'arrête seul.</div>
+      </figure>
+      <div>
+        <div class="ed-row reveal">
+          <div class="k"><small>Ce que ressent l'utilisateur</small>Comme une séance chez un praticien</div>
+          <div class="v">
+            <p>Le rail de 135 cm fait travailler chaque étage de la colonne, des cervicales aux lombaires, par <b>pétrissage et pression progressifs</b> — la même alternance de gestes qu'un massage manuel profond.</p>
+            <p>Les <b>24 coussins d'air</b> compriment et relâchent les groupes musculaires pour <b>relancer la circulation</b> ; l'inclinaison <b>zéro gravité</b> soulage la pression sur les disques intervertébraux pendant la séance.</p>
+            <div class="zones"><span>Neck-cervicales</span><span>Dos</span><span>Lombaires</span><span>Jambes & mollets</span></div>
+          </div>
+        </div>
+        <div class="ed-row reveal">
+          <div class="k"><small>Au quotidien</small>L'entretien du corps, pas le soin des maladies</div>
+          <div class="v">
+            <p>Fatigue musculaire, raideurs de fin de journée, dos « verrouillé » après une journée assise, courbatures après le sport : le massage Robot Masseur est un <b>rituel de récupération et de remise en forme</b>, au même titre qu'une séance d'étirements ou un bain chaud.</p>
+            <p>Beaucoup d'utilisateurs le décrivent comme <b>leur séance d'entretien entre deux rendez-vous de kiné</b> : le fauteuil ne remplace pas un avis médical, il prolonge les bienfaits de vos séances.</p>
+          </div>
+        </div>
+        <div class="ed-row reveal">
+          <div class="k"><small>La technologie</small>Chaque corps est différent, le massage s'adapte</div>
+          <div class="v">
+            <p>La <b>détection morphologique</b> scanne la silhouette à chaque séance et adapte la position des rouleaux à la taille et à la cambrure de l'utilisateur — comme un praticien qui ajuste son geste.</p>
+            <p>L'intensité, la durée et les zones se règlent programme par programme. L'appareil <b>s'arrête automatiquement</b> en fin de séance, avec alarme d'occupation et pilotage à distance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="programmes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Programmes</p>
+      <h2>Trois parcours pensés comme des séances</h2>
+      <p>Des séquences de 10 à 20 minutes, réglables en intensité, adaptables à la population de votre établissement.</p>
+    </div>
+    <div class="prog-grid reveal">
+      <div class="prog">
+        <div class="ph"><span class="pnum">Programme 01</span><img src="img-fauteuil-v2/soin.webp" alt="Programme dos et détente" width="960" height="640" loading="lazy"></div>
+        <div class="body">
+          <h3>Dos & détente</h3>
+          <div class="duree">15 min · intensité douce à moyenne</div>
+          <p>Le grand classique : déroulement complet du rail, pression soutenue sur le dos et les lombaires, finition en zéro gravité pour relâcher la colonne.</p>
+          <div class="tech"><span>Pétrissage</span><span>Pression glissée</span><span>Étirement doux</span></div>
+        </div>
+      </div>
+      <div class="prog">
+        <div class="ph"><span class="pnum">Programme 02</span><img src="img-fauteuil-v2/sport.webp" alt="Programme récupération sportive" width="960" height="640" loading="lazy"></div>
+        <div class="body">
+          <h3>Récupération sportive</h3>
+          <div class="duree">20 min · intensité moyenne à forte</div>
+          <p>Pour les salles de sport et centres de bien-être : travail musculaire appuyé, compression des jambes par les airbags pour aider à la récupération après l'effort.</p>
+          <div class="tech"><span>Percussion</span><span>Compression airbags</span><span>Drainage jambes</span></div>
+        </div>
+      </div>
+      <div class="prog">
+        <div class="ph"><span class="pnum">Programme 03</span><img src="img-fauteuil-v2/bureaux.webp" alt="Programme express cervicales" width="960" height="640" loading="lazy"></div>
+        <div class="body">
+          <h3>Express cervicales</h3>
+          <div class="duree">10 min · intensité douce</div>
+          <p>La pause de la journée : ciblage du haut du dos et de la nuque pour les métiers de bureau, les soignants et tous ceux qui restent longtemps en tension.</p>
+          <div class="tech"><span>Ciblage nuque</span><span>Pression points</span><span>Finition douce</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="notice reveal">
+      <b>Information importante :</b> le fauteuil Robot Masseur est un appareil de massage et de détente, <b>pas un dispositif médical</b>. Il ne remplace ni un kinésithérapeute, ni un médecin, ni un traitement. Comme pour tout massage, son utilisation est déconseillée aux personnes porteuses d'un pacemaker ou de problèmes cardiaques, aux femmes enceintes, aux personnes porteuses d'implants métalliques ou de lésions cutanées — en cas de doute, demander l'avis d'un médecin.
+    </div>
+  </div>
+</section>
+
+<section id="pros" class="pros-sec">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Pour votre établissement</p>
+      <h2>Un service qui soigne l'expérience… et la rentabilité</h2>
+      <p>Le fauteuil se paie seul : vos clients massent, se détendent et paient à la séance. Vous, vous encaissez sans personnel supplémentaire.</p>
+    </div>
+    <div class="grid-offer reveal">
+      <div class="offer">
+        <div class="tag2">Achat</div>
+        <h3>Vous investissez</h3>
+        <div class="who">Indépendants & commerces</div>
+        <ul>
+          <li>Recettes 100 % pour vous</li>
+          <li>Mise en service & formation incluses</li>
+          <li>Garantie 2 ans pièces & main-d'œuvre</li>
+          <li>Amortissement typique 12 à 24 mois*</li>
+        </ul>
+        <a class="btn btn-d" href="#contact">Recevoir un devis</a>
+      </div>
+      <div class="offer rec">
+        <div class="tag2">Location — recommandée</div>
+        <h3>Vous louez</h3>
+        <div class="who">Sans immobiliser de capital</div>
+        <ul>
+          <li>Loyer tout compris, SAV inclus</li>
+          <li>Zéro trésorerie engagée</li>
+          <li>Fauteuil mis à jour à chaque génération</li>
+          <li>Le loyer se paie par les recettes</li>
+        </ul>
+        <a class="btn btn-p" href="#contact">Étudier ma rentabilité</a>
+      </div>
+      <div class="offer">
+        <div class="tag2">Partenariat</div>
+        <h3>Nous co-investissons</h3>
+        <div class="who">Galeries, gares, réseaux</div>
+        <ul>
+          <li>Nous installons et exploitons</li>
+          <li>Partage des recettes mensuel</li>
+          <li>Pilotage, collecte, maintenance à notre charge</li>
+          <li>Étude de flux et de rentabilité fournie</li>
+        </ul>
+        <a class="btn btn-d" href="#contact">Rencontrer un expert</a>
+      </div>
+    </div>
+    <p style="font-size:12.5px;color:var(--ink2);margin-top:18px">* Estimation indicative selon flux et tarif — chaque dossier fait l'objet d'une étude personnalisée.</p>
+  </div>
+</section>
+
+<section id="simulateur" class="sim-sec">
+  <div class="sim-bg"></div>
+  <div class="wrap inner">
+    <div>
+      <p class="kicker">Simulateur</p>
+      <h2>Combien rapporte un fauteuil chez vous ?</h2>
+      <p class="lead">Réglez la fréquentation et le tarif de la séance : l'estimation se met à jour instantanément.</p>
+      <div class="sim-panel sim">
+        <label>Fréquentation estimée — séances par jour <output id="o-nb">18</output></label>
+        <input type="range" id="r-nb" min="2" max="60" value="18">
+        <label>Tarif de la séance <output id="o-px">2,00 €</output></label>
+        <input type="range" id="r-px" min="1" max="3" step="0.5" value="2">
+        <p class="foot">Estimation hors taxes, fondée sur un taux d'occupation réaliste. Affinez-la avec notre étude gratuite.</p>
+      </div>
+    </div>
+    <div class="result">
+      <div class="lbl2">Revenu mensuel estimé</div>
+      <div class="big" id="res">1 080 €</div>
+      <div class="note" id="res-note">Hypothèse : 18 séances/jour × 2,00 € × 30 j.</div>
+    </div>
+  </div>
+</section>
+
+<section id="specs">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">Spécifications</p>
+      <h2>Fiche technique — modèle BL-130A</h2>
+    </div>
+    <dl class="spec-tbl reveal">
+      <div class="spec-row"><dt>Type de massage</dt><dd>Thérapeutique : pétrissage, pression, percussion, compression par airbags — rail 135 cm, techniques bioniques IA</dd></div>
+      <div class="spec-row"><dt>Zones couvertes</dt><dd>Cervicales, dos, lombaires, jambes et mollets</dd></div>
+      <div class="spec-row"><dt>Mécanique</dt><dd>24 coussins d'air · 6 moteurs · détection morphologique automatique</dd></div>
+      <div class="spec-row"><dt>Confort</dt><dd>Position zéro gravité réglable · arrêt automatique de fin de séance</dd></div>
+      <div class="spec-row"><dt>Programmes</dt><dd>Dos & détente · Récupération sportive · Express cervicales — intensités et durées réglables</dd></div>
+      <div class="spec-row"><dt>Paiement</dt><dd>Pièces, billets, jetons — CB / QR en option · caisse sécurisée intégrée</dd></div>
+      <div class="spec-row"><dt>Sécurité & pilotage</dt><dd>Alarme d'occupation · suivi des séances et recettes à distance</dd></div>
+      <div class="spec-row"><dt>Gain de place</dt><dd>Recul automatique en 1 touche · distance mur : 15 cm · ~2 m² au sol</dd></div>
+      <div class="spec-row"><dt>Matières</dt><dd>ABS + cuir microfiber premium</dd></div>
+      <div class="spec-row"><dt>Alimentation</dt><dd>120 W <span class="u">— prise standard</span></dd></div>
+      <div class="spec-row"><dt>Poids</dt><dd>85 kg <span class="u">net</span> · 105 kg <span class="u">brut</span></dd></div>
+      <div class="spec-row"><dt>Colis</dt><dd>143 × 79 × 114 cm</dd></div>
+      <div class="spec-row"><dt>Coloris</dt><dd>Bleu · Noir · Orange <span class="u">— personnalisation possible (couleurs & logo)</span></dd></div>
+      <div class="spec-row"><dt>Garantie & SAV</dt><dd>2 ans pièces et main-d'œuvre · intervention sous 48 h ouvrées</dd></div>
+    </dl>
+  </div>
+</section>
+
+<section id="faq" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="kicker">FAQ</p>
+      <h2>Les questions qu'on nous pose vraiment</h2>
+    </div>
+    <details open><summary>Ce fauteuil remplace-t-il un kinésithérapeute ?</summary><p>Non, et c'est important de le dire clairement : le fauteuil ne soigne pas et ne remplace ni un diagnostic, ni un traitement de kinésithérapie. En revanche, il fait un excellent travail d'entretien au quotidien — détente musculaire, récupération, souplesse — et de nombreux utilisateurs l'utilisent « entre deux séances » chez leur praticien pour prolonger les bienfaits. C'est un outil de remise en forme et de bien-être, pas un acte médical.</p></details>
+    <details><summary>Y a-t-il des personnes qui ne doivent pas l'utiliser ?</summary><p>Oui, comme pour tout massage : personnes porteuses d'un pacemaker ou de problèmes cardiaques, femmes enceintes, porteurs d'implants métalliques, lésions cutanées ou inflammations en cours. Une signalétique claire est fournie avec l'appareil. En cas de doute, l'avis d'un médecin s'impose.</p></details>
+    <details><summary>Combien de temps dure une séance ?</summary><p>Les programmes durent de 10 à 20 minutes, avec arrêt automatique en fin de séance. L'utilisateur peut choisir le programme et l'intensité sur l'écran ; vous fixez le tarif de la séance.</p></details>
+    <details><summary>Quelles sont les conditions d'implantation ?</summary><p>Une prise électrique standard et environ 2 m² à proximité d'un mur (15 cm suffisent). Nos équipes valident l'emplacement avec vous — c'est la première condition de la rentabilité.</p></details>
+    <details><summary>Qui fixe le prix des séances ?</summary><p>Vous, librement — de 1 à 3 € selon la durée. Le tarif se règle sur l'appareil et peut être modifié à distance par nos équipes si vous le souhaitez.</p></details>
+    <details><summary>L'entretien et les pannes sont-ils couverts ?</summary><p>Oui : télésurveillance de l'appareil, garantie 2 ans pièces et main-d'œuvre, intervention sous 48 h ouvrées. En location, le SAV est inclus dans le loyer.</p></details>
+  </div>
+</section>
+
+<div class="contact-strip" id="contact">
+  <div class="wrap">
+    <h2>Un lieu fréquenté, un public qui a besoin de détente ? Parlons-en.</h2>
+    <div class="ctas">
+      <a class="btn btn-l" href="mailto:info@robot-masseur.fr">Écrire à info@robot-masseur.fr</a>
+      <a class="btn btn-o" href="tel:0600000000">Appeler le 06 00 00 00 00</a>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span class="logo">Robot Masseur</span>
+    <span>© 2026 Robot Masseur — robot-masseur.fr · Mentions légales · CGV · Politique de confidentialité · Conçu par Alpesdata (Briançon)</span>
+  </div>
+</footer>
+
+<script>
+const CHAIR = `<svg viewBox="0 0 480 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Fauteuil massant">
+  <defs>
+    <linearGradient id="backGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="var(--skin-1)"/><stop offset="1" stop-color="var(--skin-2)"/>
+    </linearGradient>
+  </defs>
+  <ellipse cx="240" cy="538" rx="185" ry="12" fill="rgba(0,0,0,.45)"/>
+  <path d="M88 208 Q80 130 150 96 Q220 62 330 96 Q400 130 392 208 L392 432 Q392 470 350 476 L130 476 Q88 470 88 432 Z" fill="url(#backGrad)" stroke="#08131b" stroke-width="3"/>
+  <rect x="168" y="50" width="144" height="76" rx="38" fill="var(--pillow)" stroke="#08131b" stroke-width="3"/>
+  <path d="M200 92 q20 -15 40 0 q20 15 40 0" fill="none" stroke="var(--seam)" stroke-width="3" opacity=".7"/>
+  <rect x="196" y="98" width="88" height="48" rx="24" fill="none" stroke="var(--acc)" stroke-width="4" stroke-dasharray="2 10" stroke-linecap="round" opacity=".95"/>
+  <circle cx="217" cy="122" r="7" fill="var(--acc)" opacity=".9"/><circle cx="263" cy="122" r="7" fill="var(--acc)" opacity=".9"/>
+  <path d="M64 332 q-28 -4 -27 -36 q2 -52 45 -54 q18 -2 22 22 v108 q-6 24 -40 22 z" fill="var(--arm)" stroke="#08131b" stroke-width="3"/>
+  <path d="M416 332 q28 -4 27 -36 q-2 -52 -45 -54 q-18 -2 -22 22 v108 q6 24 40 22 z" fill="var(--arm)" stroke="#08131b" stroke-width="3"/>
+  <rect x="106" y="386" width="268" height="80" rx="36" fill="var(--seat)" stroke="#08131b" stroke-width="3"/>
+  <path d="M138 428 h204" stroke="var(--seam)" stroke-width="3" opacity=".6"/>
+  <rect x="148" y="452" width="184" height="32" rx="16" fill="var(--pillow)" stroke="#08131b" stroke-width="2.5" opacity=".9"/>
+  <g stroke="var(--acc)" stroke-width="4" opacity=".9">
+    <path d="M120 470 q40 14 240 -2"/><path d="M120 470 q40 22 240 -2"/>
+  </g>
+  <rect x="338" y="484" width="52" height="20" rx="10" fill="var(--pillow)" stroke="#08131b" stroke-width="2.5"/>
+  <rect x="398" y="484" width="52" height="20" rx="10" fill="var(--pillow)" stroke="#08131b" stroke-width="2.5"/>
+  <circle cx="374" cy="494" r="4" fill="var(--acc)"/>
+  <circle cx="424" cy="494" r="4" fill="var(--acc)"/>
+  <path d="M56 468 L430 236" stroke="var(--acc)" stroke-width="2" stroke-dasharray="2 10" opacity=".25"/>
+</svg>`;
+
+const VARS = {
+  bleu:  { '--skin-1':'#2b5b86','--skin-2':'#0d1c2e','--pillow':'#2a4f74','--seat':'#152c44','--arm':'#112238','--seam':'#9fcdf5','--acc':'#4fd6bf' },
+  noir:  { '--skin-1':'#3a4049','--skin-2':'#0f1114','--pillow':'#343944','--seat':'#20242b','--arm':'#1a1d23','--seam':'#7c848f','--acc':'#4fd6bf' },
+  orange:{ '--skin-1':'#b3560f','--skin-2':'#401d06','--pillow':'#c4661c','--seat':'#7a360b','--arm':'#5e2a0b','--seam':'#ffc79a','--acc':'#ff9a5c' }
+};
+function mountChair(id, cw) {
+  const el = document.getElementById(id);
+  el.innerHTML = CHAIR;
+  Object.entries(VARS[cw]).forEach(([k, v]) => el.style.setProperty(k, v));
+  Object.assign(el.style, { display:'block', width:'100%', maxWidth:'340px', margin:'0 auto', filter:'drop-shadow(0 30px 40px rgba(0,0,0,.55))' });
+}
+mountChair('chair-hero', 'bleu');
+document.querySelectorAll('#dots button').forEach(b => b.addEventListener('click', () => {
+  document.querySelectorAll('#dots button').forEach(x => x.classList.remove('active'));
+  b.classList.add('active');
+  mountChair('chair-hero', b.dataset.cw);
+}));
+
+const nbEl = document.getElementById('r-nb'), pxEl = document.getElementById('r-px');
+const onb = document.getElementById('o-nb'), opx = document.getElementById('o-px');
+const res = document.getElementById('res'), note = document.getElementById('res-note');
+function fmt(x){ return x.toLocaleString('fr-FR').replace(/\u202f/g,' '); }
+function calc(){
+  const nb = +nbEl.value, px = +pxEl.value;
+  onb.textContent = nb;
+  opx.textContent = px.toFixed(2).replace('.', ',') + ' €';
+  const monthly = Math.round(nb * px * 30);
+  res.textContent = fmt(monthly) + ' €';
+  note.textContent = 'Hypothèse : ' + nb + ' séances/jour × ' + px.toFixed(2).replace('.', ',') + ' € × 30 j — à confronter à votre flux réel.';
+}
+nbEl.addEventListener('input', calc); pxEl.addEventListener('input', calc);
+calc();
+
+/* apparitions au défilement — sans JS, tout reste visible */
+if ('IntersectionObserver' in window) {
+  const io = new IntersectionObserver((es) => {
+    es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: .06 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  setTimeout(() => document.querySelectorAll('.reveal:not(.in)').forEach(el => el.classList.add('in')), 2500);
+}
+</script>
+</body>
+</html>
