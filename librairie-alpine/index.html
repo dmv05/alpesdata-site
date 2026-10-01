@@ -34,8 +34,12 @@
   .shot{border-radius:12px;overflow:hidden;border:1px solid var(--line);margin:16px 0;box-shadow:0 14px 30px rgba(34,48,42,.12)}
   .shot img{width:100%;display:block}
   .shot.old img{aspect-ratio:4/3.1;object-fit:cover;object-position:top}
-  .shot.new{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-  .shot.new img{aspect-ratio:3/4.4;object-fit:cover;object-position:top}
+  .shot.new{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+  .shot.new a{display:block;position:relative;border-radius:10px;overflow:hidden;border:1px solid var(--line);text-decoration:none}
+  .shot.new a img{border:0;border-radius:0;aspect-ratio:3/4.4;object-fit:cover;object-position:top;transition:transform .4s}
+  .shot.new a:hover img{transform:scale(1.04)}
+  .shot.new a .lab{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,transparent,rgba(34,48,42,.86));color:#fff;font-size:11.5px;font-weight:700;padding:22px 10px 9px;letter-spacing:.02em}
+  .shot.new a .lab span{display:block;font-weight:400;opacity:.85;font-size:10.5px}
   .cap{font-size:12px;color:var(--muted);margin-top:8px;font-style:italic}
   ul.lst{list-style:none;margin-top:14px}
   ul.lst li{padding:8px 0 8px 26px;position:relative;font-size:14px;border-bottom:1px dashed var(--line)}
@@ -73,7 +77,7 @@
   <div class="wrap">
     <div class="k">Alpesdata — Proposition site vitrine</div>
     <h1>Librairie Alpine : <em>l'avant / après</em></h1>
-    <p>Ce que la boutique montrait hier — et ce qu'elle pourrait montrer demain. L'ancienne version est la page d'archive réelle (le site librairie-alpine.fr ne fait plus que rediriger vers un annuaire). Les trois nouvelles versions sont les maquettes proposées par Alpesdata.</p>
+    <p>Ce que la boutique montrait hier — et ce qu'elle pourrait montrer demain. L'ancienne version est la page d'archive réelle (le site librairie-alpine.fr ne fait plus que rediriger vers un annuaire). Les quatre nouvelles versions sont les maquettes proposées par Alpesdata.</p>
   </div>
 </header>
 
@@ -99,11 +103,24 @@
       <span class="tag">Après — la proposition Alpesdata</span>
       <h2>Un vrai site vitrine, deux univers</h2>
       <div class="shot new">
-        <img src="shots/v1-papier-sapin.png" alt="Variante 1 Papier & Sapin">
-        <img src="shots/v2-vitrine-ensoleillee.png" alt="Variante 2 Vitrine Ensoleillée">
-        <img src="shots/v3-noir-elegant.png" alt="Variante 3 Noir Élégant">
+        <a href="v1-papier-sapin/" target="_blank" rel="noopener">
+          <img src="shots/v1-papier-sapin.png" alt="Variante 1 Papier et Sapin">
+          <span class="lab">Variante 1 — Papier &amp; Sapin<span>Éditorial crème, sérif classique</span></span>
+        </a>
+        <a href="v2-vitrine-ensoleillee/" target="_blank" rel="noopener">
+          <img src="shots/v2-vitrine-ensoleillee.png" alt="Variante 2 Vitrine Ensoleillée">
+          <span class="lab">Variante 2 — Vitrine Ensoleillée<span>Lumineux, familial, jaune soleil</span></span>
+        </a>
+        <a href="v3-noir-elegant/" target="_blank" rel="noopener">
+          <img src="shots/v3-noir-elegant.png" alt="Variante 3 Noir Élégant">
+          <span class="lab">Variante 3 — Noir Élégant<span>Premium, nuit alpine, contraste fort</span></span>
+        </a>
+        <a href="v4-flashy/" target="_blank" rel="noopener">
+          <img src="shots/v4-flashy.png" alt="Variante 4 Vitrine Flashy">
+          <span class="lab">Variante 4 — Vitrine Flashy<span>Photos réelles, dégradés vifs, animations</span></span>
+        </a>
       </div>
-      <div class="cap">Les trois directions proposées — Papier &amp; Sapin · Vitrine Ensoleillée · Noir Élégant (maquettes cliquables).</div>
+      <div class="cap">Les quatre directions proposées — Papier &amp; Sapin · Vitrine Ensoleillée · Noir Élégant · <b>Vitrine Flashy</b> : cliquez sur une vignette pour ouvrir la maquette.</div>
       <ul class="lst ok">
         <li><b>Image moderne</b> et chaleureuse, 100 % mobile</li>
         <li>Photos <b>réelles</b> de la boutique (à venir)</li>
@@ -122,7 +139,7 @@
     <table>
       <tr><th>Critère</th><th>Ancienne version</th><th>Nouvelle version</th></tr>
       <tr><td class="crit">Format</td><td class="old">Fiche dans un annuaire local (brianconnais.pro) — le domaine ne fait que rediriger</td><td class="new"><b class="ok">Site vitrine autonome</b> : librairie-alpine.fr (ou nouveau nom) héberge un vrai site</td></tr>
-      <tr><td class="crit">Design</td><td class="old"><b class="x">Fond noir</b>, style années 2000, illustrations d'époque</td><td class="new"><b class="ok">3 directions modernes</b> : éditorial crème, lumineux familial, noir premium</td></tr>
+      <tr><td class="crit">Design</td><td class="old"><b class="x">Fond noir</b>, style années 2000, illustrations d'époque</td><td class="new"><b class="ok">4 directions modernes</b> : éditorial crème, lumineux familial, noir premium, vitrine flashy</td></tr>
       <tr><td class="crit">Mobile</td><td class="old"><b class="x">Non adapté</b> aux smartphones</td><td class="new"><b class="ok">Conçu mobile d'abord</b> : parfait sur téléphone, tablette, ordinateur</td></tr>
       <tr><td class="crit">King Jouet</td><td class="old"><b class="x">Absent</b> de la présentation (autre fiche d'annuaire)</td><td class="new"><b class="ok">Espace dédié</b>, visible dans la navigation et la page d'accueil</td></tr>
       <tr><td class="crit">Rayons</td><td class="old">Énumérés en texte brut</td><td class="new"><b class="ok">6 univers illustrés</b> : livres, presse, papeterie, montagne, confiserie, jeux</td></tr>
@@ -150,7 +167,7 @@
 
 </div>
 
-<footer>Récapitulatif avant / après — maquettes &amp; proposition Alpesdata, août 2026 · Capture de l'ancienne version : page réelle archivée.</footer>
+<footer>Récapitulatif avant / après — maquettes &amp; proposition Alpesdata, août 2026 · variante 4 « Vitrine Flashy » ajoutée le 1<sup>er</sup> octobre 2026 · Capture de l'ancienne version : page réelle archivée.</footer>
 
 </body>
 </html>
