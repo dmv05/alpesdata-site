@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionnaire de stage — avant la visio | Alpesdata</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Questionnaire à remplir par le stagiaire avant la visio de préparation de stage — Alpesdata, Briançon.">
+<link rel="icon" type="image/png" href="/favicon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#1B395A; --navy-light:#2A5078; --navy-dark:#0F2640;
+    --cream:#F7EBED; --cream-dark:#e8d5d8; --clay:#806065; --clay-light:#c49ea2;
+    --text:#2d2d2d; --text-light:#666; --white:#fff;
+    --ok:#1e7a4a; --warn:#a5382a; --radius:16px;
+    --shadow:0 6px 24px rgba(15,38,64,.10);
+    --shadow-l:0 18px 50px rgba(15,38,64,.16);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Inter',system-ui,-apple-system,sans-serif; color:var(--text);
+    background:linear-gradient(180deg,#fbfbfc 0%,#f4f1f2 100%); line-height:1.55;
+    -webkit-font-smoothing:antialiased; padding-bottom:120px;
+  }
+  .strip{background:var(--navy-dark);color:#cfd8e3;font-size:.72rem;letter-spacing:.06em;
+    text-transform:uppercase;padding:8px 16px;text-align:center}
+  .strip b{color:#fff;font-weight:600}
+  header.hero{background:var(--navy);color:#fff;padding:34px 20px 30px;position:relative;overflow:hidden}
+  header.hero:after{content:"";position:absolute;right:-90px;top:-90px;width:260px;height:260px;border-radius:50%;
+    background:radial-gradient(circle at 30% 30%,rgba(196,158,162,.45),transparent 70%)}
+  .wrap{max-width:820px;margin:0 auto}
+  .kicker{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--clay-light);font-weight:600}
+  h1{font-family:'Syne',sans-serif;font-size:clamp(1.5rem,5vw,2.1rem);font-weight:700;line-height:1.15;margin:10px 0 8px}
+  .hero p{color:#d7e0ea;font-size:.98rem;max-width:60ch}
+  .hero .facts{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .fact{background:rgba(255,255,255,.11);border:1px solid rgba(255,255,255,.18);border-radius:999px;
+    padding:5px 12px;font-size:.78rem;color:#eef3f9}
+  main{padding:0 16px}
+  .progress{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid #e6e3e4;margin:0 -16px 18px;padding:10px 16px}
+  .progress .bar{height:6px;border-radius:99px;background:#e8e2e3;overflow:hidden}
+  .progress .bar span{display:block;height:100%;width:12%;background:linear-gradient(90deg,var(--clay),var(--navy-light));
+    border-radius:99px;transition:width .35s cubic-bezier(.4,0,.2,1)}
+  .progress .meta{display:flex;justify-content:space-between;font-size:.76rem;color:var(--text-light);margin-top:6px}
+  .progress .meta b{color:var(--navy)}
+  .step{display:none;animation:fade .35s ease}
+  .step.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .card{background:var(--white);border-radius:var(--radius);box-shadow:var(--shadow);padding:22px 20px;margin-bottom:18px}
+  .card h2{font-family:'Syne',sans-serif;font-size:1.16rem;color:var(--navy);margin-bottom:4px}
+  .card .hint{color:var(--text-light);font-size:.88rem;margin-bottom:16px}
+  .q{border-top:1px solid #f0ecec;padding:16px 0}
+  .q:first-of-type{border-top:none;padding-top:4px}
+  .q > label{display:block;font-weight:600;font-size:.95rem;color:var(--navy-dark);margin-bottom:3px}
+  .q .ex{font-size:.8rem;color:var(--text-light);margin-bottom:9px}
+  input[type=text],input[type=email],input[type=tel],input[type=date],textarea,select{
+    width:100%;padding:12px 14px;border:1.5px solid #e2dcdd;border-radius:11px;font-family:inherit;font-size:1rem;
+    color:var(--text);background:#fdfdfd;transition:border-color .18s,box-shadow .18s}
+  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--navy-light);box-shadow:0 0 0 3px rgba(42,80,120,.14)}
+  textarea{resize:vertical;min-height:64px}
+  .pills{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{position:relative}
+  .pill input{position:absolute;opacity:0;pointer-events:none}
+  .pill span{display:inline-block;padding:9px 15px;border:1.5px solid #e2dcdd;border-radius:999px;font-size:.88rem;
+    cursor:pointer;background:#fff;transition:all .16s;user-select:none;min-height:40px}
+  .pill span:hover{border-color:var(--clay-light)}
+  .pill input:checked + span{background:var(--navy);color:#fff;border-color:var(--navy);font-weight:600}
+  .pill input:focus-visible + span{box-shadow:0 0 0 3px rgba(42,80,120,.2)}
+  .row{display:flex;gap:10px;flex-wrap:wrap}
+  .row > *{flex:1 1 180px}
+  .sub{font-size:.86rem;color:var(--text-light);margin:10px 0 6px;font-weight:500}
+  .stages .stage{display:grid;grid-template-columns:1fr;gap:8px;padding:14px 0;border-top:1px dashed #eee7e7}
+  .stages .stage:first-child{border-top:none}
+  .stages .stage .num{font-family:'Syne',sans-serif;font-weight:700;color:var(--clay);font-size:.86rem}
+  .missions{display:grid;gap:10px}
+  .mission{border:1.5px solid #e2dcdd;border-radius:13px;padding:14px 15px;cursor:pointer;background:#fff;
+    display:flex;gap:12px;align-items:flex-start;transition:all .16s}
+  .mission:hover{border-color:var(--clay-light);transform:translateY(-1px)}
+  .mission.sel{border-color:var(--navy);background:#f6f9fc;box-shadow:0 4px 16px rgba(27,57,90,.12)}
+  .mission .badge{flex:0 0 30px;height:30px;border-radius:50%;background:#eef2f6;color:var(--navy);
+    display:grid;place-items:center;font-weight:700;font-family:'Syne',sans-serif;font-size:.9rem}
+  .mission.sel .badge{background:var(--navy);color:#fff}
+  .mission .txt{font-size:.92rem}
+  .mission .txt b{display:block;color:var(--navy-dark);font-weight:600;margin-bottom:2px}
+  .mission .txt small{color:var(--text-light);font-size:.82rem;display:block;line-height:1.45}
+  nav.actions{display:flex;gap:10px;justify-content:space-between;align-items:center;margin:4px 0 20px;flex-wrap:wrap}
+  button{font-family:inherit;font-size:.98rem;font-weight:600;border-radius:999px;border:none;cursor:pointer;
+    padding:14px 26px;min-height:48px;transition:transform .14s,box-shadow .18s,background .18s}
+  button:active{transform:scale(.98)}
+  .btn-main{background:var(--navy);color:#fff;box-shadow:0 8px 22px rgba(27,57,90,.24)}
+  .btn-main:hover{background:var(--navy-light)}
+  .btn-main:disabled{opacity:.55;cursor:not-allowed;box-shadow:none}
+  .btn-ghost{background:#fff;color:var(--navy);border:1.5px solid #ddd6d7}
+  .btn-ghost:hover{border-color:var(--navy-light)}
+  .btn-link{background:none;color:var(--text-light);font-weight:500;font-size:.84rem;padding:8px 4px;text-decoration:underline}
+  .note{font-size:.82rem;color:var(--text-light);background:var(--cream);border-left:3px solid var(--clay-light);
+    padding:11px 14px;border-radius:9px;margin-top:14px}
+  .recap{background:#f8fafc;border:1.5px dashed var(--navy-light);border-radius:13px;padding:16px;font-size:.88rem;white-space:pre-wrap;
+    font-family:ui-monospace,SFMono-Regular,Menlo,monospace;max-height:340px;overflow:auto;line-height:1.5}
+  #status{display:none;padding:14px 16px;border-radius:11px;margin-top:14px;font-size:.92rem}
+  #status.ok{display:block;background:#e7f5ec;color:var(--ok);border:1px solid #bfe3cb}
+  #status.ko{display:block;background:#fdeaea;color:var(--warn);border:1px solid #f3c9c9}
+  .fallback{display:none;margin-top:12px}
+  .fallback.show{display:block}
+  .fallback a{display:inline-block;background:var(--navy);color:#fff;text-decoration:none;padding:12px 20px;
+    border-radius:999px;font-weight:600;font-size:.92rem;margin-top:6px}
+  .missing{border-color:#e0a3a3 !important;box-shadow:0 0 0 3px rgba(165,56,42,.10) !important}
+  footer.foot{padding:26px 16px 40px;text-align:center;color:var(--text-light);font-size:.84rem}
+  footer.foot a{color:var(--navy);font-weight:600;text-decoration:none}
+  footer.foot a:hover{text-decoration:underline}
+  .toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,140%);background:var(--navy-dark);color:#fff;
+    padding:12px 20px;border-radius:999px;font-size:.88rem;box-shadow:var(--shadow-l);z-index:60;transition:transform .3s}
+  .toast.show{transform:translate(-50%,0)}
+  .saved{font-size:.78rem;color:var(--ok);font-weight:500}
+  @media(min-width:720px){
+    .stages .stage{grid-template-columns:auto 1.2fr .7fr 2fr;align-items:center;gap:12px}
+    .stages .stage .sub-lbl{display:none}
+    .q{padding:20px 0}
+    .card{padding:28px 30px}
+  }
+</style>
+</head>
+<body>
+
+<div class="strip">Alpesdata.com — <b>page privée</b> · questionnaire de stage · non indexée</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Avant notre visio · stage du 9 au 27 novembre 2026</div>
+    <h1>Parlez-moi de vous,<br>avant qu'on se voie.</h1>
+    <p>Ce questionnaire remplace le premier entretien : en 8 minutes, il me permet de connaître votre niveau réel, ce que vous avez déjà fait de vos mains et les missions qui vous intéressent. Il sert à caler un stage utile pour vous et pour moi — pas à vous piéger. <b>Il n'y a pas de mauvaise réponse : un « jamais fait » vaut un « déjà fait ».</b></p>
+    <div class="facts">
+      <span class="fact">Bac Pro CIEL · Terminale</span>
+      <span class="fact">5 sections · 8 min</span>
+      <span class="fact">Réponses enregistrées sur votre appareil pendant la saisie</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <div class="progress">
+      <div class="bar"><span id="pbar"></span></div>
+      <div class="meta">
+        <span>Étape <b id="pnum">1</b> sur 5 — <b id="ptitle">Vous</b></span>
+        <span class="saved" id="saved"></span>
+      </div>
+    </div>
+
+    <form id="stage-form" novalidate>
+
+      <!-- ÉTAPE 1 -->
+      <section class="step active" data-step="1" data-title="Vous">
+        <div class="card">
+          <h2>Qui êtes-vous ?</h2>
+          <p class="hint">Juste ce qu'il faut pour vous recontacter et organiser la période.</p>
+          <div class="q"><label for="prenom">Prénom</label><input type="text" id="prenom" name="prenom" autocomplete="given-name" required></div>
+          <div class="q"><label for="nom">Nom</label><input type="text" id="nom" name="nom" autocomplete="family-name" required></div>
+          <div class="q"><label for="email">Adresse e-mail</label><input type="email" id="email" name="email" autocomplete="email" required placeholder="celle que vous consultez vraiment"></div>
+          <div class="q"><label for="tel">Téléphone (facultatif)</label><input type="tel" id="tel" name="tel" autocomplete="tel" placeholder="pour vous joindre le jour de la visio"></div>
+          <div class="q">
+            <label for="naissance">Date de naissance</label>
+            <p class="ex">Elle ne sert qu'à une chose : savoir si je dois appliquer les règles du travail des mineurs (8 h par jour, 35 h par semaine, deux jours de repos consécutifs).</p>
+            <input type="date" id="naissance" name="naissance" required>
+          </div>
+          <div class="q">
+            <label>Lieu de départ et trajet</label>
+            <p class="ex">Vous partez de Guillestre : dites-moi comment et combien de temps ça prend réellement.</p>
+            <div class="row">
+              <input type="text" id="ville" name="ville" placeholder="Commune de départ" required>
+              <input type="text" id="transport" name="transport" placeholder="Voiture, covoiturage, autre">
+              <input type="text" id="trajet" name="trajet" placeholder="Temps de trajet (ex. 45 min)">
+            </div>
+          </div>
+        </div>
+        <nav class="actions"><span></span><button type="button" class="btn-main" data-next>Continuer <span aria-hidden="true">→</span></button></nav>
+      </section>
+
+      <!-- ÉTAPE 2 -->
+      <section class="step" data-step="2" data-title="Votre niveau">
+        <div class="card">
+          <h2>Votre niveau, domaine par domaine</h2>
+          <p class="hint">Pour chaque domaine : choisissez le niveau, puis citez un exemple concret. <b>L'exemple compte plus que le niveau</b> : « 3 » sans exemple ne m'apprend rien, « 1 » avec une phrase honnête vaut de l'or.</p>
+
+          <div class="q" data-dom="reseau">
+            <label>Réseau — adressage IP, Wi-Fi, switchs, câblage</label>
+            <p class="ex">Exemples : IP fixe sur une imprimante ou une caméra, sertir un câble RJ45, configurer un switch, créer un accès Wi-Fi invité.</p>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="n_reseau" value="1 — jamais fait"><span>1 · jamais fait</span></label>
+              <label class="pill"><input type="radio" name="n_reseau" value="2 — fait en cours"><span>2 · fait en cours</span></label>
+              <label class="pill"><input type="radio" name="n_reseau" value="3 — fait en entreprise ou projet perso"><span>3 · en entreprise / perso</span></label>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input type="text" name="n_reseau_ou" placeholder="Où et quand ?">
+              <input type="text" name="n_reseau_fait" placeholder="Ce que j'ai fait exactement">
+            </div>
+          </div>
+
+          <div class="q" data-dom="systemes">
+            <label>Systèmes et serveurs</label>
+            <p class="ex">Exemples : installer Windows Server ou Debian, monter un service DNS, DHCP, FTP, WEB, créer des comptes, faire une sauvegarde et la restaurer.</p>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="n_systemes" value="1 — jamais fait"><span>1 · jamais fait</span></label>
+              <label class="pill"><input type="radio" name="n_systemes" value="2 — fait en cours"><span>2 · fait en cours</span></label>
+              <label class="pill"><input type="radio" name="n_systemes" value="3 — fait en entreprise ou projet perso"><span>3 · en entreprise / perso</span></label>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input type="text" name="n_systemes_ou" placeholder="Où et quand ?">
+              <input type="text" name="n_systemes_fait" placeholder="Ce que j'ai fait exactement">
+            </div>
+          </div>
+
+          <div class="q" data-dom="cyber">
+            <label>Cybersécurité de base</label>
+            <p class="ex">Exemples : double authentification sur un compte, en-têtes de sécurité d'un site, mot de passe exposé, sécurisation d'un Wi-Fi.</p>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="n_cyber" value="1 — jamais fait"><span>1 · jamais fait</span></label>
+              <label class="pill"><input type="radio" name="n_cyber" value="2 — fait en cours"><span>2 · fait en cours</span></label>
+              <label class="pill"><input type="radio" name="n_cyber" value="3 — fait en entreprise ou projet perso"><span>3 · en entreprise / perso</span></label>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input type="text" name="n_cyber_ou" placeholder="Où et quand ?">
+              <input type="text" name="n_cyber_fait" placeholder="Ce que j'ai fait exactement">
+            </div>
+          </div>
+
+          <div class="q" data-dom="dev">
+            <label>Développement — web et scripts</label>
+            <p class="ex">Exemples : page HTML/CSS, JavaScript, script Python, API Node.js, application Flutter, base PHP/MySQL.</p>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="n_dev" value="1 — jamais fait"><span>1 · jamais fait</span></label>
+              <label class="pill"><input type="radio" name="n_dev" value="2 — fait en cours"><span>2 · fait en cours</span></label>
+              <label class="pill"><input type="radio" name="n_dev" value="3 — fait en entreprise ou projet perso"><span>3 · en entreprise / perso</span></label>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input type="text" name="n_dev_ou" placeholder="Où et quand ?">
+              <input type="text" name="n_dev_fait" placeholder="Ce que j'ai fait exactement">
+            </div>
+          </div>
+
+          <div class="q" data-dom="elec">
+            <label>Électronique, câblage, capteurs</label>
+            <p class="ex">Exemples : soudure, lecture d'un schéma, raccordement PoE, installation d'une caméra ou d'une sonde, liaison RS232, impression 3D.</p>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="n_elec" value="1 — jamais fait"><span>1 · jamais fait</span></label>
+              <label class="pill"><input type="radio" name="n_elec" value="2 — fait en cours"><span>2 · fait en cours</span></label>
+              <label class="pill"><input type="radio" name="n_elec" value="3 — fait en entreprise ou projet perso"><span>3 · en entreprise / perso</span></label>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input type="text" name="n_elec_ou" placeholder="Où et quand ?">
+              <input type="text" name="n_elec_fait" placeholder="Ce que j'ai fait exactement">
+            </div>
+          </div>
+
+          <div class="q" data-dom="materiel">
+            <label>Matériel et maintenance</label>
+            <p class="ex">Exemples : démontage et remontage d'un PC, diagnostic de panne, installation de Windows, clonage de disque, remplacement de composants.</p>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="n_materiel" value="1 — jamais fait"><span>1 · jamais fait</span></label>
+              <label class="pill"><input type="radio" name="n_materiel" value="2 — fait en cours"><span>2 · fait en cours</span></label>
+              <label class="pill"><input type="radio" name="n_materiel" value="3 — fait en entreprise ou projet perso"><span>3 · en entreprise / perso</span></label>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input type="text" name="n_materiel_ou" placeholder="Où et quand ?">
+              <input type="text" name="n_materiel_fait" placeholder="Ce que j'ai fait exactement">
+            </div>
+          </div>
+
+          <div class="q" data-dom="redaction">
+            <label>Rédaction et communication</label>
+            <p class="ex">Exemples : écrire une fiche ou un compte rendu, présenter un travail à l'oral, expliquer une panne à quelqu'un qui n'y connaît rien.</p>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="n_redaction" value="1 — jamais fait"><span>1 · jamais fait</span></label>
+              <label class="pill"><input type="radio" name="n_redaction" value="2 — fait en cours"><span>2 · fait en cours</span></label>
+              <label class="pill"><input type="radio" name="n_redaction" value="3 — fait en entreprise ou projet perso"><span>3 · en entreprise / perso</span></label>
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input type="text" name="n_redaction_ou" placeholder="Où et quand ?">
+              <input type="text" name="n_redaction_fait" placeholder="Ce que j'ai fait exactement">
+            </div>
+          </div>
+
+          <div class="q">
+            <label for="outils">Logiciels et outils que vous utilisez régulièrement</label>
+            <p class="ex">Et ceux que vous aimeriez apprendre.</p>
+            <textarea id="outils" name="outils" rows="2" placeholder="Ex. : Packet Tracer, VS Code, LibreOffice, Flutter… et j'aimerais apprendre Docker, Git…"></textarea>
+          </div>
+        </div>
+        <nav class="actions"><button type="button" class="btn-ghost" data-prev>← Retour</button><button type="button" class="btn-main" data-next>Continuer <span aria-hidden="true">→</span></button></nav>
+      </section>
+
+      <!-- ÉTAPE 3 -->
+      <section class="step" data-step="3" data-title="Vos stages">
+        <div class="card">
+          <h2>Vos stages précédents</h2>
+          <p class="hint">Ce que vous avez fait <b>vous-même</b>, de vos mains, du début à la fin. Pas ce que l'entreprise faisait autour de vous : c'est la différence qui compte.</p>
+          <div class="stages">
+            <div class="stage"><span class="num">Stage 1</span><input type="text" name="stage1_ent" placeholder="Entreprise et ville"><input type="text" name="stage1_duree" placeholder="Durée"><textarea name="stage1_fait" rows="2" placeholder="Ce que j'ai fait moi-même"></textarea></div>
+            <div class="stage"><span class="num">Stage 2</span><input type="text" name="stage2_ent" placeholder="Entreprise et ville"><input type="text" name="stage2_duree" placeholder="Durée"><textarea name="stage2_fait" rows="2" placeholder="Ce que j'ai fait moi-même"></textarea></div>
+            <div class="stage"><span class="num">Stage 3</span><input type="text" name="stage3_ent" placeholder="Entreprise et ville"><input type="text" name="stage3_duree" placeholder="Durée"><textarea name="stage3_fait" rows="2" placeholder="Ce que j'ai fait moi-même"></textarea></div>
+            <div class="stage"><span class="num">Stage 4</span><input type="text" name="stage4_ent" placeholder="Entreprise et ville"><input type="text" name="stage4_duree" placeholder="Durée"><textarea name="stage4_fait" rows="2" placeholder="Ce que j'ai fait moi-même"></textarea></div>
+            <div class="stage"><span class="num">Stage 5</span><input type="text" name="stage5_ent" placeholder="Entreprise et ville"><input type="text" name="stage5_duree" placeholder="Durée"><textarea name="stage5_fait" rows="2" placeholder="Ce que j'ai fait moi-même"></textarea></div>
+          </div>
+          <div class="q">
+            <label for="stage_pref">Le stage où vous avez le plus appris, et pourquoi</label>
+            <textarea id="stage_pref" name="stage_pref" rows="3"></textarea>
+          </div>
+          <div class="q">
+            <label for="jamais">Ce que vous n'avez jamais eu l'occasion de faire et que vous aimeriez faire</label>
+            <textarea id="jamais" name="jamais" rows="3" placeholder="C'est ici que se trouvent les meilleures missions : dites-le franchement."></textarea>
+          </div>
+        </div>
+        <nav class="actions"><button type="button" class="btn-ghost" data-prev>← Retour</button><button type="button" class="btn-main" data-next>Continuer <span aria-hidden="true">→</span></button></nav>
+      </section>
+
+      <!-- ÉTAPE 4 -->
+      <section class="step" data-step="4" data-title="Projet &amp; missions">
+        <div class="card">
+          <h2>Votre projet, puis vos missions</h2>
+          <p class="hint">Ce que vous voulez faire après le bac détermine les missions que je vous confierai en priorité.</p>
+          <div class="q">
+            <label>Après le bac ?</label>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="apres" value="BTS CIEL"><span>BTS CIEL</span></label>
+              <label class="pill"><input type="radio" name="apres" value="BTS SIO"><span>BTS SIO</span></label>
+              <label class="pill"><input type="radio" name="apres" value="Alternance"><span>Alternance</span></label>
+              <label class="pill"><input type="radio" name="apres" value="Vie active"><span>Vie active</span></label>
+              <label class="pill"><input type="radio" name="apres" value="Je ne sais pas encore"><span>Je ne sais pas encore</span></label>
+            </div>
+          </div>
+          <div class="q"><label for="metier">Le métier que vous visez, même vaguement</label><textarea id="metier" name="metier" rows="2" placeholder="Technicien réseau, cybersécurité, développeur, électricien, je ne sais pas…"></textarea></div>
+          <div class="q">
+            <label>Comment vous apprenez quand vous êtes bloqué</label>
+            <div class="pills">
+              <label class="pill"><input type="radio" name="apprentissage" value="Tutoriels vidéo"><span>Tutoriels</span></label>
+              <label class="pill"><input type="radio" name="apprentissage" value="Documentation"><span>Documentation</span></label>
+              <label class="pill"><input type="radio" name="apprentissage" value="Essai-erreur"><span>Essai-erreur</span></label>
+              <label class="pill"><input type="radio" name="apprentissage" value="Je demande"><span>Je demande</span></label>
+            </div>
+          </div>
+
+          <div class="q">
+            <label>Les 3 missions qui vous intéressent le plus</label>
+            <p class="ex">Choisissez-en <b>trois</b> — l'ordre de votre clic devient leur ordre de préférence (1 = préférée). Vous pourrez en changer pendant la visio.</p>
+            <div class="missions" id="missions">
+              <div class="mission" data-id="1" data-short="Parc informatique" tabindex="0" role="button" aria-pressed="false">
+                <div class="badge">+</div>
+                <div class="txt"><b>1 · Inventaire et remise à niveau du parc informatique</b><small>Recenser le matériel, préparer un poste de travail propre, mettre en place une sauvegarde et la tester par une vraie restauration.</small></div>
+              </div>
+              <div class="mission" data-id="2" data-short="Réseau du bureau" tabindex="0" role="button" aria-pressed="false">
+                <div class="badge">+</div>
+                <div class="txt"><b>2 · Cartographie et sécurisation du réseau du bureau</b><small>Dessiner le réseau, fixer les adresses, renforcer le Wi-Fi (pro et invité), mesurer la couverture pièce par pièce.</small></div>
+              </div>
+              <div class="mission" data-id="3" data-short="Audit hygiène numérique et cybersécurité" tabindex="0" role="button" aria-pressed="false">
+                <div class="badge">+</div>
+                <div class="txt"><b>3 · Audit d'hygiène numérique et de cybersécurité</b><small>Comptes et double authentification, sauvegardes, en-têtes de sécurité des sites : rapport avant / après avec les correctifs appliqués.</small></div>
+              </div>
+              <div class="mission" data-id="4" data-short="Contrôle qualité des mini-sites clients" tabindex="0" role="button" aria-pressed="false">
+                <div class="badge">+</div>
+                <div class="txt"><b>4 · Contrôle qualité des mini-sites clients</b><small>Liens morts, formulaires réellement testés, affichage mobile, vitesse, mentions légales et cookies : un tableau de bord par site.</small></div>
+              </div>
+              <div class="mission" data-id="5" data-short="Sonde connectée de l'atelier" tabindex="0" role="button" aria-pressed="false">
+                <div class="badge">+</div>
+                <div class="txt"><b>5 · Sonde connectée de l'atelier</b><small>Capteurs, remontée réseau, affichage des mesures sur une page web. De la maquette au prototype qui fonctionne.</small></div>
+              </div>
+              <div class="mission" data-id="6" data-short="Maintenance des scripts de veille" tabindex="0" role="button" aria-pressed="false">
+                <div class="badge">+</div>
+                <div class="txt"><b>6 · Maintenance des scripts de veille (Python)</b><small>Lire le code, journaliser les exécutions, écrire des tests, documenter. Aucune donnée client.</small></div>
+              </div>
+              <div class="mission" data-id="7" data-short="Documentation interne et restitution" tabindex="0" role="button" aria-pressed="false">
+                <div class="badge">+</div>
+                <div class="txt"><b>7 · Documentation interne et restitution</b><small>Fiches procédures pas-à-pas, notice, préparation de la présentation de fin de stage devant le lycée.</small></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="q"><label for="veut">Ce que vous voulez absolument faire pendant ces trois semaines</label><textarea id="veut" name="veut" rows="2"></textarea></div>
+          <div class="q"><label for="veutpas">Ce que vous ne voulez surtout pas faire</label><textarea id="veutpas" name="veutpas" rows="2" placeholder="Soyez franc : autant le dire maintenant qu'en deuxième semaine."></textarea></div>
+
+          <div class="q">
+            <label>Informations pratiques</label>
+            <div class="row">
+              <input type="text" name="horaires" placeholder="Horaires qui vous conviendraient (ex. 8h-12h / 13h30-16h30)">
+              <input type="text" name="repas" placeholder="Repas le midi : sur place / à emporter / extérieur">
+            </div>
+            <div class="row" style="margin-top:10px">
+              <input type="text" name="materiel" placeholder="Matériel que vous pouvez apporter (PC portable, outillage)">
+              <input type="text" name="contraintes" placeholder="Contrainte de santé ou de disponibilité à signaler">
+            </div>
+          </div>
+        </div>
+        <nav class="actions"><button type="button" class="btn-ghost" data-prev>← Retour</button><button type="button" class="btn-main" data-next>Voir le récapitulatif <span aria-hidden="true">→</span></button></nav>
+      </section>
+
+      <!-- ÉTAPE 5 -->
+      <section class="step" data-step="5" data-title="Envoi">
+        <div class="card">
+          <h2>Récapitulatif et envoi</h2>
+          <p class="hint">Relisez, corrigez si besoin en revenant en arrière (vos réponses sont conservées), puis envoyez : je reçois le tout par e-mail et je prépare la visio avec ça.</p>
+          <div class="recap" id="recap"></div>
+          <div class="note">Vos réponses servent uniquement à préparer ce stage et sont transmises par e-mail à Alpesdata. Elles ne sont ni publiées ni transmises à un tiers, et rien n'est conservé sur ce site en dehors du brouillon stocké dans <b>votre</b> navigateur (que vous pouvez effacer à tout moment).</div>
+          <div id="status" role="status" aria-live="polite"></div>
+          <div class="fallback" id="fallback">
+            <p style="font-size:.88rem;color:var(--text-light)">L'envoi automatique n'a pas fonctionné. Rien n'est perdu : vos réponses peuvent partir par e-mail ou être recopiées.</p>
+            <a id="mailto" href="#">Ouvrir dans mon logiciel de messagerie</a>
+            <button type="button" class="btn-link" id="copy">Copier mes réponses</button>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px">
+            <button type="submit" class="btn-main" id="send">Envoyer mes réponses</button>
+            <button type="button" class="btn-link" id="wipe">Effacer le brouillon enregistré</button>
+          </div>
+        </div>
+        <nav class="actions"><button type="button" class="btn-ghost" data-prev>← Retour</button><span></span></nav>
+      </section>
+
+    </form>
+
+  </div>
+</main>
+
+<footer class="foot">
+  <p><b>Alpesdata</b> — Briançon · <a href="mailto:info@alpesdata.com">info@alpesdata.com</a> · 06 13 21 59 93</p>
+  <p style="margin-top:6px">Conçu par Alpesdata (Briançon) — page privée, non indexée.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  "use strict";
+  var form = document.getElementById('stage-form');
+  var steps = [].slice.call(document.querySelectorAll('.step'));
+  var pbar = document.getElementById('pbar'), pnum = document.getElementById('pnum'), ptitle = document.getElementById('ptitle');
+  var saved = document.getElementById('saved'), status = document.getElementById('status');
+  var recap = document.getElementById('recap'), fallback = document.getElementById('fallback');
+  var toastEl = document.getElementById('toast');
+  var KEY = 'alpesdata-stage-brouillon';
+  var picked = [];
+  var MAXPICK = 3;
+
+  function toast(msg){
+    toastEl.textContent = msg; toastEl.classList.add('show');
+    clearTimeout(toastEl._t); toastEl._t = setTimeout(function(){ toastEl.classList.remove('show'); }, 2600);
+  }
+  function currentStep(){
+    for (var i=0;i<steps.length;i++){ if (steps[i].classList.contains('active')) return i+1; }
+    return 1;
+  }
+  function go(n){
+    n = Math.max(1, Math.min(steps.length, n));
+    steps.forEach(function(s){ s.classList.toggle('active', +s.dataset.step === n); });
+    pnum.textContent = n;
+    ptitle.textContent = steps[n-1].dataset.title;
+    pbar.style.width = Math.round(n / steps.length * 100) + '%';
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  }
+  function val(name){ var el = form.elements[name]; return el && el.value ? el.value.trim() : ''; }
+
+  /* ---------- missions : 3 choix ordonnés ---------- */
+  var cards = [].slice.call(document.querySelectorAll('.mission'));
+  function paintMissions(){
+    cards.forEach(function(c){
+      var pos = picked.indexOf(c.dataset.id);
+      var on = pos > -1;
+      c.classList.toggle('sel', on);
+      c.setAttribute('aria-pressed', on ? 'true' : 'false');
+      c.querySelector('.badge').textContent = on ? String(pos + 1) : '+';
+    });
+  }
+  function toggleMission(card){
+    var id = card.dataset.id, pos = picked.indexOf(id);
+    if (pos > -1){ picked.splice(pos, 1); }
+    else if (picked.length < MAXPICK){ picked.push(id); }
+    else { toast('Trois missions maximum — décochez-en une pour changer.'); return; }
+    paintMissions(); save();
+  }
+  cards.forEach(function(c){
+    c.addEventListener('click', function(){ toggleMission(c); });
+    c.addEventListener('keydown', function(e){
+      if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); toggleMission(c); }
+    });
+  });
+
+  /* ---------- brouillon local ---------- */
+  function collect(){
+    var data = { champs:{}, niveaux:{}, missions:picked.slice(), stages:[] };
+    [].slice.call(form.elements).forEach(function(el){
+      if (!el.name) return;
+      if (el.type === 'radio'){ if (el.checked) data.niveaux[el.name] = el.value; return; }
+      data.champs[el.name] = el.value;
+    });
+    for (var i=1;i<=5;i++){
+      data.stages.push({ ent: val('stage'+i+'_ent'), duree: val('stage'+i+'_duree'), fait: val('stage'+i+'_fait') });
+    }
+    return data;
+  }
+  function save(){
+    try { localStorage.setItem(KEY, JSON.stringify(collect())); saved.textContent = 'Brouillon enregistré'; } catch(e){}
+  }
+  function restore(){
+    var raw = null;
+    try { raw = localStorage.getItem(KEY); } catch(e){}
+    if (!raw) return;
+    var d;
+    try { d = JSON.parse(raw); } catch(e){ return; }
+    if (d.champs){ Object.keys(d.champs).forEach(function(k){ if (form.elements[k]) form.elements[k].value = d.champs[k]; }); }
+    if (d.niveaux){
+      Object.keys(d.niveaux).forEach(function(k){
+        var r = form.querySelector('input[name="'+k+'"][value="'+d.niveaux[k].replace(/"/g,'\\"')+'"]');
+        if (r) r.checked = true;
+      });
+    }
+    var st = d.stages || [];
+    st.forEach(function(s, i){
+      var n = i + 1;
+      if (form.elements['stage'+n+'_ent']) form.elements['stage'+n+'_ent'].value = s.ent || '';
+      if (form.elements['stage'+n+'_duree']) form.elements['stage'+n+'_duree'].value = s.duree || '';
+      if (form.elements['stage'+n+'_fait']) form.elements['stage'+n+'_fait'].value = s.fait || '';
+    });
+    picked = (d.missions || []).slice(0, MAXPICK);
+    paintMissions();
+    if (raw) saved.textContent = 'Brouillon repris';
+  }
+  form.addEventListener('input', save);
+  form.addEventListener('change', save);
+  document.getElementById('wipe').addEventListener('click', function(){
+    try { localStorage.removeItem(KEY); } catch(e){}
+    form.reset(); picked = []; paintMissions(); saved.textContent = 'Brouillon effacé'; toast('Brouillon effacé');
+  });
+
+  /* ---------- navigation ---------- */
+  [].slice.call(document.querySelectorAll('[data-next]')).forEach(function(b){
+    b.addEventListener('click', function(){ go(currentStep() + 1); });
+  });
+  [].slice.call(document.querySelectorAll('[data-prev]')).forEach(function(b){
+    b.addEventListener('click', function(){ go(currentStep() - 1); });
+  });
+
+  /* ---------- validation douce ---------- */
+  function firstMissing(){
+    var need = ['prenom','nom','email','naissance','ville'];
+    for (var i=0;i<need.length;i++){
+      var el = form.elements[need[i]];
+      if (!el) continue;
+      if (!el.value || (el.type === 'email' && el.value.indexOf('@') < 1)){
+        if (+el.closest('.step').dataset.step !== currentStep()) go(+el.closest('.step').dataset.step);
+        el.classList.add('missing');
+        setTimeout(function(){ el.focus(); }, 320);
+        return el;
+      }
+    }
+    return null;
+  }
+  form.addEventListener('input', function(e){ if (e.target.classList) e.target.classList.remove('missing'); });
+
+  /* ---------- récapitulatif ---------- */
+  var NOMS = {reseau:'Réseau', systemes:'Systèmes et serveurs', cyber:'Cybersécurité', dev:'Développement',
+              elec:'Électronique et câblage', materiel:'Matériel et maintenance', redaction:'Rédaction et communication'};
+  function niveauLine(k){ var v = val('n_'+k); return v ? v : 'non répondu'; }
+  function detail(k){
+    var ou = val('n_'+k+'_ou'), fait = val('n_'+k+'_fait');
+    return [ou ? 'où/quand : ' + ou : '', fait ? 'fait : ' + fait : ''].filter(Boolean).join(' — ') || '—';
+  }
+  function missionsTexte(){
+    if (!picked.length) return 'aucune mission cochée';
+    return picked.map(function(id, i){
+      var c = cards.filter(function(x){ return x.dataset.id === id; })[0];
+      return (i+1) + 'e : ' + (c ? c.dataset.short : id);
+    }).join(' | ');
+  }
+  function buildTexte(){
+    var L = [];
+    L.push('QUESTIONNAIRE DE STAGE — rempli avant la visio');
+    L.push('Reçu le ' + new Date().toLocaleString('fr-FR'));
+    L.push('');
+    L.push('IDENTITÉ');
+    L.push('  ' + val('prenom') + ' ' + val('nom') + ' — né(e) le ' + (val('naissance') || '?'));
+    L.push('  e-mail : ' + val('email') + (val('tel') ? ' — tél. ' + val('tel') : ''));
+    L.push('  départ : ' + val('ville') + (val('transport') ? ' — ' + val('transport') : '') + (val('trajet') ? ' — ' + val('trajet') : ''));
+    L.push('');
+    L.push('NIVEAU PAR DOMAINE (1 jamais fait / 2 en cours / 3 en entreprise ou perso)');
+    Object.keys(NOMS).forEach(function(k){
+      L.push('  ' + NOMS[k] + ' : ' + niveauLine(k));
+      L.push('      ' + detail(k));
+    });
+    if (val('outils')) { L.push(''); L.push('OUTILS : ' + val('outils')); }
+    L.push('');
+    L.push('STAGES PRÉCÉDENTS');
+    collect().stages.forEach(function(s, i){
+      if (s.ent || s.fait || s.duree) L.push('  ' + (i+1) + '. ' + (s.ent || '?') + (s.duree ? ' (' + s.duree + ')' : '') + ' : ' + (s.fait || '—'));
+    });
+    if (val('stage_pref')) { L.push('  Le plus formateur : ' + val('stage_pref')); }
+    if (val('jamais')) { L.push('  Jamais fait et voudrait faire : ' + val('jamais')); }
+    L.push('');
+    L.push('PROJET');
+    L.push('  Après le bac : ' + (val('apres') || 'non répondu'));
+    if (val('metier')) L.push('  Métier visé : ' + val('metier'));
+    L.push('  Apprentissage : ' + (val('apprentissage') || 'non répondu'));
+    L.push('');
+    L.push('MISSIONS CHOISIES (ordre de préférence) : ' + missionsTexte());
+    if (val('veut')) L.push('  Veut absolument : ' + val('veut'));
+    if (val('veutpas')) L.push('  Ne veut pas : ' + val('veutpas'));
+    L.push('');
+    L.push('PRATIQUE');
+    if (val('horaires')) L.push('  Horaires : ' + val('horaires'));
+    if (val('repas')) L.push('  Repas : ' + val('repas'));
+    if (val('materiel')) L.push('  Matériel : ' + val('materiel'));
+    if (val('contraintes')) L.push('  Contraintes : ' + val('contraintes'));
+    L.push('');
+    L.push('--- données brutes (JSON) ---');
+    L.push(JSON.stringify(collect()));
+    return L.join('\n');
+  }
+  function refreshRecap(){ recap.textContent = buildTexte(); }
+
+  /* ---------- envoi ---------- */
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var m = firstMissing();
+    if (m){ toast('Il manque une information en haut de page.'); return; }
+    refreshRecap();
+    var btn = document.getElementById('send');
+    btn.disabled = true; btn.textContent = 'Envoi…';
+    status.className = ''; status.style.display = 'none'; fallback.classList.remove('show');
+    var payload = {
+      name: 'Questionnaire de stage — ' + val('prenom') + ' ' + val('nom'),
+      email: val('email'),
+      message: buildTexte()
+    };
+    try {
+      var res = await fetch('/api/contact', {
+        method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload)
+      });
+      var data = {};
+      try { data = await res.json(); } catch(err){}
+      if (!res.ok) throw new Error(data.detail || 'Erreur serveur');
+      status.className = 'ok';
+      status.textContent = 'Merci — questionnaire envoyé. Je vous confirme la visio par e-mail. Vous pouvez fermer cette page.';
+      btn.textContent = 'Envoyé';
+      try { localStorage.removeItem(KEY); } catch(err){}
+      saved.textContent = '';
+    } catch (err) {
+      status.className = 'ko';
+      status.textContent = "L'envoi automatique a échoué (" + (err.message || 'réseau') + "). Vos réponses restent affichées ci-dessus : utilisez l'un des deux boutons ci-dessous, rien ne sera perdu.";
+      document.getElementById('mailto').href = 'mailto:info@alpesdata.com?subject=' +
+        encodeURIComponent('Questionnaire de stage — ' + val('prenom') + ' ' + val('nom')) +
+        '&body=' + encodeURIComponent(buildTexte());
+      fallback.classList.add('show');
+      btn.disabled = false; btn.textContent = 'Réessayer l\'envoi';
+    }
+  });
+  document.getElementById('copy').addEventListener('click', async function(){
+    var txt = buildTexte();
+    try { await navigator.clipboard.writeText(txt); toast('Réponses copiées'); }
+    catch(err){
+      var ta = document.createElement('textarea'); ta.value = txt; document.body.appendChild(ta);
+      ta.select(); try { document.execCommand('copy'); toast('Réponses copiées'); } catch(e2){ toast('Copie impossible : sélectionnez le texte'); }
+      document.body.removeChild(ta);
+    }
+  });
+
+  /* ---------- init ---------- */
+  restore();
+  refreshRecap();
+  go(1);
+  form.addEventListener('input', refreshRecap);
+  form.addEventListener('change', refreshRecap);
+})();
+</script>
+</body>
+</html>
