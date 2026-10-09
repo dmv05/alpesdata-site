@@ -221,6 +221,10 @@
     color:#F1E9D8;width:52px;height:52px;border-radius:50%;font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center}
   .lb .prev{left:clamp(8px,2vw,26px)} .lb .next{right:clamp(8px,2vw,26px)}
   .lb .cnt{position:absolute;bottom:20px;left:0;right:0;text-align:center;color:#CFC5B0;font-size:12px;letter-spacing:.24em}
+  /* photos de section cliquables : ouvrent la lightbox */
+  .shot.zoom{cursor:zoom-in;transition:filter .3s,transform .3s}
+  .shot.zoom:hover{filter:brightness(1.06)}
+  .shot.zoom:focus-visible{outline:2px solid var(--gold-l);outline-offset:3px}
 
   /* ---------------- caracteristiques ---------------- */
   .specs{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
@@ -398,9 +402,9 @@
       <span class="chip" data-i18n="c6">Bain balnéo</span>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin-top:clamp(36px,5vh,56px)">
-      <img class="shot" src="photos/detente-1.webp?v=2" width="1138" height="854" alt="Piscine intérieure et jacuzzi de l'espace bien-être" loading="lazy" decoding="async" style="aspect-ratio:4/3;object-fit:cover">
-      <img class="shot" src="photos/detente-2.webp?v=2" width="1138" height="854" alt="Sauna vitré de l'espace bien-être, bancs de bois et lumière tamisée" loading="lazy" decoding="async" style="aspect-ratio:4/3;object-fit:cover">
-      <img class="shot" src="photos/detente-3.webp?v=2" width="1138" height="854" alt="Salle de massage et de soin du domaine" loading="lazy" decoding="async" style="aspect-ratio:4/3;object-fit:cover">
+      <img class="shot zoom" src="photos/detente-1.webp?v=2" data-full="photos/detente-1.webp?v=2" width="1138" height="854" alt="Piscine intérieure et jacuzzi de l'espace bien-être" loading="lazy" decoding="async" style="aspect-ratio:4/3;object-fit:cover" role="button" tabindex="0">
+      <img class="shot zoom" src="photos/detente-2.webp?v=2" data-full="photos/detente-2.webp?v=2" width="1138" height="854" alt="Sauna vitré de l'espace bien-être, bancs de bois et lumière tamisée" loading="lazy" decoding="async" style="aspect-ratio:4/3;object-fit:cover" role="button" tabindex="0">
+      <img class="shot zoom" src="photos/detente-3.webp?v=2" data-full="photos/detente-3.webp?v=2" width="1138" height="854" alt="Salle de massage et de soin du domaine" loading="lazy" decoding="async" style="aspect-ratio:4/3;object-fit:cover" role="button" tabindex="0">
     </div>
   </div>
 </section>
@@ -830,25 +834,35 @@
   mkFilter(lang === "fr" ? "Tout" : "All", "all");
   cats.forEach(function (c) { mkFilter(CAT[c] || c, c); });
   var visible = figs.slice();
-  var lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"), lbC = document.getElementById("lbC"), idx = 0;
+  var lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"), lbC = document.getElementById("lbC"), idx = 0, active = null;
+  function elImg(el) { return el.tagName === "IMG" ? el : el.querySelector("img"); }
   function showFig(f) {
     idx = visible.indexOf(f);
     if (idx < 0) idx = 0;
+    active = visible;
     openLb();
   }
   function openLb() {
-    var f = visible[idx];
-    if (!f) return;
-    var im = f.querySelector("img");
+    if (!active) return;
+    var im = elImg(active[idx]);
+    if (!im) return;
     lbImg.src = im.getAttribute("data-full") || im.src;
     lbImg.alt = im.alt || "";
-    lbC.textContent = (idx + 1) + " / " + visible.length;
+    lbC.textContent = (idx + 1) + " / " + active.length;
     lb.classList.add("open");
     document.body.style.overflow = "hidden";
   }
   function closeLb() { lb.classList.remove("open"); document.body.style.overflow = ""; }
-  function step(d) { idx = (idx + d + visible.length) % visible.length; openLb(); }
+  function step(d) { if (!active) return; idx = (idx + d + active.length) % active.length; openLb(); }
   figs.forEach(function (f) { f.addEventListener("click", function () { showFig(f); }); });
+  /* photos de section cliquables (bien-être) : même lightbox, jeu de 3 photos */
+  var zooms = Array.prototype.slice.call(document.querySelectorAll(".shot[data-full]"));
+  zooms.forEach(function (im, i) {
+    im.addEventListener("click", function () { active = zooms; idx = i; openLb(); });
+    im.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " " || e.key === "Spacebar") { e.preventDefault(); this.click(); }
+    });
+  });
   document.getElementById("lbX").addEventListener("click", closeLb);
   document.getElementById("lbP").addEventListener("click", function (e) { e.stopPropagation(); step(-1); });
   document.getElementById("lbN").addEventListener("click", function (e) { e.stopPropagation(); step(1); });
