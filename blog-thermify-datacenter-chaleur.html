@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Un data center dans le salon : la chaleur informatique peut-elle remplacer la chaudière à gaz ? | Blog Alpesdata</title>
+<meta name="description" content="Thermify installe des mini data centers dans les maisons britanniques : 500 Raspberry Pi dans l'huile, et la chaleur du calcul part dans les radiateurs. Comment ça marche, où en est vraiment le déploiement, et pourquoi la montagne française n'est pas le même terrain de jeu.">
+    <meta property="og:title" content="Un data center dans le salon : la chaleur informatique peut-elle remplacer la chaudière à gaz ? | Alpesdata" />
+    <meta property="og:description" content="500 Raspberry Pi plongés dans l'huile, la chaleur du calcul envoyée dans les radiateurs de la maison : le décryptage d'Alpesdata sur Thermify et la chaleur fatale informatique." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://alpesdata.com/blog-thermify-datacenter-chaleur.html" />
+    <meta property="og:image" content="https://alpesdata.com/favicon-192.png" />
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Alpesdata" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Un data center dans le salon : la chaleur informatique peut-elle remplacer la chaudière à gaz ?" />
+    <meta name="twitter:description" content="Thermify, Qarnot, loi DDADUE, réseau de chaleur de Briançon : ce que la chaleur informatique peut vraiment chauffer — et à quelles conditions." />
+    <meta name="twitter:image" content="https://alpesdata.com/favicon-192.png" />
+    <link rel="canonical" href="https://alpesdata.com/blog-thermify-datacenter-chaleur.html" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Un data center dans le salon : la chaleur informatique peut-elle remplacer la chaudière à gaz ?",
+  "description": "Thermify installe des mini data centers dans les maisons britanniques : 500 Raspberry Pi dans l'huile, et la chaleur du calcul part dans les radiateurs. Comment ça marche, où en est vraiment le déploiement, et pourquoi la montagne française n'est pas le même terrain de jeu.",
+  "url": "https://alpesdata.com/blog-thermify-datacenter-chaleur.html",
+  "mainEntityOfPage": {"@type": "WebPage", "@id": "https://alpesdata.com/blog-thermify-datacenter-chaleur.html"},
+  "image": "https://alpesdata.com/favicon-192.png",
+  "datePublished": "2026-10-11",
+  "dateModified": "2026-10-11",
+  "author": {"@type": "Person", "name": "Didier Moranval-Vincent", "url": "https://alpesdata.com/"},
+  "publisher": {"@type": "Organization", "name": "Alpesdata", "url": "https://alpesdata.com",
+    "logo": {"@type": "ImageObject", "url": "https://alpesdata.com/favicon-192.png"}}
+}
+  </script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap"></noscript>
+<style>
+:root {
+  --clay: #806065;
+  --clay-dark: #644a4e;
+  --clay-light: #c49ea2;
+  --navy: #1B395A;
+  --navy-dark: #0F2640;
+  --navy-light: #2A5078;
+  --cream: #F7EBED;
+  --cream-dark: #e8d5d8;
+  --white: #FFFFFF;
+  --text: #2d2d2d;
+  --text-light: #666;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Syne', 'Inter', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+.nav{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);font-family:var(--font-display);font-weight:700;font-size:1.2rem}
+.nav-logo img{height:56px;width:auto}
+.nav-links{display:flex;list-style:none;gap:4px}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:500;transition:var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,0.12)}
+.nav-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:8px}
+@media(max-width:900px){
+  .nav-toggle{display:block}
+  .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--navy);flex-direction:column;padding:16px;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+  .nav-links.open{display:flex}
+}
+.section{padding:80px 24px}
+.section-inner{max-width:var(--max-width);margin:0 auto}
+.section-title{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:12px;text-align:center}
+.section-subtitle{text-align:center;color:var(--text-light);max-width:600px;margin:0 auto 48px;font-size:1.05rem}
+
+/* Article page */
+.article-page{padding:60px 24px}
+.article-page .article-container{max-width:760px;margin:0 auto}
+.article-page .article-header{margin-bottom:40px}
+.article-page .article-meta{font-size:0.85rem;color:var(--text-light);margin-bottom:8px;display:flex;gap:12px;flex-wrap:wrap}
+.article-page .article-meta span{background:var(--cream-dark);padding:4px 12px;border-radius:20px;font-weight:500}
+.article-page .article-category{color:var(--clay);font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:block}
+.article-page h1{font-family:var(--font-display);font-size:2.2rem;color:var(--navy);line-height:1.2;margin-bottom:16px}
+.article-page h2{font-family:var(--font-display);font-size:1.5rem;color:var(--navy);margin:40px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--cream-dark)}
+.article-page h3{font-family:var(--font-display);font-size:1.15rem;color:var(--navy);margin:28px 0 12px}
+.article-page p{margin-bottom:18px;line-height:1.8;font-size:1.02rem}
+.article-page ul,.article-page ol{margin:0 0 20px 24px}
+.article-page li{margin-bottom:8px;line-height:1.7}
+.article-page .highlight-box{background:var(--white);border-radius:var(--radius);padding:28px;margin:28px 0;box-shadow:var(--shadow);border-left:4px solid var(--clay)}
+.article-page .highlight-box h3{margin-top:0;color:var(--navy)}
+.article-page .highlight-box p:last-child{margin-bottom:0}
+.article-page blockquote{background:var(--white);border-radius:var(--radius);padding:24px 28px;margin:28px 0;box-shadow:var(--shadow);border-left:4px solid var(--navy);font-style:italic;color:var(--text-light);font-size:1.05rem}
+.article-page blockquote strong{color:var(--text);font-style:normal}
+.article-page .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:28px 0}
+.article-page .stat-card{background:var(--white);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow)}
+.article-page .stat-card .number{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--clay);display:block}
+.article-page .stat-card .label{font-size:0.85rem;color:var(--text-light);margin-top:4px}
+.article-page .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--clay);text-decoration:none;font-weight:500;margin-bottom:24px;transition:var(--transition)}
+.article-page .back-link:hover{color:var(--clay-dark);gap:12px}
+.article-page .cta-box{background:linear-gradient(135deg,var(--navy-dark),var(--navy));color:var(--white);border-radius:var(--radius);padding:36px;margin:40px 0;text-align:center}
+.article-page .cta-box h3{color:var(--white);margin-bottom:12px;font-family:var(--font-display);font-size:1.3rem}
+.article-page .cta-box p{color:rgba(255,255,255,0.85);font-size:0.95rem;margin-bottom:20px}
+.article-page .cta-box .btn{display:inline-block;padding:12px 32px;border-radius:50px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:var(--transition);background:var(--clay);color:var(--white);border:2px solid transparent}
+.article-page .cta-box .btn:hover{background:var(--clay-dark);transform:translateY(-2px)}
+.article-page .tech-box{background:var(--white);border-radius:var(--radius);padding:24px;margin:20px 0;box-shadow:var(--shadow);border:1px solid #eee}
+.article-page .tech-box h4{color:var(--navy);margin-bottom:8px;font-size:1rem}
+.article-page .tech-box p{font-size:0.92rem;margin-bottom:0}
+.article-page code{background:var(--cream-dark);padding:2px 6px;border-radius:4px;font-size:0.9em}
+.article-page img{max-width:100%;border-radius:var(--radius);margin:20px 0;box-shadow:var(--shadow)}
+.article-page a{color:var(--clay);text-decoration:underline;text-underline-offset:2px}
+.article-page a:hover{color:var(--clay-dark)}
+.article-page h2 a,.article-page h3 a{color:inherit;text-decoration:underline;text-decoration-color:var(--cream-dark)}
+
+.footer{background:var(--navy-dark);color:rgba(255,255,255,0.7);padding:40px 24px 24px;text-align:center;font-size:0.85rem}
+.footer a{color:rgba(255,255,255,0.7);text-decoration:none;transition:var(--transition)}
+.footer a:hover{color:var(--white)}
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.footer-social{display:flex;justify-content:center;gap:16px;margin-bottom:20px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.footer-social a:hover{background:var(--clay);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;font-size:0.8rem}
+
+@media(max-width:768px){
+  .section{padding:50px 16px}
+  .article-page h1{font-size:1.7rem}
+  .article-page h2{font-size:1.25rem}
+  .article-page .article-container{padding:0}
+  .article-page .stats-grid{grid-template-columns:1fr 1fr}
+}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease, transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/favicon-192.png">
+</head>
+<body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="/images/logo-blanc.png" alt="Alpesdata" height="56">
+        </a>
+        <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">☰</button>
+        <ul class="nav-links">
+          <li><a href="/" >Home</a></li>
+          <li><a href="/portfolio.html" >Portfolio</a></li>
+          <li><a href="/depannage.html" >Dépannage</a></li>
+          <li><a href="/job.html" >Job</a></li>
+          <li><a href="/blog.html" class="active">Blog</a></li>
+          <li><a href="/ia.html" >IA</a></li>
+          <li><a href="/devis.html">Devis</a></li>
+          <li><a href="/store.html" >Store</a></li>
+          <li><a href="/calendrier.html" >Calendrier</a></li>
+          <li><a href="/contact.html" >Contact</a></li>
+          <li><a href="/nuki.html" >Nuki</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article class="article-page">
+      <div class="article-container">
+        <a href="/blog.html" class="back-link">← Retour au blog</a>
+
+        <header class="article-header fade-in">
+          <span class="article-category">Énergie &amp; Numérique</span>
+          <h1>Un data center dans le salon : la chaleur informatique peut-elle remplacer la chaudière à gaz ?</h1>
+          <div class="article-meta">
+            <span>11 octobre 2026</span>
+            <span>11 min de lecture</span>
+            <span>#ChaleurFatale #DataCenter #Thermify #Qarnot #Énergie</span>
+          </div>
+          <p style="font-size:1.1rem;color:var(--text-light);line-height:1.7">
+            Une start-up britannique, <strong>Thermify</strong>, remplace la chaudière à gaz des logements par…
+            un mini data center. 500 cartes Raspberry Pi plongées dans l'huile, dont la chaleur part directement
+            dans le chauffage et l'eau chaude. Le principe physique est imparable, les chiffres de la campagne
+            britannique sont réels — et pourtant, transposé à Briançon, le raisonnement ne tient pas tout seul.
+            On a lu la documentation technique, la presse spécialisée et le cadre juridique français.
+          </p>
+        </header>
+
+        <div class="fade-in">
+          <h2>🔍 Le principe : l'électricité du calcul finit toujours en chaleur</h2>
+
+          <p>
+            <strong>Un ordinateur transforme l'électricité en information — et l'information n'a ni masse ni
+            énergie : tout le reste part en chaleur.</strong> C'est la première phrase du dossier technique de
+            Thermify, et elle est exacte. Un kilowattheure électrique consommé par un processeur vaut
+            3 600 kilojoules de chaleur disponible. Il n'existe pas de « calcul froid ».
+          </p>
+
+          <p>
+            Ce que les centres de données classiques font de cette chaleur, c'est la jeter — en consommant encore
+            de l'électricité pour la souffler dehors. Le raisonnement de Thermify est donc simple : si 100 % de
+            l'électricité achetée pour calculer se retrouve sous forme de chaleur, autant l'acheter là où
+            quelqu'un a besoin de se chauffer. Le calcul devient un moyen de payer le chauffage, pas une charge
+            qu'on refroidit.
+          </p>
+
+          <p>
+            Concrètement, leur appareil — le <strong>HeatHub</strong> — remplace la chaudière à gaz, avec une
+            taille de grosse pompe à chaleur. Sa composition a été détaillée par <strong>The Register</strong> en
+            octobre 2025 : un <strong>cluster de 500 modules Raspberry Pi</strong> (CM4 ou CM5), le tout
+            <em>immergé dans l'huile</em>, la chaleur étant transférée au circuit de chauffage central et
+            d'eau chaude sanitaire. « Plug and play » à la place de la chaudière, avec sa propre connexion
+            réseau dédiée.
+          </p>
+        </div>
+
+        <div class="stats-grid fade-in">
+          <div class="stat-card">
+            <span class="number">500</span>
+            <span class="label">modules Raspberry Pi par HeatHub, immergés dans l'huile</span>
+          </div>
+          <div class="stat-card">
+            <span class="number">1,77 TWh</span>
+            <span class="label">potentiel de récupération de chaleur des data centers français en 2024 (Ademe)</span>
+          </div>
+          <div class="stat-card">
+            <span class="number">2027</span>
+            <span class="label">début annoncé des premières installations à domicile, hors phase d'essai</span>
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <h2>📊 Où en est réellement Thermify ?</h2>
+
+          <p>
+            La société, <strong>Thermify Holdings Limited</strong> (Companies House n° 12964264, immatriculée en
+            octobre 2020, siège à Llandow, au pays de Galles, code d'activité « traitement de données et
+            hébergement »), existe donc depuis six ans et communique sur un <strong>programme « Early
+            Adopter »</strong> : dix organisations invitées à faire tourner leurs charges de calcul sur son
+            réseau distribué, en échange de crédits de calcul.
+          </p>
+
+          <p>
+            Le déploiement réel se fait pour l'instant dans un cadre subventionné : le programme
+            <strong>SHIELD</strong> (Smart Heat and Intelligent Energy in Low-income Districts) porté par le
+            gestionnaire de réseau <strong>UK Power Networks</strong>, financé par le régulateur de l'énergie
+            britannique, l'Ofgem. Le protocole équipe des foyers modestes de panneaux solaires, de batteries — et
+            un tiers d'entre eux reçoivent aussi un HeatHub. Premier foyer équipé : un couple de Braintree, dans
+            l'Essex, chez un bailleur social, avec des factures d'énergie annoncées entre <strong>40 et
+            70 livres</strong> (reportage de la BBC East et dépêche SWNS, novembre 2025). Les locataires
+            concernés paieraient environ <strong>5,60 £ par mois</strong> pour le service.
+          </p>
+
+          <p>
+            Il faut être précis sur ce que le produit <em>est</em>, parce que cela change tout pour la suite :
+            ce n'est <strong>pas un appareil que l'on achète</strong>. Thermify reste propriétaire du matériel,
+            assure sa maintenance, fournit sa propre alimentation électrique et sa propre connexion — la
+            question « combien ça coûte à l'installer » se pose donc en termes de bail, dix ans, à un coût
+            annoncé « comparable à l'achat et à l'installation d'une chaudière à gaz à condensation ». Leur
+            propre FAQ est sans ambiguïté : le HeatHub n'est pas encore à vendre, et la production — donc les
+            premières installations résidentielles hors essai — est visée pour <strong>2027</strong>.
+          </p>
+
+          <blockquote>
+            « Le produit est actuellement installé à titre expérimental, avec l'objectif d'un démarrage de la
+            production (et donc des premières installations domestiques) en 2027. »
+            <br><em>— FAQ de Thermify, page News, consultée le 11 octobre 2026</em>
+          </blockquote>
+
+          <p>
+            À la question « le HeatHub sera-t-il disponible hors du Royaume-Uni ? », la réponse tient en deux
+            mots : « We hope so! » — nous l'espérons. Autrement dit : aujourd'hui, il n'y a <strong>rien à
+            importer</strong>. Ni distributeur, ni importateur, ni produit en vente.
+          </p>
+        </div>
+
+        <div class="fade-in">
+          <h2>🇬🇧 Pourquoi le modèle marche au Royaume-Uni et pas forcément ailleurs</h2>
+
+          <p>
+            Le contexte britannique explique l'essentiel de la pertinence du produit. Outre-Manche,
+            l'électricité est structurellement <strong>beaucoup plus chère que le gaz</strong> — Thermify cite un
+            écart supérieur à 300 %. Chauffeur à l'électricité, c'est-à-dire avec des résistances ou une pompe à
+            chaleur, coûte donc très cher au ménage. La promesse « votre chaleur ne vous coûte presque rien,
+            elle est payée par le calcul » vaut de l'or dans ce contexte, d'autant que la précarité énergétique y
+            est massive.
+          </p>
+
+          <p>
+            S'y ajoute un calendrier réglementaire : la <strong>Future Homes Standard</strong>, qui interdit les
+            chaudières à gaz dans les logements neufs à partir de mars 2027 selon Thermify. La question n'est
+            donc plus « faut-il sortir du gaz ? », mais « par quoi le remplacer, et qui paie ? ».
+          </p>
+
+          <p>
+            En France, l'équation est différente. Au tarif réglementé, le kilowattheure électrique se situe
+            autour de <strong>0,1940 € TTC</strong> (option base, après la hausse de 2,5 % du 1<sup>er</sup>
+            août 2026), contre environ <strong>0,10 €/kWh</strong> pour le gaz naturel au tarif réglementé — un
+            rapport de <strong>1 à 2</strong>, pas de 1 à 4. L'argument « l'électricité est hors de prix par
+            rapport au gaz » est nettement moins décisif ici. Et le chauffage électrique y est déjà très
+            répandu — bien plus qu'au Royaume-Uni, où le gaz domine le parc existant.
+          </p>
+        </div>
+
+        <div class="fade-in">
+          <h2>🇫🇷 La France a déjà son précédent — et il mérite d'être regardé en face</h2>
+
+          <p>
+            La chaleur informatique réutilisée n'est pas une idée neuve : c'est <strong>Qarnot</strong> qui a
+            ouvert la voie, en 2010, avec le « radiateur numérique », breveté en 2011. Les étapes sont
+            documentées : 100 logements sociaux de la RIVP chauffés à Paris en 2013, un immeuble neuf inauguré à
+            Bordeaux en 2018, la chaudière numérique pour l'eau chaude sanitaire en 2019, la marque
+            <strong>Qalway</strong> dédiée à la chaleur de récupération en 2022, une sélection dans
+            <strong>French Tech 2030</strong> en 2023.
+          </p>
+
+          <p>
+            Puis l'épilogue : <strong>une procédure de redressement judiciaire, et un rachat par Scaleway
+            (groupe Iliad) en juillet 2026</strong>, après 9 millions d'euros de pertes cumulées sur 2023-2024,
+            pour un chiffre d'affaires passé de 2,68 à 3 millions d'euros. La technologie fonctionnait — le
+            modèle, lui, était un modèle de <strong>cloud</strong> : vendre de la puissance de calcul à des
+            banques, des studios d'animation et des laboratoires, et payer l'électricité des appareils installés
+            chez les utilisateurs. C'est là qu'est la difficulté, pas dans la plomberie.
+          </p>
+
+          <p>
+            Le cadre français a par ailleurs bougé, et dans un sens peu favorable au modèle « distribué » :
+            la <strong>loi n° 2025-391 du 30 avril 2025</strong> (dite DDADUE), qui transpose la directive
+            européenne 2023/1791, impose désormais aux centres de données dont la <strong>puissance installée
+            atteint ou dépasse 1 MW</strong> de valoriser leur chaleur fatale, avec obligation d'analyse
+            coûts-avantages pour les nouveaux projets. Ces obligations visent les gros sites, raccordables à un
+            réseau de chaleur urbain. L'Ademe chiffre le potentiel français à 1,77 TWh en 2024 — l'équivalent de
+            la consommation électrique annuelle (usages spécifiques) d'environ 800 000 personnes — avec des
+            projections de 4,09 à 12,94 TWh à l'horizon 2035. Le gisement est réel, mais la réglementation
+            pousse la chaleur vers les réseaux urbains, pas vers la chaufferie de la maison.
+          </p>
+        </div>
+
+        <div class="fade-in">
+          <h2>🏔️ Et à Briançon, concrètement ?</h2>
+
+          <p>
+            C'est là que notre enthousiasme se tempère, et nous préférons l'écrire plutôt que de vendre une
+            bonne histoire. Trois obstacles locaux, dans l'ordre d'importance :
+          </p>
+
+          <ul>
+            <li>
+              <strong>Le décalage de saison.</strong> Un data center a besoin de tourner <em>toute
+              l'année</em> ; une maison de montagne a besoin d'être chauffée sept mois, et pas du tout en
+              juillet. La FAQ de Thermify répond d'ailleurs honnêtement : le HeatHub est un service
+              « de chaleur à la demande » et <em>« quand il n'y a pas besoin de chaleur, il n'en est pas
+              produite »</em>. Cela veut dire que le calcul s'arrête quand la chaleur n'est pas utilisée — donc
+              que le revenu de calcul devient saisonnier lui aussi. C'est acceptable pour l'eau chaude
+              sanitaire, beaucoup moins pour une maison au cœur du mois de janvier.
+            </li>
+            <li>
+              <strong>La puissance, et la température.</strong> Une chaudière de maison de montagne, c'est
+              15 à 25 kW de puissance disponible les soirs de grand froid. Un HeatHub de la taille d'une grosse
+              pompe à chaleur livre une fraction de cela, et à une température de départ bien plus basse qu'une
+              chaudière : c'est un chauffage « basse température », qui suppose des émetteurs dimensionnés en
+              conséquence (plancher chauffant, gros radiateurs) ou une pompe à chaleur en relais. On ne
+              remplace pas une vieille installation à 75 °C par un HeatHub sans reprendre l'émission.
+            </li>
+            <li>
+              <strong>Le concurrent, c'est le bois.</strong> Briançon dispose déjà d'un réseau de chaleur
+              biomasse structuré : <strong>Briançon Biomasse Énergie</strong>, délégation de service public de
+              la ville, 14,3 millions d'euros investis, huit kilomètres de réseau et plus de cinquante
+              sous-stations pour près de 14 000 kW de puissance souscrite. L'argument écologique comme
+              l'argument prix face à un réseau alimenté au bois local sont difficiles à prendre.
+            </li>
+          </ul>
+        </div>
+
+        <div class="tech-box fade-in">
+          <p><strong>📖 À lire pour creuser le sujet</strong></p>
+          <ul>
+            <li><a href="https://thermify.cloud/how-it-works/" target="_blank" rel="noopener">Le dossier « How it works » de Thermify</a> (et sa <a href="https://thermify.cloud/news/" target="_blank" rel="noopener">FAQ</a>, plus franche que la page marketing).</li>
+            <li><a href="https://www.theregister.com/2025/10/03/thermify_heathub_raspberry_pi" target="_blank" rel="noopener">The Register, « Struggling to heat your home? Try 500 Raspberry Pi units »</a> — les détails techniques du HeatHub, octobre 2025.</li>
+            <li><a href="https://fr.wikipedia.org/wiki/Qarnot" target="_blank" rel="noopener">Qarnot</a> — l'historique complet du pionnier français de la chaleur informatique.</li>
+            <li><a href="https://www.hellio.com/actualites/reglementation/obligation-recuperation-chaleur-data-center" target="_blank" rel="noopener">Hellio : l'obligation française de récupération de chaleur fatale</a> — la loi DDADUE et les chiffres Ademe.</li>
+            <li><a href="https://www.edsb.fr/actualites/zoom-reseau-chaleur-briancon-actualites-briancon-biomasse-energie" target="_blank" rel="noopener">Le réseau de chaleur de Briançon vu par EDSB</a> — 8 km, 50 sous-stations, 14 000 kW souscrits.</li>
+          </ul>
+        </div>
+
+        <div class="fade-in">
+          <h2>💬 Ce qu'en pense Alpesdata</h2>
+
+          <p>
+            <strong>Sur la technologie : c'est crédible, et c'est une évidence thermodynamique plutôt qu'une
+            innovation fragile.</strong> Récupérer la chaleur d'un calcul pour chauffer un bâtiment n'a rien de
+            spéculatif — la France le fait en habitation depuis 2013 avec Qarnot, la Suisse et l'Allemagne
+            raccordent des data centers entiers à des réseaux de chaleur. Ce qui se joue dans le dossier
+            Thermify, c'est le packaging : un appareil grand public, une marque, un service de chauffage vendu
+            au ménage.
+          </p>
+
+          <p>
+            <strong>Sur le modèle économique : c'est un business de cloud déguisé en plombier.</strong> La
+            chaleur est gratuite parce que ce sont les clients du calcul qui la paient — pas parce que la
+            machine crée de l'énergie. Si la demande de calcul s'effondre, s'éloigne (l'IA se concentre
+            aujourd'hui dans des supercalculateurs géants, pas dans des processeurs modestes répartis chez les
+            gens), ou si le prix de l'électricité redevient l'élément déterminant, le chauffage redevient un
+            coût ordinaire. L'histoire de Qarnot — pionnier respecté, technologie récompensée, rachat après
+            redressement judiciaire — dit exactement cela.
+          </p>
+
+          <p>
+            <strong>Sur l'idée de l'installer à Briançon : nous n'y croyons pas aujourd'hui, et ce n'est pas une
+            question de terrain mais de dossier.</strong> Il n'y a rien à importer (pas de produit vendu, pas de
+            distributeur, pas de disponibilité hors Royaume-Uni avant 2027), l'électricité française est deux
+            fois le gaz et non quatre, la saison de chauffe de la montagne ne recouvre pas la saison du calcul,
+            et le bois-énergie occupe déjà le terrain. En revanche, une piste nous paraît sérieuse et elle est
+            locale : devenir <strong>l'intégrateur</strong> qui sait faire dialoguer ces systèmes — comprendre le
+            raccordement, le comptage de chaleur, les émetteurs basse température, et surtout le volet
+            informatique (qui consomme ce calcul, sur quel type de connexion, avec quelles garanties de
+            sécurité). C'est ce savoir-faire hybride, énergie plus réseau, qui manque dans les Alpes, bien plus
+            qu'une machine de plus.
+          </p>
+        </div>
+
+        <div class="highlight-box fade-in">
+          <h3>🔑 Ce qu'il faut retenir</h3>
+          <ul>
+            <li>100 % de l'électricité d'un calcul finit en chaleur : réutiliser cette chaleur n'est pas une idée fragile, c'est de la physique.</li>
+            <li>Thermify (Llandow, pays de Galles) teste son HeatHub à 500 Raspberry Pi immergés dans l'huile chez des foyers modestes britanniques, dans le cadre du programme SHIELD porté par UK Power Networks.</li>
+            <li>Rien n'est vendu : matériel propriété de Thermify, bail de dix ans, production annoncée pour 2027, Royaume-Uni seulement. <strong>Il n'existe aucun importateur ni distributeur en France.</strong></li>
+            <li>Le vrai moteur, c'est le prix de l'électricité face au gaz : un rapport de 1 à 3 ou 4 au Royaume-Uni, de 1 à 2 en France.</li>
+            <li>La France a déjà Qarnot (radiateurs et chaudières numériques depuis 2010), racheté par Scaleway en juillet 2026 après redressement judiciaire.</li>
+            <li>La loi DDADUE (avril 2025) impose la valorisation de la chaleur fatale aux data centers de 1 MW et plus : la réglementation pousse vers les réseaux de chaleur, pas vers la maison.</li>
+            <li>À Briançon, le bois-énergie est déjà là (réseau BBE, 14 000 kW souscrits) et la chaleur utile ne couvre pas la saison de calcul : la valeur se jouerait dans l'intégration, pas dans l'installation.</li>
+          </ul>
+        </div>
+
+        <div class="cta-box fade-in">
+          <h3>Une question sur la chaleur fatale ou un projet de raccordement ?</h3>
+          <p>
+            Alpesdata accompagne les professionnels et les collectivités des Hautes-Alpes sur les sujets
+            d'infrastructure numérique et d'énergie : audit, intégration, suivi de projet. Écrivez-nous, on
+            regarde votre cas.
+          </p>
+          <a href="/contact.html" class="btn">Nous contacter</a>
+        </div>
+
+        <p style="font-size:0.85rem;color:var(--text-light);font-style:italic">
+          <strong>Sources :</strong> thermify.cloud (How it works, For home, News et FAQ, consultés le
+          11 octobre 2026) ; <a href="https://www.theregister.com/2025/10/03/thermify_heathub_raspberry_pi" target="_blank" rel="noopener">The Register, 3 octobre 2025</a> ;
+          <a href="https://datacenterdynamics.com/en/news/uk-power-networks-looks-to-install-compute-nodes-in-residents-houses-to-provide-heating" target="_blank" rel="noopener">DataCenterDynamics</a> ;
+          <a href="https://discover.swns.com/2025/11/uks-first-home-to-power-heating-with-shed-data-centre-cutting-bills-to-40" target="_blank" rel="noopener">SWNS / BBC East, novembre 2025</a> ;
+          Companies House, Thermify Holdings Limited n° 12964264 ;
+          <a href="https://fr.wikipedia.org/wiki/Qarnot" target="_blank" rel="noopener">Wikipédia, Qarnot</a> et Next (10 juillet 2026) pour le rachat par Scaleway ;
+          loi n° 2025-391 du 30 avril 2025 (DDADUE) et chiffres Ademe repris par <a href="https://www.hellio.com/actualites/reglementation/obligation-recuperation-chaleur-data-center" target="_blank" rel="noopener">Hellio</a> ;
+          prix de l'électricité 2026 (environ 0,1940 €/kWh TTC, option base) et du gaz naturel (environ 0,10 €/kWh TTC, tarif réglementé) ;
+          EDSB et Coriance pour le réseau Briançon Biomasse Énergie. Les chiffres d'ordre de grandeur et les
+          comparaisons de puissance sont des estimations de lecture, à confirmer au cas par cas.
+          <br>Cet article a été rédigé avec <strong>Hermes</strong>, l'agent open source que nous déployons
+          pour nos clients.
+        </p>
+      </div>
+    </article>
+
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/portfolio.html">Portfolio</a>
+        <a href="/depannage.html">Dépannage</a>
+        <a href="/job.html">Job</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/ia.html">IA</a>
+    <a href="/devis.html">Devis</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/nuki.html">Nuki</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alpesdata — Agence de développement web &amp; assistance informatique. Briançon, Hautes-Alpes.</p>
+      </div>
+    </footer>
+<script>
+document.addEventListener("DOMContentLoaded",function(){var e=document.querySelectorAll(".fade-in");if(e.length>0){var t=new IntersectionObserver(function(n){n.forEach(function(n){n.isIntersecting&&(n.target.classList.add("visible"),t.unobserve(n.target))})},{threshold:0.1});e.forEach(function(e){t.observe(e)})}});
+</script>
+</body>
+</html>
