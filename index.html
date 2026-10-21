@@ -119,10 +119,13 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
 .hero p{font-size:1.15rem;opacity:0.9;max-width:600px;margin:0 auto 32px;line-height:1.7}
 .hero-cta{display:inline-block;background:var(--clay);color:var(--white);padding:14px 36px;border-radius:50px;text-decoration:none;font-weight:600;font-size:1rem;transition:var(--transition);border:2px solid transparent}
 .hero-cta:hover{background:var(--clay-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(128,96,101,0.4)}
+.hero-image-slot{max-width:820px;margin:48px auto 0;border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 45px rgba(0,0,0,0.28)}
+.hero-image-slot img{display:block;width:100%;height:auto}
 @media(max-width:768px){
   .hero{padding:70px 20px 50px}
   .hero h1{font-size:2rem}
   .hero p{font-size:1rem}
+  .hero-image-slot{margin-top:32px}
 }
 
 /* Sections */
@@ -245,6 +248,10 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
         <h1>Donnez vie à votre vision</h1>
         <p>Nous transformons vos idées en réalité grâce à nos services de développement web, assistance informatique et conseil personnalisé.</p>
         <a href="/contact.html" class="hero-cta">Découvrir</a>
+        <div class="hero-image-slot">
+          <img src="/images/hero-upload.jpg" width="1280" height="698" loading="eager"
+               alt="Espace de travail à baies vitrées ouvertes sur les montagnes, postes équipés d'écrans">
+        </div>
       </div>
     </section>
 
