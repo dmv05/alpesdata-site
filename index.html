@@ -119,13 +119,23 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
 .hero p{font-size:1.15rem;opacity:0.9;max-width:600px;margin:0 auto 32px;line-height:1.7}
 .hero-cta{display:inline-block;background:var(--clay);color:var(--white);padding:14px 36px;border-radius:50px;text-decoration:none;font-weight:600;font-size:1rem;transition:var(--transition);border:2px solid transparent}
 .hero-cta:hover{background:var(--clay-dark);transform:translateY(-2px);box-shadow:0 8px 25px rgba(128,96,101,0.4)}
-.hero-image-slot{max-width:820px;margin:48px auto 0;border-radius:var(--radius);overflow:hidden;box-shadow:0 18px 45px rgba(0,0,0,0.28)}
-.hero-image-slot img{display:block;width:100%;height:auto}
+.hero-ctas{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-cta-outline{display:inline-block;background:transparent;color:var(--white);padding:14px 36px;border-radius:50px;text-decoration:none;font-weight:600;font-size:1rem;transition:var(--transition);border:2px solid rgba(255,255,255,0.6)}
+.hero-cta-outline:hover{background:rgba(255,255,255,0.1);border-color:var(--white)}
+/* Hero — emplacement image (à uploader) */
+.hero-image-slot{max-width:820px;margin:48px auto 0;position:relative;border-radius:var(--radius);overflow:hidden;min-height:320px;background:rgba(255,255,255,0.07);border:2px dashed rgba(255,255,255,0.35);display:flex;align-items:center;justify-content:center}
+.hero-image-slot.has-image{border:2px solid rgba(255,255,255,0.15)}
+.hero-image-slot img{position:relative;z-index:1;width:100%;min-height:320px;object-fit:cover;display:block}
+.hero-image-slot .placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:rgba(255,255,255,0.75);font-size:.9rem;text-align:center;padding:20px}
+.hero-image-slot .placeholder .icon{font-size:2rem;opacity:.85}
+.hero-image-slot .placeholder strong{color:#fff;font-weight:600}
+.hero-image-slot .placeholder small{font-size:.75rem;opacity:.7}
 @media(max-width:768px){
   .hero{padding:70px 20px 50px}
   .hero h1{font-size:2rem}
   .hero p{font-size:1rem}
-  .hero-image-slot{margin-top:32px}
+  .hero-image-slot{min-height:220px}
+  .hero-image-slot img{min-height:220px}
 }
 
 /* Sections */
@@ -236,6 +246,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
           <li><a href="/job.html" >Job</a></li>
           <li><a href="/blog.html" >Blog</a></li>
           <li><a href="/ia.html" >IA</a></li>
+      <li><a href="/devis.html">Devis</a></li>
           <li><a href="/store.html" >Store</a></li>
           <li><a href="/calendrier.html" CLASS_ACTIVE_CAL>Calendrier</a></li>
           <li><a href="/contact.html" >Contact</a></li>
@@ -245,12 +256,16 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
     </nav>
     <section class="hero">
       <div class="hero-content">
-        <h1>Donnez vie à votre vision</h1>
+        <h1>Donnez vie à votre vision 2030</h1>
         <p>Nous transformons vos idées en réalité grâce à nos services de développement web, assistance informatique et conseil personnalisé.</p>
-        <a href="/contact.html" class="hero-cta">Découvrir</a>
+        <div class="hero-ctas">
+          <a href="/devis.html" class="hero-cta">⚡ Démarrer un devis</a>
+          <a href="/contact.html" class="hero-cta-outline">Découvrir</a>
+        </div>
+        <!-- 📷 EMPLACEMENT IMAGE : déposez l'image dans /images/hero-upload.jpg — elle remplacera automatiquement ce bandeau -->
         <div class="hero-image-slot">
-          <img src="/images/hero-upload.jpg" width="1280" height="698" loading="eager"
-               alt="Espace de travail à baies vitrées ouvertes sur les montagnes, postes équipés d'écrans">
+          <img src="/images/hero-upload.jpg" alt="Alpesdata — espace de travail vue montagne" onload="this.closest('.hero-image-slot').classList.add('has-image')" onerror="this.onerror=null;this.style.display='none'">
+          <div class="placeholder"><span class="icon">📷</span><strong>Emplacement image — à venir</strong><small>votre image s'affichera ici (images/hero-upload.jpg)</small></div>
         </div>
       </div>
     </section>
@@ -308,7 +323,10 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
       <p class="detail"><strong>Tél :</strong> +33 6 13 21 59 93</p>
       <p class="detail"><strong>Adresse :</strong> 7 Rue Barthelemy Chaix, 05100 Briançon</p>
       <p class="detail"><strong>Horaires :</strong> Lun-Ven 9h-20h</p>
-      <p style="margin-top:24px"><a href="/contact.html" class="btn btn-outline" style="color:white;border-color:white">Envoyer un message</a></p>
+      <p style="margin-top:24px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="/devis.html" class="btn btn-primary">⚡ Démarrer un devis</a>
+        <a href="/contact.html" class="btn btn-outline" style="color:white;border-color:white">Envoyer un message</a>
+      </p>
     </section>
     <footer class="footer">
       <div class="footer-links">
@@ -318,6 +336,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
         <a href="/job.html">Job</a>
         <a href="/blog.html">Blog</a>
         <a href="/ia.html">IA</a>
+    <a href="/devis.html">Devis</a>
         <a href="/contact.html">Contact</a>
         <a href="/nuki.html">Nuki</a>
       </div>
