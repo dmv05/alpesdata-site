@@ -10,7 +10,7 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, EmailStr, Field
 from dotenv import load_dotenv
@@ -31,6 +31,15 @@ FROM_NAME = os.getenv("FROM_NAME", "Alpesdata Contact")
 TO_EMAIL = os.getenv("TO_EMAIL", "info@alpesdata.com")
 TO_NAME = os.getenv("TO_NAME", "Alpesdata")
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "https://alpesdata.com,https://www.alpesdata.com").split(",")
+
+# Formulaire « demande d'étude » du site massagepro.fr — site client servi par la même API.
+# Les origines autorisées sont toujours complétées ici : le paramètre ALLOWED_ORIGINS du conteneur
+# ne doit pas avoir à être modifié à chaque nouveau site client.
+MP_TO_EMAIL = os.getenv("MP_TO_EMAIL", "contact@massagepro.fr")
+MP_TO_NAME = os.getenv("MP_TO_NAME", "Robot Masseur — massagepro.fr")
+for _origin in ("https://massagepro.fr", "https://www.massagepro.fr"):
+    if _origin not in ALLOWED_ORIGINS:
+        ALLOWED_ORIGINS.append(_origin)
 
 # Rate limiting (simple in-memory)
 RATE_LIMIT_WINDOW = 60  # seconds
@@ -198,3 +207,113 @@ async def submit_contact(form: ContactForm, x_forwarded_for: str = ""):
         raise HTTPException(status_code=500, detail="Erreur de configuration email. Contactez l'administrateur.")
     except Exception:
         raise HTTPException(status_code=500, detail="Erreur lors de l'envoi. Réessayez plus tard.")
+
+
+# ── Formulaire « demande d'étude » — massagepro.fr ───────
+class EtudeForm(BaseModel):
+    name: str = Field(..., min_length=1, max_length=128)
+    email: EmailStr
+    etablissement: str = Field("", max_length=160)
+    telephone: str = Field("", max_length=40)
+    ville: str = Field("", max_length=120)
+    message: str = Field(..., min_length=10, max_length=5000)
+    consent: bool = False
+    website: str = Field("", max_length=200)  # honeypot anti-robot
+
+
+def _send_etude(form: "EtudeForm", client_ip: str) -> None:
+    """Achemine la demande d'étude vers la boîte du client (contact@massagepro.fr)."""
+    name = _sanitize(form.name)
+    etab = _sanitize(form.etablissement) or "—"
+    tel = _sanitize(form.telephone) or "—"
+    ville = _sanitize(form.ville) or "—"
+    msg_html = _sanitize(form.message)
+    when = datetime.now().strftime("%d/%m/%Y à %H:%M")
+
+    subject = f"Demande d'étude massagepro.fr — {name}" + (f" ({form.ville})" if form.ville else "")
+
+    def row(label: str, value: str) -> str:
+        return (
+            f'<tr><td style="padding:6px 0;color:#6b7f8a;font-size:12px;text-transform:uppercase;'
+            f'letter-spacing:.08em;width:150px;vertical-align:top">{label}</td>'
+            f'<td style="padding:6px 0;color:#0e1a22;font-size:15px">{value}</td></tr>'
+        )
+
+    html_body = f"""<!DOCTYPE html>
+<html><head><meta charset="utf-8"></head>
+<body style="margin:0;padding:32px 16px;background:#eef2f0;font-family:Arial,Helvetica,sans-serif">
+  <table width="100%" cellpadding="0" cellspacing="0"><tr><td align="center">
+    <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;background:#fff;border-radius:14px;overflow:hidden">
+      <tr><td style="background:#0b141b;padding:26px 30px">
+        <div style="color:#7fd6c4;font-size:12px;letter-spacing:.14em;text-transform:uppercase">massagepro.fr</div>
+        <div style="color:#fff;font-size:21px;font-weight:bold;margin-top:6px">Nouvelle demande d'étude d'implantation</div>
+      </td></tr>
+      <tr><td style="padding:26px 30px 8px">
+        <table width="100%" cellpadding="0" cellspacing="0">
+          {row("Contact", f"<strong>{name}</strong>")}
+          {row("Établissement", etab)}
+          {row("E-mail", f'<a href="mailto:{form.email}" style="color:#0a5a4e">{form.email}</a>')}
+          {row("Téléphone", f'<a href="tel:{tel}" style="color:#0a5a4e">{tel}</a>' if form.telephone else "—")}
+          {row("Ville", ville)}
+          {row("Reçue le", when)}
+        </table>
+      </td></tr>
+      <tr><td style="padding:10px 30px 30px">
+        <div style="color:#6b7f8a;font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Message</div>
+        <div style="background:#f4f8f6;border-left:3px solid #0f7d6c;border-radius:6px;padding:16px;color:#1b2b33;font-size:15px;line-height:1.6;white-space:pre-wrap">{msg_html}</div>
+      </td></tr>
+      <tr><td style="background:#f0f4f2;padding:16px 30px;color:#7a8f99;font-size:12px">
+        Répondez directement à cet e-mail : la réponse part vers {form.email}.<br>
+        Formulaire du site massagepro.fr · G.O PARTNERS SAS
+      </td></tr>
+    </table>
+  </td></tr></table>
+</body></html>"""
+
+    text_body = (
+        f"Demande d'étude d'implantation — massagepro.fr\n\n"
+        f"Contact : {name}\nÉtablissement : {etab}\nE-mail : {form.email}\n"
+        f"Téléphone : {tel}\nVille : {ville}\nReçue le : {when}\n\nMessage :\n{form.message}\n"
+    )
+
+    msg = MIMEMultipart("alternative")
+    msg["From"] = f"massagepro.fr <{FROM_EMAIL}>"
+    msg["To"] = f"{MP_TO_NAME} <{MP_TO_EMAIL}>"
+    msg["Subject"] = subject
+    msg["Reply-To"] = f"{name} <{form.email}>"
+    msg.attach(MIMEText(text_body, "plain", "utf-8"))
+    msg.attach(MIMEText(html_body, "html", "utf-8"))
+
+    with smtplib.SMTP(SMTP_HOST, SMTP_PORT, timeout=15) as server:
+        server.starttls()
+        server.login(SMTP_USER, SMTP_PASS)
+        server.sendmail(FROM_EMAIL, [MP_TO_EMAIL], msg.as_string())
+    logger.info(f"Demande d'étude massagepro envoyée : {form.email} ({client_ip})")
+
+
+@app.post("/api/contact-massagepro", response_model=SubmitResponse)
+async def submit_etude(form: EtudeForm, request: Request):
+    client_ip = (request.headers.get("x-forwarded-for", "").split(",")[0].strip()
+                 or (request.client.host if request.client else "unknown"))
+
+    # Piège à robots : le champ caché doit rester vide. On répond « succès » pour ne pas les alerter.
+    if form.website.strip():
+        logger.info(f"Honeypot massagepro déclenché ({client_ip}) — message ignoré")
+        return SubmitResponse(message="Merci, votre demande a bien été envoyée.")
+
+    if not form.consent:
+        raise HTTPException(status_code=400, detail="Merci de cocher la case d'information sur vos données.")
+
+    if not _check_rate_limit(client_ip):
+        logger.warning(f"Rate limit massagepro pour {client_ip}")
+        raise HTTPException(status_code=429, detail="Trop de demandes. Réessayez dans une minute.")
+
+    try:
+        _send_etude(form, client_ip)
+        return SubmitResponse(message="Merci ! Votre demande est envoyée, nous revenons vers vous sous 24 h ouvrées.")
+    except smtplib.SMTPAuthenticationError:
+        logger.error("SMTP auth failed (massagepro)")
+        raise HTTPException(status_code=500, detail="Erreur de configuration e-mail. Écrivez à contact@massagepro.fr.")
+    except Exception as e:
+        logger.error(f"Erreur envoi demande d'étude : {e}")
+        raise HTTPException(status_code=500, detail="L'envoi a échoué. Réessayez ou écrivez à contact@massagepro.fr.")
