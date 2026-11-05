@@ -4,11 +4,15 @@ Sends emails via Mailjet SMTP.
 """
 
 import os
+import json
 import logging
 import smtplib
+import urllib.parse
+import urllib.request
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
@@ -37,6 +41,14 @@ ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "https://alpesdata.com,https://ww
 # ne doit pas avoir à être modifié à chaque nouveau site client.
 MP_TO_EMAIL = os.getenv("MP_TO_EMAIL", "contact@massagepro.fr")
 MP_TO_NAME = os.getenv("MP_TO_NAME", "Robot Masseur — massagepro.fr")
+
+# Récapitulatif Google Sheets, rangé dans le Drive du client (dossier « Fauteuil massant »).
+# Le jeton OAuth (compte Drive du client) est fourni soit en JSON dans l'environnement,
+# soit par un fichier monté dans le conteneur. Le classeur est partagé avec ce compte.
+GOOGLE_TOKEN_FILE = os.getenv("GOOGLE_TOKEN_FILE", "/app/google_token.json")
+GOOGLE_TOKEN_JSON = os.getenv("GOOGLE_TOKEN_JSON", "")
+GSHEET_ID = os.getenv("GSHEET_ID", "18SHcoJkr7z7a1S6doW7x0rnEmt81SUb-00LXCjaopCs")
+GSHEET_RANGE = os.getenv("GSHEET_RANGE", "Demandes!A:H")
 for _origin in ("https://massagepro.fr", "https://www.massagepro.fr"):
     if _origin not in ALLOWED_ORIGINS:
         ALLOWED_ORIGINS.append(_origin)
@@ -291,6 +303,39 @@ def _send_etude(form: "EtudeForm", client_ip: str) -> None:
     logger.info(f"Demande d'étude massagepro envoyée : {form.email} ({client_ip})")
 
 
+def _google_access_token() -> str:
+    """Échange le refresh token du compte Google contre un access token (sans dépendance externe)."""
+    if GOOGLE_TOKEN_JSON:
+        cfg = json.loads(GOOGLE_TOKEN_JSON)
+    else:
+        with open(GOOGLE_TOKEN_FILE, encoding="utf-8") as fh:
+            cfg = json.load(fh)
+    data = urllib.parse.urlencode({
+        "client_id": cfg["client_id"],
+        "client_secret": cfg["client_secret"],
+        "refresh_token": cfg["refresh_token"],
+        "grant_type": "refresh_token",
+    }).encode()
+    req = urllib.request.Request("https://oauth2.googleapis.com/token", data=data)
+    with urllib.request.urlopen(req, timeout=15) as r:
+        return json.load(r)["access_token"]
+
+
+def _sheet_append(row: list[str]) -> None:
+    """Ajoute une ligne au récapitulatif Google Sheets (Drive du client)."""
+    token = _google_access_token()
+    url = ("https://sheets.googleapis.com/v4/spreadsheets/" + GSHEET_ID + "/values/"
+           + urllib.parse.quote(GSHEET_RANGE) + ":append"
+           + "?valueInputOption=RAW&insertDataOption=INSERT_ROWS")
+    body = json.dumps({"values": [row]}, ensure_ascii=False).encode("utf-8")
+    req = urllib.request.Request(
+        url, method="POST", data=body,
+        headers={"Authorization": f"Bearer {token}",
+                 "Content-Type": "application/json; charset=utf-8"})
+    with urllib.request.urlopen(req, timeout=20) as r:
+        json.load(r)
+
+
 @app.post("/api/contact-massagepro", response_model=SubmitResponse)
 async def submit_etude(form: EtudeForm, request: Request):
     client_ip = (request.headers.get("x-forwarded-for", "").split(",")[0].strip()
@@ -310,10 +355,26 @@ async def submit_etude(form: EtudeForm, request: Request):
 
     try:
         _send_etude(form, client_ip)
-        return SubmitResponse(message="Merci ! Votre demande est envoyée, nous revenons vers vous sous 24 h ouvrées.")
     except smtplib.SMTPAuthenticationError:
         logger.error("SMTP auth failed (massagepro)")
         raise HTTPException(status_code=500, detail="Erreur de configuration e-mail. Écrivez à contact@massagepro.fr.")
     except Exception as e:
         logger.error(f"Erreur envoi demande d'étude : {e}")
         raise HTTPException(status_code=500, detail="L'envoi a échoué. Réessayez ou écrivez à contact@massagepro.fr.")
+
+    # Traçabilité dans le récapitulatif Sheets : un échec ici ne doit pas casser la demande déjà envoyée.
+    try:
+        _sheet_append([
+            datetime.now(ZoneInfo("Europe/Paris")).strftime("%d/%m/%Y %H:%M"),
+            form.name.strip(),
+            form.etablissement.strip(),
+            str(form.email),
+            form.telephone.strip(),
+            form.ville.strip(),
+            form.message.strip(),
+            "Nouveau",
+        ])
+    except Exception as e:
+        logger.error(f"Google Sheet non mis à jour (demande de {form.email}) : {e}")
+
+    return SubmitResponse(message="Merci ! Votre demande est envoyée, nous revenons vers vous sous 24 h ouvrées.")
