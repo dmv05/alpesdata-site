@@ -99,7 +99,7 @@ BODY = f"""<body>
 
         <header class="article-header fade-in">
           <span class="article-category">{CATEGORY}</span>
-          <h1>REA&nbsp;: l'outil qui décompilait n'importe quelle application — ce qu'il fait vraiment, et ce qu'Alpesdata en pense</h1>
+          <h1>REA&nbsp;: l'outil qui décompile n'importe quelle application — ce qu'il fait vraiment, et ce qu'Alpesdata en pense</h1>
           <div class="article-meta">
             <span>{DATE_FR}</span>
             <span>{READ}</span>
