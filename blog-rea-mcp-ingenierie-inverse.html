@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REA : décompiler n'importe quelle application — ce qu'il fait, et notre avis</title>
+<meta name="description" content="REA, l'outil qui laisse un agent IA décompiler et reconstruire des applications, a viré au phénomène viral. Ce qu'il fait vraiment, le cadre légal, et la position d'Alpesdata.">
+    <meta property="og:title" content="REA : décompiler n'importe quelle application — ce qu'il fait, et notre avis" />
+    <meta property="og:description" content="REA, l'outil qui laisse un agent IA décompiler et reconstruire des applications, a viré au phénomène viral. Ce qu'il fait vraiment, le cadre légal, et la position d'Alpesdata." />
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://alpesdata.com/blog-rea-mcp-ingenierie-inverse.html" />
+    <meta property="og:image" content="https://alpesdata.com/images/og-alpesdata.jpg" />
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alpesdata — développement web, IA et dépannage à Briançon">
+    <meta property="og:locale" content="fr_FR" />
+    <meta property="og:site_name" content="Alpesdata" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="REA : décompiler n'importe quelle application — ce qu'il fait, et notre avis" />
+    <meta name="twitter:description" content="REA, l'outil qui laisse un agent IA décompiler et reconstruire des applications, a viré au phénomène viral. Ce qu'il fait vraiment, le cadre légal, et la position d'Alpesdata." />
+    <meta name="twitter:image" content="https://alpesdata.com/images/og-alpesdata.jpg" />
+    <link rel="canonical" href="https://alpesdata.com/blog-rea-mcp-ingenierie-inverse.html" />
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "REA : décompiler n'importe quelle application — ce qu'il fait, et notre avis",
+  "description": "REA, l'outil qui laisse un agent IA décompiler et reconstruire des applications, a viré au phénomène viral. Ce qu'il fait vraiment, le cadre légal, et la position d'Alpesdata.",
+  "url": "https://alpesdata.com/blog-rea-mcp-ingenierie-inverse.html",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://alpesdata.com/blog-rea-mcp-ingenierie-inverse.html"
+  },
+  "image": "https://alpesdata.com/images/og-alpesdata.jpg",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "author": {
+    "@type": "Person",
+    "name": "Didier Moranval-Vincent",
+    "url": "https://alpesdata.com/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Alpesdata",
+    "url": "https://alpesdata.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://alpesdata.com/favicon-192.png"
+    }
+  }
+}
+  </script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap"></noscript>
+<style>
+:root {
+  --clay: #806065;
+  --clay-dark: #644a4e;
+  --clay-light: #c49ea2;
+  --navy: #1B395A;
+  --navy-dark: #0F2640;
+  --navy-light: #2A5078;
+  --cream: #F7EBED;
+  --cream-dark: #e8d5d8;
+  --white: #FFFFFF;
+  --text: #2d2d2d;
+  --text-light: #666;
+  --shadow: 0 4px 20px rgba(0,0,0,0.08);
+  --shadow-hover: 0 8px 30px rgba(0,0,0,0.12);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.3s ease;
+  --max-width: 1200px;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Syne', 'Inter', sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line-height:1.7;font-size:16px;-webkit-font-smoothing:antialiased}
+.nav{background:var(--navy);padding:0 24px;position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.2)}
+.nav-inner{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:70px}
+.nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--white);font-family:var(--font-display);font-weight:700;font-size:1.2rem}
+.nav-logo img{height:56px;width:auto}
+.nav-links{display:flex;list-style:none;gap:4px}
+.nav-links a{color:rgba(255,255,255,0.8);text-decoration:none;padding:8px 14px;border-radius:8px;font-size:0.88rem;font-weight:500;transition:var(--transition)}
+.nav-links a:hover,.nav-links a.active{color:var(--white);background:rgba(255,255,255,0.12)}
+.nav-toggle{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer;padding:8px}
+@media(max-width:900px){
+  .nav-toggle{display:block}
+  .nav-links{display:none;position:absolute;top:70px;left:0;right:0;background:var(--navy);flex-direction:column;padding:16px;gap:8px;box-shadow:0 4px 20px rgba(0,0,0,0.3)}
+  .nav-links.open{display:flex}
+}
+.section{padding:80px 24px}
+.section-inner{max-width:var(--max-width);margin:0 auto}
+.section-title{font-family:var(--font-display);font-size:2rem;font-weight:700;color:var(--navy);margin-bottom:12px;text-align:center}
+.section-subtitle{text-align:center;color:var(--text-light);max-width:600px;margin:0 auto 48px;font-size:1.05rem}
+
+/* Article page */
+.article-page{padding:60px 24px}
+.article-page .article-container{max-width:760px;margin:0 auto}
+.article-page .article-header{margin-bottom:40px}
+.article-page .article-meta{font-size:0.85rem;color:var(--text-light);margin-bottom:8px;display:flex;gap:12px;flex-wrap:wrap}
+.article-page .article-meta span{background:var(--cream-dark);padding:4px 12px;border-radius:20px;font-weight:500}
+.article-page .article-category{color:var(--clay);font-weight:600;font-size:0.85rem;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;display:block}
+.article-page h1{font-family:var(--font-display);font-size:2.2rem;color:var(--navy);line-height:1.2;margin-bottom:16px}
+.article-page h2{font-family:var(--font-display);font-size:1.5rem;color:var(--navy);margin:40px 0 16px;padding-bottom:8px;border-bottom:2px solid var(--cream-dark)}
+.article-page h3{font-family:var(--font-display);font-size:1.15rem;color:var(--navy);margin:28px 0 12px}
+.article-page p{margin-bottom:18px;line-height:1.8;font-size:1.02rem}
+.article-page ul,.article-page ol{margin:0 0 20px 24px}
+.article-page li{margin-bottom:8px;line-height:1.7}
+.article-page .highlight-box{background:var(--white);border-radius:var(--radius);padding:28px;margin:28px 0;box-shadow:var(--shadow);border-left:4px solid var(--clay)}
+.article-page .highlight-box h3{margin-top:0;color:var(--navy)}
+.article-page .highlight-box p:last-child{margin-bottom:0}
+.article-page blockquote{background:var(--white);border-radius:var(--radius);padding:24px 28px;margin:28px 0;box-shadow:var(--shadow);border-left:4px solid var(--navy);font-style:italic;color:var(--text-light);font-size:1.05rem}
+.article-page blockquote strong{color:var(--text);font-style:normal}
+.article-page .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin:28px 0}
+.article-page .stat-card{background:var(--white);border-radius:var(--radius);padding:24px;text-align:center;box-shadow:var(--shadow)}
+.article-page .stat-card .number{font-family:var(--font-display);font-size:1.8rem;font-weight:700;color:var(--clay);display:block}
+.article-page .stat-card .label{font-size:0.85rem;color:var(--text-light);margin-top:4px}
+.article-page .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--clay);text-decoration:none;font-weight:500;margin-bottom:24px;transition:var(--transition)}
+.article-page .back-link:hover{color:var(--clay-dark);gap:12px}
+.article-page .cta-box{background:linear-gradient(135deg,var(--navy-dark),var(--navy));color:var(--white);border-radius:var(--radius);padding:36px;margin:40px 0;text-align:center}
+.article-page .cta-box h3{color:var(--white);margin-bottom:12px;font-family:var(--font-display);font-size:1.3rem}
+.article-page .cta-box p{color:rgba(255,255,255,0.85);font-size:0.95rem;margin-bottom:20px}
+.article-page .cta-box .btn{display:inline-block;padding:12px 32px;border-radius:50px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:var(--transition);background:var(--clay);color:var(--white);border:2px solid transparent}
+.article-page .cta-box .btn:hover{background:var(--clay-dark);transform:translateY(-2px)}
+.article-page .tech-box{background:var(--white);border-radius:var(--radius);padding:24px;margin:20px 0;box-shadow:var(--shadow);border:1px solid #eee}
+.article-page .tech-box h4{color:var(--navy);margin-bottom:8px;font-size:1rem}
+.article-page .tech-box p{font-size:0.92rem;margin-bottom:0}
+.article-page code{background:var(--cream-dark);padding:2px 6px;border-radius:4px;font-size:0.9em}
+.article-page img{max-width:100%;border-radius:var(--radius);margin:20px 0;box-shadow:var(--shadow)}
+.article-page a{color:var(--clay);text-decoration:underline;text-underline-offset:2px}
+.article-page a:hover{color:var(--clay-dark)}
+.article-page h2 a,.article-page h3 a{color:inherit;text-decoration:underline;text-decoration-color:var(--cream-dark)}
+
+.footer{background:var(--navy-dark);color:rgba(255,255,255,0.7);padding:40px 24px 24px;text-align:center;font-size:0.85rem}
+.footer a{color:rgba(255,255,255,0.7);text-decoration:none;transition:var(--transition)}
+.footer a:hover{color:var(--white)}
+.footer-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;margin-bottom:20px}
+.footer-social{display:flex;justify-content:center;gap:16px;margin-bottom:20px}
+.footer-social a{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:var(--transition)}
+.footer-social a:hover{background:var(--clay);transform:translateY(-2px)}
+.footer-bottom{border-top:1px solid rgba(255,255,255,0.1);padding-top:16px;font-size:0.8rem}
+
+@media(max-width:768px){
+  .section{padding:50px 16px}
+  .article-page h1{font-size:1.7rem}
+  .article-page h2{font-size:1.25rem}
+  .article-page .article-container{padding:0}
+  .article-page .stats-grid{grid-template-columns:1fr 1fr}
+}
+.fade-in{opacity:0;transform:translateY(20px);transition:opacity 0.6s ease, transform 0.6s ease}
+.fade-in.visible{opacity:1;transform:translateY(0)}
+</style>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" href="/favicon-192.png">
+</head>
+<body>
+    <nav class="nav">
+      <div class="nav-inner">
+        <a href="/" class="nav-logo">
+          <img src="/images/logo-blanc.png" alt="Alpesdata" height="56">
+        </a>
+        <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">☰</button>
+        <ul class="nav-links">
+          <li><a href="/" >Home</a></li>
+          <li><a href="/portfolio.html" >Portfolio</a></li>
+          <li><a href="/depannage.html" >Dépannage</a></li>
+          <li><a href="/job.html" >Job</a></li>
+          <li><a href="/blog.html" >Blog</a></li>
+          <li><a href="/ia.html" >IA</a></li>
+          <li><a href="/devis.html">Devis</a></li>
+          <li><a href="/store.html" >Store</a></li>
+          <li><a href="/calendrier.html" >Calendrier</a></li>
+          <li><a href="/contact.html" >Contact</a></li>
+          <li><a href="/nuki.html" >Nuki</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <article class="article-page">
+      <div class="article-container">
+        <a href="/blog.html" class="back-link">← Retour au blog</a>
+
+        <header class="article-header fade-in">
+          <span class="article-category">🤖 IA &amp; Développement</span>
+          <h1>REA&nbsp;: l'outil qui décompilait n'importe quelle application — ce qu'il fait vraiment, et ce qu'Alpesdata en pense</h1>
+          <div class="article-meta">
+            <span>9 novembre 2026</span>
+            <span>8 min de lecture</span>
+            <span>#IA #IngénierieInverse #REA #MCP #Développement</span>
+          </div>
+          <p style="font-size:1.1rem;color:var(--text-light);line-height:1.7">
+            En octobre 2026, un dépôt GitHub passé inaperçu pendant l'été a viré au phénomène&nbsp;: <strong>REA</strong>,
+            «&nbsp;Reverse Engineer Anything&nbsp;», promet de laisser un agent IA décompiler n'importe quel logiciel
+            et le reconstruire. Les démos montrent des clones de Calendly et de Trello obtenus en quelques minutes.
+            Derrière le buzz, il y a une vraie question technique, une vraie question juridique — et une position à
+            prendre. Voici la nôtre.
+          </p>
+        </header>
+
+        <div class="fade-in">
+          <h2>📌 Ce que c'est, en une phrase</h2>
+
+          <p>
+            REA est un <strong>serveur MCP</strong> doublé d'une <strong>ligne de commande</strong>, écrit en
+            TypeScript, publié sous licence MIT par un développeur indépendant (<code>morluto</code>), et installable
+            en une commande&nbsp;: <code>npx --yes rea-agents@latest setup</code>.
+          </p>
+
+          <p>
+            Le point à comprendre&nbsp;: <strong>REA ne décompile rien lui-même</strong>. Il ne contient ni désassembleur
+            ni moteur d'analyse. C'est une <strong>couche d'orchestration</strong>&nbsp;: il branche un agent de code
+            (Claude Code, Cursor, Codex, Gemini CLI, Windsurf…) sur les outils d'ingénierie inverse qui existent depuis
+            vingt ans — <strong>Ghidra</strong>, <strong>Hopper</strong>, <strong>IDA</strong> — et il leur donne un
+            vocabulaire commun. L'agent demande&nbsp;; REA traduit&nbsp;; l'outil exécute&nbsp;; le résultat revient avec
+            ses preuves et ses limites.
+          </p>
+
+          <blockquote>
+            REA est au décompilateur ce qu'un standard téléphonique est à la conversation&nbsp;:
+            <strong>il ne parle pas à votre place, il met les bonnes personnes en ligne.</strong>
+          </blockquote>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="number">≈ 143 700</span>
+              <span class="label">étoiles GitHub fin octobre 2026<br>(111 en juillet, selon les décomptes publics)</span>
+            </div>
+            <div class="stat-card">
+              <span class="number">MIT</span>
+              <span class="label">licence open source, code entièrement lisible</span>
+            </div>
+            <div class="stat-card">
+              <span class="number">6+</span>
+              <span class="label">assistants compatibles, de Claude Code à Gemini CLI</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <h2>🧰 Ce qu'il sait ouvrir</h2>
+
+          <p>
+            La couverture est plus large que le mot «&nbsp;décompilation&nbsp;» ne le laisse croire, et c'est ce qui
+            explique une partie de l'engouement&nbsp;:
+          </p>
+
+          <ul>
+            <li><strong>Binaires natifs</strong> — Mach-O (macOS), ELF (Linux), PE (Windows), y compris les métadonnées
+            Swift et Objective-C. C'est là que l'outil est le plus profond.</li>
+            <li><strong>Assemblages .NET</strong> — inspection statique, sans exécuter le programme.</li>
+            <li><strong>JavaScript et applications Electron</strong> — lecture du code embarqué, sans lancement.</li>
+            <li><strong>Archives d'applications</strong> — APK Android, IPA iOS, ASAR, MSIX, ZIP&nbsp;: inventaire et
+            exploration avant toute analyse.</li>
+            <li><strong>Sites web</strong> — via les outils d'inspection du navigateur.</li>
+          </ul>
+
+          <p>
+            Deux précautions que l'outil affiche lui-même&nbsp;: l'analyse native suppose que vous possédiez déjà une
+            licence <strong>Hopper</strong> ou <strong>IDA</strong> (outils commerciaux, plusieurs centaines d'euros),
+            et la capture d'exécution se fait avec vos propres droits sur votre propre machine.
+          </p>
+        </div>
+
+        <div class="fade-in">
+          <h2>🎬 Pourquoi tout le monde en parle</h2>
+
+          <p>
+            Ce qui a fait décoller REA n'est pas une avancée technique, c'est une série de démonstrations&nbsp;:
+            on montre une capture d'écran de Calendly, de Typeform ou de Trello, on demande à l'agent de «&nbsp;faire
+            pareil&nbsp;», et quelques minutes plus tard une application qui y ressemble tourne sur la machine.
+            Le récit s'écrit tout seul&nbsp;: <em>les abonnements SaaS à 30&nbsp;€ par mois sont morts</em>.
+          </p>
+
+          <p>
+            La nuance est importante, et elle est rarement dite&nbsp;: <strong>dans ces démos, REA ne décompile
+            rien</strong>. Une capture d'écran ne contient aucun code. Ce qui est reconstruit, c'est l'apparence et
+            deux ou trois flux principaux. Il n'y a derrière ni la vérification des conflits d'agenda, ni la
+            synchronisation des fuseaux horaires, ni les années de corrections de bugs, ni le support quand
+            quelque chose casse un mardi matin.
+          </p>
+
+          <div class="highlight-box">
+            <h3>Cloner l'écran n'est pas remplacer l'abonnement</h3>
+            <p>
+              Une interface se copie en une après-midi. Ce qu'on achète dans un abonnement, ce sont les mille
+              décisions invisibles qui la font tenir debout — et elles ne sont pas dans la capture d'écran.
+            </p>
+          </div>
+        </div>
+
+        <div class="fade-in">
+          <h2>⚖️ Ce que dit le droit, en France</h2>
+
+          <p>
+            Un logiciel est protégé par le droit d'auteur, code source compris. La décompilation n'est donc pas
+            libre. Le Code de la propriété intellectuelle prévoit <strong>une exception étroite</strong>, à l'article
+            L122-6-1&nbsp;IV&nbsp;: reproduire le code et traduire sa forme est permis lorsque c'est indispensable pour
+            permettre à un logiciel <strong>créé indépendamment</strong> de fonctionner avec un autre. À trois
+            conditions cumulatives&nbsp;: avoir le droit d'utiliser le logiciel, se limiter aux parties réellement
+            nécessaires, et ne pas porter atteinte à son exploitation normale.
+          </p>
+
+          <p>
+            En dehors de ce cadre — dupliquer un logiciel pour le revendre, le redistribuer, ou se dispenser de payer
+            une licence tout en utilisant son travail — on ne parle plus d'interopérabilité. On parle de
+            <strong>contrefaçon</strong>, et c'est un délit.
+          </p>
+
+          <p>
+            Le README du projet dit d'ailleurs la même chose, en anglais et en trois lignes&nbsp;: usage réservé à la
+            recherche légale, à l'interopérabilité, à la préservation, et aux logiciels que vous possédez ou que vous
+            êtes autorisé à examiner. Ce n'est pas une clause de style&nbsp;: c'est le périmètre dans lequel l'outil
+            est distribué.
+          </p>
+        </div>
+
+        <div class="fade-in">
+          <h2>🧭 Notre avis</h2>
+
+          <blockquote>
+            <strong>Alpesdata ne cautionne pas la duplication pirate de logiciels.</strong> Copier le travail de
+            quelqu'un d'autre pour ne pas le payer, ce n'est pas de l'ingénierie&nbsp;: c'est du vol, et en France
+            c'est un délit. Nous ne le ferons pas, et nous ne le recommanderons à personne.
+          </blockquote>
+
+          <p>
+            Cela étant dit, deux choses doivent être dites, parce qu'elles sont vraies et qu'elles vont compter dans
+            les mois qui viennent.
+          </p>
+
+          <p>
+            <strong>Un — l'outil n'est pas l'usage.</strong> Le même marteau sert à monter une charpente ou à
+            défoncer une porte. L'ingénierie inverse est une pratique ancienne et parfaitement légitime dans son
+            cadre&nbsp;: comprendre un format pour récupérer ses propres données, vérifier ce qu'un prestataire a
+            réellement livré, faire dialoguer deux logiciels qu'un client possède déjà, documenter un système avant
+            de le remplacer. Ce sont des travaux que nous faisons, et qu'aucune loi n'interdit.
+          </p>
+
+          <p>
+            <strong>Deux — si cette technologie peut accélérer le développement en diminuant le coût, pourquoi
+            pas&nbsp;?</strong> Un artisan qui paie 40&nbsp;€ par mois depuis six ans pour un outil dont il utilise
+            5&nbsp;% des fonctions a le droit de se demander ce que coûterait la fonction qu'il utilise vraiment.
+            Ce n'est pas une opinion, c'est une soustraction. Refuser de la faire au nom du confort, c'est laisser
+            le client payer la différence. Nous préférons lui poser la question — et lui dire honnêtement quand la
+            réponse est «&nbsp;gardez votre abonnement&nbsp;», ce qui arrive souvent.
+          </p>
+
+          <p>
+            <strong>Trois — cette technologie existe.</strong> Elle est open source, gratuite, documentée, et
+            plusieurs centaines de milliers de personnes l'ont déjà regardée. Faire comme si elle n'existait pas ne
+            la fait pas disparaître&nbsp;: ça garantit seulement d'être le dernier à comprendre ce qui arrive à son
+            métier. On peut refuser d'utiliser un outil&nbsp;; on ne peut pas refuser de savoir qu'il existe.
+          </p>
+        </div>
+
+        <div class="fade-in">
+          <h2>🏢 Ce que ça change pour un éditeur ou une PME</h2>
+
+          <p>
+            La question utile n'est pas «&nbsp;est-ce que mon logiciel peut être copié&nbsp;?&nbsp;» — la réponse est
+            oui, et elle l'était avant REA. La question est&nbsp;: <strong>si mon produit était reconstruit en une
+            semaine, que resterait-il de mon avantage&nbsp;?</strong>
+          </p>
+
+          <ul>
+            <li><strong>Si votre valeur est une interface</strong>, elle est copiable. Le rempart est ailleurs&nbsp;:
+            vos données, vos intégrations, votre support, votre marque, la relation avec vos clients.</li>
+            <li><strong>Si votre valeur est un savoir accumulé</strong> — quinze ans de règles métier, d'exceptions,
+            de cas particuliers — un clone de surface ne vous atteindra pas. C'est le bon endroit pour mettre ses
+            efforts.</li>
+            <li><strong>Ce qu'il faut surveiller</strong>&nbsp;: vos conditions d'utilisation, vos marques déposées, vos
+            bases de données (et le RGPD), et la façon dont vos propres prestataires accèdent à votre code.</li>
+          </ul>
+        </div>
+
+        <div class="fade-in">
+          <h2>🔧 Ce que nous en faisons, concrètement</h2>
+
+          <p>
+            Nous ne clonons pas de logiciels. Ce que nous regardons dans ce type d'outil, c'est un usage précis et
+            documenté&nbsp;:
+          </p>
+
+          <ul>
+            <li>récupérer les données d'un logiciel abandonné dont le format n'est plus documenté&nbsp;;</li>
+            <li>vérifier ce qu'un prestataire a réellement livré, quand le code source n'est pas disponible&nbsp;;</li>
+            <li>documenter un système existant avant migration, plutôt que de le remplacer à l'aveugle&nbsp;;</li>
+            <li>assurer l'interopérabilité entre deux outils que le client possède déjà.</li>
+          </ul>
+
+          <p>
+            Dans ces quatre cas, le client possède le logiciel ou est autorisé à l'examiner, et l'objectif n'est jamais
+            de revendre une copie. C'est la ligne&nbsp;: à l'intérieur, c'est du travail&nbsp;; au-delà, c'est un délit.
+          </p>
+        </div>
+
+        <div class="fade-in">
+          <h2>✅ En résumé</h2>
+          <ul>
+            <li>REA n'est pas magique&nbsp;: c'est une couche d'orchestration posée sur des outils de 2005.</li>
+            <li>Il ne transforme pas une capture d'écran en produit fini&nbsp;: il aide un agent à comprendre du code compilé.</li>
+            <li>La décompilation est légale dans un cadre étroit&nbsp;; la duplication ne l'est pas.</li>
+            <li>Le coût du logiciel va baisser. Ce n'est pas une raison pour copier&nbsp;; c'est une raison pour se poser la bonne question.</li>
+          </ul>
+        </div>
+
+        <div class="cta-box">
+          <h3>Un logiciel que vous voulez quitter, reprendre ou faire évoluer&nbsp;?</h3>
+          <p>
+            Nous regardons ce qu'il fait réellement, ce qu'il vous coûte chaque année, et ce qu'il faudrait pour le
+            remplacer — ou pour continuer avec, si c'est plus raisonnable. Premier échange gratuit.
+          </p>
+          <a href="/contact.html" class="btn">Parler de votre projet →</a>
+        </div>
+
+        <p style="font-size:0.85rem;color:var(--text-light);font-style:italic">
+          Sources&nbsp;:
+          <a href="https://github.com/morluto/rea" target="_blank" rel="noopener">morluto/rea</a>, dépôt officiel (périmètre
+          d'usage, outils pris en charge, licence MIT) ·
+          <a href="https://www.mindstudio.ai/blog/reverse-engineer-anything-mcp" target="_blank" rel="noopener">Reverse Engineer
+          Anything&nbsp;: what the viral REA MCP actually does</a>, MindStudio, 2026 ·
+          <a href="https://www.eigent.ai/blog/rea-reverse-engineer-anything" target="_blank" rel="noopener">REA&nbsp;: Reverse
+          Engineer Anything with AI agents</a>, Eigent ·
+          <a href="https://dev.to/arshtechpro/rea-let-your-ai-agent-reverse-engineer-the-app-features-you-wish-you-had-3en7" target="_blank" rel="noopener">REA&nbsp;: let your
+          AI agent reverse engineer the app features you wish you had</a>, DEV Community ·
+          <a href="https://medium.com/@info.booststash/reverse-engineer-anything-went-viral-the-calendly-clone-demos-are-a-different-trick-dc9511769f5e" target="_blank" rel="noopener">Reverse Engineer
+          Anything went viral — the Calendly clone demos are a different trick</a>, Medium, octobre 2026 (décomptes d'étoiles, v4.1) ·
+          Code de la propriété intellectuelle, article L122-6-1 IV (exception d'interopérabilité).
+          <br>Cet article a été rédigé avec <strong>Hermes</strong>, l'agent open source que nous déployons pour nos clients.
+        </p>
+      </div>
+    </article>
+    <footer class="footer">
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="/portfolio.html">Portfolio</a>
+        <a href="/depannage.html">Dépannage</a>
+        <a href="/job.html">Job</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/ia.html">IA</a>
+    <a href="/devis.html">Devis</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/nuki.html">Nuki</a>
+      </div>
+      <div class="footer-social">
+        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+        </a>
+        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Twitter/X">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Alpesdata — Agence de développement web &amp; assistance informatique. Briançon, Hautes-Alpes.</p>
+      </div>
+    </footer>
+<script>
+document.addEventListener("DOMContentLoaded",function(){var e=document.querySelectorAll(".fade-in");if(e.length>0){var t=new IntersectionObserver(function(n){n.forEach(function(n){n.isIntersecting&&(n.target.classList.add("visible"),t.unobserve(n.target))})},{threshold:0.1});e.forEach(function(e){t.observe(e)})}});
+</script>
+</body>
+</html>
