@@ -282,6 +282,10 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
                 <textarea id="field-message" name="message" rows="5" required style="width:100%;padding:10px 14px;border:1px solid #ddd;border-radius:8px;font-family:inherit;font-size:1rem;resize:vertical"></textarea>
               </div>
               <button type="submit" id="contact-submit-btn" class="btn btn-primary">Envoyer</button>
+              <div aria-hidden="true" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">
+                <label for="field-website">Site web</label>
+                <input type="text" id="field-website" name="website" tabindex="-1" autocomplete="off">
+              </div>
             </form>
             <script>
             document.getElementById('contact-form').addEventListener('submit', async function(e) {
@@ -291,6 +295,23 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
               const name = document.getElementById('field-name').value.trim();
               const email = document.getElementById('field-email').value.trim();
               const message = document.getElementById('field-message').value.trim();
+              const website = document.getElementById('field-website').value.trim();
+
+              // Anti-hameçonnage : les liens ne sont pas acceptés (cf. /api/contact).
+              const LINK_RE = /(?:https?:\/\/|ftp:\/\/|www\.)\S+|\b[a-z0-9][a-z0-9-]{0,62}(?:\.[a-z0-9-]{1,63})*\.(?:com|net|org|info|biz|fr|be|ch|lu|ca|io|co|me|tv|cc|ws|xyz|online|site|shop|store|app|dev|live|link|click|top|club|space|website|fun|icu|buzz|rest|surf|pro|eu|es|it|de|uk|us|nl|pl|pt|se|ru|ua|cn|tk|pw|gq|cf|ml|ga|id|tr|br|au|in|jp|za)\b/i;
+              const scan = (message + ' ' + name).toLowerCase()
+                .replace(/\s*\[\s*\.\s*\]\s*/g, '.').replace(/\s*\(\s*\.\s*\)\s*/g, '.')
+                .replace(/hxxps?/g, 'http')
+                .replace(/[\w.+-]+@[\w-]+(?:\.[\w-]+)+/g, ' ')
+                .replace(/alpesdata\.com(?!\.[a-z0-9])/g, ' ');
+              if (LINK_RE.test(scan)) {
+                status.style.display = 'block';
+                status.style.background = '#f8d7da';
+                status.style.color = '#721c24';
+                status.style.border = '1px solid #f5c6cb';
+                status.textContent = '❌ Les liens ne sont pas acceptés. Décrivez votre besoin et écrivez-nous à info@alpesdata.com.';
+                return;
+              }
 
               status.style.display = 'none';
               status.className = '';
@@ -301,7 +322,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
                 const res = await fetch('/api/contact', {
                   method: 'POST',
                   headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ name, email, message })
+                  body: JSON.stringify({ name, email, message, website })
                 });
                 const data = await res.json();
                 if (res.ok) {

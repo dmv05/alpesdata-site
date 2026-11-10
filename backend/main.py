@@ -4,6 +4,7 @@ Sends emails via Mailjet SMTP.
 """
 
 import os
+import re
 import json
 import logging
 import smtplib
@@ -58,6 +59,55 @@ RATE_LIMIT_WINDOW = 60  # seconds
 RATE_LIMIT_MAX = 5  # max submissions per window per IP
 _rate_store: dict[str, list[float]] = {}
 
+# ── Anti-spam (formulaire public) ────────────────────────
+# Les formulaires publics servent de canal d'injection : un « prospect » y colle
+# un lien vers une fausse page de partage (Dropbox/Drive imités) qui piège les
+# identifiants de messagerie. Aucun message contenant un lien n'est relayé.
+# Hôtes de confiance : les formulaires internes (fiche richter, joie-de-vivre,
+# devis, questionnaire) construisent leur message avec l'URL de la page d'origine —
+# les filtrer casserait ces envois légitimes.
+TRUSTED_HOSTS = ("alpesdata.com", "massagepro.fr")
+
+_LINK_TLDS = (
+    "com|net|org|info|biz|name|fr|be|ch|lu|ca|io|co|me|tv|cc|ws|xyz|online|site|shop|"
+    "store|app|dev|live|link|click|top|club|space|website|fun|icu|buzz|rest|surf|"
+    "monster|pro|eu|es|it|de|uk|us|nl|pl|pt|se|ru|ua|cn|tk|pw|gq|cf|ml|ga|id|tr|br|"
+    "au|in|jp|za|cf|support"
+)
+
+_URL_RE = re.compile(
+    r"(?:https?://|ftp://|www\.)[^\s<>\"']+"
+    r"|\b[a-z0-9][a-z0-9-]{0,62}(?:\.[a-z0-9-]{1,63})*\.(?:" + _LINK_TLDS + r")\b",
+    re.IGNORECASE,
+)
+
+
+def _deobfuscate(text: str) -> str:
+    """Neutralise les écritures de contournement courantes (hxxp, [.], (dot))."""
+    t = text.lower()
+    t = re.sub(r"\s*\[\s*\.\s*\]\s*", ".", t)
+    t = re.sub(r"\s*\(\s*\.\s*\)\s*", ".", t)
+    t = re.sub(r"\s*[\[(]\s*dot\s*[\])]\s*", ".", t)
+    t = t.replace("hxxps", "https").replace("hxxp", "http")
+    return t
+
+
+def _contains_link(text: str) -> bool:
+    """True si le texte porte une URL (hors hôtes de confiance)."""
+    t = _deobfuscate(text)
+    # Une adresse e-mail n'est pas un lien (les visiteurs donnent souvent la leur).
+    t = re.sub(r"[\w.+-]+@[\w-]+(?:\.[\w-]+)+", " ", t)
+    for host in TRUSTED_HOSTS:
+        # On ne neutralise l'hôte que s'il n'est pas suivi d'un autre label :
+        # « alpesdata.com.evil.xyz » reste détecté par le domaine qui le suit.
+        t = re.sub(re.escape(host) + r"(?!\.[a-z0-9])", " ", t)
+    return bool(_URL_RE.search(t))
+
+
+def _single_line(value: str) -> str:
+    """Interdit les retours à la ligne dans les valeurs réinjectées en en-tête MIME."""
+    return re.sub(r"[\r\n\t]+", " ", value).strip()
+
 # ── FastAPI App ──────────────────────────────────────────
 app = FastAPI(
     title="Alpesdata Contact API",
@@ -79,6 +129,7 @@ class ContactForm(BaseModel):
     name: str = Field(..., min_length=1, max_length=128)
     email: EmailStr
     message: str = Field(..., min_length=10, max_length=5000)
+    website: str = Field("", max_length=200)  # honeypot anti-robot (doit rester vide)
 
 
 class HealthResponse(BaseModel):
@@ -198,8 +249,28 @@ async def health():
 
 
 @app.post("/api/contact", response_model=SubmitResponse)
-async def submit_contact(form: ContactForm, x_forwarded_for: str = ""):
-    client_ip = x_forwarded_for.split(",")[0].strip() if x_forwarded_for else "unknown"
+async def submit_contact(form: ContactForm, request: Request):
+    if request.headers.get("x-forwarded-for"):
+        client_ip = request.headers["x-forwarded-for"].split(",")[0].strip()
+    else:
+        client_ip = request.client.host if request.client else "unknown"
+
+    # Piège à robots : le champ caché doit rester vide. Réponse « succès » sans envoi,
+    # pour ne pas signaler au robot qu'il a été filtré.
+    if form.website.strip():
+        logger.warning(f"Honeypot contact déclenché ({client_ip}) — message ignoré")
+        return SubmitResponse()
+
+    # Aucun lien n'est relayé : vecteur d'injection vers de fausses pages de partage.
+    if _contains_link(form.name) or _contains_link(form.message):
+        logger.warning(
+            f"Message bloqué (lien) — {form.email} ({client_ip}) : {form.message[:160]!r}"
+        )
+        raise HTTPException(
+            status_code=400,
+            detail="Les liens ne sont pas acceptés dans ce formulaire. "
+                   "Écrivez-nous à info@alpesdata.com ou appelez le 06 13 21 59 93.",
+        )
 
     # Rate limiting
     if not _check_rate_limit(client_ip):
@@ -212,7 +283,7 @@ async def submit_contact(form: ContactForm, x_forwarded_for: str = ""):
 
     # Send
     try:
-        _send_email(form.name.strip(), form.email, form.message.strip())
+        _send_email(_single_line(form.name.strip()), form.email, form.message.strip())
         logger.info(f"Contact form submitted by {form.name} <{form.email}> ({client_ip})")
         return SubmitResponse()
     except smtplib.SMTPAuthenticationError:
