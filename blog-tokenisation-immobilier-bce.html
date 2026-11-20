@@ -187,6 +187,10 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
   .article-page .cta-box,.article-page .highlight-box,.article-page .tech-box{padding:22px}
   .article-page blockquote{padding:20px}
 }
+/* Filet de sécurité : si IntersectionObserver ne se déclenche pas (un bloc plus haut
+   que 10x l'écran ne franchit jamais le seuil 0.1), le contenu devient visible seul. */
+@keyframes fade-in-fallback{to{opacity:1;transform:none}}
+.article-page .fade-in{animation:fade-in-fallback .01s linear 2.5s forwards}
     </style><noscript><style>.fade-in{opacity:1!important;transform:none!important}</style></noscript>
 
     <article class="article-page">

@@ -30,6 +30,15 @@ CSS = MARK + '''
     </style>'''
 
 H4_BOX = re.compile(r'(<div class="(?:cta-box|highlight-box)"[^>]*>\s*)<h4>(.*?)</h4>', re.S)
+MARK_FALLBACK = '<!-- mobile-fix-fallback -->'
+FALLBACK = MARK_FALLBACK + """<style>
+/* Filet de sécurité : un bloc .fade-in plus haut que 10x l'écran ne franchit jamais le
+   seuil 0.1 d'IntersectionObserver sur téléphone, et le corps de l'article reste invisible.
+   Ici le contenu devient visible seul au bout de 2,5 s, même si l'observer ne se déclenche pas. */
+@keyframes fade-in-fallback{to{opacity:1;transform:none}}
+.article-page .fade-in{animation:fade-in-fallback .01s linear 2.5s forwards}
+</style>"""
+
 TAGS = ('div', 'article', 'p', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'blockquote', 'a',
         'strong', 'em', 'table', 'thead', 'tbody', 'tr', 'td', 'th')
 
@@ -56,13 +65,17 @@ def fix(path):
     else:
         notes.append('CSS déjà présent')
 
+    if 'fade-in-fallback' not in t:
+        t = t.replace('</head>', FALLBACK + '\n</head>', 1)
+        notes.append('filet anti-page-vide')
+
     t2, n = H4_BOX.subn(r'\1<h3>\2</h3>', t)
     if n:
         t = t2
         notes.append(f'{n} h4→h3')
 
     check(t, p.name)
-    if notes == ['CSS déjà présent'] and not n:
+    if all(x in ('CSS déjà présent',) for x in notes) and not n and 'filet anti-page-vide' not in notes:
         print(f"  {p.name:46s} inchangé")
         return False
     p.write_text(t, encoding='utf-8')
