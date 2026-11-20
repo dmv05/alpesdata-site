@@ -191,7 +191,17 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
           <li><a href="/nuki.html" >Nuki</a></li>
         </ul>
       </div>
-    </nav>
+    </nav><!-- mobile-fix-blog -->
+    <style>
+@media(max-width:560px){
+  .article-page{padding:36px 16px}
+  .article-page .stats-grid{grid-template-columns:1fr}
+  .article-page .stat-card{padding:18px}
+  .article-page .stat-card .number{font-size:1.6rem}
+  .article-page .cta-box,.article-page .highlight-box,.article-page .tech-box{padding:22px}
+  .article-page blockquote{padding:20px}
+}
+    </style>
 
     <article class="article-page">
       <div class="article-container">
@@ -402,7 +412,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
         </div>
 
         <div class="highlight-box">
-          <h4>🔑 Ce qu'il faut retenir</h4>
+          <h3>🔑 Ce qu'il faut retenir</h3>
           <ul>
             <li><strong>Deux failles critiques dans PHP</strong> (CVE-2026-109618 et CVE-2026-109619, CVSS 9,2) permettent une exécution de code à distance sans authentification ; les correctifs sont sortis le 21 octobre à 13h30 UTC.</li>
             <li>Ce n'est pas une panne d'Internet : des sites ont été <strong>volontairement mis hors ligne</strong> par précaution, sur recommandation des autorités (Anssi, NSA, NCSC).</li>

@@ -28,6 +28,17 @@ nav = re.search(r'<nav class="nav">.*?</nav>', src, re.S).group(0)
 footer = re.search(r'<footer class="footer">.*?</footer>', src, re.S).group(0)
 script = re.search(r'<script>\ndocument\.addEventListener\("DOMContentLoaded".*?</script>', src, re.S).group(0)
 
+MOBILE_CSS = """<!-- mobile-fix-blog --><style>
+@media(max-width:560px){
+  .article-page{padding:36px 16px}
+  .article-page .stats-grid{grid-template-columns:1fr}
+  .article-page .stat-card{padding:18px}
+  .article-page .stat-card .number{font-size:1.6rem}
+  .article-page .cta-box,.article-page .highlight-box,.article-page .tech-box{padding:22px}
+  .article-page blockquote{padding:20px}
+}
+</style>"""
+
 HEAD = f"""<!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -87,7 +98,7 @@ HEAD = f"""<!DOCTYPE html>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Syne:wght@400;600;700&display=swap"></noscript>
 {style}
-{favicons}</head>
+{favicons}{MOBILE_CSS}</head>
 """
 
 BODY = f"""<body>

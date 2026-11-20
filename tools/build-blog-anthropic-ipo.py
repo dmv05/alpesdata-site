@@ -66,6 +66,17 @@ FOOL = ("https://www.fool.com/investing/2026/11/19/"
 FMI = "https://www.worldometers.info/fr/pib/pib-par-pays/?source=imf&region=worldwide&year=2026&metric=nominal"
 YAH = "https://finance.yahoo.com/markets/article/anthropic-seeks-14-trillion-valuation-in-ipo-130300928.html"
 
+MOBILE_CSS = """<!-- mobile-fix-blog --><style>
+@media(max-width:560px){
+  .article-page{padding:36px 16px}
+  .article-page .stats-grid{grid-template-columns:1fr}
+  .article-page .stat-card{padding:18px}
+  .article-page .stat-card .number{font-size:1.6rem}
+  .article-page .cta-box,.article-page .highlight-box,.article-page .tech-box{padding:22px}
+  .article-page blockquote{padding:20px}
+}
+</style>"""
+
 BODY = f"""
     <article class="article-page">
       <div class="article-container">
@@ -456,7 +467,7 @@ def main():
     prefix2, n = re.subn(r'(?s)<title>.*?</script>', NEW_HEAD, prefix, count=1)
     assert n == 1, "bloc <head> introuvable dans l'article source"
 
-    out = prefix2 + '\n\n' + BODY.strip('\n') + '\n' + suffix
+    out = prefix2 + MOBILE_CSS + '\n\n' + BODY.strip('\n') + '\n' + suffix
     OUT.write_text(out, encoding='utf-8')
 
     for tag in ('div', 'article', 'p', 'ul', 'ol', 'li', 'h2', 'h3', 'h4', 'blockquote', 'a', 'strong', 'em',

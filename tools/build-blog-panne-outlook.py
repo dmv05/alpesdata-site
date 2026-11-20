@@ -58,6 +58,17 @@ FI = ("https://www.franceinfo.fr/internet/microsoft/"
 NUM = ("https://www.numerama.com/tech/2373565-panne-de-microsoft-365-relancer-outlook-toutes-les-"
        "5-minutes-ne-sert-a-rien-ou-suivre-letat-du-service-en-temps-reel.html")
 
+MOBILE_CSS = """<!-- mobile-fix-blog --><style>
+@media(max-width:560px){
+  .article-page{padding:36px 16px}
+  .article-page .stats-grid{grid-template-columns:1fr}
+  .article-page .stat-card{padding:18px}
+  .article-page .stat-card .number{font-size:1.6rem}
+  .article-page .cta-box,.article-page .highlight-box,.article-page .tech-box{padding:22px}
+  .article-page blockquote{padding:20px}
+}
+</style>"""
+
 BODY = f"""
     <article class="article-page">
       <div class="article-container">
@@ -345,7 +356,7 @@ def main():
     prefix2, n = re.subn(r'(?s)<title>.*?</script>', NEW_HEAD, prefix, count=1)
     assert n == 1, "bloc <head> introuvable dans l'article source"
 
-    out = prefix2 + '\n\n' + BODY.strip('\n') + '\n' + suffix
+    out = prefix2 + MOBILE_CSS + '\n\n' + BODY.strip('\n') + '\n' + suffix
     OUT.write_text(out, encoding='utf-8')
 
     # contrôles d'équilibre

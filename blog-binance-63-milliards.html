@@ -191,7 +191,17 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
           <li><a href="/nuki.html" >Nuki</a></li>
         </ul>
       </div>
-    </nav>
+    </nav><!-- mobile-fix-blog -->
+    <style>
+@media(max-width:560px){
+  .article-page{padding:36px 16px}
+  .article-page .stats-grid{grid-template-columns:1fr}
+  .article-page .stat-card{padding:18px}
+  .article-page .stat-card .number{font-size:1.6rem}
+  .article-page .cta-box,.article-page .highlight-box,.article-page .tech-box{padding:22px}
+  .article-page blockquote{padding:20px}
+}
+    </style>
 
     <article class="article-page">
       <div class="article-container">
@@ -477,7 +487,7 @@ body{font-family:var(--font-sans);color:var(--text);background:var(--cream);line
         </div>
 
         <div class="highlight-box">
-          <h4>🔑 Ce qu'il faut retenir</h4>
+          <h3>🔑 Ce qu'il faut retenir</h3>
           <ul>
             <li><strong>6,3 milliards de dollars</strong> (≈ 5,6 Md€) sortis des portefeuilles de Binance le 29 octobre 2026 en une vingtaine de minutes : le plus gros vol de l'histoire, plus de quatre fois Bybit 2025.</li>
             <li><strong>La cryptographie n'a pas cédé.</strong> L'attaque est passée par le portable d'un ingénieur, des signatures obtenues à l'avance et l'infrastructure de signature — pas par une clé privée volée.</li>
