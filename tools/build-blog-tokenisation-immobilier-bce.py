@@ -64,6 +64,18 @@ BOURSO = ("https://boursorama.com/bourse/actualites/bce-la-tokenisation-est-une-
 MICA = "https://eur-lex.europa.eu/eli/reg/2023/1114/oj"
 DLTP = "https://eur-lex.europa.eu/eli/reg/2022/858/oj"
 
+MOBILE_CSS = """
+    <style>
+@media(max-width:560px){
+  .article-page{padding:36px 16px}
+  .article-page .stats-grid{grid-template-columns:1fr}
+  .article-page .stat-card{padding:18px}
+  .article-page .stat-card .number{font-size:1.6rem}
+  .article-page .cta-box,.article-page .highlight-box,.article-page .tech-box{padding:22px}
+  .article-page blockquote{padding:20px}
+}
+    </style>"""
+
 BODY = f"""
     <article class="article-page">
       <div class="article-container">
@@ -249,7 +261,7 @@ BODY = f"""
           </p>
 
           <div class="highlight-box">
-            <h4>🔑 Ce qu'il faut retenir</h4>
+            <h3>🔑 Ce qu'il faut retenir</h3>
             <ul>
               <li>La BCE ne «&nbsp;change pas d'avis sur les cryptos&nbsp;»&nbsp;: elle veut un marché
               tokenisé réglé en monnaie de banque centrale, ce qui est l'inverse d'un marché en
@@ -266,7 +278,7 @@ BODY = f"""
           </div>
 
           <div class="cta-box">
-            <h4>Un projet qui pourrait sortir du cadre classique&nbsp;?</h4>
+            <h3>Un projet qui pourrait sortir du cadre classique&nbsp;?</h3>
             <p>
               Si vous portez un actif à revenus autour de Briançon ou dans la vallée de la Guisane,
               nous regardons ensemble si un montage de ce type a un sens — chiffres en main. Le plus
@@ -327,7 +339,7 @@ def main():
     prefix2, n = re.subn(r'(?s)<title>.*?</script>', NEW_HEAD, prefix, count=1)
     assert n == 1, "bloc <head> introuvable dans l'article source"
 
-    out = prefix2 + '\n\n' + BODY.strip('\n') + '\n' + suffix
+    out = prefix2 + MOBILE_CSS + '\n\n' + BODY.strip('\n') + '\n' + suffix
     OUT.write_text(out, encoding='utf-8')
 
     for tag in ('div', 'article', 'p', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'blockquote', 'a',
