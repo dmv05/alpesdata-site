@@ -74,7 +74,26 @@ MOBILE_CSS = """
   .article-page .cta-box,.article-page .highlight-box,.article-page .tech-box{padding:22px}
   .article-page blockquote{padding:20px}
 }
-    </style>"""
+    </style><noscript><style>.fade-in{opacity:1!important;transform:none!important}</style></noscript>"""
+
+def wrap_sections(html):
+    """Une div .fade-in PAR section : un seul bloc de 8 000 px ne franchit jamais
+    le seuil threshold:0.1 d'IntersectionObserver sur un écran de téléphone, et le
+    corps de l'article reste à opacity:0 — page vide sous le titre."""
+    i = html.index('</header>') + len('</header>')
+    head, rest = html[:i], html[i:]
+    tail_marker = '      </div>\n    </article>'
+    j = rest.rindex(tail_marker)
+    body, tail = rest[:j], rest[j:]
+    parts = [x.strip('\n') for x in re.split(r'(?=<h2>)', body)]
+    out = [head]
+    for part in parts:
+        if not part.strip():
+            continue
+        out.append('\n        <div class="fade-in">\n' + part + '\n        </div>\n')
+    out.append(tail)
+    return ''.join(out)
+
 
 BODY = f"""
     <article class="article-page">
@@ -99,7 +118,6 @@ BODY = f"""
           </p>
         </header>
 
-        <div class="fade-in">
           <h2>📌 Ce que la BCE a dit, mot pour mot</h2>
 
           <p>
@@ -306,7 +324,6 @@ BODY = f"""
             lecture de terrain, pas une donnée officielle.
             <br>Cet article a été rédigé avec <strong>Hermes</strong>, l'agent open source que nous déployons pour nos clients.
           </p>
-        </div>
       </div>
     </article>
 """
@@ -339,7 +356,7 @@ def main():
     prefix2, n = re.subn(r'(?s)<title>.*?</script>', NEW_HEAD, prefix, count=1)
     assert n == 1, "bloc <head> introuvable dans l'article source"
 
-    out = prefix2 + MOBILE_CSS + '\n\n' + BODY.strip('\n') + '\n' + suffix
+    out = prefix2 + MOBILE_CSS + '\n\n' + wrap_sections(BODY.strip('\n')) + '\n' + suffix
     OUT.write_text(out, encoding='utf-8')
 
     for tag in ('div', 'article', 'p', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'blockquote', 'a',
