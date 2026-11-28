@@ -286,6 +286,10 @@ def main():
         print("(check : rien écrit)")
         return 0
 
+    if PAGE.exists() and PAGE.read_text(encoding="utf-8") == html:
+        print("page déjà à jour — rien à publier")
+        return 0
+
     PAGE.write_text(html, encoding="utf-8")
     print(f"écrit {PAGE.relative_to(REPO)}")
 
