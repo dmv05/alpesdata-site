@@ -43,8 +43,12 @@
   .sub{font-size:12px;color:var(--muted)}
   .orders{margin-top:12px;display:grid;gap:10px}
   .ord{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px 9px}
-  .ord-top{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+  .ord-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
   .who{font-family:Georgia,serif;font-size:15.5px;color:var(--marine);letter-spacing:-.2px;line-height:1.15}
+  .tel{flex:0 0 auto;font-size:11px;font-weight:600;color:#3f5a60;text-decoration:none;
+       border-bottom:1px dotted #c4bcaa;padding-bottom:1px;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .tel:active,.tel:hover{color:var(--marine);border-bottom-color:var(--marine)}
+  .ord-top .sum{margin-left:auto}
   .sum{font-size:14.5px;font-weight:700;color:var(--marine);font-variant-numeric:tabular-nums;white-space:nowrap}
   .lines{margin-top:6px;display:grid;gap:4px}
   .li{display:flex;align-items:baseline;gap:6px;font-size:12.4px;line-height:1.28}
@@ -87,7 +91,7 @@
 
   <div class="orders">
     <div class="ord">
-      <div class="ord-top"><span class="who">Joëlle Bonetti</span><span class="sum">118,00 €</span></div>
+      <div class="ord-top"><span class="who">Joëlle Bonetti</span><a class="tel" href="tel:+33626161039" aria-label="Appeler Joëlle Bonetti">06 26 16 10 39</a><span class="sum">118,00 €</span></div>
       <div class="lines">
         <div class="li"><span class="q">×1</span><span class="t">N°3 — bourriche de 50 huîtres</span><span class="p">44,00 €</span></div>
         <div class="li"><span class="q">×2</span><span class="t">Moules de bouchot 1 kg 400</span><span class="p">26,00 €</span></div>
@@ -96,7 +100,7 @@
     </div>
 
     <div class="ord">
-      <div class="ord-top"><span class="who">France Moise</span><span class="sum">114,00 €</span></div>
+      <div class="ord-top"><span class="who">France Moise</span><a class="tel" href="tel:+33680802325" aria-label="Appeler France Moise">06 80 80 23 25</a><span class="sum">114,00 €</span></div>
       <div class="lines">
         <div class="li"><span class="q">×1</span><span class="t">N°2 — bourriche de 100 huîtres</span><span class="p">77,00 €</span></div>
         <div class="li"><span class="q">×1</span><span class="t">Moules de bouchot 2 kg</span><span class="p">17,00 €</span></div>
@@ -105,7 +109,7 @@
     </div>
 
     <div class="ord">
-      <div class="ord-top"><span class="who">Claire Jacquot</span><span class="sum">43,00 €</span></div>
+      <div class="ord-top"><span class="who">Claire Jacquot</span><a class="tel" href="tel:+33660991090" aria-label="Appeler Claire Jacquot">06 60 99 10 90</a><span class="sum">43,00 €</span></div>
       <div class="lines">
         <div class="li"><span class="q">×1</span><span class="t">N°2 — bourriche de 25 huîtres</span><span class="p">26,00 €</span></div>
         <div class="li"><span class="q">×1</span><span class="t">Moules de bouchot 2 kg</span><span class="p">17,00 €</span></div>
@@ -113,7 +117,7 @@
     </div>
 
     <div class="ord">
-      <div class="ord-top"><span class="who">Isabelle Buisson</span><span class="sum">24,00 €</span></div>
+      <div class="ord-top"><span class="who">Isabelle Buisson</span><a class="tel" href="tel:+33689075089" aria-label="Appeler Isabelle Buisson">06 89 07 50 89</a><span class="sum">24,00 €</span></div>
       <div class="lines">
         <div class="li"><span class="q">×1</span><span class="t">N°3 — bourriche de 25 huîtres</span><span class="p">24,00 €</span></div>
       </div>
